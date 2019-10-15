@@ -1,15 +1,18 @@
-import React from 'react';
-//import logo from './logo.svg';
-//import './App.css';
+import React, { Component } from 'react';
+import Landing from './Components/Landing';
 
- import React, { Component } from 'react';
-  class App extends Component {
+
+
+class App extends Component {
   render() {
-  return <div>found 402</div>
+    return (<div>found 402
+      <Landing/> 
+    </div>)
   }
-  }
-  export default App;
-
-
+}
 
 export default App;
+
+
+
+
