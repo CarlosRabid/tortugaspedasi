@@ -3,9 +3,9 @@ let server = express();
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
-app.use(express.static('node_modules'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+server.use(express.static('node_modules'));
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: false }));
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/TortugaPedasi', { useNewUrlParser: true})
 
@@ -23,4 +23,4 @@ server.use(function (req, res, next) {
 server.use('/', api)
 
 const PORT = 7777
-app.listen(process.env.PORT || PORT, () => console.log(`Running on port ${PORT}`))
+server.listen(process.env.PORT || PORT, () => console.log(`Running on port ${PORT}`))

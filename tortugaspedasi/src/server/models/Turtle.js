@@ -6,7 +6,7 @@ const turtleSchema = new Schema({
     gender: String,
     condition: {
         status: String,
-        state: String
+        stage: String
     },
     dimensions: {
         plain: {
