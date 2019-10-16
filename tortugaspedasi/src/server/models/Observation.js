@@ -2,7 +2,8 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 const observationSchema = new Schema({
-    time: Date,
+    form: {type: Schema.Types.ObjectId, ref: 'Form'},
+    time: Number,
     location: String,
     moonPhase: String,
     tide: String,
