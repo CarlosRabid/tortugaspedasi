@@ -1,11 +1,12 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-const personSchema = new Schema({
+const shiftSchema = new Schema({
+   form: {type: Schema.Types.ObjectId, ref: 'Form'},
    firstName: String,
    lastName: String,
    date: Date
 });
 
-const Person = mongoose.model("Nest", personSchema)
-module.exports = Person
+const Shift = mongoose.model("Shift", shiftSchema)
+module.exports = Shift
