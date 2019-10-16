@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+import Landing from './Components/Landing';
 import NavBar from './Components/NavBar';
-import Typography from '@material-ui/core/Typography';
 
 
-//import logo from './logo.svg';
-//import './App.css';
 
-  class App extends Component {
+class App extends Component {
   render() {
-  return <div>
-     <NavBar />
-     
-     </div>
+    return (<div>
+      <NavBar />
+      <Landing/> 
+    </div>)
   }
-  }
-  export default App;
+}
+
+export default App;
+
+
+
 

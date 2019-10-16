@@ -6,6 +6,9 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import '../styles/NavBar.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import Form from './Form/Form';
+import Spreadsheet from './Spreadsheet/Spreadsheet';
+import Analytics from './Analytics/Analytics';
 
 class NavBar extends Component {
     constructor(props) {
@@ -15,19 +18,28 @@ class NavBar extends Component {
     render() {
         return (
             <div>
-                <AppBar position="static">
-                    <Router>
+                <Router>
+                    <div><AppBar position="static">
+
                         <Toolbar>
-                                <div className="navbarLinks"><Link to="/landing">Home</Link>
-                                    <Link to="/analytics">Analytics</Link>
-                                    <Link to="/spreadsheet">Spreadsheet</Link>
-                                </div>
+                            <div className="navbarLinks">
+                                <Link to="/landing">Home</Link>
+                                <Link to="/form">Form</Link>
+                                <Link to="/spread">Spreadsheet</Link>
+                                <Link to="/analytics">Analytics</Link>
+
+                            </div>
                             <div id="logoutButton">
                                 <Button edge="end" variant="contained" >Logout</Button>
                             </div>
                         </Toolbar>
-                    </Router>
-                </AppBar>
+
+                    </AppBar>
+                        <Route path="/form" exact render={() => <Form />} />
+                        <Route path="/spread" exact render={() => <Spreadsheet />} />
+                        <Route path="/analytics" exact render={() => < Analytics />} />
+                    </div>
+                </Router>
 
             </div>
         );

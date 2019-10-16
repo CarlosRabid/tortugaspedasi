@@ -5,8 +5,8 @@ const nestSchema = new Schema({
    eggCount: Number,
    layTime: Date,
    hatchEst: Date,
-   rehomed: Boolean,
-   salvageable: Boolean
+   rehomed: String,
+   salvageable: String,
 });
 
 const Nest = mongoose.model("Nest", nestSchema)

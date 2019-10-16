@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+
 class Spreadsheet extends Component {
     constructor(props) {
         super(props);
@@ -5,8 +7,10 @@ class Spreadsheet extends Component {
     }
     render() { 
         return ( 
-            {/* Your Code Here */}
-         );
+          <div className= "Spreadsheet">
+              Component Spreedsheet working good
+          </div>  
+         )
     }
 }
  
