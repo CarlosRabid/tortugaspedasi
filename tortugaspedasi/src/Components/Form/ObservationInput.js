@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 class ObservationInput extends Component {
     constructor(props) {
         super(props);

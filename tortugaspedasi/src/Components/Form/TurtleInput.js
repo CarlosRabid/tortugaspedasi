@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+
 class TurtleInput extends Component {
     constructor(props) {
         super(props);
