@@ -16,6 +16,10 @@ router.get('/forms', (req, res) => {
       if (err) throw err;
       else res.send(forms)
     })
+    .populate('shift')
+    .populate('observation')
+    .populate('turtle')
+    .populate('nest')
 })
 
 router.post('/shift', (req,res) => {
