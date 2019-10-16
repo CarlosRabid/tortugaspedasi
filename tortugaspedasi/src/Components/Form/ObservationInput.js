@@ -4,6 +4,11 @@ class ObservationInput extends Component {
         super(props);
         this.state = {  }
     }
+
+    /* GEOLOCATION FUNCTION 
+        BUTTON THAT INVOKES THE FUNCTION    
+    */
+
     render() { 
         return ( 
             {/* Your Code Here */}
