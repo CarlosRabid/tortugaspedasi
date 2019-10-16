@@ -79,9 +79,11 @@ router.post('/nest', (req, res) => {
     res.send(newNest)
 })
 
+
 Form.findOne({})
 .populate('observation')
 .exec((err, form) => console.log(form))
+
 
 router.post('/newForm', (req, res) => {
     let newShift = new Shift ({
