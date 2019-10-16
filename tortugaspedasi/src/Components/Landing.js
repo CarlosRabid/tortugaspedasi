@@ -1,3 +1,6 @@
+import React, { Component } from 'react';
+
+
 class Landing extends Component {
     constructor(props) {
         super(props);
@@ -5,7 +8,7 @@ class Landing extends Component {
     }
     render() { 
         return ( 
-            {/* Your Code Here */}
+           
          );
     }
 }

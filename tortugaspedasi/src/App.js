@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
+import NavBar from './Components/NavBar';
+import Typography from '@material-ui/core/Typography';
+
+
 //import logo from './logo.svg';
 //import './App.css';
 
- import React, { Component } from 'react';
   class App extends Component {
   render() {
-  return <div>found 402</div>
+  return <div>
+     <NavBar />
+     
+     </div>
   }
   }
   export default App;
 
-
-
-export default App;

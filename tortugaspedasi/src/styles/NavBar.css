@@ -1,0 +1,11 @@
+#logoutButton {
+    display: flex;
+    align-items: flex-end;
+   
+    
+}
+
+.navbarLinks > a{
+    margin: 15px;
+    color: white;
+      }
