@@ -6,14 +6,14 @@ class SpreadsheetData extends Component {
     constructor() {
         super();
         this.state = {
-            data: []
+            forms: []
         }
     }
 
     getDataDb = async () =>{
         let data = await axios.get('http://localhost:7777/forms')
         this.setState({
-            data: data.data
+            forms: data.data
         })
         
     }
@@ -22,8 +22,13 @@ class SpreadsheetData extends Component {
         this.getDataDb()
     }
     render() {
+        let forms = this.state.forms
         return (
-            <SpreadsheetContainer data = {this.state.data}/> 
+            <div className= "Forms">
+                {forms.map((f, index) => {
+                   return <SpreadsheetContainer form= {f} key={index} /> 
+                })}
+            </div> 
         )
     }
 }
