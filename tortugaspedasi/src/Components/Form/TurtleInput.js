@@ -46,6 +46,7 @@ class TurtleInput extends Component {
         return (
             <div className="turtle-container">
                 <h2>Turtle Information</h2>
+                
                 <div className="turtle-component">
                     <div>
                         <span className="new-turtle-1"> Species: </span>
@@ -64,13 +65,13 @@ class TurtleInput extends Component {
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Status: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="status" onChange={this.handleInput}></input>
+                                name="consition.status" onChange={this.handleInput}></input>
                         </div>
 
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Stage: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="stage" onChange={this.handleInput}></input>
+                                name="consition.stage" onChange={this.handleInput}></input>
                         </div>
 
                     </div>
@@ -83,13 +84,13 @@ class TurtleInput extends Component {
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Length: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="plain-length" onChange={this.handleInput}></input>
+                                name="dimensions.plain.length" onChange={this.handleInput}></input>
                         </div>
 
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Width: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="plain-width" onChange={this.handleInput}></input>
+                                name="dimensions.plain.width" onChange={this.handleInput}></input>
                         </div>
 
                         <div className="child-turtle" className="new-turtle-1"> Curve </div>
@@ -97,13 +98,13 @@ class TurtleInput extends Component {
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Width: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="curve-width" onChange={this.handleInput}></input>
+                                name="dimensions.plain.width" onChange={this.handleInput}></input>
                         </div>
 
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Length: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="curve-width" onChange={this.handleInput}></input>
+                                name="dimensions.plain.length" onChange={this.handleInput}></input>
                         </div>
 
                     </div>
@@ -114,13 +115,13 @@ class TurtleInput extends Component {
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Right Side: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="right-side-marking" onChange={this.handleInput}></input>
+                                name="markings.rightSide" onChange={this.handleInput}></input>
                         </div>
 
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Left Side: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="left-side-marking" onChange={this.handleInput}></input>
+                                name="markings.leftSide" onChange={this.handleInput}></input>
                         </div>
 
                     </div>
