@@ -24,7 +24,7 @@ class SpreadsheetData extends Component {
     render() {
         let forms = this.state.forms
         return (
-            <div className= "Forms">
+            <div className= "forms">
                 {forms.map((f, index) => {
                    return <SpreadsheetContainer form= {f} key={index} /> 
                 })}

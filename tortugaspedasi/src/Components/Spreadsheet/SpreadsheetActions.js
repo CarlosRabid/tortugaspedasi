@@ -6,7 +6,10 @@ class SpreadsheetActions extends Component {
 
         
         return ( 
-            {/* Your Code Here */}
+            <div className="actions">
+                <input type="text" name="filter" placeholder="Search"/>
+                <button>Search</button>
+            </div>
          );
     }
 }
