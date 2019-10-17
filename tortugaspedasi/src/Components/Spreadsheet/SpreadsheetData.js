@@ -10,16 +10,19 @@ class SpreadsheetData extends Component {
         }
     }
 
-    getDataDb = async () =>{
+    // getDataDb = async () =>{
+    //     let data = await axios.get('http://localhost:7777/forms')
+    //     this.setState({
+    //         forms: data.data
+    //     })
+        
+    // }
+
+    async componentDidMount(){
         let data = await axios.get('http://localhost:7777/forms')
         this.setState({
             forms: data.data
         })
-        
-    }
-
-    componentDidMount(){
-        this.getDataDb()
     }
     render() {
         let forms = this.state.forms
