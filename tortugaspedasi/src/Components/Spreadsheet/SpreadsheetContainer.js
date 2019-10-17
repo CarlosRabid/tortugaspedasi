@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
-
+const moment = require('moment')
 
 class SpreadsheetContainer extends Component {
 
-    render() { 
+    render() {
 
-        let data = this.props.data
+        let form = this.props.form
+        console.log(form)
 
-        return ( 
-            <div>
-                {/* {data.map( d =>{
-                    d.nest
-                })} */}
-                {null}
-
+        return (
+            <div className="form">
+                <h4>{form.shift.firstName} {(form.shift.lastName)}</h4>
+                <span>Location: {form.observation.location}</span>
+                <br/>
+                <span>Date: {moment(form.shift.date).format("Do/MM/YY")} </span>
             </div>
-         );
+            // null
+        )
     }
 }
- 
+
+
+
 export default SpreadsheetContainer;
