@@ -33,10 +33,13 @@ class TurtleInput extends Component {
         this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
     }
     addTurtleInput = () => {
-        this.props.addTurtleInput(this.state.firstName, this.state.lastName, this.state.date)
+        this.props.addTurtleInput(this.state.species, this.state.gender, 
+            this.state.condition.status, this.state.condition.stage, 
+            this.state.dimensions.plain.length, this.state.dimensions.plain.width, this.state.dimensions.curve.length, this.state.dimensions.curve.width,
+            this.state.markings.rightSide, this.state.markings.leftSide )
     }
 
-    // there is className = "child-turtle" for nexted children to help with the CSS
+    // there is className = "child-turtle" for nested children to help with the CSS
 
     render() {
         
