@@ -16,6 +16,10 @@ router.get('/forms', (req, res) => {
       if (err) throw err;
       else res.send(forms)
     })
+    .populate('shift')
+    .populate('observation')
+    .populate('turtle')
+    .populate('nest')
 })
 
 router.post('/shift', (req,res) => {
@@ -79,9 +83,11 @@ router.post('/nest', (req, res) => {
     res.send(newNest)
 })
 
+
 Form.findOne({})
 .populate('observation')
 .exec((err, form) => console.log(form))
+
 
 router.post('/newForm', (req, res) => {
     let newShift = new Shift ({

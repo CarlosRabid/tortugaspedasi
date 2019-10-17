@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import SpreadsheetData from './SpreadsheetData';
+
+
 
 class Spreadsheet extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
+
+
     render() { 
         return ( 
           <div className= "Spreadsheet">
-              Component Spreedsheet working good
+            Component Spreedsheet working good
+            <SpreadsheetData/>
           </div>  
          )
     }

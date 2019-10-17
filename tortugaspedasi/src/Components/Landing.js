@@ -4,10 +4,6 @@ import Form from './Form/Form';
 import Spreadsheet from './Spreadsheet/Spreadsheet';
 import Analytics from './Analytics/Analytics';
 
-const divStyle = {
-    margin: '40px',
-    textdecoration: "none"
-  };
 
 class Landing extends Component {
     
