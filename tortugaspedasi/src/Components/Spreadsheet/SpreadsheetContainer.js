@@ -13,7 +13,7 @@ class SpreadsheetContainer extends Component {
                 <h4>{form.shift.firstName} {(form.shift.lastName)}</h4>
                 <span>Location: {form.observation.location}</span>
                 <br/>
-                <span>Date: {moment(form.shift.date).format("MM Do YY")} </span>
+                <span>Date: {moment(form.shift.date).format("Do/MM/YY")} </span>
             </div>
             // null
         )
