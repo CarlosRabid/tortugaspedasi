@@ -10,7 +10,6 @@ class Spreadsheet extends Component {
     render() { 
         return ( 
           <div className= "Spreadsheet">
-            <SpreadsheetActions/>
             <SpreadsheetData/>
           </div>  
          )

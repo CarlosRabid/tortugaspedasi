@@ -13,3 +13,16 @@
   
 }
 
+.popUp {
+  position: fixed;
+  width: 34%;
+  height: 28%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  margin: auto;
+  background: -webkit-linear-gradient(left, #85a100, #25b7c4);
+  background: linear-gradient(to right,  #85a100, #25b7c4);
+  font-family: 'Montserrat', sans-serif;
+ }
