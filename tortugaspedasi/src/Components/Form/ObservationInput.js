@@ -2,21 +2,52 @@ import React, { Component } from 'react';
 class ObservationInput extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             time: "",
             location: "",
             moonPhase: "",
             tide: "",
             comments: ""
-         }
+        }
     }
 
     handleInput = (event) => {
-        this.setState({[event.target.name]: event.target.value}, ()=>console.log(this.state))
+        this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
     }
     addShift = () => {
         this.props.addShift(this.state.firstName, this.state.lastName, this.state.date)
     }
+
+    getPosition() {
+        function geoSucess(position) {
+            let geoCoords = {
+                lat: position.coords.latitude,
+                long: position.coords.longitude
+            }
+            alert(`This are your coordinates: - Latitude: ${geoCoords.lat} - Longitude: ${geoCoords.long}`)
+            return (geoCoords)
+        }
+
+        function geoError(errorPosition) {
+            alert("Error - Not position available")
+        }
+
+        const geoOptions = {
+            enableHighAccuracy: true,
+            maximumAge: 0,
+            timeout: 25000
+        }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(geoSucess, geoError, geoOptions);
+            console.log("True")
+        } else {
+            console.log("Geolocation not enable in this device")
+
+        }
+    }
+
+
 
     render() {
         let input = ["Time", "Location", "Moonphase", "Tide", "Comments"]
