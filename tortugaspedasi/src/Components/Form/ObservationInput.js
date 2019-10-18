@@ -54,16 +54,18 @@ class ObservationInput extends Component {
         return (
             <div className="observation-container">
                 <h2>Observation</h2>
+                <div>
+                    <button id="button" onClick={this.getPosition}>Click here to know your position</button>
+                </div>
                 <div className="observation-component">
                     {input.map((i) => <div className="new-observation-grid">
                         <span className="new-observation-1"> {i}: </span>
                         <input className="searchInput underline new-observation-2"
                             name={i} onChange={this.handleInput}></input>
-                        <div>
-                            <button id="button" onClick={this.getPosition}>Click here to know your position</button>
-                        </div>
+
                     </div>
                     )}
+                    
 
                 </div>
             </div>
@@ -71,5 +73,5 @@ class ObservationInput extends Component {
 
     }
 }
-
+ 
 export default ObservationInput;

@@ -21,12 +21,13 @@ class Form extends Component {
             <div className= "form">
                 <h3>TORTUGA WATCH FORM</h3>
                 <ShiftInput forms={this.state.forms}/>
-                <ObservationInput forms={this.state.forms}/> 
+                <ObservationInput forms={this.state.forms} getPosition={this.getPosition}/> 
                 <TurtleInput />
                 <button className="submit" onClick={this.submitNewForm}>Submit</button>
             </div>
         )
     }
 }
- 
+
+
 export default Form;
