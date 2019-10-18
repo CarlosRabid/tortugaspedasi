@@ -18,15 +18,15 @@ class ShiftInput extends Component {
     }
 
     render() { 
-        let input = ["First Name", "Last Name", "Date"]
+        let input = [{formName:"First Name", stateName: "firstName"}, {formName:"Last Name", stateName: "lastName"}, {formName:"Date",stateName: "date" }]
         return(
         <div className="shift-container">
                 <h2>Shift</h2>
                     <div className="shift-component">
                         {input.map((i)=> <div className="new-shift-grid">
-                            <span className="new-shift-1"> {i}: </span>
+                            <span className="new-shift-1"> {i.formName}: </span>
                             <input className="searchInput underline new-shift-2" 
-                                   name={i} onChange={this.handleInput}></input>
+                                   name={i.stateName} onChange={this.handleInput}></input>
                         </div>
                         )}    
                     </div>

@@ -15,7 +15,7 @@ class ObservationInput extends Component {
         this.setState({[event.target.name]: event.target.value}, ()=>console.log(this.state))
     }
     addShift = () => {
-        this.props.addShift(this.state.firstName, this.state.lastName, this.state.date)
+        this.props.addShift(this.state.time, this.state.location, this.state.moonPhase, this.state.tide, this.state.comments)
     }
 
     getPosition() {
@@ -50,7 +50,7 @@ class ObservationInput extends Component {
 
 
     render() {
-        let input = ["Time", "Location", "Moonphase", "Tide", "Comments"]
+        let input = [{formName:"Time", stateName: "time"}, {formName:"Location", stateName: "location"} , {formName:"Moonphase", stateName: "moonPhase"}, {formName:"Tide", stateName: "tide"},{formName:"Comments", stateName: "moonPhase"} ]
         return (
             <div className="observation-container">
                 <h2>Observation</h2>
