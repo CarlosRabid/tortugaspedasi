@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const request = require('request')
 
 const Form = require('./models/Form');
 const Shift = require('./models/Shift');
@@ -184,5 +185,32 @@ router.delete('/forms/:id', function (req, res) {
         })
     })
 })
+
+router.get('/moonData', (req, res) => {
+    let lat = 7.5303400;
+    let long = -80.0269900;
+    let apiAdd = `https://api.solunar.org/solunar/${lat},${long},20191018,-5`
+    console.log(apiAdd)
+
+    request(apiAdd, function(error, response,body){
+        let fulldataMoon = JSON.parse(body)
+        let dataMoon ={
+            sunrise:fulldataMoon.sunRise,
+            suntransit:fulldataMoon.sunTransit,
+            sunset:fulldataMoon.sunSet,
+            moonrise:fulldataMoon.moonRise,
+            moonunder:fulldataMoon.moonUnder,
+            moonphase:fulldataMoon.moonPhase,
+            moonillumination:fulldataMoon.moonIllumination
+        }
+        console.log(fulldataMoon)
+    })
+
+    res.send(dataMoon)
+
+
+})
+
+
 
 module.exports = router
