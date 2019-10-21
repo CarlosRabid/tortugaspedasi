@@ -2,25 +2,43 @@
     display: flex;
     align-content: center;
     justify-content: center;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    background-image: url(https://chinadialogueocean.net/wp-content/uploads/2018/08/sea-turtle-547162_1920-e1534168069327-1440x720.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat
+}
+
+
+.button {
+    margin-top: 20vh;
+    margin-bottom: 24vh;
+    padding: 30px;  
 }
 
 .link {
-    margin-top: 220px;
-    margin-bottom: 220px;
-    width: 30vw;
-    height: 30vh;
-    border-style: solid;
-    border-width: 3px;
-    margin-right: 10px;
-    border-radius: 40px;
+  background-color: #cfcfcf;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  margin: 4px 2px;
+  opacity: 0.5;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  height: 300px;
+  width:400px;
+  border-radius: 10px;
 }
 
-#form {
-    background-image: url("https://webstockreview.net/images/creation-clipart-order-16.png");
-    background-size: 120px;
-    background-repeat: no-repeat;
-    justify-items: center;
-    
+.link:hover {opacity: 0.7;}
+
+.link:active {
+  background-color: #92c8d1;
+  transform: translateY(4px);
 }
+
+
+
 
