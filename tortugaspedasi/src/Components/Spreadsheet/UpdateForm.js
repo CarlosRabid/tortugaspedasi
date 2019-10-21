@@ -13,12 +13,12 @@ class UpdateForm extends Component {
         this.props.closePopUp()
     }
 
-    update = (event) => {
-        let item = event.target
-        this.setState({
-            name: item
-        })
-    }
+    // update = (event) => {
+    //     let item = event.target
+    //     this.setState({
+    //         name: item
+    //     })
+    // }
 
     render() {
         return (

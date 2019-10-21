@@ -7,18 +7,20 @@ class SpreadsheetContainer extends Component {
         super();
         this.state={
             name: " ",
-            showPopUp: null
+            // showPopUp: null
         }
     }
+
+    // closePopUp = () => {
+    //     this.props.closePopUp()
+    // }
+
 
     showPopUp = (event) => {
         console.log(event.target.id)
         this.props.showPop(event.target.id)
     }
 
-    closePopUp = () => {
-        this.props.closePopUp()
-    }
 
 
 
@@ -39,7 +41,6 @@ class SpreadsheetContainer extends Component {
 
                 </div>
             </div>
-            // null
         )
     }
 }
