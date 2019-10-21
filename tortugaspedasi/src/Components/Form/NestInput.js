@@ -15,34 +15,32 @@ class NestInput extends Component {
     handleInput = (event) => {
         this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
     }
-    addShift = () => {
-        this.props.addShift(this.state.eggCount, this.state.layTime, this.state.hatchEst, this.state.rehomed, this.state.salvageable)
-    }
-
     render() {
-        let input = ["Time", "Location", "Moonphase", "Tide", "Comments"]
-        return (
-            <div className="observation-container">
-                <h2>Observation</h2>
-                <div>
-                    <button id="button" onClick={this.getPosition}>Click here to know your position</button>
-                </div>
-                <div className="observation-component">
-                    {input.map((i) => <div className="new-observation-grid">
-                        <span className="new-observation-1"> {i}: </span>
-                        <input className="searchInput underline new-observation-2"
-                            name={i} onChange={this.handleInput}></input>
+        return <>
+            <div className="popUp">
+                <div className="new-nest-grid">
+                    <span className="new-nest-1"> Number of eggs: </span>
+                    <input className="searchInput underline new-nest-2"
+                        name="eggCount" onChange={this.handleInput}></input>
 
-                    </div>
-                    )}
-                    
+                </div>
+                <div className="new-nest-grid">
+                    <span className="new-nest-1"> Estimated Laying Time: </span>
+                    <input className="searchInput underline new-nest-3"
+                        name="laytime" onChange={this.handleInput}></input>
+
+                </div>
+                <div className="new-nest-grid">
+                    <span className="new-nest-1"> Taken to Lab: </span>
+                    <input className="searchInput underline new-nest-4"
+                        name="rehomed" onChange={this.handleInput}></input>
 
                 </div>
             </div>
-        );
+        </>
+
 
     }
 }
 
 export default NestInput;
-
