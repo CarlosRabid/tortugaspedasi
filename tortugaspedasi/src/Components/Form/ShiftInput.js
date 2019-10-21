@@ -35,7 +35,7 @@ class ShiftInput extends Component {
                 </div>
                 <form>
                     <label>
-                        Date:
+                        Date: 
                         <input type="date" name="date" value={this.state.date} onChange={this.handleInput}/>
                     </label>
                 </form>
