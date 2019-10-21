@@ -26,15 +26,26 @@ class NestInput extends Component {
                 </div>
                 <div className="new-nest-grid">
                     <span className="new-nest-1"> Estimated Laying Time: </span>
-                    <input className="searchInput underline new-nest-3"
-                        name="laytime" onChange={this.handleInput}></input>
-
+                    <form>
+                        <label>
+                            Date: 
+                            <input type="date" name="layTime" value={this.state.layTime} onChange={this.handleInput}/></label>
+                    </form>
                 </div>
                 <div className="new-nest-grid">
-                    <span className="new-nest-1"> Taken to Lab: </span>
-                    <input className="searchInput underline new-nest-4"
-                        name="rehomed" onChange={this.handleInput}></input>
-
+                    <span className="new-nest-1"> Estimated Hatching Time: </span>
+                    <form>
+                        <label>
+                            Date: 
+                            <input type="date" name="hatchEst" value={this.state.hatchEst} onChange={this.handleInput}/></label>
+                    </form>
+                </div>
+                <div className="new-nest-grid" onChange={this.handleInput}>
+                    <span className="new-nest-1"> Taken to Lab: </span> 
+                    <select name="rehomed" id="">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
                 </div>
             </div>
         </>

@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 const observationSchema = new Schema({
     form: {type: Schema.Types.ObjectId, ref: 'Form'},
     time: Number,
-    location: String,
+    location: {type: Schema.Types.ObjectId, ref: 'Beach'},
     moonPhase: String,
     tide: String,
     comments: String,  
