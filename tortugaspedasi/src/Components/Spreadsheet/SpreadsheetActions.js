@@ -3,12 +3,16 @@ import React, { Component } from 'react';
 class SpreadsheetActions extends Component {
     
     render() {
+        console.log(this.props)
 
-        
+        let searchHandler = this.props.searchHandler
         return ( 
-            {/* Your Code Here */}
+            <div className="actions">
+                <input type="text" name="filter" placeholder="Search" onChange={searchHandler}/>
+                <button>Search</button>
+            </div>
          );
     }
 }
  
-export default SpreadsheetActions;
+export default SpreadsheetActions
