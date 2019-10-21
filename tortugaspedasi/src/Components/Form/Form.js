@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ShiftInput from './ShiftInput';
 import ObservationInput from './ObservationInput';
-import TurtleInput from './TurtleInput';
+import Turtle from './Turtle';
 import NestInput from './NestInput';
 const axios = require('axios') 
 
@@ -24,7 +24,7 @@ class Form extends Component {
                 <h3>TORTUGA WATCH FORM</h3>
                 <ShiftInput forms={this.state.forms}/>
                 <ObservationInput forms={this.state.forms} getPosition={this.getPosition}/> 
-                <TurtleInput />
+                <Turtle />
                 {this.state.nestFound ?
                 <NestInput /> : null}
                 <button className="submit" onClick={this.submitNewForm}>Submit</button>
