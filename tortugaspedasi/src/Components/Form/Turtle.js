@@ -6,26 +6,7 @@ class Turtle extends Component {
         super(props);
         this.state = {
             turtleinput: {}
-            // gender: "",
-            // condition:
-            // {
-            //     status: "",
-            //     stage: ""
-            // },
-            // dimensions: {
-            //     plain: {
-            //         length: "",
-            //         width: ""
-            //     },
-            //     curve: {
-            //         length: "",
-            //         width: ""
-            //     }
-            // },
-            // markings: {
-            //     rightSide: "",
-            //     leftSide: ""
-            // }
+
         }
     }
     updateTurtle = (dms) => {
