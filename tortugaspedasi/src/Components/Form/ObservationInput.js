@@ -28,9 +28,9 @@ class ObservationInput extends Component {
                 </div>
                 <div className="observation-component">
                     {input.map((i) => <div className="new-observation-grid">
-                        <span className="new-observation-1"> {i}: </span>
+                        <span className="new-observation-1"> {i.formName}: </span>
                         <input className="searchInput underline new-observation-2"
-                            name={i} onChange={this.handleInput}></input>
+                            name={i.stateName} onChange={this.handleInput}></input>
 
                     </div>
                     )}
