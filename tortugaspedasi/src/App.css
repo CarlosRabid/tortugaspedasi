@@ -1,9 +1,13 @@
 .App {
   /* display: inline; */
   text-align: center;
+  background-color: lightblue;
   color: green;
-  text-decoration: none
+  text-decoration: none;
+  /* background-image: url(https://www.sciencenews.org/wp-content/uploads/2019/04/042519_ms_turtle_feat_REV.jpg); */
+  background-size: cover
 }
+
 
 .links{
   color:black;

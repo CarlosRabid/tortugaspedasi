@@ -9,10 +9,63 @@ const Turtle = require('./models/Turtle');
 const Nest = require('./models/Nest');
 // const UserLogin = require('./models/UserLogin');
 
-/* API Get Request */
+/* API Requests */
+
+router.get('/form', (req, res) => {
+
+    getPosition = () => {
+        function geoSucess(position){
+          let geoCoords= {
+            lat:position.coords.latitude,
+            long:position.coords.longitude
+          }
+          alert(`This are your coordinates: - Latitude: ${geoCoords.lat} - Longitude: ${geoCoords.long}`)
+          return(geoCoords.lat, geoCoords.long)
+        }
+    
+        function geoError(errorPosition){
+            alert("Error - No position available")
+        }
+    
+        const geoOptions={
+            enableHighAccuracy: true,
+            maximumAge: 0,
+            timeout: 25000
+        }
+        
+        if(navigator.geolocation){
+          navigator.geolocation.getCurrentPosition(geoSucess, geoError,geoOptions );
+          console.log("True")
+        }else{
+          console.log("Geolocation is not enabled on this device")
+    
+        }
+      }
+    
+    let apiAdd = `https://api.solunar.org/solunar/${geoCoords.lat},${geoCoords.long},20191018,-5`
+    console.log(apiAdd)
+
+    request(apiAdd, function(error, response, body){
+        let fulldataMoon = JSON.parse(body)
+        let dataMoon ={
+            sunrise:fulldataMoon.sunRise,
+            suntransit:fulldataMoon.sunTransit,
+            sunset:fulldataMoon.sunSet,
+            moonrise:fulldataMoon.moonRise,
+            moonunder:fulldataMoon.moonUnder,
+            moonphase:fulldataMoon.moonPhase,
+            moonillumination:fulldataMoon.moonIllumination
+        }
+        console.log(dataMoon)
+    })
+    res.send(dataMoon)
+})
 
 
-router.get('/forms', (req, res) => {
+
+
+/* Route requests */
+router.get('/form', (req, res) => {
     Form.find({}, (err, forms) =>{
       if (err) throw err;
       else res.send(forms)
@@ -84,11 +137,9 @@ router.post('/nest', (req, res) => {
     res.send(newNest)
 })
 
-
-Form.findOne({})
-.populate('observation')
-.exec((err, form) => console.log(form))
-
+// Form.findOne({})
+// .populate('observation')
+// .exec((err, form) => console.log(form))
 
 router.post('/newForm', (req, res) => {
     let newShift = new Shift ({
@@ -186,30 +237,6 @@ router.delete('/forms/:id', function (req, res) {
     })
 })
 
-router.get('/moonData', (req, res) => {
-    let lat = 7.5303400;
-    let long = -80.0269900;
-    let apiAdd = `https://api.solunar.org/solunar/${lat},${long},20191018,-5`
-    console.log(apiAdd)
-
-    request(apiAdd, function(error, response,body){
-        let fulldataMoon = JSON.parse(body)
-        let dataMoon ={
-            sunrise:fulldataMoon.sunRise,
-            suntransit:fulldataMoon.sunTransit,
-            sunset:fulldataMoon.sunSet,
-            moonrise:fulldataMoon.moonRise,
-            moonunder:fulldataMoon.moonUnder,
-            moonphase:fulldataMoon.moonPhase,
-            moonillumination:fulldataMoon.moonIllumination
-        }
-        console.log(fulldataMoon)
-    })
-
-    res.send(dataMoon)
-
-
-})
 
 
 

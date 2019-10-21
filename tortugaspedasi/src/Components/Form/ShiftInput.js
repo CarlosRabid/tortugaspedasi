@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class ShiftInput extends Component {
     constructor(props) {
         super(props);
@@ -18,19 +19,19 @@ class ShiftInput extends Component {
     }
 
     render() { 
-        let input = ["First Name", "Last Name", "Date"]
+        let input = ["First Name", "Last Name"]
         return(
         <div className="shift-container">
                 <h2>Shift</h2>
                     <div className="shift-component">
                         {input.map((i)=> <div className="new-shift-grid">
                             <span className="new-shift-1"> {i}: </span>
-                            <input className="searchInput underline new-shift-2" 
-                                   name={i} onChange={this.handleInput}></input>
+                            <input className="searchInput underline new-shift-2" name={i} onChange={this.handleInput}></input>
                         </div>
                         )}    
                     </div>
-            </div> 
+                    
+        </div> 
         );
     }
 }
