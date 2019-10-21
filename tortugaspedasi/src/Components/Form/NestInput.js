@@ -5,8 +5,10 @@ class NestInput extends Component {
         super(props);
         this.state = {
             eggCount: "",
-            laytime: "",
-            rehomed: ""
+            layTime: "",
+            hatchEst: "",
+            rehomed: "",
+            salvageable: "",
         }
     }
 

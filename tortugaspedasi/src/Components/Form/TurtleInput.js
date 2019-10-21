@@ -65,13 +65,13 @@ class TurtleInput extends Component {
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Status: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="consition.status" onChange={this.handleInput}></input>
+                                name="condition.status" onChange={this.handleInput}></input>
                         </div>
 
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Stage: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="consition.stage" onChange={this.handleInput}></input>
+                                name="condition.stage" onChange={this.handleInput}></input>
                         </div>
 
                     </div>
