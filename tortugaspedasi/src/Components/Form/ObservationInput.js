@@ -3,11 +3,9 @@ class ObservationInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            time: "",
-            location: "",
-            moonPhase: "",
-            tide: "",
-            comments: ""
+            time: "", // placeholder but editable
+            location: "",  // comes from geolocation, editable
+            comments: "" //free input
         }
     }
 
@@ -15,7 +13,7 @@ class ObservationInput extends Component {
         this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
     }
     addShift = () => {
-        this.props.addShift(this.state.time, this.state.location, this.state.moonPhase, this.state.tide, this.state.comments)
+        this.props.addShift(this.state.time, this.state.location, this.state.comments)
     }
 
     getPosition() {
@@ -50,12 +48,16 @@ class ObservationInput extends Component {
 
 
     render() {
-        let input = [{formName:"Time", stateName: "time"}, {formName:"Location", stateName: "location"} , {formName:"Moonphase", stateName: "moonPhase"}, {formName:"Tide", stateName: "tide"},{formName:"Comments", stateName: "moonPhase"} ]
+        let input = [{formName:"Time", stateName: "time"}, {formName:"Location", stateName: "location"},{formName:"Comments", stateName: "moonPhase"} ]
         return (
             <div className="observation-container">
                 <h2>Observation</h2>
-                <div>
+                <div className="observation-component">
+                    <span className="new-observation-1">Location:</span>
+                    <input className="searchInput underline new-observation-2"
+                            name="location" onChange={this.handleInput}></input>
                     <button id="button" onClick={this.getPosition}>Click here to know your position</button>
+                    
                 </div>
                 <div className="observation-component">
                     {input.map((i) => <div className="new-observation-grid">
