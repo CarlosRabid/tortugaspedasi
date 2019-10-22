@@ -54,9 +54,9 @@ class ObservationInput extends Component {
         return (
             <div className="observation-container">
                 <h2>Observation</h2>
-                <div>
+                {/* <div>
                     <button id="button" onClick={this.getPosition}>Click here to know your position</button>
-                </div>
+                </div> */}
                 <div className="observation-component">
                     {input.map((i) => <div className="new-observation-grid">
                         <span className="new-observation-1"> {i.formName}: </span>

@@ -10,14 +10,14 @@ class Landing extends Component {
         return (
             <Router>
                 <div className="container">
-                    <span className="button"><button id="form" className="link"><Link to="/form" className = "links">Form</Link></button></span>
+                    <span className="button"><button id="form" className="link"><Link to="/form" className ="links">Form</Link></button></span>
                     <span className="button"><button id="spreadsheet" className="link"><Link to="/spread" className="links">Spreadsheet</Link></button></span>
                     <span className="button"><button id="analytics" className="link"><Link to="/analytics" className="links">Analytics</Link></button></span>
                 </div>
                        
-                        <Route path="/form" exact render={() => <Form />} />
-                        <Route path="/spread" exact render={() => <Spreadsheet />} />
-                        <Route path="/analytics" exact render={() => < Analytics/>} />
+                    <Route exact path="/form" exact render={() => <Form />} />
+                    <Route exact path="/spread" exact render={() => <Spreadsheet />} />
+                    <Route exact path="/analytics" exact render={() => < Analytics/>} />
                      
             </Router>
         )
