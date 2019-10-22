@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 
 const credentials = [
-  
+  {
+    username: Admin1,
+    password: 123456789
+  }
 ]
 
 class Login extends Component {
