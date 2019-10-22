@@ -1,0 +1,19 @@
+h3 {
+    text-align: center;
+    position: inherit;
+    top: 50%;
+    left: 50%;
+    color: black;
+  }
+
+.form{
+  background-position: center;
+  width: 90%; /* Full width */
+  padding: 12px; /* Some padding */ 
+  border: 20px solid #ccc; /* Gray border */
+  border-radius: 10px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin: 10px;
+  resize: vertical;
+  background-color: rgb(207, 204, 204)
+}

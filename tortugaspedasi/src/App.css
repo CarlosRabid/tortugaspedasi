@@ -1,20 +1,94 @@
-.App {
-  /* display: inline; */
-  text-align: center;
-  background-color: lightblue;
-  color: green;
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+  background-color: rgb(22, 87, 124);
+  font-family: 'Lato', sans-serif !important
+}
+nav {
+  background-color: rgb(22, 87, 124);
+  color: #FeFFFF;
+  height: 60px;
+  font-size: 30px;
+}
+button {
+  background-color: #3AAFA9;
+  border-radius: 10px;
+  height: 90px;
+  width: 120px;
+  font-size: 15px;
+  margin-top: 50px;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+}
+nav a{
+  color: white;
   text-decoration: none;
-  /* background-image: url(https://www.sciencenews.org/wp-content/uploads/2019/04/042519_ms_turtle_feat_REV.jpg); */
-  background-size: cover
+  align-self: flex-end;
+  margin-left: 10px
+}
+.container{
+  padding: 20px;
 }
 
+.loginContainer {
+  position: relative;
+  display: flex;
+  height: 100%;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10%
+}
+.navigation {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 50px
+}
+.currentUser {
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 10px
 
-.links{
-  color:black;
-  text-decoration: none;
-  padding: 3vh;
-  font-size: 23px;
-  
+}
+#clients a:nth-child(1) {
+  color: rgb(137, 235, 230);
+  border-top: 2px solid #3AAFA9;
+}
+#actions a:nth-child(2) {
+  color: #3AAFA9;
+  border-top: 2px solid #3AAFA9
+
+}
+#analytics a:nth-child(3) {
+  color: #3AAFA9;
+  border-top: 2px solid #3AAFA9
+
+}
+.login {
+  background-color: white;
+  color: gray;
+  height: 400px;
+  width: 40%;
+  text-align: center;
+  vertical-align: middle;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+.login input {
+  width: 80%;
+  text-align: left;
+  margin-top: 30px;
+  height: 30px
+}
+.bigButton {
+  height: 60px;
+  width: 280px;
+  color: white;
+  margin-left: 190px;
+  margin-top: 0;
 }
 
 .popUp {
