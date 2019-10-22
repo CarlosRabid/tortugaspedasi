@@ -6,6 +6,7 @@ import NestInput from './NestInput';
 import Fab from '@material-ui/core/Fab';
 // import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
+import './form.css';
 
 const axios = require('axios');
 
@@ -28,15 +29,22 @@ class Form extends Component {
         return (
             <div className="form">
                 <h3>TORTUGA WATCH FORM</h3>
-                <ShiftInput forms={this.state.forms} />
-                <ObservationInput forms={this.state.forms} getPosition={this.getPosition} />
-                <Turtle />
+                <div id="input" className="_shift">
+                    <ShiftInput forms={this.state.forms} />
+                </div>
+                <div id="input" className="_observation">
+                    <ObservationInput forms={this.state.forms} getPosition={this.getPosition} />
+                </div>
+                <div id="input" className="_turtle">
+                    <Turtle forms={this.state.forms} />
+                </div>
                 <Fab size="medium" color="secondary" aria-label="add" className="fab">
                     <></>
                 </Fab>
-                {this.state.nestFound ?
-                    <NestInput /> : null}
-                {/* <button className="submit" onClick={this.submitNewForm}>Submit</button> */}
+                <div id="input" className="_nest">
+                    {this.state.nestFound ?
+                        <NestInput /> : null}
+                </div>                {/* <button className="submit" onClick={this.submitNewForm}>Submit</button> */}
                 <Button
                     variant="contained"
                     color="primary"
@@ -46,7 +54,7 @@ class Form extends Component {
                     onClick={this.submitNewForm}
                 >
                     Submit Form
-      </Button>
+                </Button>
             </div>
         )
     }
