@@ -19,8 +19,6 @@ class SpreadsheetContainer extends Component {
     }
 
 
-
-
     render() {
 
         let form = this.props.form
