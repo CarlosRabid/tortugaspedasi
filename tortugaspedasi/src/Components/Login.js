@@ -1,6 +1,19 @@
 import React, {Component} from 'react';
 
+const credentials = [
+  
+]
+
 class Login extends Component {
+
+  constructor() {
+    super ()
+    this.state = {
+      userName: "",
+      password: "",
+      isAuthenticated: false
+    }
+  }
     
     loginUser = (event) => {
         event.preventDefault();
@@ -14,7 +27,8 @@ class Login extends Component {
                 <div className="login">
                 <h1>Please Log in Below</h1>
                     <form onSubmit={this.loginUser}>
-                        <input placeholder="User Name"></input> 
+                        <input placeholder="User Name" onChange={(event, newValue) => 
+                          this.setState({userName: newValue})} ></input> 
                         <br></br>
                         <input type="password" placeholder= "Password"></input>
                         <br></br>

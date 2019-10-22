@@ -11,7 +11,7 @@ nav {
   font-size: 30px;
 }
 button {
-  background-color: #3AAFA9;
+  background-color: white;
   border-radius: 10px;
   height: 90px;
   width: 120px;
@@ -86,23 +86,23 @@ nav a{
 .bigButton {
   height: 60px;
   width: 280px;
-  color: white;
+  color: lightblue;
   margin-left: 190px;
   margin-top: 0;
 }
 
 .popUp {
   position: fixed;
-  width: 54%;
-  height: 28%;
-  top: 0;
+  width: 600px;
+  height: 300px;
+  top: 50%;
   left: 0;
   right: 0;
   bottom: 50%;
   margin: auto;
-  background: -webkit-linear-gradient(left, #85a100, #25b7c4);
-  background: linear-gradient(to right,  #85a100, #25b7c4);
+  background: white;
   font-family: 'Montserrat', sans-serif;
+  opacity: 2
  }
 
  .MuiFormGroup-root {

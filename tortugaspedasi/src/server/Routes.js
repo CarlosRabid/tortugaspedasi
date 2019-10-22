@@ -18,7 +18,7 @@ router.get('/solunar', (req, res) => {
     request(apiAdd, function(error, response, body){
         let fulldataMoon = JSON.parse(body)
         let moonData ={
-            moonphase:fulldataMoon.moonPhase,
+            qmoonphase:fulldataMoon.moonPhase,
             sunrise:fulldataMoon.sunRise,
             suntransit:fulldataMoon.sunTransit,
             sunset:fulldataMoon.sunSet,

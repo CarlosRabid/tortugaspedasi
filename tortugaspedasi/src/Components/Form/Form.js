@@ -34,16 +34,16 @@ class Form extends Component {
                 <div id="input" className="_shift">
                     <ShiftInput forms={this.state.forms} />
                 </div>
-                <div id="input" className="_observation">
+                <div id="input" className="observation">
                     <ObservationInput forms={this.state.forms} getPosition={this.getPosition} />
                 </div>
-                <div id="input" className="_turtle">
+                <div id="input" className="turtle">
                     <Turtle forms={this.state.forms} />
                 </div>
                 <Fab size="medium" color="secondary" aria-label="add" className="fab">
                     <></>
                 </Fab>
-                <div id="input" className="_nest">
+                <div id="input" className="nest">
                     {this.state.nestFound ?
                         <NestInput /> : null}
                 </div>                {/* <button className="submit" onClick={this.submitNewForm}>Submit</button> */}
