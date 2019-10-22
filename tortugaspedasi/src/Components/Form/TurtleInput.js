@@ -12,6 +12,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 // import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 // import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import '../Form/turtle.css';
+import { MenuList, InputAdornment, Input, InputLabel } from '@material-ui/core';
 
 
 class TurtleInput extends Component {
@@ -19,6 +20,7 @@ class TurtleInput extends Component {
         super(props);
         this.state = {
             anchorEl: null,
+            anchorStat: null,
             species: "",
             gender: null,
             conditionstat: "",
@@ -28,7 +30,52 @@ class TurtleInput extends Component {
             dimensionsCl: 0,
             dimensionsCw: 0,
             markingsRs: "",
-            markingsLs: ""
+            markingsLs: "",
+            commentaries: "",
+            menuItems : [
+            {
+              key: "alive",
+              caption: "Alive",
+              subMenuItems: [
+                {
+                  key: "aliveh",
+                  caption: "Alive Healthy",
+                  onClick: () => {}
+                },
+                {
+                  key: "alivei",
+                  caption: "Alive Injured",
+                  onClick: () => {}
+                },
+              ]
+            }, 
+            {
+                key: "death",
+                caption: "Death",
+                subMenuItems: [
+                  {
+                    key: "death1",
+                    caption: "Death Stage 1",
+                    onClick: () => {}
+                  },
+                  {
+                    key: "death2",
+                    caption: "Death Stage 2",
+                    onClick: () => {}
+                  },
+                  {
+                    key: "death3",
+                    caption: "Death Stage 3",
+                    onClick: () => {}
+                  },
+                  {
+                    key: "death4",
+                    caption: "Death Stage 4",
+                    onClick: () => {}
+                  }
+                ]
+              }
+          ]
         }
     }
 
@@ -49,20 +96,31 @@ class TurtleInput extends Component {
     }
 
     handleClick = (event) => {
-        console.log(event.currentTarget.id)
-        let anchorEl = { ...this.state.anchorEl }
-        anchorEl = true
-        this.setState({ anchorEl })
+        // let state = { ...this.state }
+        let anchorEl = {...this.state.anchorEl}
+        // console.log(event.currentTarget.id)
+        // let anchorStat = state.anchorStat
+        anchorEl = event.currentTarget.id
+       return this.setState({ anchorEl})
         // setAnchorEl(event.currentTarget);
     };
-    handleClose = async (event) => {
-        // console.log()
+    handleMenu = (event) => {
+        let anchorStat = {...this.state.anchorStat}
+        anchorStat=event.currentTarget.id
+       return this.setState({ anchorStat})
+        // setAnchorEl(event.currentTarget);
+    };
+    handleClose = (event) => {
         // setAnchorEl(null);
         // let anchorEl = {...this.state.anchorEl}
-        let species = { ...this.state.species }
-        species = event.target.id
-        await this.setState({ species: species, anchorEl: null })
-        console.log(this.state)
+        let result = { ...this.state.species }
+        result = event.currentTarget.id
+        console.log(result.length)
+        if (result.length==2) {
+           return this.setState({ species: result, anchorEl: null }) 
+            
+        }else{return this.setState({conditionstage: result, anchorStat: null })}
+        // console.log(this.state)
     };
 
     handleRadioButton = event => {
@@ -137,21 +195,16 @@ class TurtleInput extends Component {
                                 <input className="searchInput underline new-turtle-2"
                                     name="conditionstage" id="conditionstage" onChange={this.handleInput}></input>
                             </div> */}
-                            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+                            <Button id="conditions" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleMenu}>
                             Condition & Stage: </Button>
                         <Menu
                             id="conditions"
-                            anchorEl={this.state.anchorEl}
+                            anchorEl={this.state.anchorStat}
                             keepMounted
-                            open={Boolean(this.state.anchorEl)}
+                            open={Boolean(this.state.anchorStat)}
                             onClose={this.handleClose}
-                        >
-                            <MenuItem onClick={this.handleClose} id="Cc">Caretta caretta</MenuItem>
-                            <MenuItem onClick={this.handleClose} id="Lo">Lepidochelys olivacea</MenuItem>
-                            <MenuItem onClick={this.handleClose} id="Cm">Chelonia mydas</MenuItem>
-                            <MenuItem onClick={this.handleClose} id="Ei">Eretmochelys imbricata</MenuItem>
-                            <MenuItem onClick={this.handleClose} id="Dc">Dermochelys coriacea</MenuItem>
-                        </Menu>
+                            MenuItem ={this.state.menuItems}
+                        >{this.state.menuItems.map(i => { return <MenuItem id={i.key} >{i.caption}</MenuItem>})} </Menu>
 
                         </div>
 
@@ -162,28 +215,68 @@ class TurtleInput extends Component {
 
                             <div className="child-turtle">
                                 <span className="new-turtle-1"> Length: </span>
-                                <input className="searchInput underline new-turtle-2"
-                                    name="dimensions.plain.length" id="dimensionsPl" onChange={this.handleInput}></input>
+                                {/* <input className="searchInput underline new-turtle-2"
+                                    name="dimensions.plain.length" id="dimensionsPl" onChange={this.handleInput}></input> */}
+                                    <Input
+                                    id="dimensionsPl"
+                                    value={this.state.dimensionsPl}
+                                    onChange={this.handleInput}
+                                    endAdornment={<InputAdornment position="end">mts</InputAdornment>}
+                                    aria-describedby="measure-helper-text"
+                                    inputProps={{
+                                      'aria-label': 'measure',
+                                    }}
+                                    />
                             </div>
 
                             <div className="child-turtle">
                                 <span className="new-turtle-1"> Width: </span>
-                                <input className="searchInput underline new-turtle-2"
-                                    name="dimensions.plain.width" id="dimensionsPw" onChange={this.handleInput}></input>
+                                {/* <input className="searchInput underline new-turtle-2"
+                                    name="dimensions.plain.width" id="dimensionsPw" onChange={this.handleInput}></input> */}
+                                    <Input
+                                    id="dimensionsPw"
+                                    value={this.state.dimensionsPw}
+                                    onChange={this.handleInput}
+                                    endAdornment={<InputAdornment position="end">mts</InputAdornment>}
+                                    aria-describedby="measure-helper-text"
+                                    inputProps={{
+                                      'aria-label': 'measure',
+                                    }}
+                                    />
                             </div>
 
                             <div className="child-turtle" className="new-turtle-1"> Curve </div>
 
                             <div className="child-turtle">
                                 <span className="new-turtle-1"> Width: </span>
-                                <input className="searchInput underline new-turtle-2"
-                                    name="dimensions.plain.width" id="dimensionsCw" onChange={this.handleInput}></input>
+                                {/* <input className="searchInput underline new-turtle-2"
+                                    name="dimensions.plain.width" id="dimensionsCw" onChange={this.handleInput}></input> */}
+                            <Input
+                                    id="dimensionsCw"
+                                    value={this.state.dimensionsCw}
+                                    onChange={this.handleInput}
+                                    endAdornment={<InputAdornment position="end">mts</InputAdornment>}
+                                    aria-describedby="measure-helper-text"
+                                    inputProps={{
+                                      'aria-label': 'measure',
+                                    }}
+                                    />
                             </div>
 
                             <div className="child-turtle">
                                 <span className="new-turtle-1"> Length: </span>
-                                <input className="searchInput underline new-turtle-2"
-                                    name="dimensions.plain.length" id="dimensionsCl" onChange={this.handleInput}></input>
+                                {/* <input className="searchInput underline new-turtle-2"
+                                    name="dimensions.plain.length" id="dimensionsCl" onChange={this.handleInput}></input> */}
+                            <Input
+                                    id="dimensionsCl"
+                                    value={this.state.dimensionsCl}
+                                    onChange={this.handleInput}
+                                    endAdornment={<InputAdornment position="end">mts</InputAdornment>}
+                                    aria-describedby="measure-helper-text"
+                                    inputProps={{
+                                      'aria-label': 'measure',
+                                    }}
+                                    />
                             </div>
 
                         </div>
@@ -192,15 +285,19 @@ class TurtleInput extends Component {
                             Markings
     
                         <div className="child-turtle">
-                                <span className="new-turtle-1"> Right Side: </span>
+                                {/* <span className="new-turtle-1"> Right Side: </span>
                                 <input className="searchInput underline new-turtle-2"
-                                    name="markings.rightSide" id="markingsRs" onChange={this.handleInput}></input>
+                                    name="markings.rightSide" id="markingsRs" onChange={this.handleInput}></input> */}
+                                <InputLabel htmlFor="component-simple">Right Side: </InputLabel>
+                                <Input id="markingsRs" value={this.state.markingsRs} onChange={this.handleInput} />
                             </div>
 
                             <div className="child-turtle">
-                                <span className="new-turtle-1"> Left Side: </span>
+                                {/* <span className="new-turtle-1"> Left Side: </span>
                                 <input className="searchInput underline new-turtle-2"
-                                    name="markings.leftSide" id="markingsLs" onChange={this.handleInput}></input>
+                                    name="markings.leftSide" id="markingsLs" onChange={this.handleInput}></input> */}
+                            <InputLabel htmlFor="component-simple">Left Side: </InputLabel>
+                                <Input id="markingsLs" value={this.state.markingsLs} onChange={this.handleInput} />
                             </div>
 
                         </div>

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import NavBar from './Components/NavBar';
 import Landing from './Components/Landing';
+import { withTranslation } from 'react-i18next';
 import Login from './Components/Login';
 // import ObservationInput from './Components/Form/ObservationInput';
 import './App.css';
 import Form from './Components/Form/Form';
 import Spreadsheet from './Components/Spreadsheet/Spreadsheet';
 import Analytics from './Components/Analytics/Analytics';
+import { FormControlLabel, Switch } from '@material-ui/core';
 
 
 class App extends Component {
@@ -16,6 +18,7 @@ class App extends Component {
     this.state = {
       location: "",
       userName: "",
+      lng: false,
     }
   }
 
@@ -31,42 +34,47 @@ class App extends Component {
   }
 
   render() {
-    
-    return (
-      <Router>
+    const { t, i18n } = this.props;
+    const changeLanguage = lng => {
+      console.log(this.props)
+      i18n.changeLanguage(lng);
+    };
+
+    return (<>
+      {/* <button onClick={() => changeLanguage('en')}>en</button>
+        <button onClick={() => changeLanguage('es')}>es</button> */}
+      <FormControlLabel
+        control={<Switch checked={this.state.lng} onChange={() => changeLanguage('es')} />}
+        label="Español"
+      />
       <div>
-          <NavBar location = {this.state.location} 
-                  name = {this.state.userName}
-                  updateNavBar={this.updateNavBar}>
+        <Router>
+          <NavBar location={this.state.location}
+            name={this.state.userName}
+            updateNavBar={this.updateNavBar}>
           </NavBar>
-          <Route path ="/" exact render={() => 
-            (this.state.userName ? 
-              (<Redirect to="/home"/>) : 
+          <Route path="/" exact render={() =>
+            (this.state.userName ?
+              (<Redirect to="/home" />) :
               (<Login updateUser={this.updateUser}
-                updateNavBar={this.updateNavBar}/>))}>
+                updateNavBar={this.updateNavBar} />))}>
           </Route>
-          <Route path="/home" exact render = {() =>
-          <Landing updateNavBar ={this.updateNavBar}/>}>  
+          <Route path="/home" exact render={() =>
+            <Landing updateNavBar={this.updateNavBar} />}>
           </Route>
-          <Route path ="/form" exact render={() => 
-            <Form updateNavBar={this.updateNavBar}/>}>
+          <Route path="/form" exact render={() =>
+            <Form updateNavBar={this.updateNavBar} />}>
           </Route>
-          <Route path = "/spread" exact render={() => 
-            <Spreadsheet updateNavBar={this.updateNavBar}/>}>
+          <Route path="/spread" exact render={() =>
+            <Spreadsheet updateNavBar={this.updateNavBar} />}>
           </Route>
-          <Route path = "/analytics" exact render={() => 
-            <Analytics updateNavBar={this.updateNavBar}/>}>
+          <Route path="/analytics" exact render={() =>
+            <Analytics updateNavBar={this.updateNavBar} />}>
           </Route>
-        </div>
-      </Router>
+        </Router>
+      </div></>
     );
   }
 }
 
-export default App;
-
-
-
-
-
-
+export default withTranslation('translation')(App);
