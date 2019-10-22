@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import '../styles/NavBar.css';
+import { withTranslation } from 'react-i18next';
 // import ReactDOM from 'react-dom';
 // import Button from '@material-ui/core/Button';
 // import AppBar from '@material-ui/core/AppBar'
@@ -22,17 +23,18 @@ class NavBar extends Component {
     }
 
     render() {
+        const { t, i18n } = this.props;
          
         return (
             <nav>
                 <div className="navigation" id={this.props.location}>
-                    <Link to="/home"><span>Home</span></Link>
+                    <Link to="/home"><span>{t('Home')}</span></Link>
                     {" "}
-                    <Link to="/form"><span >Form</span></Link>
+                    <Link to="/form"><span >{t('Form')}</span></Link>
                     {" "}
-                    <Link to="/spread"><span>Spreadsheet</span></Link>
+                    <Link to="/spread"><span>{t('Spreadsheet')}</span></Link>
                     {" "}
-                    <Link to="/analytics"><span>Analytics</span></Link>
+                    <Link to="/analytics"><span>{t('Analytics')}</span></Link>
                     <span className= "currentUser"><Link to="/">{!this.props.name ? "Login" : this.props.name}</Link></span>
                 </div>
             </nav>
@@ -40,7 +42,7 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar;
+export default withTranslation('translation')(NavBar);
 
 // MATERIAL UI CODE //
             // <div>
