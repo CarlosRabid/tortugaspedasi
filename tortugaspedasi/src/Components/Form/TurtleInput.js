@@ -12,7 +12,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 // import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 // import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import '../Form/turtle.css';
-import { MenuList } from '@material-ui/core';
+import { MenuList, InputAdornment, Input, InputLabel } from '@material-ui/core';
 
 
 class TurtleInput extends Component {
@@ -31,6 +31,7 @@ class TurtleInput extends Component {
             dimensionsCw: 0,
             markingsRs: "",
             markingsLs: "",
+            commentaries: "",
             menuItems : [
             {
               key: "alive",
@@ -214,28 +215,68 @@ class TurtleInput extends Component {
 
                             <div className="child-turtle">
                                 <span className="new-turtle-1"> Length: </span>
-                                <input className="searchInput underline new-turtle-2"
-                                    name="dimensions.plain.length" id="dimensionsPl" onChange={this.handleInput}></input>
+                                {/* <input className="searchInput underline new-turtle-2"
+                                    name="dimensions.plain.length" id="dimensionsPl" onChange={this.handleInput}></input> */}
+                                    <Input
+                                    id="dimensionsPl"
+                                    value={this.state.dimensionsPl}
+                                    onChange={this.handleInput}
+                                    endAdornment={<InputAdornment position="end">mts</InputAdornment>}
+                                    aria-describedby="measure-helper-text"
+                                    inputProps={{
+                                      'aria-label': 'measure',
+                                    }}
+                                    />
                             </div>
 
                             <div className="child-turtle">
                                 <span className="new-turtle-1"> Width: </span>
-                                <input className="searchInput underline new-turtle-2"
-                                    name="dimensions.plain.width" id="dimensionsPw" onChange={this.handleInput}></input>
+                                {/* <input className="searchInput underline new-turtle-2"
+                                    name="dimensions.plain.width" id="dimensionsPw" onChange={this.handleInput}></input> */}
+                                    <Input
+                                    id="dimensionsPw"
+                                    value={this.state.dimensionsPw}
+                                    onChange={this.handleInput}
+                                    endAdornment={<InputAdornment position="end">mts</InputAdornment>}
+                                    aria-describedby="measure-helper-text"
+                                    inputProps={{
+                                      'aria-label': 'measure',
+                                    }}
+                                    />
                             </div>
 
                             <div className="child-turtle" className="new-turtle-1"> Curve </div>
 
                             <div className="child-turtle">
                                 <span className="new-turtle-1"> Width: </span>
-                                <input className="searchInput underline new-turtle-2"
-                                    name="dimensions.plain.width" id="dimensionsCw" onChange={this.handleInput}></input>
+                                {/* <input className="searchInput underline new-turtle-2"
+                                    name="dimensions.plain.width" id="dimensionsCw" onChange={this.handleInput}></input> */}
+                            <Input
+                                    id="dimensionsCw"
+                                    value={this.state.dimensionsCw}
+                                    onChange={this.handleInput}
+                                    endAdornment={<InputAdornment position="end">mts</InputAdornment>}
+                                    aria-describedby="measure-helper-text"
+                                    inputProps={{
+                                      'aria-label': 'measure',
+                                    }}
+                                    />
                             </div>
 
                             <div className="child-turtle">
                                 <span className="new-turtle-1"> Length: </span>
-                                <input className="searchInput underline new-turtle-2"
-                                    name="dimensions.plain.length" id="dimensionsCl" onChange={this.handleInput}></input>
+                                {/* <input className="searchInput underline new-turtle-2"
+                                    name="dimensions.plain.length" id="dimensionsCl" onChange={this.handleInput}></input> */}
+                            <Input
+                                    id="dimensionsCl"
+                                    value={this.state.dimensionsCl}
+                                    onChange={this.handleInput}
+                                    endAdornment={<InputAdornment position="end">mts</InputAdornment>}
+                                    aria-describedby="measure-helper-text"
+                                    inputProps={{
+                                      'aria-label': 'measure',
+                                    }}
+                                    />
                             </div>
 
                         </div>
@@ -244,15 +285,19 @@ class TurtleInput extends Component {
                             Markings
     
                         <div className="child-turtle">
-                                <span className="new-turtle-1"> Right Side: </span>
+                                {/* <span className="new-turtle-1"> Right Side: </span>
                                 <input className="searchInput underline new-turtle-2"
-                                    name="markings.rightSide" id="markingsRs" onChange={this.handleInput}></input>
+                                    name="markings.rightSide" id="markingsRs" onChange={this.handleInput}></input> */}
+                                <InputLabel htmlFor="component-simple">Right Side: </InputLabel>
+                                <Input id="markingsRs" value={this.state.markingsRs} onChange={this.handleInput} />
                             </div>
 
                             <div className="child-turtle">
-                                <span className="new-turtle-1"> Left Side: </span>
+                                {/* <span className="new-turtle-1"> Left Side: </span>
                                 <input className="searchInput underline new-turtle-2"
-                                    name="markings.leftSide" id="markingsLs" onChange={this.handleInput}></input>
+                                    name="markings.leftSide" id="markingsLs" onChange={this.handleInput}></input> */}
+                            <InputLabel htmlFor="component-simple">Left Side: </InputLabel>
+                                <Input id="markingsLs" value={this.state.markingsLs} onChange={this.handleInput} />
                             </div>
 
                         </div>
