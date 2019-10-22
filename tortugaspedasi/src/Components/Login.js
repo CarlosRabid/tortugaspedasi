@@ -1,50 +1,54 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 const credentials = [
   {
     username: "Admin1",
-    password: 123456789
-},
-     {
-       username: "Admin2",
-       password: "haxo36grda"
-     }
+    password: "hxyf3kdrrf"
+  },
+  {
+    username: "Admin2",
+    password: "haxo36grda"
+  },
+  {
+    username: "Admin3",
+    password: "9zdl9odzj0"
+  }
 ]
 
 class Login extends Component {
 
   constructor() {
-    super ()
+    super()
     this.state = {
       userName: "",
       password: "",
       isAuthenticated: false
     }
   }
-    
-    loginUser = (event) => {
-        event.preventDefault();
-        let username = event.target[0].value
-        this.props.updateUser(username)
 
-    }
-    render() {
-        return(
-            <div className="loginContainer">
-                <div className="login">
-                <h1>Please Log in Below</h1>
-                    <form onSubmit={this.loginUser}>
-                        <input placeholder="User Name" onChange={(event, newValue) => 
-                          this.setState({userName: newValue})} ></input> 
-                        <br></br>
-                        <input type="password" placeholder= "Password"></input>
-                        <br></br>
-                        <button>Login</button>
-                    </form>
-                </div>
-            </div>
-        )
-    }
+  loginUser = (event) => {
+    event.preventDefault();
+    let username = event.target[0].value
+    this.props.updateUser(username)
+
+  }
+  render() {
+    return (
+      <div className="loginContainer">
+        <div className="login">
+          <h1>Please Log in Below</h1>
+          <form onSubmit={this.loginUser}>
+            <input placeholder="User Name" onChange={(event, newValue) =>
+              this.setState({ userName: newValue })} ></input>
+            <br></br>
+            <input type="password" placeholder="Password"></input>
+            <br></br>
+            <button>Login</button>
+          </form>
+        </div>
+      </div>
+    )
+  }
 }
 export default Login
 
@@ -70,7 +74,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
- 
+
 
 function Copyright() {
   return (
@@ -159,7 +163,7 @@ export default function SignIn() {
           >
             Sign In
           </Button>
-          
+
         </form>
       </div>
       <Box mt={8}>

@@ -51,7 +51,6 @@ class ObservationInput extends Component {
     //     let date = new Date 
     //     let moonPhase = await axios.get(`https://localhost:7777/solunar/${lat},${long},${date},-5`)
     //     console.log(moonPhase)
-
     // }
 
     handleInput = (event) => {
