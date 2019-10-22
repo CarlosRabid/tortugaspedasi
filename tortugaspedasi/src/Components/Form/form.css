@@ -1,4 +1,13 @@
+h3 {
+    text-align: center;
+    position: inherit;
+    top: 50%;
+    left: 50%;
+    color: black;
+  }
+
 .form{
+  background-position: center;
   width: 90%; /* Full width */
   padding: 12px; /* Some padding */ 
   border: 20px solid #ccc; /* Gray border */
