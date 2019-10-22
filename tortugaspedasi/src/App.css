@@ -30,3 +30,10 @@
   background: linear-gradient(to right,  #85a100, #25b7c4);
   font-family: 'Montserrat', sans-serif;
  }
+
+ .MuiFormGroup-root {
+  display: initial;
+ }
+ .MuiFormControlLabel-root {
+  display: initial;
+ }

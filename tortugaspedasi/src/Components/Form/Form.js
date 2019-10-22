@@ -4,6 +4,9 @@ import ObservationInput from './ObservationInput';
 import Turtle from './Turtle';
 import NestInput from './NestInput';
 import Fab from '@material-ui/core/Fab';
+// import SaveIcon from '@material-ui/icons/Save';
+import Button from '@material-ui/core/Button';
+
 const axios = require('axios');
 
 
@@ -17,6 +20,7 @@ class Form extends Component {
     }
 
     submitNewForm = async (shift, observation, turtle, nest) => {
+        console.log('working')
         await axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
     }
 
@@ -32,7 +36,17 @@ class Form extends Component {
                 </Fab>
                 {this.state.nestFound ?
                     <NestInput /> : null}
-                <button className="submit" onClick={this.submitNewForm}>Submit</button>
+                {/* <button className="submit" onClick={this.submitNewForm}>Submit</button> */}
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="medium"
+                    className="submit"
+                    // startIcon={<SaveIcon />}
+                    onClick={this.submitNewForm}
+                >
+                    Submit Form
+      </Button>
             </div>
         )
     }
