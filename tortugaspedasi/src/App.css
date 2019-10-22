@@ -1,27 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
+.App {
+  /* display: inline; */
+  text-align: center;
+  background-color: lightblue;
+  color: green;
+  text-decoration: none;
+  /* background-image: url(https://www.sciencenews.org/wp-content/uploads/2019/04/042519_ms_turtle_feat_REV.jpg); */
+  background-size: cover
+}
 
-body {
-  background-color: rgb(22, 87, 124);
-  font-family: 'Lato', sans-serif !important
-}
-nav {
-  background-color: rgb(22, 87, 124);
-  color: #FeFFFF;
-  height: 60px;
-  font-size: 30px;
-}
-button {
-  background-color: white;
-  border-radius: 10px;
-  height: 90px;
-  width: 120px;
-  font-size: 15px;
-  margin-top: 50px;
-  cursor: pointer;
-  font-family: 'Lato', sans-serif;
-}
-nav a{
-  color: white;
+
+.links{
+  color:black;
   text-decoration: none;
   align-self: flex-end;
   margin-left: 10px
