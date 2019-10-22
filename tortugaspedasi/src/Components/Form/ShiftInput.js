@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 
 class ShiftInput extends Component {
 
@@ -35,7 +33,7 @@ class ShiftInput extends Component {
                 </div>
                 <form>
                     <label>
-                        Date:
+                        Date: 
                         <input type="date" name="date" value={this.state.date} onChange={this.handleInput}/>
                     </label>
                 </form>

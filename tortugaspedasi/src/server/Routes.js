@@ -11,54 +11,24 @@ const Nest = require('./models/Nest');
 
 /* API Requests */
 
-router.get('/form', (req, res) => {
-
-    getPosition = () => {
-        function geoSucess(position){
-          let geoCoords= {
-            lat:position.coords.latitude,
-            long:position.coords.longitude
-          }
-          alert(`This are your coordinates: - Latitude: ${geoCoords.lat} - Longitude: ${geoCoords.long}`)
-          return(geoCoords.lat, geoCoords.long)
-        }
-    
-        function geoError(errorPosition){
-            alert("Error - No position available")
-        }
-    
-        const geoOptions={
-            enableHighAccuracy: true,
-            maximumAge: 0,
-            timeout: 25000
-        }
-        
-        if(navigator.geolocation){
-          navigator.geolocation.getCurrentPosition(geoSucess, geoError,geoOptions );
-          console.log("True")
-        }else{
-          console.log("Geolocation is not enabled on this device")
-    
-        }
-      }
-    
-    let apiAdd = `https://api.solunar.org/solunar/${geoCoords.lat},${geoCoords.long},20191018,-5`
+router.get('/solunar', (req, res) => {
+    let apiAdd = `https://api.solunar.org/solunar/${lat},${long},${date},-5`
     console.log(apiAdd)
 
     request(apiAdd, function(error, response, body){
         let fulldataMoon = JSON.parse(body)
-        let dataMoon ={
+        let moonData ={
+            moonphase:fulldataMoon.moonPhase,
             sunrise:fulldataMoon.sunRise,
             suntransit:fulldataMoon.sunTransit,
             sunset:fulldataMoon.sunSet,
             moonrise:fulldataMoon.moonRise,
             moonunder:fulldataMoon.moonUnder,
-            moonphase:fulldataMoon.moonPhase,
             moonillumination:fulldataMoon.moonIllumination
         }
-        console.log(dataMoon)
+        console.log(moonData)
     })
-    res.send(dataMoon)
+    res.send(moonData)
 })
 
 
