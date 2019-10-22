@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+const moment = require('moment')
 
 class UpdateForm extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
+            formId: props.form._id,
             name: "",
 
         }
@@ -13,29 +15,43 @@ class UpdateForm extends Component {
         this.props.closePopUp()
     }
 
-    update = (event) => {
-        let item = event.target
-        this.setState({
-            name: item
-        })
-    }
+    // update = (event) => {
+    //     let item = event.target
+    //     this.setState({
+    //         name: item
+    //     })
+    // }
 
     render() {
+
+        console.log(this.props.form)
+        let shift = this.props.form.shift
+        let turtle = this.props.form.turtle
+        let observation = this.props.form.observation
+        let nest = this.props.form.nest
+
         return (
             <div className="popUp">
-                <h5>Update</h5>
-                <div> Name:
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        name="name"
-                        value={this.state.name}
-                        onChange={this.update}
-                    />
+                ID: <input type="text" placeholder={this.props.form._id} name="name" value={this.state.formId} onChange={this.update} />
+                <div id="shift">
+                    <h5>{moment(shift.date).format("Do/MM/YY")}</h5>
+                    <h4>{shift.firstName} {shift.lastName}</h4>
                 </div>
-                <button onClick={this.closePopUp} >
-                    Close
-                </button>
+                <div id="turtle">
+                    <div id="plain">
+                       Plain: {turtle.dimensions.plain.length}, {turtle.dimensions.plain.width}
+                    </div>
+                    <div id="curve">
+                        Curve: {turtle.dimensions.curve.length}, {turtle.dimensions.curve.width}
+                    </div>
+                    <p>Species: {turtle.species}</p>
+                    <p>Gender: {turtle.gender} </p>
+                    <p> Status: {turtle.condition.status}</p>
+                    <p> Stage: {turtle.condition.stage}</p>
+                </div>
+
+
+                <button onClick={this.closePopUp}> Close </button>
             </div>)
 
     }

@@ -4,6 +4,7 @@ import SpreadsheetActions from './SpreadsheetActions';
 import { func } from 'prop-types';
 import UpdateForm from './UpdateForm';
 import { throwStatement } from '@babel/types';
+import { async } from 'q';
 const axios = require('axios')
 
 class SpreadsheetData extends Component {
@@ -11,6 +12,7 @@ class SpreadsheetData extends Component {
         super();
         this.state = {
             forms: [],
+            form: null,
             filter: "",
             showPopUp: null
         }
@@ -22,52 +24,60 @@ class SpreadsheetData extends Component {
             forms: data.data
         })
     }
+    // const id = "5da76a5a90e0f8c23414be78"
 
-    searchHandler = (event) => {
-        this.setState({
-            filter: event.target.value
+
+    getDataById = async (id) => {
+        let data = this.state.forms.find(f => {
+            return f._id == id
         })
+        await this.setState({
+            form: data
+        })
+        console.log(data)
+        return data
     }
+
+    // searchHandler = (event) => {
+    //     this.setState({
+    //         filter: event.target.value
+    //     })
+    // }
 
     closePopUp = () => {
         this.setState({
-            showPopUp: null
+            showPopUp: null,
+            form: null
         })
     }
 
-    showPop = (id) => {
-        console.log(id)
-        this.setState({
-            showPopUp: id
+    showPop = async (id) => {
+        let result = this.state.forms.find(f => {
+            return f._id == id
+        })
+
+
+        await this.setState({
+            showPopUp: id,
+            form: result
         })
     }
 
 
-    // serchingForm = (filter) => {
-    //     filter = this.state.filter
-    //     return function () {
-    //         return this.state.forms.shift.firstName.toLowerCase().includes(filter.toLowerCase()) || !filter
-    //     }
-    // }
+
     render() {
         let forms = this.state.forms
-        //     let Filterforms = this.state.forms.filter(form => {
-        //         return form.shift.firstName.indexOf(this.state.filter) !== 1
-        //     })
-        //    console.log(Filterforms)
-
-
 
         return (
             <div className="spreadSheet">
                 {this.state.showPopUp ?
-                    <UpdateForm closePopUp={this.closePopUp} /> :
-                    null}
+                    <UpdateForm closePopUp={this.closePopUp} form={this.state.form} /> : null}
+
                 <SpreadsheetActions data={this.state} searchHandler={this.searchHandler} />
 
                 <div className="forms">
-                
-                    {forms.map((f, index) => <SpreadsheetContainer form={f} key={f._id} showPop = {this.showPop} closePopUp={this.closePopUp}/>)}
+
+                    {forms.map((f, index) => <SpreadsheetContainer form={f} key={f._id} showPop={this.showPop} closePopUp={this.closePopUp} />)}
                 </div>
 
             </div>
