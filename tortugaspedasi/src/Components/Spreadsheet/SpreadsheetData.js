@@ -12,7 +12,7 @@ class SpreadsheetData extends Component {
         super();
         this.state = {
             forms: [],
-            form: {},
+            form: null,
             filter: "",
             showPopUp: null
         }
@@ -23,15 +23,19 @@ class SpreadsheetData extends Component {
         this.setState({
             forms: data.data
         })
-        this.getDataById()
     }
+    // const id = "5da76a5a90e0f8c23414be78"
 
-    getDataById = async () => {
 
-        let data = await axios.get('http://localhost:7777/forms/5da76a5a90e0f8c23414be78')
-        this.setState({
-            form: data.data
+    getDataById = async (id) => {
+        let data = this.state.forms.find(f => {
+            return f._id == id
         })
+        await this.setState({
+            form: data
+        })
+        console.log(data)
+        return data
     }
 
     // searchHandler = (event) => {
@@ -42,14 +46,20 @@ class SpreadsheetData extends Component {
 
     closePopUp = () => {
         this.setState({
-            showPopUp: null
+            showPopUp: null,
+            form: null
         })
     }
 
     showPop = async (id) => {
-        console.log(id)
+        let result = this.state.forms.find(f => {
+            return f._id == id
+        })
+
+
         await this.setState({
-            showPopUp: id
+            showPopUp: id,
+            form: result
         })
     }
 
@@ -61,7 +71,7 @@ class SpreadsheetData extends Component {
         return (
             <div className="spreadSheet">
                 {this.state.showPopUp ?
-                    <UpdateForm closePopUp={this.closePopUp} /> :  null}
+                    <UpdateForm closePopUp={this.closePopUp} form={this.state.form} /> : null}
 
                 <SpreadsheetActions data={this.state} searchHandler={this.searchHandler} />
 

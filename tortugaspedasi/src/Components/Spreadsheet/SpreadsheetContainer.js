@@ -6,14 +6,11 @@ class SpreadsheetContainer extends Component {
     constructor(){
         super();
         this.state={
-            name: " ",
-            // showPopUp: null
+           
         }
     }
 
-    // closePopUp = () => {
-    //     this.props.closePopUp()
-    // }
+   
 
 
     showPopUp = (event) => {

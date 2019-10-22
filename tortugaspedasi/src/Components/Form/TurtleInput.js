@@ -6,21 +6,12 @@ class TurtleInput extends Component {
         this.state = {
             species: "",
             gender: "",
-            condition:
-            {
-                status: "",
-                stage: ""
-            },
-            dimensions: {
-                plain: {
-                    length: "",
-                    width: ""
-                },
-                curve: {
-                    length: "",
-                    width: ""
-                }
-            },
+            condition: "",
+            conditionstage: "",
+            dimensionsPl: 0,
+            dimensionsPw: 0,
+            dimensionsCl: 0,
+            dimensionsCw: 0,
             markings: {
                 rightSide: "",
                 leftSide: ""
@@ -30,7 +21,11 @@ class TurtleInput extends Component {
 
 
     handleInput = (event) => {
-        this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
+        console.log(event.target.id)
+        this.setState({ [event.target.id]: event.target.value })
+        let turtlestate=  {...this.state}
+        console.log(event.target.id)
+        // this.props.updateTurtle(turtlestate)
     }
     addTurtleInput = () => {
         this.props.addTurtleInput(this.state.species, this.state.gender, 
@@ -65,13 +60,13 @@ class TurtleInput extends Component {
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Status: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="consition.status" onChange={this.handleInput}></input>
+                                name="condition.status" onChange={this.handleInput}></input>
                         </div>
 
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Stage: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="consition.stage" onChange={this.handleInput}></input>
+                                name="condition.stage" onChange={this.handleInput}></input>
                         </div>
 
                     </div>
@@ -84,13 +79,13 @@ class TurtleInput extends Component {
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Length: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="dimensions.plain.length" onChange={this.handleInput}></input>
+                                name="dimensions.plain.length" id="dimensionsPl" onChange={this.handleInput}></input>
                         </div>
 
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Width: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="dimensions.plain.width" onChange={this.handleInput}></input>
+                                name="dimensions.plain.width" id="dimensionsPw" onChange={this.handleInput}></input>
                         </div>
 
                         <div className="child-turtle" className="new-turtle-1"> Curve </div>
@@ -98,13 +93,13 @@ class TurtleInput extends Component {
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Width: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="dimensions.plain.width" onChange={this.handleInput}></input>
+                                name="dimensions.plain.width" id="dimensionsCw" onChange={this.handleInput}></input>
                         </div>
 
                         <div className="child-turtle">
                             <span className="new-turtle-1"> Length: </span>
                             <input className="searchInput underline new-turtle-2"
-                                name="dimensions.plain.length" onChange={this.handleInput}></input>
+                                name="dimensions.plain.length" id="dimensionsCl" onChange={this.handleInput}></input>
                         </div>
 
                     </div>
