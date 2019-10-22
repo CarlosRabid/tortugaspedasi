@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+const axios = require('axios')
 
 
 let beaches = [
@@ -17,8 +18,6 @@ let beaches = [
         latitude: 7.506391,
         longitude: -79.999284
     }
-
-
 ]
 
 class ObservationInput extends Component {
@@ -29,6 +28,7 @@ class ObservationInput extends Component {
             time: "", // placeholder but editable
             locationLatitude: "",  // set-up by beach selection
             locationLongitude: "", // set-up by beach selection
+            moonPhase: "",
             comments: "", //free input
 
         }
@@ -41,6 +41,18 @@ class ObservationInput extends Component {
         locationLongitude = currentBeach.longitude
         await this.setState({ locationLatitude, locationLongitude })
     }
+    
+    // getMoonphase = async () => {
+    //     let currentBeach = event.target.value ? beaches.find(b => b.name === event.target.value) : { latitude: "", longitude: "" }
+    //     let lat = { ...this.state.locationLatitude }
+    //     let long = { ...this.state.locationLongitude }
+    //     lat = currentBeach.latitude
+    //     long = currentBeach.longitude 
+    //     let date = new Date 
+    //     let moonPhase = await axios.get(`https://localhost:7777/solunar/${lat},${long},${date},-5`)
+    //     console.log(moonPhase)
+
+    // }
 
     handleInput = (event) => {
         this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
@@ -53,6 +65,8 @@ class ObservationInput extends Component {
         this.setState({date: new Date()})
     }
 
+
+    
     // getDate2 = () => {
     //     let currentDate = new Date();
     //     let date = currentDate.getDate();
@@ -88,7 +102,7 @@ class ObservationInput extends Component {
                         <span>Location:</span>
                         <select onChangeCapture={this.handleLocation}>
                             <option value="" >Select</option>
-                            <option value="Playa El Arenal"  >Playa El Arenal</option>
+                            <option value="Playa El Arenal" >Playa El Arenal</option>
                             <option value="Playa El Toro" >Playa El Toro</option>
                             <option value="Playa Lagarto" >Playa Lagarto</option>
                         </select>

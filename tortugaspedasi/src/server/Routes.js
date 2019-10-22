@@ -11,81 +11,21 @@ const Nest = require('./models/Nest');
 
 /* API Requests */
 
-<<<<<<< HEAD
-router.get('/form', (req, res) => {
-
-    getPosition = () => {
-        function geoSucess(position){
-          let geoCoords= {
-            lat:position.coords.latitude,
-            long:position.coords.longitude
-          }
-          alert(`This are your coordinates: - Latitude: ${geoCoords.lat} - Longitude: ${geoCoords.long}`)
-          return(geoCoords.lat, geoCoords.long)
-        }
-    
-        function geoError(errorPosition){
-            alert("Error - No position available")
-        }
-    
-        const geoOptions={
-            enableHighAccuracy: true,
-            maximumAge: 0,
-            timeout: 25000
-        }
-        
-        if(navigator.geolocation){
-          navigator.geolocation.getCurrentPosition(geoSucess, geoError,geoOptions );
-          console.log("True")
-        }else{
-          console.log("Geolocation is not enabled on this device")
-    
-        }
-      }
-    
-    let apiAdd = `https://api.solunar.org/solunar/${geoCoords.lat},${geoCoords.long},20191018,-5`
-=======
 router.get('/solunar', (req, res) => {
     let apiAdd = `https://api.solunar.org/solunar/${lat},${long},${date},-5`
->>>>>>> 08222c8fd8f8ae2d1dd32f7d789a7a37581edc8e
     console.log(apiAdd)
 
     request(apiAdd, function(error, response, body){
         let fulldataMoon = JSON.parse(body)
-<<<<<<< HEAD
-        let dataMoon ={
-=======
         let moonData ={
             moonphase:fulldataMoon.moonPhase,
->>>>>>> 08222c8fd8f8ae2d1dd32f7d789a7a37581edc8e
+            qmoonphase:fulldataMoon.moonPhase,
             sunrise:fulldataMoon.sunRise,
             suntransit:fulldataMoon.sunTransit,
             sunset:fulldataMoon.sunSet,
             moonrise:fulldataMoon.moonRise,
             moonunder:fulldataMoon.moonUnder,
-<<<<<<< HEAD
             moonphase:fulldataMoon.moonPhase,
-            moonillumination:fulldataMoon.moonIllumination
-        }
-        console.log(dataMoon)
-    })
-    res.send(dataMoon)
-})
-
-
-
-
-/* Route requests */
-router.get('/form', (req, res) => {
-    Form.find({}, (err, forms) =>{
-      if (err) throw err;
-      else res.send(forms)
-    })
-    .populate('shift')
-    .populate('observation')
-    .populate('turtle')
-    .populate('nest')
-=======
             moonillumination:fulldataMoon.moonIllumination
         }
         console.log(moonData)
@@ -94,13 +34,19 @@ router.get('/form', (req, res) => {
 })
 
 
+
+
+/* Route requests */
+
+
+
 router.get('/forms', (req, res) => {
     Form.find({}, (err, forms) => {
         if (err) throw err;
         else res.send(forms)
     })
         .populate('observation turtle nest shift')
->>>>>>> 08222c8fd8f8ae2d1dd32f7d789a7a37581edc8e
+
 })
 
 
@@ -275,8 +221,7 @@ router.delete('/forms/:id', function (req, res) {
     })
 })
 
-<<<<<<< HEAD
-=======
+
 router.get('/moonData', (req, res) => {
     let lat = 7.5303400;
     let long = -80.0269900;
@@ -301,7 +246,6 @@ router.get('/moonData', (req, res) => {
 
 
 })
->>>>>>> 08222c8fd8f8ae2d1dd32f7d789a7a37581edc8e
 
 
 
