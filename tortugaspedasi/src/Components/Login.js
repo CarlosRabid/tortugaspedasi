@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 
+const credentials = [
+  
+]
+
 class Login extends Component {
 
   constructor() {
