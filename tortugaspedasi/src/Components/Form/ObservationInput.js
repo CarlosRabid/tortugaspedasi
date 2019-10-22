@@ -53,6 +53,7 @@ class ObservationInput extends Component {
         this.setState({date: new Date()})
     }
 
+    
     // getDate2 = () => {
     //     let currentDate = new Date();
     //     let date = currentDate.getDate();
