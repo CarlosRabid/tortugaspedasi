@@ -15,34 +15,43 @@ class NestInput extends Component {
     handleInput = (event) => {
         this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
     }
-    addShift = () => {
-        this.props.addShift(this.state.eggCount, this.state.layTime, this.state.hatchEst, this.state.rehomed, this.state.salvageable)
-    }
-
     render() {
-        let input = ["Time", "Location", "Moonphase", "Tide", "Comments"]
-        return (
-            <div className="observation-container">
-                <h2>Observation</h2>
-                <div>
-                    <button id="button" onClick={this.getPosition}>Click here to know your position</button>
+        return <>
+            <div className="popUp">
+                <div className="new-nest-grid">
+                    <span className="new-nest-1"> Number of eggs: </span>
+                    <input className="searchInput underline new-nest-2"
+                        name="eggCount" onChange={this.handleInput}></input>
+
                 </div>
-                <div className="observation-component">
-                    {input.map((i) => <div className="new-observation-grid">
-                        <span className="new-observation-1"> {i}: </span>
-                        <input className="searchInput underline new-observation-2"
-                            name={i} onChange={this.handleInput}></input>
-
-                    </div>
-                    )}
-                    
-
+                <div className="new-nest-grid">
+                    <span className="new-nest-1"> Estimated Laying Time: </span>
+                    <form>
+                        <label>
+                            Date: 
+                            <input type="date" name="layTime" value={this.state.layTime} onChange={this.handleInput}/></label>
+                    </form>
+                </div>
+                <div className="new-nest-grid">
+                    <span className="new-nest-1"> Estimated Hatching Time: </span>
+                    <form>
+                        <label>
+                            Date: 
+                            <input type="date" name="hatchEst" value={this.state.hatchEst} onChange={this.handleInput}/></label>
+                    </form>
+                </div>
+                <div className="new-nest-grid" onChange={this.handleInput}>
+                    <span className="new-nest-1"> Taken to Lab: </span> 
+                    <select name="rehomed" id="">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
                 </div>
             </div>
-        );
+        </>
+
 
     }
 }
 
 export default NestInput;
-
