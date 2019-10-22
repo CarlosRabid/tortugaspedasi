@@ -7,6 +7,7 @@ import Fab from '@material-ui/core/Fab';
 // import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import './form.css';
+import { withTranslation } from 'react-i18next';
 
 const axios = require('axios');
 
@@ -26,9 +27,10 @@ class Form extends Component {
     }
 
     render() {
+        const { t, i18n } = this.props;
         return (
             <div className="form">
-                <h3>TORTUGA WATCH FORM</h3>
+                <h3>{t('TORTUGA WATCH FORM')}</h3>
                 <div id="input" className="_shift">
                     <ShiftInput forms={this.state.forms} />
                 </div>
@@ -61,4 +63,4 @@ class Form extends Component {
 }
 
 
-export default Form;
+export default withTranslation('translation')(Form);
