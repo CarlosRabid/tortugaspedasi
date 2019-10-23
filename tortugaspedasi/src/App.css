@@ -1,22 +1,40 @@
-.App {
-  /* display: inline; */
-  text-align: center;
-  background-color: lightblue;
-  color: green;
-  text-decoration: none;
-  /* background-image: url(https://www.sciencenews.org/wp-content/uploads/2019/04/042519_ms_turtle_feat_REV.jpg); */
-  background-size: cover
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+body {
+  background-color: rgb(22, 87, 124);
+  /* font-family: 'Lato', sans-serif !important */
+  font-family: 'Montserrat', sans-serif;
 }
-
-
-.links{
-  color:black;
+nav {
+  background-color: rgb(22, 87, 124);
+  color: #FeFFFF;
+  height: 60px;
+  font-size: 30px;
+}
+button {
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+/* .link {
+  background-color: #3AAFA9;
+  border-radius: 10px;
+  height: 20vh;
+  width: 32v;
+  font-size: 15px;
+  margin-top: 50px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+} */
+nav a{
+  color: white;
   text-decoration: none;
   align-self: flex-end;
   margin-left: 10px
 }
 .container{
-  padding: 20px;
+  padding: 2%;
 }
 
 .loginContainer {
@@ -26,13 +44,15 @@
   align-content: center;
   align-items: center;
   justify-content: center;
-  margin-top: 10%
+  margin-top: 10%;
+  font-family: 'Montserrat', sans-serif;
 }
 .navigation {
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  height: 50px
+  height: 50px;
+  font-family: 'Montserrat', sans-serif;
 }
 .currentUser {
   align-self: flex-end;
@@ -44,9 +64,8 @@
   color: rgb(137, 235, 230);
   border-top: 2px solid #3AAFA9;
 }
-#actions a:nth-child(2) {
-  color: #3AAFA9;
-  border-top: 2px solid #3AAFA9
+.ShiftInput {
+  font-family: 'Montserrat', sans-serif;
 
 }
 #analytics a:nth-child(3) {
@@ -82,9 +101,9 @@
 
 .popUp {
   position: fixed;
-  width: 600px;
-  height: 300px;
-  top: 50%;
+  width: 60%;
+  height: 33%;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 50%;
@@ -94,9 +113,3 @@
   opacity: 2
  }
 
- .MuiFormGroup-root {
-  display: initial;
- }
- .MuiFormControlLabel-root {
-  display: initial;
- }
