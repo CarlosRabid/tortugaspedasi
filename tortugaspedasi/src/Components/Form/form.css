@@ -21,7 +21,7 @@ h3 {
 
 .forms{
   max-width: 95vw;
-  overflow-x: scroll;
+  overflow-x: auto;
   background-color: white;
   
 }

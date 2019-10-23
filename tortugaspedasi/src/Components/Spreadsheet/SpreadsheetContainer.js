@@ -36,34 +36,40 @@ class SpreadsheetContainer extends Component {
         console.log(form._id)
 
         return (
-            
-                
-                <TableRow>
-                    <TableCell align="right">{moment(form.shift.date).format("Do/MM/YY")}</TableCell>
-                    <TableCell align="right">{form.shift.lastName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    {/* <TableCell align="right">{form.obser}</TableCell> */}
-                    <TableCell align="right">
-                        Plain
+
+
+            <TableRow>
+                <TableCell align="right">{moment(form.shift.date).format("Do/MM/YY")}</TableCell>
+                <TableCell align="right">{form.observation.location}</TableCell>
+                <TableCell align="right">{form.shift.lastName}</TableCell>
+                <TableCell align="right">{form.shift.firstName}</TableCell>
+                <TableCell align="right">
                         {form.turtle.dimensions.plain.length} {form.turtle.dimensions.plain.width}
-                        {form.turtle.dimensions.curve.length} {form.turtle.dimensions.curve.width}
-                    
-                    </TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right">{form.shift.firstName}</TableCell>
-                    <TableCell align="right"><Tooltip title={form.observation.comments}><div>{form.observation.comments.slice(0, 5) + "..."}</div></Tooltip></TableCell>
-                </TableRow>
-           
+                    <Tooltip ><div>{`P: L: ${form.turtle.dimensions.plain.length}, W:${form.turtle.dimensions.plain.width}`}</div></Tooltip>
+                    <Tooltip title={form.turtle.dimensions.curve.length + form.turtle.dimensions.curve.width}><div>Curve</div></Tooltip>
+
+                </TableCell>
+                <TableCell align="right">{form.turtle.species}</TableCell>
+                <TableCell align="right">{form.turtle.gender}</TableCell>
+                <TableCell align="right">
+                    {form.turtle.condition.status}
+                    {form.turtle.condition.stage}
+                </TableCell>
+                <TableCell align="right">
+                    {form.turtle.markings.rightSide}
+                    {form.turtle.markings.leftSide}
+
+                </TableCell>
+                <TableCell align="right"> {moment(form.nest.layTime).format("LTS")}</TableCell>
+                <TableCell align="right">{form.nest.eggCount}</TableCell>
+                <TableCell align="right">{moment(form.nest.hatchEst).format("LTS")}</TableCell>
+                <TableCell align="right">{form.nest.rehomed}</TableCell>
+                <TableCell align="right">{form.nest.salvageable}</TableCell>
+                <TableCell align="right">{form.observation.moonPhase}</TableCell>
+                <TableCell align="right">{form.observation.tide}</TableCell>
+                <TableCell align="right"><Tooltip title={form.observation.comments}><div>{form.observation.comments.slice(0, 5) + "..."}</div></Tooltip></TableCell>
+            </TableRow>
+
 
         )
     }

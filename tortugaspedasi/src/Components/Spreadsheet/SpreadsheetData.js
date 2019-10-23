@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import SpreadsheetContainer from './SpreadsheetContainer';
 import SpreadsheetActions from './SpreadsheetActions';
-import { func } from 'prop-types';
 import UpdateForm from './UpdateForm';
-import { throwStatement } from '@babel/types';
-import { async } from 'q';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
+import { makeStyles } from '@material-ui/core/styles';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 const axios = require('axios')
+
+
 
 class SpreadsheetData extends Component {
     constructor() {
@@ -30,8 +30,7 @@ class SpreadsheetData extends Component {
             forms: data.data
         })
     }
-    // const id = "5da76a5a90e0f8c23414be78"
-
+    
 
     getDataById = async (id) => {
         let data = this.state.forms.find(f => {
@@ -73,7 +72,6 @@ class SpreadsheetData extends Component {
 
     render() {
         let forms = this.state.forms
-
         return (
             <div className="spreadSheet">
                 {this.state.showPopUp ?
@@ -97,8 +95,8 @@ class SpreadsheetData extends Component {
                                     <TableCell align="right">Markings</TableCell>
                                     <TableCell align="right">Lay Time</TableCell>
                                     <TableCell align="right">Egg Count</TableCell>
-                                    <TableCell align="right">Rehomed</TableCell>
                                     <TableCell align="right">Hatchest</TableCell>
+                                    <TableCell align="right">Rehomed</TableCell>
                                     <TableCell align="right">Salvageable</TableCell>
                                     <TableCell align="right">Moon Phase</TableCell>
                                     <TableCell align="right">Tide</TableCell>

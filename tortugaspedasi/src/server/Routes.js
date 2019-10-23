@@ -37,7 +37,7 @@ router.get('/forms', (req, res) => {
         if (err) throw err;
         else res.send(forms)
     })
-        .populate('observation turtle nest shift')
+        .populate('observation turtle nest shift Beach')
 })
 
 

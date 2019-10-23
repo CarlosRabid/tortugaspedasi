@@ -3,6 +3,7 @@ let Schema = mongoose.Schema;
 
 const turtleSchema = new Schema({
     form: {type: Schema.Types.ObjectId, ref: 'Form'},
+    hasData: Boolean,
     species: String,
     gender: String,
     condition: {
