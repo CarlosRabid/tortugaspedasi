@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import NavBar from './Components/NavBar';
-import Landing from './Components/Landing';
 import { withTranslation } from 'react-i18next';
+import NavBar from './Components/NavBar';
 import Login from './Components/Login';
-// import ObservationInput from './Components/Form/ObservationInput';
-import './App.css';
+import Landing from './Components/Landing';
 import Form from './Components/Form/Form';
 import Spreadsheet from './Components/Spreadsheet/Spreadsheet';
 import Analytics from './Components/Analytics/Analytics';
 import { FormControlLabel, Switch } from '@material-ui/core';
+import './App.css';
 
 
 class App extends Component {
