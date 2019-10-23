@@ -148,147 +148,164 @@ handleInput = (event) => {
 
         return (
             <div className="turtle-container" >
-                    <div className="new-turtle-1">
-                        {/* <span className="new-turtle-1"> Species: </span> 
-                         <input className="searchInput underline new-turtle-2"
-                            name="species" id="species" onChange={this.handleInput}></input> */}
-
-                        {/* <Menu
-                            id="simple-menu"
-                            anchorEl={this.state.anchorEl}
-                            keepMounted
-                            open={Boolean(this.state.anchorEl)}
-                            onClose={this.handleClose}
-                        > */}
-                        {/* </Menu> */}
-                        <Button size="medium" id="species" variant="outlined" color="inherit" className="observation" onClick={this.handleClick} style={{ marginLeft: '16%' }}>
+                <div className="new-turtle-1">
+                  <Button size="medium" id="species" 
+                   variant="outlined" color="inherit" 
+                   className="observation" onClick={this.handleClick} 
+                   style={{ marginLeft: '16%' }}
+                   >
                     {this.state.species ? `Species: ${this.state.species}` : t('>> Select Species ')}
-                </Button>
-                <Menu
-                    // id="simple-menu"
+                  </Button>
+                  <Menu
                     anchorEl={this.state.anchorEl}
                     keepMounted
                     open={Boolean(this.state.anchorEl)}
                     onClose={this.handleClose}
-                >
-                            <MenuItem onClick={this.handleClose} id="Cc">Caretta caretta</MenuItem>
-                            <MenuItem onClick={this.handleClose} id="Lo">Lepidochelys olivacea</MenuItem>
-                            <MenuItem onClick={this.handleClose} id="Cm">Chelonia mydas</MenuItem>
-                            <MenuItem onClick={this.handleClose} id="Ei">Eretmochelys imbricata</MenuItem>
-                            <MenuItem onClick={this.handleClose} id="Dc">Dermochelys coriacea</MenuItem>
-                            </Menu>
-                    </div>
-
-                    <span className="radiobut">
-                        {/* <span className="new-turtle-1"> Gender: </span>
-                        <input className="searchInput underline new-turtle-2"
-                            name="gender" id="gender" onChange={this.handleInput}></input> */}
-                        <RadioGroup row aria-label="Gender" name="gender2" value={this.state.gender} onChange={this.handleRadioButton} style={{justifyContent:'center', marginTop: '2%'}}><FormControlLabel
-                            display="block"
-                                value="female"
-                                control={<Radio color="primary" />}
-                                label="Female"
-                                // labelPlacement="start"
-                                id="female"
-                            /><FormControlLabel
-                            display="block"
-                                value="male"
-                                control={<Radio color="secondary" />}
-                                label="Male"
-                                // labelPlacement="start"
-                                id="male"
-                            /></RadioGroup>
-                        </span>
-
-
-                        <Grid item sm={12} md={6}>
-                            {t('Found Alive' )} : 
-                        <ToggleButtonGroup
-                          value={true}
-                          exclusive
-                          onChange={this.handleClose}
-                          aria-label="Alive"
-                          style={{justifyContent: "center"}}
-
-                        >
-                          <ToggleButton id="condition" value="Healthy" aria-label="Alive - Healthy"
-                            style={{height: '6vh', justifySelf: "center", marginLeft: '13%'}}
-                            >
-                          {/* <FavoriteIcon color="action" className="condition" /> */}
-                          <FontAwesomeIcon icon={faHeartbeat} />
-                          </ToggleButton>
-                          <ToggleButton style={{height: '6vh', justifySelf: "center"}} color="secondary" value="Injured" aria-label="Alive - Injured">
-                          <FontAwesomeIcon icon={faMedkit} />
-                          </ToggleButton>
-                          </ToggleButtonGroup>
-                          </Grid>
-                        <Grid item sm={12} md={6}>
-                            {t('Found Death' )} : 
-                        <ToggleButtonGroup
-                          value={true}
-                          exclusive
-                          onChange={this.handleClose}
-                          aria-label="Alive"
-                          style={{justifyContent: "center"}}
-
-                        >
-                          <ToggleButton id="condition" value="Healthy" aria-label="Alive - Healthy"
-                            style={{height: '6vh', justifySelf: "center", marginLeft: '13%'}}
-                            >
-                          {/* <FavoriteIcon color="action" className="condition" /> */}
-                          <FontAwesomeIcon icon={faHeartbeat} />
-                          </ToggleButton>
-                          <ToggleButton style={{height: '6vh', justifySelf: "center"}} color="secondary" value="Injured" aria-label="Alive - Injured">
-                          <FontAwesomeIcon icon={faMedkit} />
-                          </ToggleButton>
-                          </ToggleButtonGroup>
-                          </Grid>
-
-                        <div className="new-turtle-1">
-                            Dimensions
-    
-                        <div className="child-turtle" > Plain </div>
-
+                   >
+                    <MenuItem onClick={this.handleClose} id="Cc">Caretta caretta</MenuItem>
+                    <MenuItem onClick={this.handleClose} id="Lo">Lepidochelys olivacea</MenuItem>
+                    <MenuItem onClick={this.handleClose} id="Cm">Chelonia mydas</MenuItem>
+                    <MenuItem onClick={this.handleClose} id="Ei">Eretmochelys imbricata</MenuItem>
+                    <MenuItem onClick={this.handleClose} id="Dc">Dermochelys coriacea</MenuItem>
+                    </Menu>
+                </div>
+                <span className="radiobut">
+                   <RadioGroup row aria-label="Gender" name="gender2" value={this.state.gender} onChange={this.handleRadioButton} style={{justifyContent:'center', marginTop: '2%'}}><FormControlLabel
+                     display="block"
+                     value="female"
+                     control={<Radio color="primary" />}
+                     label="Female"
+                     // labelPlacement="start"
+                     id="female"
+                    />
+                    <FormControlLabel
+                      display="block"
+                      value="male"
+                      control={<Radio color="secondary" />}
+                      label="Male"
+                      // labelPlacement="start"
+                      id="male"
+                    />
+                    </RadioGroup>
+                </span>
+                <Grid item sm={12} md={6}>
+                   {t('Found Alive' )} : 
+                    <ToggleButtonGroup
+                     value={true}
+                     exclusive
+                     onChange={this.handleClose}
+                     aria-label="Alive"
+                     style={{justifyContent: "center"}}
+                    >
+                     <ToggleButton id="condition" value="Healthy" aria-label="Alive - Healthy"
+                       style={{height: '6vh', justifySelf: "center", marginLeft: '13%'}}>
+                       <FontAwesomeIcon icon={faHeartbeat} />
+                     </ToggleButton>
+                     <ToggleButton style={{height: '6vh', justifySelf: "center"}} color="secondary" value="Injured" aria-label="Alive - Injured">
+                       <FontAwesomeIcon icon={faMedkit} />
+                     </ToggleButton>
+                    </ToggleButtonGroup>
+                </Grid>
+                <Grid item sm={12} md={6}>
+                    {t('Found Death' )} : 
+                 <ToggleButtonGroup
+                  value={true}
+                  exclusive
+                  onChange={this.handleClose}
+                  aria-label="Alive"
+                  style={{justifyContent: "center"}}
+                  >
+                  <ToggleButton id="condition" value="Healthy" aria-label="Alive - Healthy"
+                    style={{height: '6vh', justifySelf: "center", marginLeft: '16%'}}
+                    >
+                   <FontAwesomeIcon icon={faHeartbeat} />
+                  </ToggleButton>
+                  <ToggleButton style={{height: '6vh', justifySelf: "center"}} color="secondary" value="Injured" aria-label="Alive - Injured">
+                   <FontAwesomeIcon icon={faMedkit} />
+                  </ToggleButton>
+                  </ToggleButtonGroup>
+                </Grid>
                             {/* <div className="child-turtle">
                                 <span className="new-turtle-1"> Length: </span>
-                                    <Input
-                                    id="dimensionsPl"
-                                    value={this.state.dimensionsPl}
-                                    onChange={this.handleInput}
-                                    endAdornment={<InputAdornment position="end">mts</InputAdornment>}
-                                    aria-describedby="measure-helper-text"
-                                    inputProps={{
-                                        'aria-label': 'measure',
-                                    }}
-                                    />
-                                </div> */}
-                            <TextField
-                            value={this.state.dimensionsPl}
-                            onChange={this.handleInput}
-                            label="Plain: length"
-                            id="dimensionsPl"
-                            className="turtle"
-                            size="small"
-                            style={{width: '13%'}}
-                            InputProps={{
-                              startAdornment: <InputAdornment position="end">cms</InputAdornment>,
-                            }}
-                            />
-
-                            <div className="child-turtle">
-                                <span className="new-turtle-1"> Width: </span>
-                                {/* <input className="searchInput underline new-turtle-2"
-                                    name="dimensions.plain.width" id="dimensionsPw" onChange={this.handleInput}></input> */}
-                                    <Input
-                                    id="dimensionsPw"
-                                    value={this.state.dimensionsPw}
-                                    onChange={this.handleInput}
-                                    endAdornment={<InputAdornment position="end">mts</InputAdornment>}
-                                    aria-describedby="measure-helper-text"
-                                    inputProps={{
-                                      'aria-label': 'measure',
-                                    }}
-                                    />
+                                <Input
+                                id="dimensionsPl"
+                                value={this.state.dimensionsPl}
+                                onChange={this.handleInput}
+                                endAdornment={<InputAdornment position="end">mts</InputAdornment>}
+                                aria-describedby="measure-helper-text"
+                                inputProps={{
+                                    'aria-label': 'measure',
+                                }}
+                                />
+                            </div> */}
+                <div className="new-turtle-1">
+                    {t('Dimensions')}
+                    <div className="dimensions" > Plain </div>
+                    <TextField
+                     value={this.state.dimensionsPl}
+                     onChange={this.handleInput}
+                     label="Plain: length"
+                     id="dimensionsPl"
+                     className="turtle"
+                     size="small"
+                     style={{width: '13%'}}
+                     InputProps={{
+                      startAdornment: <InputAdornment position="start">cms</InputAdornment>,
+                    }}
+                    />
+                    <TextField
+                     value={this.state.dimensionsPw}
+                     onChange={this.handleInput}
+                     label="Plain: width"
+                     id="dimensionsPw"
+                     className="turtle"
+                     size="small"
+                     style={{width: '13%'}}
+                     InputProps={{
+                       startAdornment: <InputAdornment position="start">cms</InputAdornment>,
+                     }}
+                    />
+                    </div>
+                    <div className="dimensions" > Curve </div>
+                    <TextField
+                    value={this.state.dimensionsCl}
+                    onChange={this.handleInput}
+                    label="Curve: length"
+                    id="dimensionsCl"
+                    className="turtle"
+                    size="small"
+                    style={{width: '13%'}}
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">cms</InputAdornment>,
+                    }}
+                    />
+                    <TextField
+                    value={this.state.dimensionsCw}
+                    onChange={this.handleInput}
+                    label="Curve: width"
+                    id="dimensionsCw"
+                    className="turtle"
+                    size="small"
+                    style={{width: '13%'}}
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">cms</InputAdornment>,
+                    }}
+                    />
+                    </div>
+                     <div className="child-turtle">
+                            <span className="new-turtle-1"> Width: </span>
+                            {/* <input className="searchInput underline new-turtle-2"
+                                name="dimensions.plain.width" id="dimensionsPw" onChange={this.handleInput}></input> */}
+                                <Input
+                                id="dimensionsPw"
+                                value={this.state.dimensionsPw}
+                                onChange={this.handleInput}
+                                endAdornment={<InputAdornment position="end">mts</InputAdornment>}
+                                aria-describedby="measure-helper-text"
+                                inputProps={{
+                                  'aria-label': 'measure',
+                                }}
+                                />
                             </div>
 
                             <div className="child-turtle" > Curve </div>
@@ -325,7 +342,7 @@ handleInput = (event) => {
                                     />
                             </div>
 
-                        </div>
+
 
                         <div className="new-turtle-1">
                             Markings
@@ -347,9 +364,6 @@ handleInput = (event) => {
                             </div>
 
                         </div>
-                    </div>
-
-                );
             }
         }
         
