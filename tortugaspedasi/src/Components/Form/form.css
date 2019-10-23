@@ -16,4 +16,12 @@ h3 {
   margin: 10px;
   resize: vertical;
   background-color: rgb(207, 204, 204)
+  
+}
+
+.forms{
+  max-width: 95vw;
+  overflow-x: scroll;
+  background-color: white;
+  
 }

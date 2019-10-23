@@ -5,6 +5,12 @@ import { func } from 'prop-types';
 import UpdateForm from './UpdateForm';
 import { throwStatement } from '@babel/types';
 import { async } from 'q';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 const axios = require('axios')
 
 class SpreadsheetData extends Component {
@@ -76,8 +82,35 @@ class SpreadsheetData extends Component {
                 <SpreadsheetActions data={this.state} searchHandler={this.searchHandler} />
 
                 <div className="forms">
+                    <Paper>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell >Date</TableCell>
+                                    <TableCell align="right">Location</TableCell>
+                                    <TableCell align="right">First Name</TableCell>
+                                    <TableCell align="right">Last Name</TableCell>
+                                    <TableCell align="right">Dimensions</TableCell>
+                                    <TableCell align="right">Species</TableCell>
+                                    <TableCell align="right">Gender</TableCell>
+                                    <TableCell align="right">Condition</TableCell>
+                                    <TableCell align="right">Markings</TableCell>
+                                    <TableCell align="right">Lay Time</TableCell>
+                                    <TableCell align="right">Egg Count</TableCell>
+                                    <TableCell align="right">Rehomed</TableCell>
+                                    <TableCell align="right">Hatchest</TableCell>
+                                    <TableCell align="right">Salvageable</TableCell>
+                                    <TableCell align="right">Moon Phase</TableCell>
+                                    <TableCell align="right">Tide</TableCell>
+                                    <TableCell align="right">Comments</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {forms.map(f => <SpreadsheetContainer form={f} key={f._id} showPop={this.showPop} closePopUp={this.closePopUp} />)}
+                            </TableBody>
+                        </Table>
+                    </Paper>
 
-                    {forms.map((f, index) => <SpreadsheetContainer form={f} key={f._id} showPop={this.showPop} closePopUp={this.closePopUp} />)}
                 </div>
 
             </div>

@@ -1,23 +1,34 @@
+import Card from '@material-ui/core/Card';
 import React, { Component } from 'react';
-import UpdateForm from './UpdateForm';
+// import CardMedia from '@material-ui/core/CardMedia';
+import CardHeader from '@material-ui/core/CardHeader';
+// import UpdateForm from './UpdateForm';
+import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Tooltip from '@material-ui/core/Tooltip';
 const moment = require('moment')
 
+
+
 class SpreadsheetContainer extends Component {
-    constructor(){
+    constructor() {
         super();
-        this.state={
-           
+        this.state = {
+
         }
     }
-
-   
-
 
     showPopUp = (event) => {
         console.log(event.target.id)
         this.props.showPop(event.target.id)
     }
-
 
     render() {
 
@@ -25,17 +36,35 @@ class SpreadsheetContainer extends Component {
         console.log(form._id)
 
         return (
-            <div id={form._id}>
+            
                 
-                <div className="form" onClick={this.showPopUp.bind(this)} id={form._id}>
+                <TableRow>
+                    <TableCell align="right">{moment(form.shift.date).format("Do/MM/YY")}</TableCell>
+                    <TableCell align="right">{form.shift.lastName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    {/* <TableCell align="right">{form.obser}</TableCell> */}
+                    <TableCell align="right">
+                        Plain
+                        {form.turtle.dimensions.plain.length} {form.turtle.dimensions.plain.width}
+                        {form.turtle.dimensions.curve.length} {form.turtle.dimensions.curve.width}
                     
-                    <h4 id={form._id}>{form.shift.firstName} {(form.shift.lastName)}</h4>
-                    <span id={form._id}>Location: {form.observation.location}</span>
-                    <br />
-                    <span id={form._id}>Date: {moment(form.shift.date).format("Do/MM/YY")} </span>
+                    </TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right">{form.shift.firstName}</TableCell>
+                    <TableCell align="right"><Tooltip title={form.observation.comments}><div>{form.observation.comments.slice(0, 5) + "..."}</div></Tooltip></TableCell>
+                </TableRow>
+           
 
-                </div>
-            </div>
         )
     }
 }
