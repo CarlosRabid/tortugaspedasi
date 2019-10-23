@@ -1,164 +1,106 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Landing from './Landing';
 
-const credentials = [
-  
-]
+let credentials = {
+    Admin1: "TSDqmaPu",    
+    Admin2: "ngEyYWTp", 
+    Admin3: "3fv9fZGL",
+    Admin4: "zwvY5Tjt",    
+    Admin5: "wZXaHrxF",
+}
 
 class Login extends Component {
 
-  constructor() {
-    super ()
-    this.state = {
-      userName: "",
-      password: "",
-      isAuthenticated: false
-    }
-  }
-    
-    loginUser = (event) => {
-        event.preventDefault();
-        let username = event.target[0].value
-        this.props.updateUser(username)
+    constructor() {
+        super()
+        this.state = {
+            admin: {
+                user: '',
+                password: '',
+                rememberMe: false,
+                isLoggedIn: false
+            }
+        };
 
     }
-    render() {
-        return(
-            <div className="loginContainer">
-                <div className="login">
-                <h1>Please Log in Below</h1>
-                    <form onSubmit={this.loginUser}>
-                        <input placeholder="User Name" onChange={(event, newValue) => 
-                          this.setState({userName: newValue})} ></input> 
-                        <br></br>
-                        <input type="password" placeholder= "Password"></input>
-                        <br></br>
-                        <button>Login</button>
-                    </form>
-                </div>
-            </div>
-        )
+
+    handleChange = (event) => {
+        const input = event.target;
+        const value = input.type === 'checkbox' ? input.checked : input.value;
+
+        this.setState({ [input.name]: value });
+    };
+
+    handleFormSubmit = () => {
+        const { user, password, rememberMe } = this.state;
+        localStorage.setItem('rememberMe', rememberMe);
+        localStorage.setItem('user', rememberMe ? user : '');
+        localStorage.setItem('password', rememberMe ? password : '');
+    };
+
+    componentDidMount() {
+        const rememberMe = localStorage.getItem('rememberMe') === 'true';
+        const user = rememberMe ? localStorage.getItem('user') : '';
+        const password = rememberMe ? localStorage.getItem('password') : '';
+        this.setState({ user, password, rememberMe });
+    };
+
+    login = (event) => { 
+
+        if (credentials[this.state.user] ===  this.state.password ) {
+            let admin = {user: this.state.user, password: this.state.password, rememberMe: true, isLoggedIn: true}
+            this.setState({admin: admin})
+            localStorage.admin = JSON.stringify(admin)
+            event.preventDefault();
+            let username = event.target[0].value
+            this.props.updateUser(username)
+        }
+        else {
+            alert('One of the following was not correct')
+        }
+
     }
+
+    loginFuncs = (event) => {
+       setTimeout(this.handleFormSubmit(), 5000)
+       this.login(event)
+    }
+
+    logout = () => {
+        let admin = {
+            user: "", 
+            password: "", 
+            rememberMe: false, 
+            isLoggedIn: false
+        }
+        localStorage.admin=JSON.stringify(admin)
+        this.setState({admin: admin})
+    }
+    
+render() {
+    return (
+        <div>
+            {this.state.admin.isLoggedIn ?
+                <div> <Landing />
+                    <button onClick={this.logout}>Logout</button>
+                </div> 
+                :            
+            <form onSubmit={this.loginFuncs} >
+                <label>
+                    User: <input name="user" value={this.state.user} onChange={this.handleChange} />
+                </label>
+                <label>
+                    Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                </label>
+                <label>
+                    <input name="rememberMe" checked={this.state.rememberMe} onChange={this.handleChange} type="checkbox" /> Remember me
+                    </label>
+                <button type="submit" >Sign In</button>
+            </form>
+            }
+        </div>
+        
+    );
+}
 }
 export default Login
-
-
-
-
-
-
-
-
-
-/*
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
- 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Tortuga Pedasi
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const useStyles = makeStyles(theme => ({
-  '@global': {
-    body: {
-      backgroundColor: theme.palette.common.white,
-    },
-  },
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-export default function SignIn() {
-  const classes = useStyles();
-
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
-  );
-}
-*/

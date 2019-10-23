@@ -1,34 +1,41 @@
 .container {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    background-image: url(https://chinadialogueocean.net/wp-content/uploads/2018/08/sea-turtle-547162_1920-e1534168069327-1440x720.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat
+  margin-top: 3vh;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-image: url(https://chinadialogueocean.net/wp-content/uploads/2018/08/sea-turtle-547162_1920-e1534168069327-1440x720.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat
 }
 
 
 .button {
-    margin-top: 20vh;
-    margin-bottom: 24vh;
-    padding: 30px;  
+  margin-top: 10%;
+  display: inherit;
+    /* margin-bottom: 24vh; */
+    padding: 2%;  
+    align-items: center;
 }
 
 .link {
   background-color: #cfcfcf;
   border: none;
   color: black;
-  padding: 16px 32px;
+  /* padding: 5%; */
   text-align: center;
-  margin: 4px 2px;
+  align-content: center;
+  justify-content: space-around;
+  justify-items: center;
+  align-self: center;
+  /* margin: 4px 2px; */
   opacity: 0.6;
   transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
+  display: inline;
+  /* text-decoration: none; */
   cursor: pointer;
-  height: 300px;
-  width:400px;
+  height: 8vh;
+  width: 32vw;
   border-radius: 10px;
 }
 

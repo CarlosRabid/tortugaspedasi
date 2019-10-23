@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import NavBar from './Components/NavBar';
-import Landing from './Components/Landing';
 import { withTranslation } from 'react-i18next';
+import NavBar from './Components/NavBar';
 import Login from './Components/Login';
-// import ObservationInput from './Components/Form/ObservationInput';
-import './App.css';
+import Landing from './Components/Landing';
 import Form from './Components/Form/Form';
 import Spreadsheet from './Components/Spreadsheet/Spreadsheet';
 import Analytics from './Components/Analytics/Analytics';
 import { FormControlLabel, Switch } from '@material-ui/core';
+import './App.css';
 
 
 class App extends Component {
@@ -18,7 +17,7 @@ class App extends Component {
     this.state = {
       location: "",
       userName: "",
-      lng: false,
+      lng: "en",
     }
   }
 
@@ -32,20 +31,24 @@ class App extends Component {
       location: location
     })
   }
+  changeLanguage = () => {
+    const { t, i18n } = this.props;
+    if (this.state.lng=="en") {
+      i18n.changeLanguage("es");
+      return this.setState({lng: "es"})
+    }else{i18n.changeLanguage("en")
+    return this.setState({lng: "en"})
+  }
+  };
 
   render() {
-    const { t, i18n } = this.props;
-    const changeLanguage = lng => {
-      console.log(this.props)
-      i18n.changeLanguage(lng);
-    };
 
     return (<>
       {/* <button onClick={() => changeLanguage('en')}>en</button>
         <button onClick={() => changeLanguage('es')}>es</button> */}
       <FormControlLabel
-        control={<Switch checked={this.state.lng} onChange={() => changeLanguage('es')} />}
-        label="Español"
+        control={<Switch checked={(this.state.lng==="es")?true:false} onChange={this.changeLanguage} />}
+        label={(this.state.lng==="es")? "Switch to English":"Cambiar a Español"}
       />
       <div>
         <Router>
