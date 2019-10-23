@@ -21,7 +21,8 @@ import Icon from '@material-ui/core/Icon';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/react-fontawesome'
+import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
+import { faMedkit } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -201,19 +202,44 @@ handleInput = (event) => {
 
 
                         <Grid item sm={12} md={6}>
-                            {t('Status' )} : 
+                            {t('Found Alive' )} : 
                         <ToggleButtonGroup
                           value={true}
                           exclusive
                           onChange={this.handleClose}
                           aria-label="Alive"
+                          style={{justifyContent: "center"}}
+
                         >
-                          <ToggleButton id="condition" value="Healthy" aria-label="Alive - Healthy">
+                          <ToggleButton id="condition" value="Healthy" aria-label="Alive - Healthy"
+                            style={{height: '6vh', justifySelf: "center", marginLeft: '13%'}}
+                            >
                           {/* <FavoriteIcon color="action" className="condition" /> */}
-                          <FontAwesomeIcon icon={faCoffee} />
+                          <FontAwesomeIcon icon={faHeartbeat} />
                           </ToggleButton>
-                          <ToggleButton color="secondary" value="Injured" aria-label="Alive - Injured">
-                          <HealingIcon color="primary" className="condition" />
+                          <ToggleButton style={{height: '6vh', justifySelf: "center"}} color="secondary" value="Injured" aria-label="Alive - Injured">
+                          <FontAwesomeIcon icon={faMedkit} />
+                          </ToggleButton>
+                          </ToggleButtonGroup>
+                          </Grid>
+                        <Grid item sm={12} md={6}>
+                            {t('Found Death' )} : 
+                        <ToggleButtonGroup
+                          value={true}
+                          exclusive
+                          onChange={this.handleClose}
+                          aria-label="Alive"
+                          style={{justifyContent: "center"}}
+
+                        >
+                          <ToggleButton id="condition" value="Healthy" aria-label="Alive - Healthy"
+                            style={{height: '6vh', justifySelf: "center", marginLeft: '13%'}}
+                            >
+                          {/* <FavoriteIcon color="action" className="condition" /> */}
+                          <FontAwesomeIcon icon={faHeartbeat} />
+                          </ToggleButton>
+                          <ToggleButton style={{height: '6vh', justifySelf: "center"}} color="secondary" value="Injured" aria-label="Alive - Injured">
+                          <FontAwesomeIcon icon={faMedkit} />
                           </ToggleButton>
                           </ToggleButtonGroup>
                           </Grid>
