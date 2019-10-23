@@ -13,10 +13,16 @@ import FormLabel from '@material-ui/core/FormLabel';
 // import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 // import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import '../Form/turtle.css';
-import { MenuList, InputAdornment, Input, InputLabel, CircularProgress } from '@material-ui/core';
+import { MenuList, InputAdornment, Input, InputLabel, TextField } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import HealingIcon from '@material-ui/icons/Healing';
+import Icon from '@material-ui/core/Icon';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/react-fontawesome'
+
 
 
 class TurtleInput extends Component {
@@ -41,7 +47,7 @@ class TurtleInput extends Component {
               key: "alive",
               caption: "Alive",
               subMenuItems: [
-                {
+                  {
                   key: "aliveh",
                   caption: "Alive Healthy",
                   onClick: () => {}
@@ -57,38 +63,38 @@ class TurtleInput extends Component {
                 key: "death",
                 caption: "Death",
                 subMenuItems: [
-                  {
-                    key: "death1",
-                    caption: "Death Stage 1",
-                    onClick: () => {}
-                  },
-                  {
-                    key: "death2",
-                    caption: "Death Stage 2",
-                    onClick: () => {}
-                  },
-                  {
-                    key: "death3",
-                    caption: "Death Stage 3",
-                    onClick: () => {}
-                  },
-                  {
-                    key: "death4",
-                    caption: "Death Stage 4",
-                    onClick: () => {}
-                  }
+                    {
+                        key: "death1",
+                        caption: "Death Stage 1",
+                        onClick: () => {}
+                    },
+                    {
+                        key: "death2",
+                        caption: "Death Stage 2",
+                        onClick: () => {}
+                    },
+                    {
+                        key: "death3",
+                        caption: "Death Stage 3",
+                        onClick: () => {}
+                    },
+                    {
+                        key: "death4",
+                        caption: "Death Stage 4",
+                        onClick: () => {}
+                    }
                 ]
-              }
-          ]
-        }
+            }
+        ]
     }
+}
 
 
 
-    handleInput = (event) => {
-        console.log(event.target.id)
-        this.setState({ [event.target.id]: event.target.value })
-        let turtlestate = { ...this.state }
+handleInput = (event) => {
+    console.log(event.target.id)
+    this.setState({ [event.target.id]: event.target.value })
+    let turtlestate = { ...this.state }
         console.log(this.state)
         this.props.updateTurtle(turtlestate)
     }
@@ -105,7 +111,7 @@ class TurtleInput extends Component {
         // console.log(event.currentTarget.id)
         // let anchorStat = state.anchorStat
         anchorEl = event.currentTarget.id
-       return this.setState({ anchorEl})
+        return this.setState({ anchorEl})
         // setAnchorEl(event.currentTarget);
     };
     handleMenu = (event) => {
@@ -119,9 +125,9 @@ class TurtleInput extends Component {
         // let anchorEl = {...this.state.anchorEl}
         let result = { ...this.state.species }
         result = event.currentTarget.id
-        console.log(result.length)
+        console.log(result)
         if (result.length==2) {
-           return this.setState({ species: result, anchorEl: null }) 
+            return this.setState({ species: result, anchorEl: null }) 
             
         }else{return this.setState({conditionstage: result, anchorStat: null })}
         // console.log(this.state)
@@ -140,7 +146,7 @@ class TurtleInput extends Component {
         const { t, i18n } = this.props;
 
         return (
-            <div className="turtle-container">
+            <div className="turtle-container" >
                     <div className="new-turtle-1">
                         {/* <span className="new-turtle-1"> Species: </span> 
                          <input className="searchInput underline new-turtle-2"
@@ -195,17 +201,19 @@ class TurtleInput extends Component {
 
 
                         <Grid item sm={12} md={6}>
+                            {t('Status' )} : 
                         <ToggleButtonGroup
                           value={true}
                           exclusive
                           onChange={this.handleClose}
                           aria-label="Alive"
                         >
-                          <ToggleButton value="Healthy" aria-label="Alive - Healthy">
-                          <CircularProgress color="primary" className="condition" variant="static" value={100} />
+                          <ToggleButton id="condition" value="Healthy" aria-label="Alive - Healthy">
+                          {/* <FavoriteIcon color="action" className="condition" /> */}
+                          <FontAwesomeIcon icon={faCoffee} />
                           </ToggleButton>
                           <ToggleButton color="secondary" value="Injured" aria-label="Alive - Injured">
-                          <CircularProgress className="condition" variant="static" value={96} />
+                          <HealingIcon color="primary" className="condition" />
                           </ToggleButton>
                           </ToggleButtonGroup>
                           </Grid>
@@ -213,12 +221,10 @@ class TurtleInput extends Component {
                         <div className="new-turtle-1">
                             Dimensions
     
-                        <div className="child-turtle" className="new-turtle-1"> Plain </div>
+                        <div className="child-turtle" > Plain </div>
 
-                            <div className="child-turtle">
+                            {/* <div className="child-turtle">
                                 <span className="new-turtle-1"> Length: </span>
-                                {/* <input className="searchInput underline new-turtle-2"
-                                    name="dimensions.plain.length" id="dimensionsPl" onChange={this.handleInput}></input> */}
                                     <Input
                                     id="dimensionsPl"
                                     value={this.state.dimensionsPl}
@@ -226,10 +232,22 @@ class TurtleInput extends Component {
                                     endAdornment={<InputAdornment position="end">mts</InputAdornment>}
                                     aria-describedby="measure-helper-text"
                                     inputProps={{
-                                      'aria-label': 'measure',
+                                        'aria-label': 'measure',
                                     }}
                                     />
-                            </div>
+                                </div> */}
+                            <TextField
+                            value={this.state.dimensionsPl}
+                            onChange={this.handleInput}
+                            label="Plain: length"
+                            id="dimensionsPl"
+                            className="turtle"
+                            size="small"
+                            style={{width: '13%'}}
+                            InputProps={{
+                              startAdornment: <InputAdornment position="end">cms</InputAdornment>,
+                            }}
+                            />
 
                             <div className="child-turtle">
                                 <span className="new-turtle-1"> Width: </span>
@@ -247,7 +265,7 @@ class TurtleInput extends Component {
                                     />
                             </div>
 
-                            <div className="child-turtle" className="new-turtle-1"> Curve </div>
+                            <div className="child-turtle" > Curve </div>
 
                             <div className="child-turtle">
                                 <span className="new-turtle-1"> Width: </span>

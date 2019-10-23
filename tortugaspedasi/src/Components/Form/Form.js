@@ -15,6 +15,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import BeachLocations from './BeachLocations';
+import Comments from './ObservationComments';
 
 const axios = require('axios');
 
@@ -51,6 +53,10 @@ class Form extends Component {
             <>
                 <Paper className="form" style={{margin: '5%', border: '9px solid #ccc'}}>
                     <h3>{t('TORTUGA WATCH FORM')}</h3>
+                    {/* <hr/> */}
+                    <BeachLocations />
+                    <br/>
+                    <br/>
                     <ExpansionPanel >
                         <ExpansionPanelSummary
                             expandIcon={<ExpandMoreIcon />}
@@ -76,6 +82,7 @@ class Form extends Component {
                         </ExpansionPanelSummary>
                         <Turtle forms={this.state.forms} />
                         </ExpansionPanel>
+                        <Comments />
                     <Fab style={{marginLeft: '79%'}} size="medium" color="secondary" aria-label="add" className="fab">
                         <></>
                     </Fab>
