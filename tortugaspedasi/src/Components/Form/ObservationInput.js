@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-const axios = require('axios')
 import { withTranslation } from 'react-i18next';
 import { Button, Menu, MenuItem, TextField } from '@material-ui/core';
+const axios = require('axios')
 
 
 let beaches = {
