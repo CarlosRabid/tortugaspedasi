@@ -7,6 +7,7 @@ const Shift = require('./models/Shift');
 const Observation = require('./models/Observation');
 const Turtle = require('./models/Turtle');
 const Nest = require('./models/Nest');
+const Beach = require('./models/Beach')
 // const UserLogin = require('./models/UserLogin');
 
 /* API Requests */
@@ -72,7 +73,7 @@ router.post('/shift', (req, res) => {
 
 router.post('/observation', (req, res) => {
     let newObservation = new Observation({
-        time: req.body.time,
+        date: req.body.date,
         location: req.body.location,
         moonPhase: req.body.moonphase,
         tide: req.body.string,
@@ -132,13 +133,14 @@ router.post('/newForm', (req, res) => {
         date: new Date().toString()
     })
     let newObservation = new Observation({
-        time: req.body.observation.time,
+        date: req.body.observation.date,
         location: req.body.observation.location,
         moonPhase: req.body.observation.moonPhase,
         tide: req.body.observation.tide,
         comments: req.body.observation.comments
     })
     let newTurtle = new Turtle({
+        hasData: req.body.turtle.hasData,
         species: req.body.turtle.species,
         gender: req.body.turtle.gender,
         condition: {
@@ -247,31 +249,6 @@ router.get('/moonData', (req, res) => {
 
 })
 
-router.get('/formData', async function (req, res) {
-    Turtle.find({ hasData: true })
-        // .populate({ ===================== I think I don't need this
-        //     path: 'form',
-        //     populate: {
-        //         path: 'observation'
-        //     }
-        // })
-        .aggregate([
-            { $unwind: '$form' },
-            { $unwind: '$form.observation' },
-            { $unwind: '$form.observation.date' },
-            {
-                $group: {
-                    _id: "$form.observation.date",
-                    count: { $sum: 1 },
-                    moonPhase : "$form.observation.moonPhase",
-                    // tide: "$form.observation.tide" Not sure about that
-                }
-            }
-        ])
-        // this should give me back a number of turtles for each date, the moonPhase and maybe the tide 
-        // Maybe send as parameter if grouped by 1 day 3 days or more
-
-})
 
 
 module.exports = router
