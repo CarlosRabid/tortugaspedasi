@@ -40,7 +40,8 @@ class Form extends Component {
         console.log('working')
         await axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
     }
-    handleExpandClick = () => {
+    handleExpandClick = (event) => {
+        console.log(event.target)
         let showFpart = true
         // showFpart = !showFpart
         console.log(showFpart)
@@ -90,12 +91,12 @@ class Form extends Component {
                             : null}
                     </div>
                     <Button
-                        variant="contained"
-                        color="primary"
-                        size="medium"
-                        className="submit"
-                        // startIcon={<SaveIcon />}
-                        onClick={this.submitNewForm}
+                      variant="contained"
+                      color="primary"
+                      size="medium"
+                      className="submit"
+                      // startIcon={<SaveIcon />}
+                      onClick={this.submitNewForm}
                     >
                         {t('Submit Form')}
                     </Button>
