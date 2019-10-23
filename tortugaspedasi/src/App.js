@@ -48,8 +48,8 @@ class App extends Component {
       {/* <button onClick={() => changeLanguage('en')}>en</button>
         <button onClick={() => changeLanguage('es')}>es</button> */}
       <FormControlLabel
-        control={<Switch checked={this.state.lng} onChange={this.changeLanguage} />}
-        label="Español"
+        control={<Switch checked={(this.state.lng==="es")?true:false} onChange={this.changeLanguage} />}
+        label={(this.state.lng==="es")? "Switch to English":"Cambiar a Español"}
       />
       <div>
         <Router>
