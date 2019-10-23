@@ -13,6 +13,7 @@
     "date-fns": "^2.0.0-beta.5",
     "express": "^4.17.1",
     "i18next": "^17.3.0",
+    "material-ui": "^0.20.2",
     "moment": "^2.24.0",
     "mongoose": "^5.7.5",
     "react": "^16.10.2",
