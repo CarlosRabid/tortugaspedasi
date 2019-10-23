@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
+import { withTranslation } from 'react-i18next';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { green } from '@material-ui/core/colors';
@@ -12,7 +13,10 @@ import FormLabel from '@material-ui/core/FormLabel';
 // import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 // import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import '../Form/turtle.css';
-import { MenuList, InputAdornment, Input, InputLabel } from '@material-ui/core';
+import { MenuList, InputAdornment, Input, InputLabel, CircularProgress } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 
 class TurtleInput extends Component {
@@ -133,39 +137,46 @@ class TurtleInput extends Component {
     // there is className = "child-turtle" for nested children to help with the CSS
 
     render() {
+        const { t, i18n } = this.props;
 
         return (
             <div className="turtle-container">
-                <h2>Turtle Information</h2>
-
-                <div className="turtle-component">
                     <div className="new-turtle-1">
                         {/* <span className="new-turtle-1"> Species: </span> 
                          <input className="searchInput underline new-turtle-2"
                             name="species" id="species" onChange={this.handleInput}></input> */}
-                        <Button id="species" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
-                            Species: </Button>
-                        <Menu
+
+                        {/* <Menu
                             id="simple-menu"
                             anchorEl={this.state.anchorEl}
                             keepMounted
                             open={Boolean(this.state.anchorEl)}
                             onClose={this.handleClose}
-                        >
+                        > */}
+                        {/* </Menu> */}
+                        <Button size="medium" id="species" variant="outlined" color="inherit" className="observation" onClick={this.handleClick} style={{ marginLeft: '16%' }}>
+                    {this.state.species ? `Species: ${this.state.species}` : t('>> Select Species ')}
+                </Button>
+                <Menu
+                    // id="simple-menu"
+                    anchorEl={this.state.anchorEl}
+                    keepMounted
+                    open={Boolean(this.state.anchorEl)}
+                    onClose={this.handleClose}
+                >
                             <MenuItem onClick={this.handleClose} id="Cc">Caretta caretta</MenuItem>
                             <MenuItem onClick={this.handleClose} id="Lo">Lepidochelys olivacea</MenuItem>
                             <MenuItem onClick={this.handleClose} id="Cm">Chelonia mydas</MenuItem>
                             <MenuItem onClick={this.handleClose} id="Ei">Eretmochelys imbricata</MenuItem>
                             <MenuItem onClick={this.handleClose} id="Dc">Dermochelys coriacea</MenuItem>
-                        </Menu>
+                            </Menu>
                     </div>
 
                     <span className="radiobut">
                         {/* <span className="new-turtle-1"> Gender: </span>
                         <input className="searchInput underline new-turtle-2"
                             name="gender" id="gender" onChange={this.handleInput}></input> */}
-                        <RadioGroup aria-label="gender" name="gender2" value={this.state.gender} onChange={this.handleRadioButton}>
-                           Gender: <FormControlLabel
+                        <RadioGroup row aria-label="Gender" name="gender2" value={this.state.gender} onChange={this.handleRadioButton} style={{justifyContent:'center', marginTop: '2%'}}><FormControlLabel
                             display="block"
                                 value="female"
                                 control={<Radio color="primary" />}
@@ -180,33 +191,24 @@ class TurtleInput extends Component {
                                 // labelPlacement="start"
                                 id="male"
                             /></RadioGroup>
-                    </span>
+                        </span>
 
-                        <div className="new-turtle-1">
-                            Condition
-                        {/* <div className="child-turtle">
-                                <span className="new-turtle-1"> Status: </span>
-                                <input className="searchInput underline new-turtle-2"
-                                    name="conditionstat" id="conditionstat" onChange={this.handleInput}></input>
-                            </div>
 
-                            <div className="child-turtle">
-                                <span className="new-turtle-1"> Stage: </span>
-                                <input className="searchInput underline new-turtle-2"
-                                    name="conditionstage" id="conditionstage" onChange={this.handleInput}></input>
-                            </div> */}
-                            <Button id="conditions" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleMenu}>
-                            Condition & Stage: </Button>
-                        <Menu
-                            id="conditions"
-                            anchorEl={this.state.anchorStat}
-                            keepMounted
-                            open={Boolean(this.state.anchorStat)}
-                            onClose={this.handleClose}
-                            MenuItem ={this.state.menuItems}
-                        >{this.state.menuItems.map(i => { return <MenuItem id={i.key} >{i.caption}</MenuItem>})} </Menu>
-
-                        </div>
+                        <Grid item sm={12} md={6}>
+                        <ToggleButtonGroup
+                          value={true}
+                          exclusive
+                          onChange={this.handleClose}
+                          aria-label="Alive"
+                        >
+                          <ToggleButton value="Healthy" aria-label="Alive - Healthy">
+                          <CircularProgress color="primary" className="condition" variant="static" value={100} />
+                          </ToggleButton>
+                          <ToggleButton color="secondary" value="Injured" aria-label="Alive - Injured">
+                          <CircularProgress className="condition" variant="static" value={96} />
+                          </ToggleButton>
+                          </ToggleButtonGroup>
+                          </Grid>
 
                         <div className="new-turtle-1">
                             Dimensions
@@ -302,10 +304,9 @@ class TurtleInput extends Component {
 
                         </div>
                     </div>
-                </div>
 
                 );
             }
         }
         
-export default TurtleInput;
+export default withTranslation('translation')(TurtleInput);
