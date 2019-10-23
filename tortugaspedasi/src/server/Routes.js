@@ -15,18 +15,18 @@ router.get('/solunar', (req, res) => {
     let apiAdd = `https://api.solunar.org/solunar/${lat},${long},${date},-5`
     console.log(apiAdd)
 
-    request(apiAdd, function(error, response, body){
+    request(apiAdd, function (error, response, body) {
         let fulldataMoon = JSON.parse(body)
-        let moonData ={
-            moonphase:fulldataMoon.moonPhase,
-            qmoonphase:fulldataMoon.moonPhase,
-            sunrise:fulldataMoon.sunRise,
-            suntransit:fulldataMoon.sunTransit,
-            sunset:fulldataMoon.sunSet,
-            moonrise:fulldataMoon.moonRise,
-            moonunder:fulldataMoon.moonUnder,
-            moonphase:fulldataMoon.moonPhase,
-            moonillumination:fulldataMoon.moonIllumination
+        let moonData = {
+            moonphase: fulldataMoon.moonPhase,
+            qmoonphase: fulldataMoon.moonPhase,
+            sunrise: fulldataMoon.sunRise,
+            suntransit: fulldataMoon.sunTransit,
+            sunset: fulldataMoon.sunSet,
+            moonrise: fulldataMoon.moonRise,
+            moonunder: fulldataMoon.moonUnder,
+            moonphase: fulldataMoon.moonPhase,
+            moonillumination: fulldataMoon.moonIllumination
         }
         console.log(moonData)
     })
@@ -247,6 +247,31 @@ router.get('/moonData', (req, res) => {
 
 })
 
+router.get('/formData', async function (req, res) {
+    Turtle.find({ hasData: true })
+        // .populate({ ===================== I think I don't need this
+        //     path: 'form',
+        //     populate: {
+        //         path: 'observation'
+        //     }
+        // })
+        .aggregate([
+            { $unwind: '$form' },
+            { $unwind: '$form.observation' },
+            { $unwind: '$form.observation.date' },
+            {
+                $group: {
+                    _id: "$form.observation.date",
+                    count: { $sum: 1 },
+                    moonPhase : "$form.observation.moonPhase",
+                    // tide: "$form.observation.tide" Not sure about that
+                }
+            }
+        ])
+        // this should give me back a number of turtles for each date, the moonPhase and maybe the tide 
+        // Maybe send as parameter if grouped by 1 day 3 days or more
+
+})
 
 
 module.exports = router
