@@ -94,7 +94,7 @@ nav a{
 .bigButton {
   height: 60px;
   width: 280px;
-  color: white;
+  color: lightblue;
   margin-left: 190px;
   margin-top: 0;
 }
@@ -108,8 +108,8 @@ nav a{
   right: 0;
   bottom: 50%;
   margin: auto;
-  background: -webkit-linear-gradient(left, #85a100, #25b7c4);
-  background: linear-gradient(to right,  #85a100, #25b7c4);
+  background: white;
   font-family: 'Montserrat', sans-serif;
+  opacity: 2
  }
 

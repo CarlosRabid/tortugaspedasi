@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import { Button, Menu, MenuItem, TextField } from '@material-ui/core';
+const axios = require('axios')
 
 
 class ObservationInput extends Component {
@@ -50,6 +51,8 @@ class ObservationInput extends Component {
     //     this.setState({ locationLatitude, locationLongitude, showMenu, selectedBeach })
     // }
 
+
+    
     // getDate2 = () => {
     //     let currentDate = new Date();
     //     let date = currentDate.getDate();

@@ -19,11 +19,13 @@ router.get('/solunar', (req, res) => {
         let fulldataMoon = JSON.parse(body)
         let moonData ={
             moonphase:fulldataMoon.moonPhase,
+            qmoonphase:fulldataMoon.moonPhase,
             sunrise:fulldataMoon.sunRise,
             suntransit:fulldataMoon.sunTransit,
             sunset:fulldataMoon.sunSet,
             moonrise:fulldataMoon.moonRise,
             moonunder:fulldataMoon.moonUnder,
+            moonphase:fulldataMoon.moonPhase,
             moonillumination:fulldataMoon.moonIllumination
         }
         console.log(moonData)
@@ -32,12 +34,19 @@ router.get('/solunar', (req, res) => {
 })
 
 
+
+
+/* Route requests */
+
+
+
 router.get('/forms', (req, res) => {
     Form.find({}, (err, forms) => {
         if (err) throw err;
         else res.send(forms)
     })
         .populate('observation turtle nest shift')
+
 })
 
 
@@ -211,6 +220,7 @@ router.delete('/forms/:id', function (req, res) {
         })
     })
 })
+
 
 router.get('/moonData', (req, res) => {
     let lat = 7.5303400;
