@@ -167,7 +167,8 @@ router.post('/newForm', (req, res) => {
         eggCount: req.body.nest.eggCount,
         hatchEst: req.body.nest.hatchEst,
         rehomed: req.body.nest.rehomed,
-        salvageable: req.body.nest.salvageable
+        salvageable: req.body.nest.salvageable,
+        hasData: req.body.nest.hasData
     })
 
     let newForm = new Form({
@@ -245,10 +246,7 @@ router.get('/moonData', (req, res) => {
     })
 
     res.send(dataMoon)
-
-
 })
-
 
 
 module.exports = router
