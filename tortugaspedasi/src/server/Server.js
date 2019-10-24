@@ -3,6 +3,8 @@ let server = express();
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
+const chartRoutes = require('./ChartRoute')
+
 server.use(express.static('node_modules'));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
@@ -21,6 +23,7 @@ server.use(function (req, res, next) {
   })
 
 server.use('/', api)
+server.use('/', chartRoutes)
 
 const PORT = 7777
 server.listen(process.env.PORT || PORT, () => console.log(`Running on port ${PORT}`))

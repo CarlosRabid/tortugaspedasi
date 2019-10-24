@@ -1,0 +1,17 @@
+{
+    "playatoro": {
+        "name": "Playa El Toro",
+        "latitude": 7.530178,
+        "longitude": -80.003034
+    },
+    "playaarenal": {
+        "name": "Playa El Arenal",
+        "latitude": 7.559493,
+        "longitude": -80.019275
+    },
+    "playalagarto": {
+        "name": "Playa Lagarto",
+        "latitude": 7.506391,
+        "longitude": -79.999284
+    }
+}

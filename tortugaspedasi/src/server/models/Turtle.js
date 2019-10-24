@@ -2,6 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 const turtleSchema = new Schema({
+    hasData: Boolean,
     form: {type: Schema.Types.ObjectId, ref: 'Form'},
     hasData: Boolean,
     species: String,

@@ -15,6 +15,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import BeachLocations from './BeachLocations';
+import Comments from './ObservationComments';
 
 const axios = require('axios');
 
@@ -80,7 +82,8 @@ class Form extends Component {
         console.log('working')
         await axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
     }
-    handleExpandClick = () => {
+    handleExpandClick = (event) => {
+        console.log(event.target)
         let showFpart = true
         // showFpart = !showFpart
         console.log(showFpart)
@@ -93,6 +96,10 @@ class Form extends Component {
             <>
                 <Paper className="form" style={{ margin: '5%', border: '9px solid #ccc' }}>
                     <h3>{t('TORTUGA WATCH FORM')}</h3>
+                    {/* <hr/> */}
+                    <BeachLocations />
+                    <br />
+                    <br />
                     <ExpansionPanel >
                         <ExpansionPanelSummary
                             expandIcon={<ExpandMoreIcon />}
@@ -112,19 +119,31 @@ class Form extends Component {
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1c-content"
                             id="turtles"
-                        ><div className="helptext">
+                        >
+                            <div className="helptext">
                                 <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
                             </div>
                         </ExpansionPanelSummary>
-                        <Turtle forms={this.state.forms} submitForm={this.submitForm} />
+                        <Turtle forms={this.state.forms} />
                     </ExpansionPanel>
-                    <Fab style={{ marginLeft: '79%' }} size="medium" color="secondary" aria-label="add" className="fab">
-                        <></>
-                    </Fab>
+                    <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
+                        <ExpansionPanelSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1c-content"
+                            id="turtles"
+                        >
+                            <div className="helptext">
+                                <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
+                            </div>
+                        </ExpansionPanelSummary>
+                        <NestInput forms={this.state.forms} />
+                    </ExpansionPanel>
+                    <Comments />
                     <div id="input" className="_nest">
                         {this.state.nestFound ?
-                            <NestInput submitForm={this.submitForm} /> : null}
-                    </div>                {/* <button className="submit" onClick={this.submitNewForm}>Submit</button> */}
+                            <NestInput />
+                            : null}
+                    </div>
                     <Button
                         variant="contained"
                         color="primary"
@@ -133,8 +152,8 @@ class Form extends Component {
                         // startIcon={<SaveIcon />}
                         onClick={this.submitNewForm}
                     >
-                        Submit Form
-                </Button>
+                        {t('Submit Form')}
+                    </Button>
                 </Paper>
             </>
         )

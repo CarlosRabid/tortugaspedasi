@@ -5,6 +5,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { Typography, Grid } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
+import './turtle.css'
 
 class ShiftInput extends Component {
 
@@ -47,12 +48,12 @@ class ShiftInput extends Component {
         const height = 38;
         const marginLeft = '5%';
         const heightD = '10%';
-        let input = [{ formName: "First Name", stateName: "firstName" }, { formName: "Last Name", stateName: "lastName" }]
+        // let input = [{ formName: "First Name", stateName: "firstName" }, { formName: "Last Name", stateName: "lastName" }]
         return (
             <div>
                 {/* <h4>{t('Shift')}</h4> */}
                 <MuiPickersUtilsProvider utils={DateFnsUtils} >
-                    <Grid container justify="space-between">
+                    <Grid container justify="space-between" style={{marginLeft: '7%'}}>
                         <TextField
                             id="firstName"
                             name="firstName"
@@ -83,6 +84,7 @@ class ShiftInput extends Component {
                         <br />
                         <br />
                         <br />
+                        
                         {/* <label>
                          <input type="date" name="date" value={this.state.date} onChange={this.handleInput} /> 
                         
@@ -100,11 +102,11 @@ class ShiftInput extends Component {
                         margin="none"
                     /> 
                     </label> */}
-
+                    <div style={{display:"inline-flex"}}>
                         <KeyboardDatePicker
-                            margin="normal"
+                            margin="none"
                             id="date"
-                            label={t('Date of observation')}
+                            label={t('Date of watch')}
                             format="dd/mm/yyyy"
                             value={moment(this.state.date, 'dd/mm/yyyy').toDate()}
                             // defaultValue={this.state.date}
@@ -113,7 +115,7 @@ class ShiftInput extends Component {
                                 'aria-label': t('Date'),
                             }}
                             InputLabelProps={{ shrink: true }}
-                            style={{ height: heightD, marginLeft }}
+                            style={{ height: heightD, marginLeft ,width: '42%'}}
                             variant="standard"
                             size="small"
                             helperText={false}
@@ -122,6 +124,8 @@ class ShiftInput extends Component {
                             />
                         <KeyboardTimePicker
                             margin="none"
+                            variant="standard"
+                            // id="date"
                             id="time"
                             label={t('Time ')}
                             format="HH:mm"
@@ -132,10 +136,12 @@ class ShiftInput extends Component {
                                 'aria-label': t('Time'),
                             }}
                             className="dateinput"
-                            style={{ height: heightD, marginLeft }}
+                            style={{ height: heightD, marginLeft, width: '23%' }}
                             InputLabelProps={{ shrink: true }}
                             helperText={false}
+                            size="small"
                         />
+                        </div>
                     </Grid>
                 </MuiPickersUtilsProvider>
             </div>
