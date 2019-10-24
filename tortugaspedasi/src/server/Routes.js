@@ -42,16 +42,16 @@ router.get('/solunar', (req, res) => {
 
 
 router.get('/forms', (req, res) => {
-    Form.find({}, (err, forms) => {
-        if (err) throw err;
-        else res.send(forms)
-        console.log(forms)
-    })
+    Form.find({})
         .populate('turtle nest shift observation')
+        .populate({path: "observation", populate: "location"})
+        .exec((err, forms) => {
+            res.send(forms)
+        })
         // .populate({
         //     path : 'observation',
             
-        //        select: 'beach'
+        //        location: 'beach'
         
         // })
 
@@ -106,7 +106,7 @@ router.post('/turtle', (req, res) => {
             curve: {
                 length: req.body.length,
                 width: req.body.width
-            }
+  ``          }
         },
         markings: {
             rightSide: req.body.rightSide,
