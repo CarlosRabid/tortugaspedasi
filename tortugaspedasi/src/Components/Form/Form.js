@@ -82,7 +82,7 @@ class Form extends Component {
                                 <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
                             </div>
                         </ExpansionPanelSummary>
-                        {/* <Turtle forms={this.state.forms} /> */}
+                        <Turtle forms={this.state.forms} />
                     </ExpansionPanel>
                     <Comments />
                     <div id="input" className="_nest">

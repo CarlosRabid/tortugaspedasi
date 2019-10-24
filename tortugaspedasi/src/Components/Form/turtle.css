@@ -63,3 +63,9 @@
      font-family: 'Montserrat', sans-serif;
      font-size: small;
    } */
+   .dimensions {
+     display: flex;
+   }
+   .markings {
+     margin-left: 3%;
+   }

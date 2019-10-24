@@ -194,11 +194,11 @@ class TurtleInput extends Component {
                         aria-label="Alive"
                         style={{ justifyContent: "center" }}
                     >
-                        <ToggleButton id="condition" value="Healthy" aria-label="Alive - Healthy"
+                        <ToggleButton id="a1" value="Healthy" aria-label="Alive - Healthy"
                             style={{ height: '6vh', justifySelf: "center", marginLeft: '13%' }}>
                             <FontAwesomeIcon icon={faHeartbeat} />
                         </ToggleButton>
-                        <ToggleButton style={{ height: '6vh', justifySelf: "center" }} color="secondary" value="Injured" aria-label="Alive - Injured">
+                        <ToggleButton id="a2" style={{ height: '6vh', justifySelf: "center" }} color="secondary" value="Injured" aria-label="Alive - Injured">
                             <FontAwesomeIcon icon={faMedkit} />
                         </ToggleButton>
                     </ToggleButtonGroup>
@@ -209,10 +209,10 @@ class TurtleInput extends Component {
                         value={true}
                         exclusive
                         onChange={this.handleClose}
-                        aria-label="Alive"
+                        aria-label="Deceased"
                         style={{ justifyContent: "center" }}
                     >
-                        <ToggleButton id="condition" value="Healthy" aria-label="Alive - Healthy"
+                        <ToggleButton id="d1" value="death1" aria-label="Death"
                             style={{ height: '6vh', justifySelf: "center", marginLeft: '16%' }}
                         >
                             <FontAwesomeIcon icon={faHeartbeat} />
@@ -235,66 +235,76 @@ class TurtleInput extends Component {
                                 }}
                                 />
                             </div> */}
-                {t('Dimensions')}
-                <div className="dimensions" > Plain
-                <TextField
-                        value={this.state.dimensionsPl}
-                        onChange={this.handleInput}
-                        label="Plain: length"
-                        id="dimensionsPl"
-                        className="turtle"
-                        size="small"
-                        style={{ width: '13%' }}
-                        InputProps={{
-                            startAdornment: <InputAdornment position="start">cms</InputAdornment>,
-                        }}
-                    />
-                    <TextField
-                        value={this.state.dimensionsPw}
-                        onChange={this.handleInput}
-                        label="Plain: width"
-                        id="dimensionsPw"
-                        className="turtle"
-                        size="small"
-                        style={{ width: '13%' }}
-                        InputProps={{
-                            startAdornment: <InputAdornment position="start">cms</InputAdornment>,
-                        }}
-                    />
+                <br />
+                {t('Dimensions in cms')}
+                <br />
+                <div className="dimensions">
+                    <div className="turtle-dimensions" >
+                    {t('Plain      ')}
+                    <br/>
+                        <TextField
+                            value={this.state.dimensionsPl}
+                            onChange={this.handleInput}
+                            label="LENGTH"
+                            id="dimensionsPl"
+                            className="turtle"
+                            size="small"
+                            style={{ width: '33%', marginLeft: '5%' }}
+                        // InputProps={{
+                        //     startAdornment: <InputAdornment position="start">cms</InputAdornment>,
+                        // }}
+                        />
+                        <TextField
+                            value={this.state.dimensionsPw}
+                            onChange={this.handleInput}
+                            label="WIDTH"
+                            id="dimensionsPw"
+                            className="turtle"
+                            size="small"
+                            style={{ width: '33%', marginLeft: '5%' }}
+                        // InputProps={{
+                        //     startAdornment: <InputAdornment position="start">cms</InputAdornment>,
+                        // }}
+                        />
+                    </div>
+                    <div className="turtle-dimensions" >
+                    {t(' Curve ')}
+                    <br/>
+                        <TextField
+                            value={this.state.dimensionsCl}
+                            onChange={this.handleInput}
+                            label="LENGTH"
+                            id="dimensionsCl"
+                            className="turtle"
+                            size="small"
+                            style={{ width: '33%', marginLeft: '4%' }}
+                        // InputProps={{
+                        //     startAdornment: <InputAdornment position="start">cms</InputAdornment>,
+                        // }}
+                        />
+                        <TextField
+                            value={this.state.dimensionsCw}
+                            onChange={this.handleInput}
+                            label="WIDTH"
+                            id="dimensionsCw"
+                            className="turtle"
+                            size="small"
+                            style={{ width: '33%', marginLeft: '4%' }}
+                        // InputProps={{
+                        //     startAdornment: <InputAdornment position="start">cms</InputAdornment>,
+                        // }}
+                        />
+                    </div>
                 </div>
-                <div className="dimensions" > Curve
-                <TextField
-                        value={this.state.dimensionsCl}
-                        onChange={this.handleInput}
-                        label="Curve: length"
-                        id="dimensionsCl"
-                        className="turtle"
-                        size="small"
-                        style={{ width: '13%' }}
-                        InputProps={{
-                            startAdornment: <InputAdornment position="start">cms</InputAdornment>,
-                        }}
-                    />
-                    <TextField
-                        value={this.state.dimensionsCw}
-                        onChange={this.handleInput}
-                        label="Curve: width"
-                        id="dimensionsCw"
-                        className="turtle"
-                        size="small"
-                        style={{ width: '13%' }}
-                        InputProps={{
-                            startAdornment: <InputAdornment position="start">cms</InputAdornment>,
-                        }}
-                    />
-                </div>
+                <br/>
                 <div className="markings">
                     {t('Markings')}
-                        <InputLabel htmlFor="component-simple">Right Side: </InputLabel>
-                        <Input id="markingsRs" value={this.state.markingsRs} onChange={this.handleInput} />
-                        <InputLabel htmlFor="component-simple">Left Side: </InputLabel>
-                        <Input id="markingsLs" value={this.state.markingsLs} onChange={this.handleInput} />
+                    <InputLabel htmlFor="component-simple">{t('Right Side')}: </InputLabel>
+                    <Input id="markingsRs" value={this.state.markingsRs} onChange={this.handleInput} />
+                    <InputLabel htmlFor="component-simple">Left Side: </InputLabel>
+                    <Input id="markingsLs" value={this.state.markingsLs} onChange={this.handleInput} />
                 </div>
+                <br/>
             </div>
         )
     }
