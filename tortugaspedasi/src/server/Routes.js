@@ -146,7 +146,7 @@ router.post('/newForm',  (req, res) => {
     })
     let newObservation = new Observation({
         date: req.body.observation.date,
-        location: req.body.observation.location,
+       
         moonPhase: req.body.observation.moonPhase,
         tide: req.body.observation.tide,
         comments: req.body.observation.comments,

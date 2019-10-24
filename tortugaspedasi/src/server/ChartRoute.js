@@ -2,6 +2,11 @@ const express = require('express')
 const router = express.Router()
 const Form = require('./models/Form');
 const moment = require('moment')
+const Shift = require('./models/Shift');
+const Beach = require('./models/Beach')
+const Observation = require('./models/Observation');
+const Turtle = require('./models/Turtle');
+const Nest = require('./models/Nest');
 
 
 const groupBy = (dataArray) => {
