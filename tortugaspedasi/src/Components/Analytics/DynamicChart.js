@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 import Axios from 'axios';
 
@@ -8,29 +8,25 @@ class DynamicChart extends Component {
     constructor() {
         super()
         this.state = {
-            anotherObject : {
-                data: [],
-                option: "turtleCount",
-            }
+            data: [],
+            option: "turtleCount",
         }
     }
 
     handleChange = (e) => {
-        let value = e.target.value
-        let anotherObject = {...this.state.anotherObject}
-        anotherObject.option = value
-        this.setState({ anotherObject })
+        let data = [...this.state.data]
+        let newData = data.splice(0) // Only for User Experience purposes (to force chart to reanimate)
+        this.setState({ option: e.target.value, data: newData })
     }
 
     async componentDidMount() {
         let response = await Axios.get('http://localhost:7777/formData')
-        let anotherObject = {...this.state.anotherObject}
-        
-        anotherObject.data = response.data.map(d => {
-            return { ...d, moonPhase: Math.floor(Math.random() * 4 + 1) }
+        this.setState({
+            data: response.data.map(d => { 
+                // This randomly generates a number for the moon phases. TO DO map moon phase to number and add legend
+                return { ...d, moonPhase: Math.floor(Math.random() * 4 + 1) }
+            })
         })
-
-        this.setState({anotherObject})
     }
 
     render() {
@@ -42,15 +38,15 @@ class DynamicChart extends Component {
                     {options.map(o => <option value={o}>{o}</option>)}
                 </select>
 
-                <BarChart width={600} height={300} data={this.state.anotherObject.data}  
+                <BarChart width={600} height={300} data={this.state.data}
                     margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              
+
                     <XAxis dataKey="date" />
                     <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
                     <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
                     <Tooltip />
                     <Legend />
-                    <Bar yAxisId="left" dataKey={this.state.anotherObject.option} fill="#8884d8" />
+                    <Bar yAxisId="left" dataKey={this.state.option} fill="#8884d8" />
                     <Bar yAxisId="right" dataKey="moonPhase" fill="#82ca9d" />
                 </BarChart>
 
