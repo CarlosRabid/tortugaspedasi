@@ -84,6 +84,18 @@ class Form extends Component {
                         </ExpansionPanelSummary>
                         <Turtle forms={this.state.forms} />
                     </ExpansionPanel>
+                    <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
+                        <ExpansionPanelSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1c-content"
+                            id="turtles"
+                        >
+                            <div className="helptext">
+                                <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
+                            </div>
+                        </ExpansionPanelSummary>
+                        <NestInput forms={this.state.forms} />
+                    </ExpansionPanel>
                     <Comments />
                     <div id="input" className="_nest">
                         {this.state.nestFound ?
@@ -91,12 +103,12 @@ class Form extends Component {
                             : null}
                     </div>
                     <Button
-                      variant="contained"
-                      color="primary"
-                      size="medium"
-                      className="submit"
-                      // startIcon={<SaveIcon />}
-                      onClick={this.submitNewForm}
+                        variant="contained"
+                        color="primary"
+                        size="medium"
+                        className="submit"
+                        // startIcon={<SaveIcon />}
+                        onClick={this.submitNewForm}
                     >
                         {t('Submit Form')}
                     </Button>

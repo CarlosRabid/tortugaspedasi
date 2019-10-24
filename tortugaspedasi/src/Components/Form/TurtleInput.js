@@ -32,6 +32,7 @@ class TurtleInput extends Component {
         this.state = {
             anchorEl: null,
             anchorStat: null,
+            selected: null,
             species: "",
             gender: null,
             conditionstat: "",
@@ -133,6 +134,14 @@ class TurtleInput extends Component {
         } else { return this.setState({ conditionstage: result, anchorStat: null }) }
         // console.log(this.state)
     };
+    handleButton = (event) => {
+        // setAnchorEl(null);
+        // let anchorEl = {...this.state.anchorEl}
+        let selected = { ...this.state.selected }
+        selected = event.currentTarget.id
+        console.log(selected)
+        this.setState({ selected })
+    };
 
     handleRadioButton = event => {
         let gender = { ...this.state.gender };
@@ -188,60 +197,86 @@ class TurtleInput extends Component {
                 <Grid item sm={12} md={6}>
                     {t('Found Alive')} :
                     <ToggleButtonGroup
-                        value={true}
+                        value={this.state.selected}
                         exclusive
-                        onChange={this.handleClose}
+                        onChange={this.handleButton}
                         aria-label="Alive"
                         style={{ justifyContent: "center" }}
                     >
-                        <ToggleButton id="a1" value="Healthy" aria-label="Alive - Healthy"
+                        <ToggleButton id="alv1" value="alv1" aria-label="Alive - Healthy"
                             style={{ height: '6vh', justifySelf: "center", marginLeft: '13%' }}>
                             <FontAwesomeIcon icon={faHeartbeat} />
                         </ToggleButton>
-                        <ToggleButton id="a2" style={{ height: '6vh', justifySelf: "center" }} color="secondary" value="Injured" aria-label="Alive - Injured">
+                        <ToggleButton id="alv2" value="alv2" 
+                        style={{ height: '6vh', justifySelf: "center" }} 
+                        color="secondary" aria-label="Alive - Injured">
                             <FontAwesomeIcon icon={faMedkit} />
                         </ToggleButton>
                     </ToggleButtonGroup>
-                </Grid>
-                <Grid item sm={12} md={6}>
+                    <br />
                     {t('Found Death')} :
                  <ToggleButtonGroup
-                        value={true}
+                        value={this.state.selected}
                         exclusive
-                        onChange={this.handleClose}
+                        onChange={this.handleButton}
                         aria-label="Deceased"
                         style={{ justifyContent: "center" }}
                     >
-                        <ToggleButton id="d1" value="death1" aria-label="Death"
+                        <ToggleButton id="dea1" value="dea1" aria-label="death1"
                             style={{ height: '6vh', justifySelf: "center", marginLeft: '16%' }}
                         >
                             <FontAwesomeIcon icon={faHeartbeat} />
                         </ToggleButton>
-                        <ToggleButton style={{ height: '6vh', justifySelf: "center" }} color="secondary" value="Injured" aria-label="Alive - Injured">
+                        <ToggleButton id="dea2" value={'dea2'}
+                            style={{ height: '6vh', justifySelf: "center" }}
+                            color="secondary" aria-label="death2">
+                            <FontAwesomeIcon icon={faMedkit} />
+                        </ToggleButton>
+                        <ToggleButton id="dea3" value='dea3' aria-label="death3"
+                            style={{ height: '6vh', justifySelf: "center" }}
+                            color="secondary"
+                        >
+                            <FontAwesomeIcon icon={faHeartbeat} />
+                        </ToggleButton>
+                        <ToggleButton id="dea4" value='dea4' aria-label="death4"
+                            style={{ height: '6vh', justifySelf: "center" }}
+                            color="secondary"
+                        >
+                            <FontAwesomeIcon icon={faMedkit} />
+                        </ToggleButton>
+                        <ToggleButton id="dea5" value='dea5' aria-label="death5"
+                            style={{ height: '6vh', justifySelf: "center" }}
+                            color="secondary"
+                        >
+                            <FontAwesomeIcon icon={faHeartbeat} />
+                        </ToggleButton>
+                        <ToggleButton id="dea6" value='dea6' aria-label="death6"
+                            style={{ height: '6vh', justifySelf: "center" }}
+                            color="secondary" >
                             <FontAwesomeIcon icon={faMedkit} />
                         </ToggleButton>
                     </ToggleButtonGroup>
                 </Grid>
                 {/* <div className="child-turtle">
-                                <span className="new-turtle-1"> Length: </span>
-                                <Input
-                                id="dimensionsPl"
-                                value={this.state.dimensionsPl}
-                                onChange={this.handleInput}
-                                endAdornment={<InputAdornment position="end">mts</InputAdornment>}
-                                aria-describedby="measure-helper-text"
-                                inputProps={{
-                                    'aria-label': 'measure',
-                                }}
-                                />
-                            </div> */}
+                                 <span className="new-turtle-1"> Length: </span>
+                                 <Input
+                                 id="dimensionsPl"
+                                 value={this.state.dimensionsPl}
+                                 onChange={this.handleInput}
+                                 endAdornment={<InputAdornment position="end">mts</InputAdornment>}
+                                 aria-describedby="measure-helper-text"
+                                 inputProps={{
+                                     'aria-label': 'measure',
+                                 }}
+                                 />
+                             </div>  */}
                 <br />
                 {t('Dimensions in cms')}
                 <br />
                 <div className="dimensions">
                     <div className="turtle-dimensions" >
-                    {t('Plain      ')}
-                    <br/>
+                        {t('Plain      ')}
+                        <br />
                         <TextField
                             value={this.state.dimensionsPl}
                             onChange={this.handleInput}
@@ -268,8 +303,8 @@ class TurtleInput extends Component {
                         />
                     </div>
                     <div className="turtle-dimensions" >
-                    {t(' Curve ')}
-                    <br/>
+                        {t(' Curve ')}
+                        <br />
                         <TextField
                             value={this.state.dimensionsCl}
                             onChange={this.handleInput}
@@ -296,7 +331,7 @@ class TurtleInput extends Component {
                         />
                     </div>
                 </div>
-                <br/>
+                <br />
                 <div className="markings">
                     {t('Markings')}
                     <InputLabel htmlFor="component-simple">{t('Right Side')}: </InputLabel>
@@ -304,7 +339,7 @@ class TurtleInput extends Component {
                     <InputLabel htmlFor="component-simple">Left Side: </InputLabel>
                     <Input id="markingsLs" value={this.state.markingsLs} onChange={this.handleInput} />
                 </div>
-                <br/>
+                <br />
             </div>
         )
     }
