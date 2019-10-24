@@ -7,10 +7,12 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ToolbarMenu from "./ToolbarMenu";
-import { Button, MenuItem } from "@material-ui/core";
+import { Button, MenuItem, List, ListItem, ListItemIcon, ListItemText, Divider, Drawer } from "@material-ui/core";
 import Menu from "@material-ui/icons/Menu";
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 
 // import React, { Component } from 'react';
 // import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
@@ -29,21 +31,28 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 // import Landing from './Landing';
 
 const styles = {
-    root: {
-      flexGrow: 1
-    },
-    grow: {
-      flexGrow: 1
-    },
-    menuButton: {
-      marginLeft: -12,
-      marginRight: 20
-    }
-  };
+  root: {
+    flexGrow: 1
+  },
+  grow: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
+  }
+};
 
-  function NavBar(props) {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+function NavBar(props) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -52,78 +61,141 @@ const styles = {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const { classes } = props;
-    function onLogin() {
-      alert("Login TBD");
-    }
-    function onSignup() {
-      alert("Signup TBD");
-    }
-  let options = ["form", "test"]
-    return (
-      <AppBar position="fixed">
-        <Toolbar>
-          <IconButton color="inherit" aria-label="Menu">
-          <PopupState variant="popover" popupId="demo-popup-menu">
-      {popupState => (
-        <React.Fragment>
-          <Menu {...bindMenu(popupState)}>
-          {options.map(option => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-            {option}
-          </MenuItem>
-        ))}
-          </Menu>
-        </React.Fragment>
-      )}
-    </PopupState>
-          </IconButton>
-          <Typography variant="title" color="inherit">
-            MyApp
-          </Typography>
-  
-          <ToolbarMenu
-            render={collapsed => {
-              return collapsed
-                ? [
-                    <MenuItem key="login" onClick={onLogin} autoclose={true}>
-                      Login
-                    </MenuItem>,
-                    <MenuItem key="signup" onClick={onSignup}>
-                      Signup
-                    </MenuItem>
-                  ]
-                : [
-                    <Button
-                      key="login"
-                      color="inherit"
-                      onClick={onLogin}
-                      className={classes.menuButton}
-                    >
-                      Login
-                    </Button>,
-                    <Button
-                      key="signup"
-                      color="inherit"
-                      onClick={onSignup}
-                      className={classes.menuButton}
-                    >
-                      Signup
-                    </Button>
-                  ];
-            }}
-          />
-        </Toolbar>
-      </AppBar>
-    );
+  function onLogin() {
+    alert("Login TBD");
   }
-  
-  NavBar.propTypes = {
-    classes: PropTypes.object.isRequired
+  function onSignup() {
+    alert("Signup TBD");
+  }
+
+  function testClick(text) {
+    alert("Redirecting to " + text);
+  }
+
+
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List>
+
+        <Link to="/form" style={{ textDecoration: 'none' }}>
+          <ListItem button key="form" name="form" >
+            <ListItemIcon name="form"><MailIcon name="form" /></ListItemIcon>
+            <ListItemText primary="form" name="form" />
+          </ListItem>
+        </Link>
+
+        <Link to="/spread" style={{ textDecoration: 'none' }}>
+          <ListItem button key="spreadsheet" >
+            <ListItemIcon><InboxIcon /> </ListItemIcon>
+            <ListItemText primary="spreadsheet" />
+          </ListItem>
+        </Link>
+
+        <Link to="/analytics" style={{ textDecoration: 'none' }}>
+          <ListItem button key="analytics" >
+            <ListItemIcon><InboxIcon /> </ListItemIcon>
+            <ListItemText primary="analytics" />
+          </ListItem>
+        </Link>
+
+      </List>
+
+      <Divider />
+
+    </div>
+  );
+
+  const toggleDrawer = (side, open) => event => {
+    console.log(event.currentTarget)
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setState({ ...state, [side]: open });
   };
-  
-  export default withStyles(styles)(NavBar);
-  
+
+  // let options = ["form", "test"]
+
+  return (
+    <AppBar position="fixed">
+      <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+        {sideList('left')}
+      </Drawer>
+      <Toolbar>
+        <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
+          <MenuIcon ></MenuIcon>
+
+
+          {/* <PopupState variant="popover" popupId="demo-popup-menu">
+            {popupState => (
+              <React.Fragment>
+                <Menu {...bindMenu(popupState)}>
+                 <MenuItem key = "home" id = "home" onClick={handleClick}>Home</MenuItem>
+                 
+                 
+                 
+                  {/* {options.map(option => (
+                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+                      {option}
+                    </MenuItem>
+                  ))} */}
+          {/* </Menu>
+              </React.Fragment>
+            )}
+          </PopupState> */}
+        </IconButton>
+        <Typography variant="title" color="inherit">
+          Tortugas Pedasí
+          </Typography>
+
+        <ToolbarMenu
+          render={collapsed => {
+            return collapsed
+              ? [
+                <MenuItem key="login" onClick={onLogin} autoclose={true}>
+                  Login
+                    </MenuItem>,
+                <MenuItem key="signup" onClick={onSignup}>
+                  Signup
+                    </MenuItem>
+              ]
+              : [
+                <Button
+                  key="login"
+                  color="inherit"
+                  onClick={onLogin}
+                  className={classes.menuButton}
+                >
+                  Login
+                    </Button>,
+                <Button
+                  key="signup"
+                  color="inherit"
+                  onClick={onSignup}
+                  className={classes.menuButton}
+                >
+                  Signup
+                    </Button>
+              ];
+          }}
+        />
+      </Toolbar>
+    </AppBar>
+  );
+}
+
+NavBar.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(NavBar);
+
 
 // class NavBar extends Component {
 //     constructor() {
@@ -143,7 +215,7 @@ const styles = {
 //         function onSignup() {
 //           alert("Signup TBD");
 //         }}
-      
+
 
 //     render() {
 //         return (
@@ -155,7 +227,7 @@ const styles = {
 //                 <Typography variant="title" color="inherit">
 //                   MyApp
 //                 </Typography>
-        
+
 //                 <ToolbarMenu
 //                   render={collapsed => {
 //                     return collapsed
@@ -191,16 +263,16 @@ const styles = {
 //             </AppBar>
 //           );
 //         }}
-        
+
 //         // ButtonAppBar.propTypes = {
 //         //   classes: PropTypes.object.isRequired
 //         // };
-        
+
 //         export default withStyles(styles)(ButtonAppBar);
-        
+
 
 //         const { t, i18n } = this.props;
-         
+
 //         return (
 //             <nav>
 //                 <div className="navigation" id={this.props.location}>
