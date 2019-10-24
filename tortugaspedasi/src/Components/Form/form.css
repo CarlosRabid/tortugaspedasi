@@ -16,8 +16,23 @@ h3 {
   box-sizing: border-box; 
   margin: 10px;
   resize: vertical;
-  background-color: rgb(207, 204, 204);
-  opacity: 0.8
+  background-color: rgb(207, 204, 204)
+  
+}
+
+.forms{
+  max-width: 95vw;
+  overflow-x: auto;
+  background-color: white;
+  opacity: 0.8;
+  margin-left: 25px;
+  margin-top: 25px;
+  border-radius: 15px
+}
+
+.spreadSheet{
+  justify-content: center;
+  
 }
 
 .shift {

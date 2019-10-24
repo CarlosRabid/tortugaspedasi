@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DynamicChart from './DynamicChart';
 
 class Analytics extends Component {
     
@@ -6,6 +7,7 @@ class Analytics extends Component {
         return (  
             <div className= "analytics">
                 Component Analytics working good
+                <DynamicChart />
             </div>
         );
     }

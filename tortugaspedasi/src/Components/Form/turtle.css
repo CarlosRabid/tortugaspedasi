@@ -30,3 +30,42 @@
    .radiobut{
      display: block;
    }
+   #date{
+     /* font: small; */
+     font: x-small;
+       font-style: x-small;
+       font-variant-ligatures: x-small;
+       font-variant-caps: x-small;
+       font-variant-numeric: x-small;
+       font-variant-east-asian: x-small;
+       font-weight: x-small;
+       font-stretch: x-small;
+       font-size: x-small;
+       line-height: x-small;
+       font-family: 'Montserrat', sans-serif;
+   }
+.dateinput{
+     /* font: small; */
+     font: x-small;
+       font-style: x-small;
+       font-variant-ligatures: x-small;
+       font-variant-caps: x-small;
+       font-variant-numeric: x-small;
+       font-variant-east-asian: x-small;
+       font-weight: x-small;
+       font-stretch: x-small;
+       font-size: x-small;
+       line-height: x-small;
+       font-family: 'Montserrat', sans-serif;
+   }
+   /* .MuiInputBase-input {
+     font: initial;
+     font-family: 'Montserrat', sans-serif;
+     font-size: small;
+   } */
+   .dimensions {
+     display: flex;
+   }
+   .markings {
+     margin-left: 3%;
+   }

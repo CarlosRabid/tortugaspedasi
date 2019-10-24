@@ -4,9 +4,11 @@ const request = require('request')
 
 const Form = require('./models/Form');
 const Shift = require('./models/Shift');
+const Beach = require('./models/Beach')
 const Observation = require('./models/Observation');
 const Turtle = require('./models/Turtle');
 const Nest = require('./models/Nest');
+const Beach = require('./models/Beach')
 // const UserLogin = require('./models/UserLogin');
 
 /* API Requests */
@@ -15,18 +17,18 @@ router.get('/solunar', (req, res) => {
     let apiAdd = `https://api.solunar.org/solunar/${lat},${long},${date},-5`
     console.log(apiAdd)
 
-    request(apiAdd, function(error, response, body){
+    request(apiAdd, function (error, response, body) {
         let fulldataMoon = JSON.parse(body)
-        let moonData ={
-            moonphase:fulldataMoon.moonPhase,
-            qmoonphase:fulldataMoon.moonPhase,
-            sunrise:fulldataMoon.sunRise,
-            suntransit:fulldataMoon.sunTransit,
-            sunset:fulldataMoon.sunSet,
-            moonrise:fulldataMoon.moonRise,
-            moonunder:fulldataMoon.moonUnder,
-            moonphase:fulldataMoon.moonPhase,
-            moonillumination:fulldataMoon.moonIllumination
+        let moonData = {
+            moonphase: fulldataMoon.moonPhase,
+            qmoonphase: fulldataMoon.moonPhase,
+            sunrise: fulldataMoon.sunRise,
+            suntransit: fulldataMoon.sunTransit,
+            sunset: fulldataMoon.sunSet,
+            moonrise: fulldataMoon.moonRise,
+            moonunder: fulldataMoon.moonUnder,
+            moonphase: fulldataMoon.moonPhase,
+            moonillumination: fulldataMoon.moonIllumination
         }
         console.log(moonData)
     })
@@ -44,8 +46,15 @@ router.get('/forms', (req, res) => {
     Form.find({}, (err, forms) => {
         if (err) throw err;
         else res.send(forms)
+        console.log(forms)
     })
-        .populate('observation turtle nest shift')
+        .populate('turtle nest shift')
+        .populate({
+            path : 'observation',
+            populate:{
+                path:'beach'
+            }
+        })
 
 })
 
@@ -72,7 +81,7 @@ router.post('/shift', (req, res) => {
 
 router.post('/observation', (req, res) => {
     let newObservation = new Observation({
-        time: req.body.time,
+        date: req.body.date,
         location: req.body.location,
         moonPhase: req.body.moonphase,
         tide: req.body.string,
@@ -125,20 +134,28 @@ router.post('/nest', (req, res) => {
 // .populate('observation')
 // .exec((err, form) => console.log(form))
 
-router.post('/newForm', (req, res) => {
+router.post('/newForm',  (req, res) => {
     let newShift = new Shift({
         firstName: req.body.shift.firstName,
         lastName: req.body.shift.lastName,
         date: new Date().toString()
     })
+    let newBeach = new Beach({
+        name: req.body.beach.name,
+        latitude: req.body.beach.latitude,
+        longitude: req.body.beach.longitude
+    })
     let newObservation = new Observation({
-        time: req.body.observation.time,
+        date: req.body.observation.date,
         location: req.body.observation.location,
         moonPhase: req.body.observation.moonPhase,
         tide: req.body.observation.tide,
-        comments: req.body.observation.comments
+        comments: req.body.observation.comments,
+        location: newBeach
     })
+
     let newTurtle = new Turtle({
+        hasData: req.body.turtle.hasData,
         species: req.body.turtle.species,
         gender: req.body.turtle.gender,
         condition: {
@@ -165,12 +182,14 @@ router.post('/newForm', (req, res) => {
         eggCount: req.body.nest.eggCount,
         hatchEst: req.body.nest.hatchEst,
         rehomed: req.body.nest.rehomed,
-        salvageable: req.body.nest.salvageable
+        salvageable: req.body.nest.salvageable,
+        hasData: req.body.nest.hasData
     })
 
     let newForm = new Form({
         shift: newShift,
         observation: newObservation,
+        beach: newBeach,
         turtle: newTurtle,
         nest: newNest
     })
@@ -179,6 +198,7 @@ router.post('/newForm', (req, res) => {
     newObservation.save()
     newTurtle.save()
     newNest.save()
+    newBeach.save()
     res.send(newForm)
 
 })
@@ -243,10 +263,7 @@ router.get('/moonData', (req, res) => {
     })
 
     res.send(dataMoon)
-
-
 })
-
 
 
 module.exports = router
