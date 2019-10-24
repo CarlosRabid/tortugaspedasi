@@ -81,7 +81,7 @@ render() {
     return (
         <div>
             {this.state.admin.isLoggedIn ?
-                <div> <Landing />
+                <div> <Landing logout={this.logout}/>
                     <button onClick={this.logout}>Logout</button>
                 </div> 
                 :            
