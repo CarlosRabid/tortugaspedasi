@@ -8,27 +8,11 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ToolbarMenu from "./ToolbarMenu";
 import { Button, MenuItem, List, ListItem, ListItemIcon, ListItemText, Divider, Drawer } from "@material-ui/core";
-import Menu from "@material-ui/icons/Menu";
-import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
-
-// import React, { Component } from 'react';
-// import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-// import '../styles/NavBar.css';
-// import { withTranslation } from 'react-i18next';
-
-
-// import ReactDOM from 'react-dom';
-// import Button from '@material-ui/core/Button';
-// import AppBar from '@material-ui/core/AppBar'
-// import Toolbar from '@material-ui/core/Toolbar'
-// import Typography from '@material-ui/core/Typography'
-// import Form from './Form/Form';
-// import Spreadsheet from './Spreadsheet/Spreadsheet';
-// import Analytics from './Analytics/Analytics';
-// import Landing from './Landing';
+import HomeIcon from '@material-ui/icons/Home';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import StorageIcon from '@material-ui/icons/Storage';
+import PollIcon from '@material-ui/icons/Poll';
 
 const styles = {
   root: {
@@ -54,25 +38,25 @@ function NavBar(props) {
     right: false,
   });
 
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleClick = event => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   const { classes } = props;
   function onLogin() {
     alert("Login TBD");
   }
-  function onSignup() {
-    alert("Signup TBD");
+  function onLogout() {
+    alert("Logout TBD");
   }
 
-  function testClick(text) {
-    alert("Redirecting to " + text);
-  }
+  // function testClick(text) {
+  //   alert("Redirecting to " + text);
+  // }
 
 
   const sideList = side => (
@@ -84,24 +68,31 @@ function NavBar(props) {
     >
       <List>
 
-        <Link to="/form" style={{ textDecoration: 'none' }}>
-          <ListItem button key="form" name="form" >
-            <ListItemIcon name="form"><MailIcon name="form" /></ListItemIcon>
-            <ListItemText primary="form" name="form" />
+      <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <ListItem button key="home" >
+            <ListItemIcon ><HomeIcon /></ListItemIcon>
+            <ListItemText primary="Home" />
           </ListItem>
         </Link>
 
-        <Link to="/spread" style={{ textDecoration: 'none' }}>
+        <Link to="/form" style={{ textDecoration: 'none', color: 'black' }}>
+          <ListItem button key="form" >
+            <ListItemIcon ><ListAltIcon /></ListItemIcon>
+            <ListItemText primary="Form" />
+          </ListItem>
+        </Link>
+
+        <Link to="/spread" style={{ textDecoration: 'none',color: 'black'}}>
           <ListItem button key="spreadsheet" >
-            <ListItemIcon><InboxIcon /> </ListItemIcon>
-            <ListItemText primary="spreadsheet" />
+            <ListItemIcon><StorageIcon /> </ListItemIcon>
+            <ListItemText primary="Spreadsheet" />
           </ListItem>
         </Link>
 
-        <Link to="/analytics" style={{ textDecoration: 'none' }}>
+        <Link to="/analytics" style={{ textDecoration: 'none', color: 'black' }}>
           <ListItem button key="analytics" >
-            <ListItemIcon><InboxIcon /> </ListItemIcon>
-            <ListItemText primary="analytics" />
+            <ListItemIcon><PollIcon /> </ListItemIcon>
+            <ListItemText primary="Analytics" />
           </ListItem>
         </Link>
 
@@ -161,8 +152,8 @@ function NavBar(props) {
                 <MenuItem key="login" onClick={onLogin} autoclose={true}>
                   Login
                     </MenuItem>,
-                <MenuItem key="signup" onClick={onSignup}>
-                  Signup
+                <MenuItem key="logout" onClick={onLogout}>
+                  Logout
                     </MenuItem>
               ]
               : [
@@ -177,10 +168,10 @@ function NavBar(props) {
                 <Button
                   key="signup"
                   color="inherit"
-                  onClick={onSignup}
+                  onClick={onLogout}
                   className={classes.menuButton}
                 >
-                  Signup
+                  Logout
                     </Button>
               ];
           }}
@@ -197,100 +188,6 @@ NavBar.propTypes = {
 export default withStyles(styles)(NavBar);
 
 
-// class NavBar extends Component {
-//     constructor() {
-//         super();
-//         this.state = {}
-//     }
-
-//     updateNavBar = () => {
-//         this.props.updateNavBar("")
-//     }
-
-//     ButtonAppBar = (props) => {
-//         const { classes } = props;
-//         function onLogin() {
-//           alert("Login TBD");
-//         }
-//         function onSignup() {
-//           alert("Signup TBD");
-//         }}
-
-
-//     render() {
-//         return (
-//             <AppBar position="fixed">
-//               <Toolbar>
-//                 <IconButton color="inherit" aria-label="Menu">
-//                   <MenuIcon />
-//                 </IconButton>
-//                 <Typography variant="title" color="inherit">
-//                   MyApp
-//                 </Typography>
-
-//                 <ToolbarMenu
-//                   render={collapsed => {
-//                     return collapsed
-//                       ? [
-//                           <MenuItem key="login" onClick={onLogin} autoclose={true}>
-//                             Login
-//                           </MenuItem>,
-//                           <MenuItem key="signup" onClick={onSignup}>
-//                             Signup
-//                           </MenuItem>
-//                         ]
-//                       : [
-//                           <Button
-//                             key="login"
-//                             color="inherit"
-//                             onClick={onLogin}
-//                             className={classes.menuButton}
-//                           >
-//                             Login
-//                           </Button>,
-//                           <Button
-//                             key="signup"
-//                             color="inherit"
-//                             onClick={onSignup}
-//                             className={classes.menuButton}
-//                           >
-//                             Signup
-//                           </Button>
-//                         ];
-//                   }}
-//                 />
-//               </Toolbar>
-//             </AppBar>
-//           );
-//         }}
-
-//         // ButtonAppBar.propTypes = {
-//         //   classes: PropTypes.object.isRequired
-//         // };
-
-//         export default withStyles(styles)(ButtonAppBar);
-
-
-//         const { t, i18n } = this.props;
-
-//         return (
-//             <nav>
-//                 <div className="navigation" id={this.props.location}>
-//                     <Link to="/home"><span>{t('Home')}</span></Link>
-//                     {" "}
-//                     <Link to="/form"><span >{t('Form')}</span></Link>
-//                     {" "}
-//                     <Link to="/spread"><span>{t('Spreadsheet')}</span></Link>
-//                     {" "}
-//                     <Link to="/analytics"><span>{t('Analytics')}</span></Link>
-//                     <span className= "currentUser"><Link to="/">{!this.props.name ? "Login" : this.props.name}</Link></span>
-//                 </div>
-//             </nav>
-//         );
-//     }
-// }
-
-// export default withTranslation('translation')(NavBar);
 
 // MATERIAL UI CODE //
             // <div>
