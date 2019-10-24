@@ -4,7 +4,6 @@ const request = require('request')
 
 const Form = require('./models/Form');
 const Shift = require('./models/Shift');
-const Beach = require('./models/Beach')
 const Observation = require('./models/Observation');
 const Turtle = require('./models/Turtle');
 const Nest = require('./models/Nest');
@@ -48,13 +47,13 @@ router.get('/forms', (req, res) => {
         else res.send(forms)
         console.log(forms)
     })
-        .populate('turtle nest shift')
-        .populate({
-            path : 'observation',
-            populate:{
-                path:'beach'
-            }
-        })
+        .populate('turtle nest shift observation')
+        // .populate({
+        //     path : 'observation',
+            
+        //        select: 'beach'
+        
+        // })
 
 })
 
