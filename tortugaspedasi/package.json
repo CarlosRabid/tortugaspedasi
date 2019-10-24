@@ -28,8 +28,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "request": "^2.88.0",
-    "typescript": "^3.6.4"
-    "recharts": "^1.8.5",
+    "typescript": "^3.6.4",
+    "recharts": "^1.8.5"
   },
   "scripts": {
     "start": "react-scripts start",
