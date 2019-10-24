@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import NavBar from './Components/NavBar';
 import Login from './Components/Login';

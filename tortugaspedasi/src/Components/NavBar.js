@@ -1,48 +1,193 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import '../styles/NavBar.css';
-import { withTranslation } from 'react-i18next';
-// import ReactDOM from 'react-dom';
-// import Button from '@material-ui/core/Button';
-// import AppBar from '@material-ui/core/AppBar'
-// import Toolbar from '@material-ui/core/Toolbar'
-// import Typography from '@material-ui/core/Typography'
-// import Form from './Form/Form';
-// import Spreadsheet from './Spreadsheet/Spreadsheet';
-// import Analytics from './Analytics/Analytics';
-// import Landing from './Landing';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ToolbarMenu from "./ToolbarMenu";
+import { Button, MenuItem, List, ListItem, ListItemIcon, ListItemText, Divider, Drawer } from "@material-ui/core";
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import HomeIcon from '@material-ui/icons/Home';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import StorageIcon from '@material-ui/icons/Storage';
+import PollIcon from '@material-ui/icons/Poll';
 
-class NavBar extends Component {
-    constructor() {
-        super();
-        this.state = {}
-    }
+const styles = {
+  root: {
+    flexGrow: 1
+  },
+  grow: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
+  }
+};
 
-    updateNavBar = () => {
-        this.props.updateNavBar("")
-    }
+function NavBar(props) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
 
-    render() {
-        const { t, i18n } = this.props;
-         
-        return (
-            <nav>
-                <div className="navigation" id={this.props.location}>
-                    <Link to="/home"><span>{t('Home')}</span></Link>
-                    {" "}
-                    <Link to="/form"><span >{t('Form')}</span></Link>
-                    {" "}
-                    <Link to="/spread"><span>{t('Spreadsheet')}</span></Link>
-                    {" "}
-                    <Link to="/analytics"><span>{t('Analytics')}</span></Link>
-                    <span className= "currentUser"><Link to="/">{!this.props.name ? "Login" : this.props.name}</Link></span>
-                </div>
-            </nav>
-        );
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  // const handleClick = event => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
+
+  const { classes } = props;
+  function onLogin() {
+    alert("Login TBD");
+  }
+  function onLogout() {
+    alert("Logout TBD");
+  }
+
+  // function testClick(text) {
+  //   alert("Redirecting to " + text);
+  // }
+
+
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List>
+
+      <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <ListItem button key="home" >
+            <ListItemIcon ><HomeIcon /></ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
+
+        <Link to="/form" style={{ textDecoration: 'none', color: 'black' }}>
+          <ListItem button key="form" >
+            <ListItemIcon ><ListAltIcon /></ListItemIcon>
+            <ListItemText primary="Form" />
+          </ListItem>
+        </Link>
+
+        <Link to="/spread" style={{ textDecoration: 'none',color: 'black'}}>
+          <ListItem button key="spreadsheet" >
+            <ListItemIcon><StorageIcon /> </ListItemIcon>
+            <ListItemText primary="Spreadsheet" />
+          </ListItem>
+        </Link>
+
+        <Link to="/analytics" style={{ textDecoration: 'none', color: 'black' }}>
+          <ListItem button key="analytics" >
+            <ListItemIcon><PollIcon /> </ListItemIcon>
+            <ListItemText primary="Analytics" />
+          </ListItem>
+        </Link>
+
+      </List>
+
+      <Divider />
+
+    </div>
+  );
+
+  const toggleDrawer = (side, open) => event => {
+    console.log(event.currentTarget)
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
     }
+    setState({ ...state, [side]: open });
+  };
+
+  // let options = ["form", "test"]
+
+  return (
+    <AppBar position="fixed">
+      <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+        {sideList('left')}
+      </Drawer>
+      <Toolbar>
+        <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
+          <MenuIcon ></MenuIcon>
+
+
+          {/* <PopupState variant="popover" popupId="demo-popup-menu">
+            {popupState => (
+              <React.Fragment>
+                <Menu {...bindMenu(popupState)}>
+                 <MenuItem key = "home" id = "home" onClick={handleClick}>Home</MenuItem>
+                 
+                 
+                 
+                  {/* {options.map(option => (
+                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+                      {option}
+                    </MenuItem>
+                  ))} */}
+          {/* </Menu>
+              </React.Fragment>
+            )}
+          </PopupState> */}
+        </IconButton>
+        <Typography variant="title" color="inherit">
+          Tortugas Pedasí
+          </Typography>
+
+        <ToolbarMenu
+          render={collapsed => {
+            return collapsed
+              ? [
+                <MenuItem key="login" onClick={onLogin} autoclose={true}>
+                  Login
+                    </MenuItem>,
+                <MenuItem key="logout" onClick={onLogout}>
+                  Logout
+                    </MenuItem>
+              ]
+              : [
+                <Button
+                  key="login"
+                  color="inherit"
+                  onClick={onLogin}
+                  className={classes.menuButton}
+                >
+                  Login
+                    </Button>,
+                <Button
+                  key="signup"
+                  color="inherit"
+                  onClick={onLogout}
+                  className={classes.menuButton}
+                >
+                  Logout
+                    </Button>
+              ];
+          }}
+        />
+      </Toolbar>
+    </AppBar>
+  );
 }
 
-export default withTranslation('translation')(NavBar);
+NavBar.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(NavBar);
+
+
 
 // MATERIAL UI CODE //
             // <div>
