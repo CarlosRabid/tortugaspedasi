@@ -9,6 +9,7 @@ class NestInput extends Component {
             hatchEst: "",
             rehomed: "",
             salvageable: "",
+
         }
     }
 

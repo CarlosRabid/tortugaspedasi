@@ -30,7 +30,7 @@ class SpreadsheetData extends Component {
             forms: data.data
         })
     }
-    
+
 
     getDataById = async (id) => {
         let data = this.state.forms.find(f => {
@@ -60,8 +60,6 @@ class SpreadsheetData extends Component {
         let result = this.state.forms.find(f => {
             return f._id == id
         })
-
-
         await this.setState({
             showPopUp: id,
             form: result
@@ -72,6 +70,7 @@ class SpreadsheetData extends Component {
 
     render() {
         let forms = this.state.forms
+        console.log(forms)
         return (
             <div className="spreadSheet">
                 {this.state.showPopUp ?
@@ -83,24 +82,28 @@ class SpreadsheetData extends Component {
                     <Paper>
                         <Table>
                             <TableHead>
-                                <TableRow>
-                                    <TableCell >Date</TableCell>
-                                    <TableCell align="right">Location</TableCell>
-                                    <TableCell align="right">First Name</TableCell>
-                                    <TableCell align="right">Last Name</TableCell>
-                                    <TableCell align="right">Dimensions</TableCell>
-                                    <TableCell align="right">Species</TableCell>
-                                    <TableCell align="right">Gender</TableCell>
-                                    <TableCell align="right">Condition</TableCell>
-                                    <TableCell align="right">Markings</TableCell>
-                                    <TableCell align="right">Lay Time</TableCell>
-                                    <TableCell align="right">Egg Count</TableCell>
-                                    <TableCell align="right">Hatchest</TableCell>
-                                    <TableCell align="right">Rehomed</TableCell>
-                                    <TableCell align="right">Salvageable</TableCell>
-                                    <TableCell align="right">Moon Phase</TableCell>
-                                    <TableCell align="right">Tide</TableCell>
-                                    <TableCell align="right">Comments</TableCell>
+                                <TableRow style={{
+                                    textAlign: "center"}}>
+                                        <TableCell >Date</TableCell>
+                                        <TableCell align="center">Location</TableCell>
+                                        <TableCell align="center">First Name</TableCell>
+                                        <TableCell align="center">Last Name</TableCell>
+                                        <TableCell align="center">Plain Dimensions</TableCell>
+                                        <TableCell align="center">Curve Dimensions</TableCell>
+                                        <TableCell align="center">Species</TableCell>
+                                        <TableCell align="center">Gender</TableCell>
+                                        <TableCell align="center">Status</TableCell>
+                                        <TableCell align="center">Stage</TableCell>
+                                        <TableCell align="center">Right Markings</TableCell>
+                                        <TableCell align="center">Left Markings</TableCell>
+                                        <TableCell align="center">Lay Time</TableCell>
+                                        <TableCell align="center">Egg Count</TableCell>
+                                        <TableCell align="center">Hatchest</TableCell>
+                                        <TableCell align="center">Rehomed</TableCell>
+                                        <TableCell align="center">Salvageable</TableCell>
+                                        <TableCell align="center">Moon Phase</TableCell>
+                                        <TableCell align="center">Tide</TableCell>
+                                        <TableCell align="center">Comments</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

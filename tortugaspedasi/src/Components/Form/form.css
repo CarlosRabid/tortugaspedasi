@@ -7,12 +7,13 @@ h3 {
   }
 
 .form{
+  background-image: url(https://images.unsplash.com/photo-1519972064555-542444e71b54?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);
   background-position: center;
-  width: 90%; /* Full width */
-  padding: 12px; /* Some padding */ 
-  border: 20px solid #ccc; /* Gray border */
-  border-radius: 10px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  width: 90%; 
+  padding: 12px; 
+  border: 20px solid #ccc; 
+  border-radius: 10px; 
+  box-sizing: border-box; 
   margin: 10px;
   resize: vertical;
   background-color: rgb(207, 204, 204)
@@ -23,5 +24,33 @@ h3 {
   max-width: 95vw;
   overflow-x: auto;
   background-color: white;
+  opacity: 0.8;
+  margin-left: 25px;
+  margin-top: 25px;
+  border-radius: 15px
+}
+
+.spreadSheet{
+  justify-content: center;
   
+}
+
+.shift {
+    border-bottom: 10px, solid, black;
+    border-radius: 10px;
+}
+
+._observation {
+    border-bottom: 5px, solid, black;
+    border-radius: 10px;
+}
+
+._turtle {
+    border-bottom: 5px, solid, black;
+    border-radius: 10px;
+}
+
+._nest {
+    border-bottom: 5px, solid, black;
+    border-radius: 10px;
 }
