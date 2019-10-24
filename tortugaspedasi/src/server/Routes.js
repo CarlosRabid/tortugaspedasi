@@ -4,6 +4,7 @@ const request = require('request')
 
 const Form = require('./models/Form');
 const Shift = require('./models/Shift');
+const Beach = require('./models/Beach')
 const Observation = require('./models/Observation');
 const Turtle = require('./models/Turtle');
 const Nest = require('./models/Nest');
@@ -45,8 +46,15 @@ router.get('/forms', (req, res) => {
     Form.find({}, (err, forms) => {
         if (err) throw err;
         else res.send(forms)
+        console.log(forms)
     })
-        .populate('observation turtle nest shift')
+        .populate('turtle nest shift')
+        .populate({
+            path : 'observation',
+            populate:{
+                path:'beach'
+            }
+        })
 
 })
 
@@ -126,19 +134,26 @@ router.post('/nest', (req, res) => {
 // .populate('observation')
 // .exec((err, form) => console.log(form))
 
-router.post('/newForm', (req, res) => {
+router.post('/newForm',  (req, res) => {
     let newShift = new Shift({
         firstName: req.body.shift.firstName,
         lastName: req.body.shift.lastName,
         date: new Date().toString()
+    })
+    let newBeach = new Beach({
+        name: req.body.beach.name,
+        latitude: req.body.beach.latitude,
+        longitude: req.body.beach.longitude
     })
     let newObservation = new Observation({
         date: req.body.observation.date,
         location: req.body.observation.location,
         moonPhase: req.body.observation.moonPhase,
         tide: req.body.observation.tide,
-        comments: req.body.observation.comments
+        comments: req.body.observation.comments,
+        location: newBeach
     })
+
     let newTurtle = new Turtle({
         hasData: req.body.turtle.hasData,
         species: req.body.turtle.species,
@@ -174,6 +189,7 @@ router.post('/newForm', (req, res) => {
     let newForm = new Form({
         shift: newShift,
         observation: newObservation,
+        beach: newBeach,
         turtle: newTurtle,
         nest: newNest
     })
@@ -182,6 +198,7 @@ router.post('/newForm', (req, res) => {
     newObservation.save()
     newTurtle.save()
     newNest.save()
+    newBeach.save()
     res.send(newForm)
 
 })

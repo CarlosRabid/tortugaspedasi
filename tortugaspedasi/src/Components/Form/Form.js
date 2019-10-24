@@ -27,7 +27,10 @@ class Form extends Component {
             forms: [],
             showNest: null,
             showFpart: false,
+            hasTurtle: null,
+            hasNest: null
         }
+
         // const useStyles = makeStyles(theme => ({
         //     root: {
         //         padding: theme.spacing(3, 2),
@@ -35,6 +38,45 @@ class Form extends Component {
         // }));
         // const classes = useStyles();
     }
+
+    // submitForm = async (inputValue) => {
+    //     let forms = [... this.state.forms]
+    //     await forms.push(inputValue)
+    //     this.checkTurtleData(forms)
+    //     this.checkNestData(forms)
+    //     console.log(this.state.forms)
+    //     this.setState({
+    //         forms
+    //     })
+    //     console.log(this.state.forms)
+    // }
+
+    // checkTurtleData = (formInput) => {
+    //     const exist = function (element) {
+    //         return element !== null
+    //     }
+    //     let hasTurtle = { ...this.state.hasTurtle }
+    //     let result = formInput.turtleInput.some(exist)
+
+    //     this.setState({
+    //         hasTurtle: result
+    //     })
+    // }
+
+    // checkNestData = (formInput) => {
+
+    //     const exist = function (element) {
+    //         return element !== null
+    //     }
+    //     let hasNest = { ...this.state.hasNest }
+    //     let result = formInput.NestInput.some(exist)
+    //     this.setState({
+    //         hasNest: result
+    //     })
+
+
+    // }
+
 
     submitNewForm = async (shift, observation, turtle, nest) => {
         console.log('working')
@@ -68,9 +110,9 @@ class Form extends Component {
                                 <Typography className="Shift" variant="h6" component="h6">{t('Shift')}</Typography>
                             </div>
                         </ExpansionPanelSummary>
-                        <ShiftInput forms={this.state.forms} />
+                        <ShiftInput forms={this.state.forms} submitForm={this.submitForm} />
                         <br />
-                        <ObservationInput forms={this.state.forms} getPosition={this.getPosition} />
+                        <ObservationInput forms={this.state.forms} getPosition={this.getPosition} submitForm={this.submitForm} />
                     </ExpansionPanel>
                     <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
                         <ExpansionPanelSummary
