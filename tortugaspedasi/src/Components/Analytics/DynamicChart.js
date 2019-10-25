@@ -38,7 +38,7 @@ class DynamicChart extends Component {
 
     getRelevantData = async () => {
         let group = this.state.time
-        let response = await Axios.get(`http://localhost:7777/formData/${group}`)
+        let response = await Axios.post(`http://localhost:7777/formData/${group}`)
         this.setState({
             data: response.data.map(d => {
                 return { ...d, moonPhase: this.getMoonphases(d.moonPhase), date: this.convertDate(d.date, group)}
