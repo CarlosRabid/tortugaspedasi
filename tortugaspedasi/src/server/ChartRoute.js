@@ -1,23 +1,64 @@
 const express = require('express')
 const router = express.Router()
 const Form = require('./models/Form');
-const moment = require('moment')
-const Shift = require('./models/Shift');
-const Beach = require('./models/Beach')
-const Observation = require('./models/Observation');
-const Turtle = require('./models/Turtle');
-const Nest = require('./models/Nest');
 
+// ==============================
+// This solution comes from here: 
+// https://stackoverflow.com/questions/20630676/how-to-group-objects-with-timestamps-properties-by-day-week-month/20631750#20631750
 
-const groupBy = (dataArray) => {
-    dataArray.forEach(data => data.observation.date = moment(data.observation.date).format('MMMM DD YYYY'))
-    return dataArray.reduce((result, currentValue) => {
-        (result[currentValue.observation.date] = result[currentValue.observation.date] || []).push(
-            currentValue
-        )
-        return result
-    }, {})
+let byday = {};
+let byweek = {};
+let bymonth = {};
+let byyear = {};
+
+function groupday(value, index, array) {
+    try {
+        d = new Date(value.observation.date);
+        d = Math.floor(d.getTime() / (1000 * 60 * 60 * 24));
+        byday[d] = byday[d] || [];
+        byday[d].push(value);
+    } catch (error) {
+        console.log(error)
+    }
 }
+function groupweek(value, index, array) {
+    d = new Date(value.observation.date);
+    d = Math.floor(d.getTime() / (1000 * 60 * 60 * 24 * 7));
+    byweek[d] = byweek[d] || [];
+    byweek[d].push(value);
+}
+function groupmonth(value, index, array) {
+    d = new Date(value.observation.date);
+    d = (d.getFullYear() - 1970) * 12 + d.getMonth();
+    bymonth[d] = bymonth[d] || [];
+    bymonth[d].push(value);
+}
+
+function groupyear(value, index, array) {
+    d = new Date(value.observation.date)
+    d = (d.getFullYear() - 1970)
+    byyear[d] = byyear[d] || []
+    byyear[d].push(value)
+}
+// ==============================
+
+
+const groupBy = (dataArray, group) => {
+    if (group === "day") {
+        dataArray.map(groupday)
+        return byday
+    } else if (group === "week") {
+        dataArray.map(groupweek)
+        return byweek
+    } else if (group === "month") {
+        dataArray.map(groupmonth)
+        return bymonth
+    } else if (group === "year"){
+        dataArray.map(groupyear)
+        return byyear
+    }
+}
+
 
 getTurtleCount = (data) => {
     let turtleCount = 0
@@ -89,14 +130,14 @@ createFilteredObject = (data) => {
         bigData.push(newDataObject)
     })
     return bigData
-    //  MAYBE:survivedTurtleBabies, byTide instead of day , dimensionObject, statesObject maybe
 }
 
-router.get('/formData', function (req, res) {
+router.get('/formData/:group', async function (req, res) {
+    let group = req.params.group
     Form.find({})
-        .populate('turtle observation nest').then((response) => {
-            let groupedByDate = groupBy(response)
-            let Data = createFilteredObject(groupedByDate)
+        .populate('turtle observation nest').exec((err, response) => {
+            let groupedByGroup = groupBy(response, group)
+            let Data = createFilteredObject(groupedByGroup)
             // For each groupedByDate key, create an obejct date being key, moonphase being from first obj and turtle count (if turtle has data = true)
             res.send(Data)
         })

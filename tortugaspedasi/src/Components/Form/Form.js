@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import { makeStyles } from '@material-ui/core/styles';
 import ShiftInput from './ShiftInput';
-import ObservationInput from './ObservationInput';
 import Turtle from './Turtle';
 import NestInput from './NestInput';
 //import Fab from '@material-ui/core/Fab';
@@ -24,7 +23,20 @@ class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            forms: [],
+            locationLatitude: "",  // set-up by beach selection
+            locationLongitude: "", // set-up by beach selection
+            selectedBeach: "",
+            firstName: "",
+            lastName: "",
+            date: "",
+            time: "",
+            turtle: {},
+            eggCount: "",
+            layTime: "",
+            hatchEst: "",
+            rehomed: "",
+            salvageable: "",
+            comments: {},
             showNest: null,
             showFpart: false,
             hasTurtle: null,
@@ -39,43 +51,106 @@ class Form extends Component {
         // const classes = useStyles();
     }
 
-    // submitForm = async (inputValue) => {
-    //     let forms = [... this.state.forms]
-    //     await forms.push(inputValue)
-    //     this.checkTurtleData(forms)
-    //     this.checkNestData(forms)
-    //     console.log(this.state.forms)
-    //     this.setState({
-    //         forms
-    //     })
-    //     console.log(this.state.forms)
-    // }
+    handleBeachInput = async (input) => {
+        console.log(input)
+        let locationLatitude = {...this.state.locationLatitude}
+        let locationLongitude = {...this.state.locationLongitude}
+        let selectedBeach = {...this.state.selectedBeach}
+        locationLatitude = input.locationLatitude
+        locationLongitude = input.locationLongitude
+        selectedBeach = input.selectedBeach
+        await this.setState({locationLatitude, locationLongitude, selectedBeach})
+    }
+    handleTurtInput = async (input) => {
+        let turtle = {...this.state.turtle}
+        turtle = input
+        await this.setState({turtle})
+    }
+    handleName = async (first, last ) => {
+        let firstName = {...this.state.firstName}
+        let lastName = {...this.state.lastName}
+        firstName = first
+        lastName = last
+        await this.setState({firstName, lastName})
+    }
+    handleDate = async (first, last ) => {
+        let date = {...this.state.date}
+        let time = {...this.state.time}
+        date = first
+        time = last
+        await this.setState({date, time})
+    }
+    handleShift = async (input) => {
+        let firstName= {...this.state.firstName}
+        let lastName= {...this.state.lastName}
+        let date= {...this.state.date}
+        let time= {...this.state.time}
+        firstName= input.firstName
+        lastName= input.lastName
+        date= input.date
+        time= input.time
+        await this.setState({firstName, lastName, date, time})
+        }
+    handleNest = (input) => {
+        let eggCount= {...this.state.eggCount}
+        let layTime= {...this.state.layTime}
+        let hatchEst= {...this.state.hatchEst}
+        let rehomed= {...this.state.rehomed}
+        eggCount =  input.eggCount
+        layTime =  input.layTime
+        hatchEst = input.hatchEst
+        rehomed =  input.rehomed
+        this.setState({eggCount, layTime, hatchEst, rehomed})
+    }
+    handleLab = (input) => {
+        let salvageable= {...this.state.salvageable}
+        salvageable =  input.salvageable
+        this.setState({salvageable})
+    }
 
-    // checkTurtleData = (formInput) => {
-    //     const exist = function (element) {
-    //         return element !== null
-    //     }
-    //     let hasTurtle = { ...this.state.hasTurtle }
-    //     let result = formInput.turtleInput.some(exist)
+    submitForm = async (input) => {
+        // let idx = Object.keys
+        // let state = {...this.state}
+        // state[] = { ...this.state.locationLatitude }
+        // let locationLongitude = { ...this.state.locationLongitude }
+        // let selectedBeach = { ...this.state.selectedBeach }
+        // let forms = {... this.state.forms}
+        // let idx = Object.keys(forms).length
+        // // await forms[0]=inputValue
+        // console.log(inputValue)
+        // this.checkTurtleData(forms)
+        // // this.checkNestData(forms)
+        // this.setState({
+        //     forms
+        // })
+        // console.log(this.state.forms)
+    }
 
-    //     this.setState({
-    //         hasTurtle: result
-    //     })
-    // }
+    checkTurtleData = (formInput) => {
+        console.log(formInput)
+        const exist = function (element) {
+            return element !== null
+        }
+        let hasTurtle = { ...this.state.hasTurtle }
+        // hasTurtle = formInput.turtleInput.some(exist)
 
-    // checkNestData = (formInput) => {
+        this.setState({
+            hasTurtle        
+        })
+    }
 
-    //     const exist = function (element) {
-    //         return element !== null
-    //     }
-    //     let hasNest = { ...this.state.hasNest }
-    //     let result = formInput.NestInput.some(exist)
-    //     this.setState({
-    //         hasNest: result
-    //     })
+    checkNestData = (formInput) => {
 
-
-    // }
+        const exist = function (element) {
+            return element !== null
+        }
+        let hasNest = { ...this.state.hasNest }
+        hasNest = formInput.NestInput.some(exist)
+        this.setState({
+            hasNest
+        })
+    }
+    
 
 
     submitNewForm = async (shift, observation, turtle, nest) => {
@@ -97,7 +172,7 @@ class Form extends Component {
                 <Paper className="form" style={{ margin: '5%', border: '9px solid #ccc' }}>
                     <h3>{t('TORTUGA WATCH FORM')}</h3>
                     {/* <hr/> */}
-                    <BeachLocations />
+                    <BeachLocations handleBeachInput={this.handleBeachInput} />
                     <br />
                     <br />
                     <ExpansionPanel >
@@ -110,9 +185,8 @@ class Form extends Component {
                                 <Typography className="Shift" variant="h6" component="h6">{t('Shift')}</Typography>
                             </div>
                         </ExpansionPanelSummary>
-                        <ShiftInput forms={this.state.forms} submitForm={this.submitForm} />
+                        <ShiftInput forms={this.state.forms} handleName={this.handleName} handleDate={this.handleDate}/>
                         <br />
-                        <ObservationInput forms={this.state.forms} getPosition={this.getPosition} submitForm={this.submitForm} />
                     </ExpansionPanel>
                     <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
                         <ExpansionPanelSummary
@@ -124,7 +198,7 @@ class Form extends Component {
                                 <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
                             </div>
                         </ExpansionPanelSummary>
-                        <Turtle forms={this.state.forms} />
+                        <Turtle forms={this.state.forms} handleTurtInput={this.state.handleTurtInput} />
                     </ExpansionPanel>
                     <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
                         <ExpansionPanelSummary
@@ -136,21 +210,16 @@ class Form extends Component {
                                 <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
                             </div>
                         </ExpansionPanelSummary>
-                        <NestInput forms={this.state.forms} />
+                        <NestInput forms={this.state.forms} handleNest={this.state.handleNest}/>
                     </ExpansionPanel>
                     <Comments />
-                    <div id="input" className="_nest">
-                        {this.state.nestFound ?
-                            <NestInput />
-                            : null}
-                    </div>
                     <Button
                         variant="contained"
                         color="primary"
                         size="medium"
                         className="submit"
                         // startIcon={<SaveIcon />}
-                        onClick={this.submitNewForm}
+                        onClick={this.submitForm}
                     >
                         {t('Submit Form')}
                     </Button>
