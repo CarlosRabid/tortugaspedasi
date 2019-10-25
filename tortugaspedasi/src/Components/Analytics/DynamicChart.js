@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+
 import {
     BarChart, Bar, XAxis, YAxis, Tooltip, Legend,
 } from 'recharts';
+
 import Axios from 'axios';
 
 class DynamicChart extends Component {
@@ -41,7 +43,7 @@ class DynamicChart extends Component {
                 <BarChart width={600} height={300} data={this.state.data}
                     margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
 
-                    <XAxis dataKey="date" />
+                    {/* <XAxis dataKey="date" /> */}
                     <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
                     <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
                     <Tooltip />
