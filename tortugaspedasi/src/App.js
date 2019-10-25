@@ -10,6 +10,8 @@ import Analytics from './Components/Analytics/Analytics';
 import { FormControlLabel, Switch } from '@material-ui/core';
 import './App.css';
 
+
+
 class App extends Component {
   constructor() {
     super()
@@ -29,9 +31,7 @@ class App extends Component {
     this.setState({
       location: location
     })
-    console.log(location)
   }
-
   changeLanguage = () => {
     const { i18n } = this.props;
     if (this.state.lng === "en") {
@@ -47,18 +47,10 @@ class App extends Component {
   isLoggedIn = () => localStorage.getItem('user') || this.state.userName
 
   logOut = () => {
-    this.setState({
-      userName: "",
-      lng: "en",
-    })
-    localStorage.admin= "" 
-  //localStorage.clear()
-  // this.setState = {
-  //   location: "",
-  //   userName: "",
-  //   lng: "en",
-  // }
+    this.setState({ userName: "" })
+    localStorage.clear()
   }
+
 
   render() {
 
@@ -73,33 +65,33 @@ class App extends Component {
 
         <BrowserRouter>
 
-          <NavBar logOut={this.logOut}
-            location={this.state.location}
+          <NavBar location={this.state.location}
+            logOut={this.logOut}
             name={this.state.userName}
             updateNavBar={this.updateNavBar}>
           </NavBar>
 
-          <Route exact path="/" render={() =>
+          <Route path="/" exact render={() =>
             (this.state.userName ?
-              (<Redirect to="/landing" />) :
-              (<Login updateUser={this.updateUser}
-                updateNavBar={this.updateNavBar} />))}>
+              <Redirect to="/home" /> :
+              <Login updateUser={this.updateUser}
+                updateNavBar={this.updateNavBar} />)}>
           </Route>
 
-          <Route exact path="/landing" render={() =>
-            <Landing />}>
+          <Route path="/home" exact render={() =>
+            <Landing updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
           </Route>
 
-          <Route exact path="/form" render={() =>
-            <Form isLoggedIn={this.isLoggedIn} updateNavBar={this.updateNavBar} />}>
+          <Route path="/form" exact render={() =>
+            <Form updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
           </Route>
 
-          <Route exact path="/spread" render={() =>
-            <Spreadsheet isLoggedIn={this.isLoggedIn} updateNavBar={this.updateNavBar} />}>
+          <Route path="/spread" exact render={() =>
+            <Spreadsheet updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
           </Route>
 
-          <Route exact path="/analytics" render={() =>
-            <Analytics isLoggedIn={this.isLoggedIn} updateNavBar={this.updateNavBar} />}>
+          <Route path="/analytics" exact render={() =>
+            <Analytics updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
           </Route>
 
         </BrowserRouter>

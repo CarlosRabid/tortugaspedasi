@@ -28,8 +28,6 @@ class Landing extends Component {
                     <span className="button"><button id="analytics" className="link"><Link to="/analytics" className="links">{t('Analytics')}</Link></button></span>
                 </div>                  
                   
-                    
-           
         )
     }
 }
