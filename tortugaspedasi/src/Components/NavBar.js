@@ -118,7 +118,7 @@ function NavBar(props) {
 
   return (
     <div>
-      <AppBar position="fixed">
+      <AppBar position="fixed" style= {{background:"#166088"}}>
 
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}
