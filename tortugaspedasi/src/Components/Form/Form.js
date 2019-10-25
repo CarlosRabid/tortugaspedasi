@@ -204,17 +204,6 @@ class Form extends Component {
                 </div>
                 <br />
                 <br />
-                <ExpansionPanel >
-                    <ExpansionPanelSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1c-content"
-                        id="shift">
-                        <div className="helptext">
-                            <Typography className="Shift" variant="h6" component="h6">{t('Shift')}</Typography>
-                        </div>
-                    </ExpansionPanelSummary>
-                    <ShiftInput forms={this.state.forms} submitForm={this.submitForm} />
-                    <br />
                     <ExpansionPanel >
                         <ExpansionPanelSummary
                             expandIcon={<ExpandMoreIcon />}
@@ -261,27 +250,7 @@ class Form extends Component {
                         // startIcon={<SaveIcon />}
                         onClick={this.submitForm}
                     ></Button>
-                </ExpansionPanel>
-                <Comments />
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size="medium"
-                    className="submit"
-                    // startIcon={<SaveIcon />}
-                    onClick={this.submitForm}
-                >
-                </Button>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size="medium"
-                    className="submit"
-                    // startIcon={<SaveIcon />}
-                    onClick={this.submitNewForm}
-                >
-                    {t('Submit Form')}
-                </Button>
+
             </div>
         )
     }
