@@ -9,6 +9,8 @@ import Spreadsheet from './Components/Spreadsheet/Spreadsheet';
 import Analytics from './Components/Analytics/Analytics';
 import { FormControlLabel, Switch } from '@material-ui/core';
 import './App.css';
+const axios = require('axios')
+
 
 
 
@@ -20,6 +22,10 @@ class App extends Component {
       userName: "",
       lng: "en",
     }
+  }
+
+  componentDidMount (){
+    this.setState({isOnline: navigator.onLine})
   }
 
   updateUser = (name) => {
