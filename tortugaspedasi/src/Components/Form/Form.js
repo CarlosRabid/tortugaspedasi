@@ -127,16 +127,19 @@ class Form extends Component {
         time = input.time
         await this.setState({ firstName, lastName, date, time })
     }
-    handleNest = (input) => {
+    handleNest = async (input) => {
+        console.log(input)
         let eggCount = { ...this.state.eggCount }
         let layTime = { ...this.state.layTime }
         let hatchEst = { ...this.state.hatchEst }
         let rehomed = { ...this.state.rehomed }
+        let salvageable = { ...this.state.salvageable }
         eggCount = input.eggCount
         layTime = input.layTime
         hatchEst = input.hatchEst
         rehomed = input.rehomed
-        this.setState({ eggCount, layTime, hatchEst, rehomed })
+        salvageable = input.salvageable
+        await this.setState({ eggCount, layTime, hatchEst, rehomed, salvageable })
     }
     handleLab = (input) => {
         let salvageable = { ...this.state.salvageable }
@@ -215,16 +218,6 @@ class Form extends Component {
         this.setState({ showFpart: showFpart })
     }
 
-    handleNest = (input) => {
-
-        let eggCount = [... this.state.eggCount]
-        let layTime = [...this.state.layTime]
-        let hatchEst = [...this.state.hatchEst]
-        let rehomed = [...this.state.rehomed]
-        let salvageable = [...this.state.salvageable]
-    }
-
-
     render() {
         const { t } = this.props;
         return (
@@ -272,7 +265,7 @@ class Form extends Component {
                             <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
                         </div>
                     </ExpansionPanelSummary>
-                    <NestInput forms={this.state.forms} handleNest={this.state.handleNest} />
+                    <NestInput forms={this.state.forms} handleNest={this.handleNest} />
                 </ExpansionPanel>
                 <Comments handleComments = {this.handleComments} />
                 <Button

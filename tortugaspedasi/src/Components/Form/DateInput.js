@@ -14,6 +14,21 @@ class DateInput extends Component {
             time: ""
         }
     }
+    // handleNest
+
+    handleInput = (event) => {
+        console.log(event)
+        let state = { ...this.state }
+        let date = state.date
+        let time = state.time
+        date = moment(event).format('DD/MM/YYYY')
+        time = moment(event).format('HH:mm')
+        // date = typeof(date)
+        this.setState({ date, time })
+        this.props.handleInput({[event.target.id]:event.target.value})
+
+
+    }
     render() {
         const { t } = this.props;
         // const height = 38;
@@ -39,7 +54,7 @@ class DateInput extends Component {
                             variant="standard"
                             size="small"
                             helperText={false}
-                            // type="date"
+                        // type="date"
 
                         />
                         <KeyboardTimePicker
