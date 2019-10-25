@@ -96,9 +96,10 @@ class TurtleInput extends Component {
     handleInput = (event) => {
         console.log(event.target.id)
         this.setState({ [event.target.id]: event.target.value })
+        this.props.handleDimentions(event.target.id, event.target.value )
         let turtlestate = { ...this.state }
-        console.log(this.state)
-        this.props.updateTurtle(turtlestate)
+        // console.log(this.state)
+        // this.props.updateTurtle(turtlestate)
     }
     addTurtleInput = () => {
         this.props.addTurtleInput(this.state.species, this.state.gender,
@@ -146,6 +147,7 @@ class TurtleInput extends Component {
         let selected = { ...this.state.selected }
         selected = event.currentTarget.id
         console.log(selected)
+        this.props.handleCondition(selected)
         this.setState({ selected })
     };
 
@@ -153,8 +155,10 @@ class TurtleInput extends Component {
         let gender = { ...this.state.gender };
         gender = event.currentTarget.value
         console.log(event.currentTarget.value)
+        this.props.handleGender(gender)
         this.setState({ gender });
     };
+
 
     // there is className = "child-turtle" for nested children to help with the CSS
 
