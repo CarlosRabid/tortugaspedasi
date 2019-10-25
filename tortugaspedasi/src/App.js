@@ -27,8 +27,15 @@ class App extends Component {
 
   componentDidMount (){
     this.setState({isOnline: navigator.onLine})
-    // const storage = localStorage.getItem('isOnline')
-    // console.log(storage)
+    if(this.state.isOnline) {
+      let storage = localStorage.getItem('form')
+      //axios.post('http://localhost:7777/newForm', {shift, observation, turtle, nest})
+      console.log('there is something in there')
+    }
+    else {
+      console.log('there isnt anything sooo...')
+
+    }
   }
 
   saveForm (shift, observation, turtle, nest) {
@@ -43,10 +50,8 @@ class App extends Component {
     }
   }
 
-  // saveLocalStorage () {
-  //     console.log(checkStorage)
-  //     console.log('items in localStorage found')
-  //     // axios.post('http://localhost:7777/newForm', { checkStorage})
+ 
+  //     // 
   //     // localStorage.clear()
   //   }
   //   else {
