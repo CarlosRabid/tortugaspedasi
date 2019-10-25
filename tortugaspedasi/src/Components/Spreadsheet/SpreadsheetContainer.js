@@ -41,7 +41,7 @@ class SpreadsheetContainer extends Component {
 
             <TableRow>
                 <TableCell align="center">{moment(form.shift.date).format("L")}</TableCell>
-                <TableCell align="center">{form.observation.location}</TableCell>
+                <TableCell align="center">{form.observation.location.name}</TableCell>
                 <TableCell align="center">{form.shift.lastName}</TableCell>
                 <TableCell align="center">{form.shift.firstName}</TableCell>
                 <TableCell align="center">
