@@ -17,8 +17,8 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BeachLocations from './BeachLocations';
 import Comments from './ObservationComments';
-
 const axios = require('axios');
+
 
 class Form extends Component {
     constructor(props) {
@@ -28,7 +28,12 @@ class Form extends Component {
             showNest: null,
             showFpart: false,
             hasTurtle: null,
-            hasNest: null
+            hasNest: null,
+            eggCount: "",
+            layTime: "",
+            hatchEst: "",
+            rehomed: "",
+            salvageable: ""
         }
 
         // const useStyles = makeStyles(theme => ({
@@ -88,6 +93,15 @@ class Form extends Component {
         // showFpart = !showFpart
         console.log(showFpart)
         this.setState({ showFpart: showFpart })
+    }
+
+    handleNest = (input) => {
+
+        let eggCount = [... this.state.eggCount]
+        let layTime =[...this.state.layTime]
+        let hatchEst =[...this.state.hatchEst]
+        let rehomed =[...this.state.rehomed]
+        let salvageable =[...this.state.salvageable]
     }
 
     render() {
