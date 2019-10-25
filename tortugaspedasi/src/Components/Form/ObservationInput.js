@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
-import { Button, Menu, MenuItem, TextField } from '@material-ui/core';
-const axios = require('axios')
+// import { Button, Menu, MenuItem, TextField } from '@material-ui/core';
+// const axios = require('axios')
 
 
 class ObservationInput extends Component {
@@ -72,7 +72,7 @@ class ObservationInput extends Component {
     // }
 
     render() {
-        const { t, i18n } = this.props;
+        // const { t, i18n } = this.props;
         return (
             <>
                 {/* <Button size="medium" variant="outlined" color="inherit" className="observation" onClick={this.showMenu} style={{ marginLeft: '5%' }}>

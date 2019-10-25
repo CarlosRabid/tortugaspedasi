@@ -47,7 +47,7 @@ class BeachLocation extends Component {
         this.setState({ showMenu: true })
     }
     render() {
-        const { t, i18n } = this.props;
+        const { t } = this.props;
         return <>
             <Button size="medium" variant="outlined" color="inherit" className="observation" onClick={this.showMenu} style={{ marginLeft: '5%' }}>
                 {this.state.selectedBeach ? this.state.selectedBeach : t('Beach Location')}

@@ -3,21 +3,21 @@ import Button from '@material-ui/core/Button';
 import { withTranslation } from 'react-i18next';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { green } from '@material-ui/core/colors';
+// import { green } from '@material-ui/core/colors';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
+// import FormControl from '@material-ui/core/FormControl';
+// import FormLabel from '@material-ui/core/FormLabel';
 // import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 // import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import '../Form/turtle.css';
-import { MenuList, InputAdornment, Input, InputLabel, TextField } from '@material-ui/core';
+import { Input, InputLabel, TextField } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import HealingIcon from '@material-ui/icons/Healing';
-import Icon from '@material-ui/core/Icon';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+// import HealingIcon from '@material-ui/icons/Healing';
+// import Icon from '@material-ui/core/Icon';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -128,7 +128,7 @@ class TurtleInput extends Component {
         let result = { ...this.state.species }
         result = event.currentTarget.id
         console.log(result)
-        if (result.length == 2) {
+        if (result.length === 2) {
             return this.setState({ species: result, anchorEl: null })
 
         } else { return this.setState({ conditionstage: result, anchorStat: null }) }
@@ -153,7 +153,7 @@ class TurtleInput extends Component {
     // there is className = "child-turtle" for nested children to help with the CSS
 
     render() {
-        const { t, i18n } = this.props;
+        const { t } = this.props;
 
         return (
             <div className="turtle-container" >

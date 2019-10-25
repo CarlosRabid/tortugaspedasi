@@ -1,13 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const request = require('request')
-
 const Form = require('./models/Form');
 const Shift = require('./models/Shift');
 const Observation = require('./models/Observation');
 const Turtle = require('./models/Turtle');
 const Nest = require('./models/Nest');
-
 // const UserLogin = require('./models/UserLogin');
 
 /* API Requests */

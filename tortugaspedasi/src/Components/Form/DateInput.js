@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import { withTranslation } from 'react-i18next';
-import { Typography, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
 
@@ -15,8 +15,8 @@ class DateInput extends Component {
         }
     }
     render() {
-        const { t, i18n } = this.props;
-        const height = 38;
+        const { t } = this.props;
+        // const height = 38;
         const marginLeft = '5%';
         const heightD = '10%';
         return <>
@@ -39,7 +39,7 @@ class DateInput extends Component {
                             variant="standard"
                             size="small"
                             helperText={false}
-                        // type="date"
+                            // type="date"
 
                         />
                         <KeyboardTimePicker

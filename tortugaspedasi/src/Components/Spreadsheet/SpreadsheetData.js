@@ -4,7 +4,7 @@ import SpreadsheetActions from './SpreadsheetActions';
 import UpdateForm from './UpdateForm';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
@@ -34,7 +34,7 @@ class SpreadsheetData extends Component {
 
     getDataById = async (id) => {
         let data = this.state.forms.find(f => {
-            return f._id == id
+            return f._id === id
         })
         await this.setState({
             form: data
@@ -58,7 +58,7 @@ class SpreadsheetData extends Component {
 
     showPop = async (id) => {
         let result = this.state.forms.find(f => {
-            return f._id == id
+            return f._id === id
         })
         await this.setState({
             showPopUp: id,

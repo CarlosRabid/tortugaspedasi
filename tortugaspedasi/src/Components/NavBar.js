@@ -8,11 +8,12 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ToolbarMenu from "./ToolbarMenu";
 import { Button, MenuItem, List, ListItem, ListItemIcon, ListItemText, Divider, Drawer } from "@material-ui/core";
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter as Link } from 'react-router-dom';
 import HomeIcon from '@material-ui/icons/Home';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import StorageIcon from '@material-ui/icons/Storage';
 import PollIcon from '@material-ui/icons/Poll';
+import { makeStyles } from '@material-ui/core/styles';
 //adding a comment to submit
 
 const styles = {
@@ -28,9 +29,19 @@ const styles = {
   }
 };
 
+const useStyles = makeStyles(theme => ({
+  offset: {
+    ...theme.mixins.toolbar,
+    flexGrow: 1
+  }
+}))
+
+
 function NavBar(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+  // const open = Boolean(anchorEl);
+  const spclasses = useStyles();
+  
 
   const [state, setState] = React.useState({
     top: false,
@@ -39,13 +50,6 @@ function NavBar(props) {
     right: false,
   });
 
-  // const handleClick = event => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
 
   const { classes } = props;
   function onLogin() {
@@ -54,10 +58,6 @@ function NavBar(props) {
   function onLogout() {
     alert("Logout TBD");
   }
-
-  // function testClick(text) {
-  //   alert("Redirecting to " + text);
-  // }
 
 
   const sideList = side => (
@@ -112,35 +112,17 @@ function NavBar(props) {
     setState({ ...state, [side]: open });
   };
 
-  // let options = ["form", "test"]
+
 
   return (
-    <AppBar position="fixed">
+    <div>
+      <AppBar position="fixed">
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}
       </Drawer>
       <Toolbar>
         <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
           <MenuIcon ></MenuIcon>
-
-
-          {/* <PopupState variant="popover" popupId="demo-popup-menu">
-            {popupState => (
-              <React.Fragment>
-                <Menu {...bindMenu(popupState)}>
-                 <MenuItem key = "home" id = "home" onClick={handleClick}>Home</MenuItem>
-                 
-                 
-                 
-                  {/* {options.map(option => (
-                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                      {option}
-                    </MenuItem>
-                  ))} */}
-          {/* </Menu>
-              </React.Fragment>
-            )}
-          </PopupState> */}
         </IconButton>
         <Typography variant="title" color="inherit">
           Tortugas Pedasí
@@ -179,6 +161,9 @@ function NavBar(props) {
         />
       </Toolbar>
     </AppBar>
+    <div className={spclasses.offset}> {/* to accomdate for top white space */}
+    </div>
+    </div>
   );
 }
 

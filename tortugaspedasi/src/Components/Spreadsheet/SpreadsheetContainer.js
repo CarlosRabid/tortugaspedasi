@@ -7,10 +7,10 @@ import React, { Component } from 'react';
 // import IconButton from '@material-ui/core/IconButton';
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
+// import Table from '@material-ui/core/Table';
+// import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
+// import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 const moment = require('moment')
@@ -33,8 +33,8 @@ class SpreadsheetContainer extends Component {
     render() {
 
         let form = this.props.form
-        let gender = form.turtle.gender == "female"
-        let rehomed = form.nest.rehomed == "yes"
+        let gender = form.turtle.gender === "female"
+        let rehomed = form.nest.rehomed === "yes"
         console.log(form)
         return ( 
 
