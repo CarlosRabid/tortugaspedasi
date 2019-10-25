@@ -36,8 +36,8 @@ class BeachLocation extends Component {
         }
     }
     handleClose = (event) => {
-        console.log()
-        let idx = event.target.id
+        let idx = event.target.value
+        console.log(this.beaches.idx)
         let currentBeach = this.beaches[idx]
         let locationLatitude = { ...this.state.locationLatitude }
         let locationLongitude = { ...this.state.locationLongitude }
@@ -62,12 +62,14 @@ class BeachLocation extends Component {
             <div >
                 <div id="menuplayascont">
                     <FormControl  variant="outlined" >
-                        <InputLabel   htmlFor="outlined-age-simple">   Beach  </InputLabel>
-                        <Select  id="playaselect" labelWidth={60} inputProps={{ name: 'playa', id: 'outlined-playa-simple', }}>
-                                <MenuItem value="">  <em> --- </em></MenuItem>
-                                <MenuItem id="playaarenal" onClick={this.handleClose}>Playa El Arenal</MenuItem>
-                                <MenuItem id="playatoro" onClick={this.handleClose}>Playa El Toro</MenuItem>
-                                <MenuItem id="playalagarto" onClick={this.handleClose}>PLaya Lagarto</MenuItem>
+                        <InputLabel   htmlFor="outlined-age-simple" placeholder={this.state.selectedBeach}>   {this.state.selectedBeach? this.state.selectedBeach : t('Beach')}  </InputLabel>
+                        <Select  id="selectedBeach" labelWidth={60} 
+                        inputProps={{ name: 'playa', id: 'outlined-playa-simple', }}
+                        onChange={this.handleClose} value={this.state.selectedBeach}>
+                                <option value="">{this.state.selectedBeach? this.state.selectedBeach : t('Beach')} </option>
+                                <option value="playaarenal" onClick={this.handleClose}>Playa El Arenal</option>
+                                <option value="playatoro"  onClick={this.handleClose}>Playa El Toro</option>
+                                <option value="playalagarto"  onClick={this.handleClose}>PLaya Lagarto</option>
                     </Select>
                      </FormControl>
             </div>

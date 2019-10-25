@@ -231,7 +231,7 @@ class Form extends Component {
             <div id="formContainer" >
                 <h1>{t('TORTUGA WATCH FORM')}</h1>
                 <div id="beachButton" >
-                    <BeachLocations />
+                    <BeachLocations handleBeachInput={this.handleBeachInput} />
                 </div>
                 <br />
                 <br />
