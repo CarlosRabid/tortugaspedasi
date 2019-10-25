@@ -201,7 +201,6 @@ class Form extends Component {
                     </ExpansionPanelSummary>
                     <ShiftInput forms={this.state.forms} submitForm={this.submitForm} />
                     <br />
-                    <ObservationInput forms={this.state.forms} getPosition={this.getPosition} submitForm={this.submitForm} />
                 </ExpansionPanel>
                 <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
                     <ExpansionPanelSummary
