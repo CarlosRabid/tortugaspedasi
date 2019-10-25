@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 const beachSchema = new Schema({
-   form: {type: Schema.Types.ObjectId, ref: 'Observation'},
+   form: {type: Schema.Types.ObjectId, ref: 'Form'},
    name: String,
    latitude: Number,
    longitude: Number
