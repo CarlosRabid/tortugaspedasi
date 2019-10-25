@@ -7,7 +7,6 @@ const Beach = require('./models/Beach')
 const Observation = require('./models/Observation');
 const Turtle = require('./models/Turtle');
 const Nest = require('./models/Nest');
-
 // const UserLogin = require('./models/UserLogin');
 
 /* API Requests */

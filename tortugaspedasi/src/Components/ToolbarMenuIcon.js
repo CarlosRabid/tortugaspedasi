@@ -33,7 +33,7 @@ class ToolbarMenuIcon extends React.Component {
     const result = [];
     for (const child of children) {
       if (child.props.autoclose) {
-        result.push(<div onClick={this.handleClose}>{child}</div>);
+        result.push(<div onClick={this.handleClose} key={child}>{child}</div>);
       } else {
         result.push(child);
       }

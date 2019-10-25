@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect} from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import NavBar from './Components/NavBar';
 import Login from './Components/Login';
@@ -9,6 +9,7 @@ import Spreadsheet from './Components/Spreadsheet/Spreadsheet';
 import Analytics from './Components/Analytics/Analytics';
 import { FormControlLabel, Switch } from '@material-ui/core';
 import './App.css';
+
 
 
 class App extends Component {
@@ -32,8 +33,9 @@ class App extends Component {
     })
   }
   changeLanguage = () => {
-    const { t, i18n } = this.props;
-    if (this.state.lng == "en") {
+    const { i18n } = this.props;
+    if (this.state.lng==="en") {
+
       i18n.changeLanguage("es");
       return this.setState({ lng: "es" })
     } else {
@@ -52,7 +54,8 @@ class App extends Component {
         label={(this.state.lng === "es") ? "Switch to English" : "Cambiar a Español"}
       />
       <div>
-        <Router>
+
+        <BrowserRouter>
 
           <NavBar location={this.state.location}
             name={this.state.userName}
@@ -81,8 +84,9 @@ class App extends Component {
           <Route path="/analytics" exact render={() =>
             <Analytics updateNavBar={this.updateNavBar} />}>
           </Route>
-          
-        </Router>
+
+        </BrowserRouter>
+
       </div></>
     );
   }
