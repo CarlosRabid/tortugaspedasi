@@ -5,9 +5,32 @@ h1 {
     left: 50%;
     color:#b4b8ab;
   }
+  
+  #menuPlayas{
+    text-align: right;
+    
+  }
+#menuplayascont{
+  display: grid;
+  justify-items: end;
+ align-items: end;
+}
+  .menuPlayas2{
+    position:relative;
+    text-align: right
+  }
+ #playaselect{
+   width: 50px;
+ } 
+ .MuiOutlinedInput-inputSelect {
+  padding-right: 64px;
 
-  .formContainer{
-    background-position: center;
+}
+.MuiSelect-select{
+  min-width: 64px !important;
+}
+
+#formContainer{
     background-color: #459576;
     width: 90vw;
     height: 100% ;

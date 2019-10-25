@@ -93,9 +93,11 @@ class Form extends Component {
     render() {
         const { t } = this.props;
         return (
-            <div className="formContainer" >
+            <div id="formContainer" >
                 <h1>{t('TORTUGA WATCH FORM')}</h1>
-                <BeachLocations />
+                <div id="beachButton" >
+                <BeachLocations/>
+                </div>
                 <br />
                 <br />
                 <ExpansionPanel >
@@ -141,7 +143,6 @@ class Form extends Component {
                         <NestInput />
                         : null}
                 </div>
-                <div classname="buttonSubmit">
             <Button        
                     variant="contained"
                     color="primary"
@@ -152,7 +153,6 @@ class Form extends Component {
                 >
                     {t('Submit Form')}
                 </Button>
-                </div>
             </div>
         )
     }
