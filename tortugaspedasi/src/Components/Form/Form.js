@@ -204,53 +204,54 @@ class Form extends Component {
                 </div>
                 <br />
                 <br />
-                    <ExpansionPanel >
-                        <ExpansionPanelSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1c-content"
-                            id="shift"
-                        >
-                            <div className="helptext">
-                                <Typography className="Shift" variant="h6" component="h6">{t('Shift')}</Typography>
-                            </div>
-                        </ExpansionPanelSummary>
-                        <ShiftInput forms={this.state.forms} handleName={this.handleName} handleDate={this.handleDate} />
-                        <br />
-                    </ExpansionPanel>
-                    <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
-                        <ExpansionPanelSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1c-content"
-                            id="turtles"
-                        >
-                            <div className="helptext">
-                                <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
-                            </div>
-                        </ExpansionPanelSummary>
-                        <Turtle handleCondition={this.handleCondition} handleSpecies={this.handleSpecies} forms={this.state.forms} handleTurtInput={this.state.handleTurtInput} />
-                    </ExpansionPanel>
-                    <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
-                        <ExpansionPanelSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1c-content"
-                            id="turtles"
-                        >
-                            <div className="helptext">
-                                <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
-                            </div>
-                        </ExpansionPanelSummary>
-                        <NestInput forms={this.state.forms} handleNest={this.state.handleNest} />
-                    </ExpansionPanel>
-                    <Comments />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="medium"
-                        className="submit"
-                        // startIcon={<SaveIcon />}
-                        onClick={this.submitForm}
-                    ></Button>
-
+                <ExpansionPanel >
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1c-content"
+                        id="shift"
+                    >
+                        <div className="helptext">
+                            <Typography className="Shift" variant="h6" component="h6">{t('Shift')}</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <ShiftInput forms={this.state.forms} handleName={this.handleName} handleDate={this.handleDate} />
+                    <br />
+                </ExpansionPanel>
+                <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1c-content"
+                        id="turtles"
+                    >
+                        <div className="helptext">
+                            <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <Turtle handleCondition={this.handleCondition} handleSpecies={this.handleSpecies} forms={this.state.forms} handleTurtInput={this.state.handleTurtInput} />
+                </ExpansionPanel>
+                <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1c-content"
+                        id="turtles"
+                    >
+                        <div className="helptext">
+                            <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <NestInput forms={this.state.forms} handleNest={this.state.handleNest} />
+                </ExpansionPanel>
+                <Comments />
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="medium"
+                    className="submit"
+                    // startIcon={<SaveIcon />}
+                    onClick={this.submitNewForm}
+                >
+                    {t('Submit Form')}
+                </Button>
             </div>
         )
     }
