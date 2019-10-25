@@ -3,10 +3,10 @@ const router = express.Router()
 const request = require('request')
 const Form = require('./models/Form');
 const Shift = require('./models/Shift');
-const Beach = require('./models/Beach')
 const Observation = require('./models/Observation');
 const Turtle = require('./models/Turtle');
 const Nest = require('./models/Nest');
+const Beach = require('./models/Beach');
 // const UserLogin = require('./models/UserLogin');
 
 /* API Requests */
@@ -41,18 +41,24 @@ router.get('/solunar', (req, res) => {
 
 
 router.get('/forms', (req, res) => {
-    Form.find({}, (err, forms) => {
-        if (err) throw err;
-        else res.send(forms)
-        console.log(forms)
-    })
-        .populate('turtle nest shift')
+    Form.find({}, (err, forms) => console.log(err))
+        // .populate({path: 'turtle nest shift observation'})
         .populate({
-            path : 'observation',
-            populate:{
-                path:'beach'
+            path: 'turtle nest shift observation',
+            populate: {
+                path: 'location'
             }
         })
+        .exec((err, forms) => {
+            console.log(forms)
+            res.send(forms)
+        })
+    // .populate({
+    //     path : 'observation',
+
+    //        location: 'beach'
+
+    // })
 
 })
 
@@ -132,7 +138,7 @@ router.post('/nest', (req, res) => {
 // .populate('observation')
 // .exec((err, form) => console.log(form))
 
-router.post('/newForm',  (req, res) => {
+router.post('/newForm', (req, res) => {
     let newShift = new Shift({
         firstName: req.body.shift.firstName,
         lastName: req.body.shift.lastName,
@@ -145,7 +151,7 @@ router.post('/newForm',  (req, res) => {
     })
     let newObservation = new Observation({
         date: req.body.observation.date,
-       
+
         moonPhase: req.body.observation.moonPhase,
         tide: req.body.observation.tide,
         comments: req.body.observation.comments,

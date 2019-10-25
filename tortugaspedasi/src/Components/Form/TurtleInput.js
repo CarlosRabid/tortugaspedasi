@@ -96,9 +96,10 @@ class TurtleInput extends Component {
     handleInput = (event) => {
         console.log(event.target.id)
         this.setState({ [event.target.id]: event.target.value })
+        this.props.handleDimentions(event.target.id, event.target.value )
         let turtlestate = { ...this.state }
-        console.log(this.state)
-        this.props.updateTurtle(turtlestate)
+        // console.log(this.state)
+        // this.props.updateTurtle(turtlestate)
     }
     addTurtleInput = () => {
         this.props.addTurtleInput(this.state.species, this.state.gender,
@@ -113,6 +114,7 @@ class TurtleInput extends Component {
         // console.log(event.currentTarget.id)
         // let anchorStat = state.anchorStat
         anchorEl = event.currentTarget.id
+        // this.props.updateTurtle()
         return this.setState({ anchorEl })
         // setAnchorEl(event.currentTarget);
     };
@@ -129,9 +131,14 @@ class TurtleInput extends Component {
         result = event.currentTarget.id
         console.log(result)
         if (result.length === 2) {
-            return this.setState({ species: result, anchorEl: null })
+            this.props.handleSpecies(result)
+            console.log(event)
+            this.setState({ species: result, anchorEl: null })
+            return 
 
-        } else { return this.setState({ conditionstage: result, anchorStat: null }) }
+        } else { 
+            this.props.handleCondition({conditionstage: result})
+            return this.setState({ conditionstage: result, anchorStat: null }) }
         // console.log(this.state)
     };
     handleButton = (event) => {
@@ -140,6 +147,7 @@ class TurtleInput extends Component {
         let selected = { ...this.state.selected }
         selected = event.currentTarget.id
         console.log(selected)
+        this.props.handleCondition(selected)
         this.setState({ selected })
     };
 
@@ -147,8 +155,10 @@ class TurtleInput extends Component {
         let gender = { ...this.state.gender };
         gender = event.currentTarget.value
         console.log(event.currentTarget.value)
+        this.props.handleGender(gender)
         this.setState({ gender });
     };
+
 
     // there is className = "child-turtle" for nested children to help with the CSS
 
@@ -170,11 +180,11 @@ class TurtleInput extends Component {
                     open={Boolean(this.state.anchorEl)}
                     onClose={this.handleClose}
                 >
-                    <MenuItem onClick={this.handleClose} id="Cc">Caretta caretta</MenuItem>
-                    <MenuItem onClick={this.handleClose} id="Lo">Lepidochelys olivacea</MenuItem>
-                    <MenuItem onClick={this.handleClose} id="Cm">Chelonia mydas</MenuItem>
-                    <MenuItem onClick={this.handleClose} id="Ei">Eretmochelys imbricata</MenuItem>
-                    <MenuItem onClick={this.handleClose} id="Dc">Dermochelys coriacea</MenuItem>
+                    <MenuItem onClick={this.handleClose} name="species" id="Cc" >Caretta caretta</MenuItem>
+                    <MenuItem onClick={this.handleClose} id="species" value="Lo">Lepidochelys olivacea</MenuItem>
+                    <MenuItem onClick={this.handleClose} id="species" value="Cm">Chelonia mydas</MenuItem>
+                    <MenuItem onClick={this.handleClose} id="species" value="Ei">Eretmochelys imbricata</MenuItem>
+                    <MenuItem onClick={this.handleClose} id="species" value="Dc">Dermochelys coriacea</MenuItem>
                 </Menu>
                 <br />
                 <RadioGroup row aria-label="Gender" name="gender2" value={this.state.gender} onChange={this.handleRadioButton} style={{ justifyContent: 'center', marginTop: '2%' }}><FormControlLabel

@@ -8,7 +8,7 @@ import NestInput from './NestInput';
 import Button from '@material-ui/core/Button';
 import './form.css';
 import { withTranslation } from 'react-i18next';
-import { Paper, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 //import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
@@ -16,8 +16,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BeachLocations from './BeachLocations';
 import Comments from './ObservationComments';
-
 const axios = require('axios');
+
 
 class Form extends Component {
     constructor(props) {
@@ -30,7 +30,16 @@ class Form extends Component {
             lastName: "",
             date: "",
             time: "",
-            turtle: {},
+            species: "",
+            gender: null,
+            conditionstat: "",
+            conditionstage: "",
+            dimensionsPl: "",
+            dimensionsPw: "",
+            dimensionsCl: "",
+            dimensionsCw: "",
+            markingsRs: "",
+            markingsLs: "",
             eggCount: "",
             layTime: "",
             hatchEst: "",
@@ -40,7 +49,12 @@ class Form extends Component {
             showNest: null,
             showFpart: false,
             hasTurtle: null,
-            hasNest: null
+            hasNest: null,
+            eggCount: "",
+            layTime: "",
+            hatchEst: "",
+            rehomed: "",
+            salvageable: ""
         }
 
         // const useStyles = makeStyles(theme => ({
@@ -61,10 +75,15 @@ class Form extends Component {
         selectedBeach = input.selectedBeach
         await this.setState({ locationLatitude, locationLongitude, selectedBeach })
     }
-    handleTurtInput = async (input) => {
-        let turtle = { ...this.state.turtle }
-        turtle = input
-        await this.setState({ turtle })
+    handleSpecies = async (input) => {
+        let species = { ...this.state.species }
+        species = input
+        await this.setState({ species })
+    }
+    handleCondition = async (input) => {
+        let conditionstage = { ...this.state.conditionstage }
+        conditionstage = input
+        await this.setState({ conditionstage })
     }
     handleName = async (first, last) => {
         let firstName = { ...this.state.firstName }
@@ -73,6 +92,23 @@ class Form extends Component {
         lastName = last
         await this.setState({ firstName, lastName })
     }
+
+    handleDimentions = async (id, value) => {
+        console.log(id , value)
+        let key = id
+        
+        // let index = Object.keys(key)[0]
+        // console.log(index)
+        // let propert = { ...this.state[index]}
+        // let value = Object.values(key)[0]
+        // console.log(state)
+        // propert = value
+        await this.setState({ [key] : value })
+        // console.log(state)
+    }
+
+
+
     handleDate = async (first, last) => {
         let date = { ...this.state.date }
         let time = { ...this.state.time }
@@ -91,16 +127,19 @@ class Form extends Component {
         time = input.time
         await this.setState({ firstName, lastName, date, time })
     }
-    handleNest = (input) => {
+    handleNest = async (input) => {
+        console.log(input)
         let eggCount = { ...this.state.eggCount }
         let layTime = { ...this.state.layTime }
         let hatchEst = { ...this.state.hatchEst }
         let rehomed = { ...this.state.rehomed }
+        let salvageable = { ...this.state.salvageable }
         eggCount = input.eggCount
         layTime = input.layTime
         hatchEst = input.hatchEst
         rehomed = input.rehomed
-        this.setState({ eggCount, layTime, hatchEst, rehomed })
+        salvageable = input.salvageable
+        await this.setState({ eggCount, layTime, hatchEst, rehomed, salvageable })
     }
     handleLab = (input) => {
         let salvageable = { ...this.state.salvageable }
@@ -151,7 +190,21 @@ class Form extends Component {
         })
     }
 
+    handleGender = (input) => {
+        let gender = { ...this.state.gender }
+        gender = input
+        this.setState({
+            gender
+        })
+    }
 
+    handleComments = (input) => { 
+        let comments = {...this.state.comments}
+        comments = input
+        this.setState({
+            comments
+        })
+    }
 
     submitNewForm = async (shift, observation, turtle, nest) => {
         console.log('working')
@@ -169,63 +222,64 @@ class Form extends Component {
     render() {
         const { t } = this.props;
         return (
-            <>
-                <Paper className="form" style={{ margin: '5%', border: '9px solid #ccc' }}>
-                    <h3>{t('TORTUGA WATCH FORM')}</h3>
-                    {/* <hr/> */}
-                    <BeachLocations handleBeachInput={this.handleBeachInput} />
-                    <br />
-                    <br />
-                    <ExpansionPanel >
-                        <ExpansionPanelSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1c-content"
-                            id="shift"
-                        >
-                            <div className="helptext">
-                                <Typography className="Shift" variant="h6" component="h6">{t('Shift')}</Typography>
-                            </div>
-                        </ExpansionPanelSummary>
-                        <ShiftInput forms={this.state.forms} handleName={this.handleName} handleDate={this.handleDate} />
-                        <br />
-                    </ExpansionPanel>
-                    <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
-                        <ExpansionPanelSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1c-content"
-                            id="turtles"
-                        >
-                            <div className="helptext">
-                                <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
-                            </div>
-                        </ExpansionPanelSummary>
-                        <Turtle forms={this.state.forms} handleTurtInput={this.state.handleTurtInput} />
-                    </ExpansionPanel>
-                    <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
-                        <ExpansionPanelSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1c-content"
-                            id="turtles"
-                        >
-                            <div className="helptext">
-                                <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
-                            </div>
-                        </ExpansionPanelSummary>
-                        <NestInput forms={this.state.forms} handleNest={this.state.handleNest} />
-                    </ExpansionPanel>
-                    <Comments />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="medium"
-                        className="submit"
-                        // startIcon={<SaveIcon />}
-                        onClick={this.saveForm}
+
+            <div id="formContainer" >
+                <h1>{t('TORTUGA WATCH FORM')}</h1>
+                <div id="beachButton" >
+                    <BeachLocations />
+                </div>
+                <br />
+                <br />
+                <ExpansionPanel >
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1c-content"
+                        id="shift"
                     >
-                        {t('Submit Form')}
-                    </Button>
-                </Paper>
-            </>
+                        <div className="helptext">
+                            <Typography className="Shift" variant="h6" component="h6">{t('Shift')}</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <ShiftInput forms={this.state.forms} handleName={this.handleName} handleDate={this.handleDate} />
+                    <br />
+                </ExpansionPanel>
+                <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1c-content"
+                        id="turtles"
+                    >
+                        <div className="helptext">
+                            <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <Turtle handleGender={this.handleGender} handleCondition={this.handleCondition} handleSpecies={this.handleSpecies} forms={this.state.forms} handleTurtInput={this.state.handleTurtInput}
+                        handleDimentions={this.handleDimentions} />
+                </ExpansionPanel>
+                <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1c-content"
+                        id="turtles"
+                    >
+                        <div className="helptext">
+                            <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <NestInput forms={this.state.forms} handleNest={this.handleNest} />
+                </ExpansionPanel>
+                <Comments handleComments = {this.handleComments} />
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="medium"
+                    className="submit"
+                    // startIcon={<SaveIcon />}
+                    onClick={this.submitNewForm}
+                >
+                    {t('Submit Form')}
+                </Button>
+            </div>
         )
     }
 }

@@ -4,7 +4,7 @@ import SpreadsheetActions from './SpreadsheetActions';
 import UpdateForm from './UpdateForm';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
-// import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
@@ -26,6 +26,10 @@ class SpreadsheetData extends Component {
 
     async componentDidMount() {
         let data = await axios.get('http://localhost:7777/forms')
+        // let forms = [...this.state.forms]
+        // forms = data.data
+        
+        // console.log(forms)
         this.setState({
             forms: data.data
         })
@@ -83,27 +87,28 @@ class SpreadsheetData extends Component {
                         <Table>
                             <TableHead>
                                 <TableRow style={{
-                                    textAlign: "center"}}>
-                                        <TableCell >Date</TableCell>
-                                        <TableCell align="center">Location</TableCell>
-                                        <TableCell align="center">First Name</TableCell>
-                                        <TableCell align="center">Last Name</TableCell>
-                                        <TableCell align="center">Plain Dimensions</TableCell>
-                                        <TableCell align="center">Curve Dimensions</TableCell>
-                                        <TableCell align="center">Species</TableCell>
-                                        <TableCell align="center">Gender</TableCell>
-                                        <TableCell align="center">Status</TableCell>
-                                        <TableCell align="center">Stage</TableCell>
-                                        <TableCell align="center">Right Markings</TableCell>
-                                        <TableCell align="center">Left Markings</TableCell>
-                                        <TableCell align="center">Lay Time</TableCell>
-                                        <TableCell align="center">Egg Count</TableCell>
-                                        <TableCell align="center">Hatchest</TableCell>
-                                        <TableCell align="center">Rehomed</TableCell>
-                                        <TableCell align="center">Salvageable</TableCell>
-                                        <TableCell align="center">Moon Phase</TableCell>
-                                        <TableCell align="center">Tide</TableCell>
-                                        <TableCell align="center">Comments</TableCell>
+                                    textAlign: "center"
+                                }}>
+                                    <TableCell >Date</TableCell>
+                                    <TableCell align="center">Location</TableCell>
+                                    <TableCell align="center">First Name</TableCell>
+                                    <TableCell align="center">Last Name</TableCell>
+                                    <TableCell align="center">Plain Dimensions</TableCell>
+                                    <TableCell align="center">Curve Dimensions</TableCell>
+                                    <TableCell align="center">Species</TableCell>
+                                    <TableCell align="center">Gender</TableCell>
+                                    <TableCell align="center">Status</TableCell>
+                                    <TableCell align="center">Stage</TableCell>
+                                    <TableCell align="center">Right Markings</TableCell>
+                                    <TableCell align="center">Left Markings</TableCell>
+                                    <TableCell align="center">Lay Time</TableCell>
+                                    <TableCell align="center">Egg Count</TableCell>
+                                    <TableCell align="center">Hatchest</TableCell>
+                                    <TableCell align="center">Rehomed</TableCell>
+                                    <TableCell align="center">Salvageable</TableCell>
+                                    <TableCell align="center">Moon Phase</TableCell>
+                                    <TableCell align="center">Tide</TableCell>
+                                    <TableCell align="center">Comments</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

@@ -11,8 +11,8 @@ class Comments extends Component {
         }
     }
     handleInput = (event) => {
-        this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
-    }
+        return  this.props.handleComments({ [event.target.name]: event.target.value })}
+    
     render() {
         const { t } = this.props;
         return <div>
