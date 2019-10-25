@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 const userLoginSchema = new Schema({
    userName: String,
    password: String,
-   date: Date
+   date: String
 });
 
 const UserLogin = mongoose.model("UserLogin", userLoginSchema)

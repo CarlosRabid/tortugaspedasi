@@ -153,23 +153,23 @@ class Form extends Component {
         this.setState({ salvageable })
     }
 
-    submitForm = async (input) => {
-        // let idx = Object.keys
-        // let state = {...this.state}
-        // state[] = { ...this.state.locationLatitude }
-        // let locationLongitude = { ...this.state.locationLongitude }
-        // let selectedBeach = { ...this.state.selectedBeach }
-        // let forms = {... this.state.forms}
-        // let idx = Object.keys(forms).length
-        // // await forms[0]=inputValue
-        // console.log(inputValue)
-        // this.checkTurtleData(forms)
-        // // this.checkNestData(forms)
-        // this.setState({
-        //     forms
-        // })
-        // console.log(this.state.forms)
-    }
+    // submitForm = async (input) => {
+    // let idx = Object.keys
+    // let state = {...this.state}
+    // state[] = { ...this.state.locationLatitude }
+    // let locationLongitude = { ...this.state.locationLongitude }
+    // let selectedBeach = { ...this.state.selectedBeach }
+    // let forms = {... this.state.forms}
+    // let idx = Object.keys(forms).length
+    // // await forms[0]=inputValue
+    // console.log(inputValue)
+    // this.checkTurtleData(forms)
+    // // this.checkNestData(forms)
+    // this.setState({
+    //     forms
+    // })
+    // console.log(this.state.forms)
+
 
     checkTurtleData = (formInput) => {
         console.log(formInput)
@@ -216,13 +216,14 @@ class Form extends Component {
         console.log('working')
         await axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
     }
+
     handleExpandClick = (event) => {
         console.log(event.target)
         let showFpart = true
         // showFpart = !showFpart
         console.log(showFpart)
         this.setState({ showFpart: showFpart })
-    }
+    };
 
     render() {
         const { t } = this.props;
@@ -290,4 +291,5 @@ class Form extends Component {
 }
 
 
-export default withTranslation('translation')(Form);
+
+    export default withTranslation('translation')(Form);
