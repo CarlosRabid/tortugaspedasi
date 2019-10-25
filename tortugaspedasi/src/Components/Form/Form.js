@@ -92,6 +92,21 @@ class Form extends Component {
         lastName = last
         await this.setState({ firstName, lastName })
     }
+
+    handleDimentions = async (key) => {
+        console.log(key)
+        // let index = Object.keys(key)[0]
+        // console.log(index)
+        // let propert = { ...this.state[index]}
+        // let value = Object.values(key)[0]
+        // console.log(state)
+        // propert = value
+        await this.setState({ key })
+        // console.log(state)
+    }
+
+
+
     handleDate = async (first, last) => {
         let date = { ...this.state.date }
         let time = { ...this.state.time }
@@ -170,6 +185,13 @@ class Form extends Component {
         })
     }
 
+    handleGender = (input) => {
+        let gender = { ...this.state.gender }
+        gender = input
+        this.setState({
+            gender
+        })
+    }
 
 
     submitNewForm = async (shift, observation, turtle, nest) => {
@@ -192,6 +214,7 @@ class Form extends Component {
         let rehomed = [...this.state.rehomed]
         let salvageable = [...this.state.salvageable]
     }
+
 
     render() {
         const { t } = this.props;
@@ -227,7 +250,8 @@ class Form extends Component {
                             <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
                         </div>
                     </ExpansionPanelSummary>
-                    <Turtle handleCondition={this.handleCondition} handleSpecies={this.handleSpecies} forms={this.state.forms} handleTurtInput={this.state.handleTurtInput} />
+                    <Turtle handleGender={this.handleGender} handleCondition={this.handleCondition} handleSpecies={this.handleSpecies} forms={this.state.forms} handleTurtInput={this.state.handleTurtInput}
+                        handleDimentions={this.handleDimentions} />
                 </ExpansionPanel>
                 <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
                     <ExpansionPanelSummary
