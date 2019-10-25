@@ -79,7 +79,7 @@ class NestInput extends Component {
                         Date:
                         <input type="date" name="hatchEst" value={this.state.hatchEst} onChange={this.handleInput} /></label>
                     </form> */}
-                <DateInput  />
+                <DateInput handleDaten={this.handleDaten} />
             </div>
             <div className="new-nest-grid" >
                 <span className="new-nest-1"> Taken to Lab: </span>

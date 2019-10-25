@@ -77,7 +77,7 @@ router.post('/shift', (req, res) => {
     let newShift = new Shift({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        date: new Date().toString()
+        date: Date().toString()
     })
     newShift.save()
     res.send(newShift)
@@ -142,7 +142,7 @@ router.post('/newForm', (req, res) => {
     let newShift = new Shift({
         firstName: req.body.shift.firstName,
         lastName: req.body.shift.lastName,
-        date: new Date().toString()
+        date: Date().toString()
     })
     let newBeach = new Beach({
         name: req.body.beach.name,
