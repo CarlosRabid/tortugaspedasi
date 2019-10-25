@@ -1,19 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ToolbarMenu from "./ToolbarMenu";
-import { Button, MenuItem, List, ListItem, ListItemIcon, ListItemText, Divider, Drawer } from "@material-ui/core";
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
-import HomeIcon from '@material-ui/icons/Home';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import StorageIcon from '@material-ui/icons/Storage';
-import PollIcon from '@material-ui/icons/Poll';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ToolbarMenu from "./ToolbarMenu";
+import { Button, MenuItem, List, ListItem, ListItemIcon, ListItemText, Divider, Drawer } from "@material-ui/core";
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import HomeIcon from '@material-ui/icons/Home';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import StorageIcon from '@material-ui/icons/Storage';
+import PollIcon from '@material-ui/icons/Poll';
+import { makeStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -53,8 +53,10 @@ function NavBar(props) {
   function onLogin() {
     alert("Login TBD");
   }
+
   function onLogout() {
-    alert("Logout TBD");
+    localStorage.clear()
+    props.logOut()
   }
 
 
@@ -116,52 +118,52 @@ function NavBar(props) {
     <div>
       <AppBar position="fixed">
 
-      <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-        {sideList('left')}
-      </Drawer>
-      <Toolbar>
-        <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
-          <MenuIcon ></MenuIcon>
+        <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+          {sideList('left')}
+        </Drawer>
+        <Toolbar>
+          <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
+            <MenuIcon ></MenuIcon>
 
 
-         
-        </IconButton>
-        <Typography variant="h6" color="inherit">
-          Tortugas Pedasí
 
+          </IconButton>
+          <Typography variant="h6" color="inherit">
+            Tortugas Pedasí
+  
           </Typography>
 
           <ToolbarMenu
             render={collapsed => {
               return collapsed
-                ? [
-                  <MenuItem key="login" onClick={onLogin} autoclose={true}>
-                    Login
-                    </MenuItem>,
-                  <MenuItem key="logout" onClick={onLogout}>
+                 ? [   
+                  // <MenuItem key="login" onClick={onLogin} autoclose={true}>
+                  //   Login
+                  //   </MenuItem>,
+                  <MenuItem key="logout" onClick={onLogout} autoclose={true}>
                     Logout
                     </MenuItem>
                 ]
                 : [
-                  <Button
-                    key="login"
-                    color="inherit"
-                    onClick={onLogin}
-                    className={classes.menuButton}
-                  >
-                    Login
-                    </Button>,
-                  <Button
-                    key="signup"
-                    color="inherit"
-                    onClick={onLogout}
-                    className={classes.menuButton}
-                  >
-                    Logout
+                //  <Button
+                //   key="login"
+                //   color="inherit"
+                //   onClick={onLogin}
+                //   className={classes.menuButton}
+                // >
+                //   Login
+                //   </Button>,
+                < Button
+                    key = "signup"
+              color = "inherit"
+              onClick = { onLogout }
+              className = { classes.menuButton }
+                >
+                Logout
                     </Button>
-                ];
-            }}
-          />
+      ];
+  }}
+/>
         </Toolbar>
       </AppBar>
       <div className={spclasses.offset}> {/* to accomdate for top white space */}

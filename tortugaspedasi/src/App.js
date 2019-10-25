@@ -32,7 +32,7 @@ class App extends Component {
   //     location: location
   //   })
   // }
-  
+
   changeLanguage = () => {
     const { i18n } = this.props;
     if (this.state.lng === "en") {
@@ -47,6 +47,8 @@ class App extends Component {
 
   isLoggedIn = () => localStorage.getItem('user') || this.state.userName
 
+  logOut = () => this.setState({userName: ""}) 
+
   render() {
 
     return (<>
@@ -60,7 +62,8 @@ class App extends Component {
 
         <BrowserRouter>
 
-          <NavBar location={this.state.location}
+          <NavBar logOut={this.logOut}
+            location={this.state.location}
             name={this.state.userName}
             updateNavBar={this.updateNavBar}>
           </NavBar>
@@ -73,7 +76,7 @@ class App extends Component {
           </Route>
 
           <Route exact path="/landing" render={() =>
-            <Landing  />}>
+            <Landing />}>
           </Route>
 
           <Route exact path="/form" render={() =>

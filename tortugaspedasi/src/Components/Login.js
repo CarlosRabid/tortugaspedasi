@@ -80,11 +80,11 @@ class Login extends Component {
 render() {
     return (
         <div>
-            {this.state.admin.isLoggedIn ?
+            {/* {this.state.admin.isLoggedIn ?
                 <div> <Landing logout={this.logout}/>
                     <button onClick={this.logout}>Logout</button>
                 </div> 
-                :            
+                :             */}
             <form onSubmit={this.loginFuncs} >
                 <label>
                     User: <input name="user" value={this.state.user} onChange={this.handleChange} />
@@ -97,7 +97,7 @@ render() {
                     </label>
                 <button type="submit" >Sign In</button>
             </form>
-            }
+            {/* } */}
         </div>
         
     );
