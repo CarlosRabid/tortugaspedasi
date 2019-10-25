@@ -26,12 +26,12 @@ class SpreadsheetData extends Component {
 
     async componentDidMount() {
         let data = await axios.get('http://localhost:7777/forms')
-        let forms = [...this.state.forms]
-        forms = data.data
+        // let forms = [...this.state.forms]
+        // forms = data.data
         
-        console.log(forms)
+        // console.log(forms)
         this.setState({
-            forms
+            forms: data.data
         })
     }
 
