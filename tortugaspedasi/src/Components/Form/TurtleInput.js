@@ -96,7 +96,7 @@ class TurtleInput extends Component {
     handleInput = (event) => {
         console.log(event.target.id)
         this.setState({ [event.target.id]: event.target.value })
-        this.props.handleDimentions({[event.target.id]: event.target.value} )
+        this.props.handleDimentions(event.target.id, event.target.value )
         let turtlestate = { ...this.state }
         // console.log(this.state)
         // this.props.updateTurtle(turtlestate)

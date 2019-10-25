@@ -34,10 +34,10 @@ class Form extends Component {
             gender: null,
             conditionstat: "",
             conditionstage: "",
-            dimensionsPl: 0,
-            dimensionsPw: 0,
-            dimensionsCl: 0,
-            dimensionsCw: 0,
+            dimensionsPl: "",
+            dimensionsPw: "",
+            dimensionsCl: "",
+            dimensionsCw: "",
             markingsRs: "",
             markingsLs: "",
             eggCount: "",
@@ -93,15 +93,17 @@ class Form extends Component {
         await this.setState({ firstName, lastName })
     }
 
-    handleDimentions = async (key) => {
-        console.log(key)
+    handleDimentions = async (id, value) => {
+        console.log(id , value)
+        let key = id
+        
         // let index = Object.keys(key)[0]
         // console.log(index)
         // let propert = { ...this.state[index]}
         // let value = Object.values(key)[0]
         // console.log(state)
         // propert = value
-        await this.setState({ key })
+        await this.setState({ [key] : value })
         // console.log(state)
     }
 
@@ -193,6 +195,13 @@ class Form extends Component {
         })
     }
 
+    handleComments = (input) => { 
+        let comments = {...this.state.comments}
+        comments = input
+        this.setState({
+            comments
+        })
+    }
 
     submitNewForm = async (shift, observation, turtle, nest) => {
         console.log('working')
@@ -265,7 +274,7 @@ class Form extends Component {
                     </ExpansionPanelSummary>
                     <NestInput forms={this.state.forms} handleNest={this.state.handleNest} />
                 </ExpansionPanel>
-                <Comments />
+                <Comments handleComments = {this.handleComments} />
                 <Button
                     variant="contained"
                     color="primary"
