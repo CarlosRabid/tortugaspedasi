@@ -6,8 +6,8 @@ const nestSchema = new Schema({
    form: {type: Schema.Types.ObjectId, ref: 'Form'},
    hasData: Boolean,
    eggCount: Number,
-   layTime: Date,
-   hatchEst: Date,
+   layTime: String,
+   hatchEst: String,
    rehomed: String,
    salvageable: String,
 });

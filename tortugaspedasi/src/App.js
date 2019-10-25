@@ -29,7 +29,7 @@ class App extends Component {
     this.setState({isOnline: navigator.onLine})
     if(this.state.isOnline) {
       let storage = localStorage.getItem('form')
-      //axios.post('http://localhost:7777/newForm', {shift, observation, turtle, nest})
+      axios.post('http://localhost:7777/newForm', {storage})
       console.log('there is something in there')
     }
     else {
@@ -49,17 +49,6 @@ class App extends Component {
       console.log('offline')
     }
   }
-
- 
-  //     // 
-  //     // localStorage.clear()
-  //   }
-  //   else {
-  //     console.log('nothing in localStorage')
-  //   }
-    
-  // }
-
 
   updateUser = (name) => {
     this.setState({

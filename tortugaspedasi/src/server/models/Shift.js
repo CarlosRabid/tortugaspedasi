@@ -5,7 +5,7 @@ const shiftSchema = new Schema({
    form: {type: Schema.Types.ObjectId, ref: 'Form'},
    firstName: String,
    lastName: String,
-   date: Date
+   date: String,
 });
 
 const Shift = mongoose.model("Shift", shiftSchema)
