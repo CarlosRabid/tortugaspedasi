@@ -27,8 +27,8 @@ class UpdateForm extends Component {
         console.log(this.props.form)
         let shift = this.props.form.shift
         let turtle = this.props.form.turtle
-        let observation = this.props.form.observation
-        let nest = this.props.form.nest
+        // let observation = this.props.form.observation
+        // let nest = this.props.form.nest
 
         return (
             <div className="popUp">

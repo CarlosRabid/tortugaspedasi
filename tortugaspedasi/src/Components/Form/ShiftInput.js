@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import TextField from '@material-ui/core/TextField';
 import DateFnsUtils from '@date-io/date-fns';
-import { Typography, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
 import './turtle.css'
@@ -44,7 +44,7 @@ class ShiftInput extends Component {
     }
 
     render() {
-        const { t, i18n } = this.props;
+        const { t } = this.props;
         const height = 38;
         const marginLeft = '5%';
         const heightD = '10%';

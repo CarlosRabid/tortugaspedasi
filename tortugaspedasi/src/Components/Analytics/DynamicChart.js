@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+    BarChart, Bar, XAxis, YAxis, Tooltip, Legend,
 } from 'recharts';
 import Axios from 'axios';
 
