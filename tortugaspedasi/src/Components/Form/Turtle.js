@@ -5,7 +5,17 @@ class Turtle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            turtleinput: {}
+            turtleinput: {},
+            species: "",
+            gender: null,
+            conditionstat: "",
+            conditionstage: "",
+            dimensionsPl: 0,
+            dimensionsPw: 0,
+            dimensionsCl: 0,
+            dimensionsCw: 0,
+            markingsRs: "",
+            markingsLs: "",
             // gender: "",
             // condition:
             // {
@@ -32,6 +42,7 @@ class Turtle extends Component {
         // let state = {...this.state.turtleinput}
         this.setState({turtleinput: dms })
         this.props.handleTurtInput(this.state.turtleinput)
+        console.log(dms)
     }
     render() { 
         return (

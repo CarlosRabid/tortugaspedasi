@@ -30,7 +30,16 @@ class Form extends Component {
             lastName: "",
             date: "",
             time: "",
-            turtle: {},
+            species: "",
+            gender: null,
+            conditionstat: "",
+            conditionstage: "",
+            dimensionsPl: 0,
+            dimensionsPw: 0,
+            dimensionsCl: 0,
+            dimensionsCw: 0,
+            markingsRs: "",
+            markingsLs: "",
             eggCount: "",
             layTime: "",
             hatchEst: "",
@@ -61,10 +70,15 @@ class Form extends Component {
         selectedBeach = input.selectedBeach
         await this.setState({locationLatitude, locationLongitude, selectedBeach})
     }
-    handleTurtInput = async (input) => {
-        let turtle = {...this.state.turtle}
-        turtle = input
-        await this.setState({turtle})
+    handleSpecies = async (input) => {
+        let species = {...this.state.species}
+        species = input
+        await this.setState({species})
+    }
+    handleCondition = async (input) => {
+        let condition = {...this.state.condition}
+        condition = input
+        await this.setState({condition})
     }
     handleName = async (first, last ) => {
         let firstName = {...this.state.firstName}
@@ -74,6 +88,7 @@ class Form extends Component {
         await this.setState({firstName, lastName})
     }
     handleDate = async (first, last ) => {
+        // console.log(first, last)
         let date = {...this.state.date}
         let time = {...this.state.time}
         date = first

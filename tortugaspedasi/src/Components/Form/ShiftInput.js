@@ -24,7 +24,7 @@ class ShiftInput extends Component {
         // this.props.submitForm(this.state)
     }
     handleInput = (event) => {
-        console.log(event)
+        // console.log(event)
         let state = { ...this.state }
         let date = state.date
         let time = state.time
@@ -40,9 +40,9 @@ class ShiftInput extends Component {
             date = moment(event).format('DD/MM/YYYY')
             time = moment(event).format('HH:mm')
             // date = typeof(date)
-            console.log(typeof (date))
             this.setState({ date, time })
-            this.props.handleDate(this.state.date, this.state.time)
+            // console.log(this.state)
+            this.props.handleDate(date, time)
             return 
         }
     }
