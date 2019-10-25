@@ -9,7 +9,7 @@ import NestInput from './NestInput';
 import Button from '@material-ui/core/Button';
 import './form.css';
 import { withTranslation } from 'react-i18next';
-import { Paper, Typography} from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 //import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
@@ -93,69 +93,67 @@ class Form extends Component {
     render() {
         const { t } = this.props;
         return (
-            <>
-                <Paper className="form" style={{ margin: '5%', border: '9px solid #ccc' }}>
-                    <h3>{t('TORTUGA WATCH FORM')}</h3>
-                    {/* <hr/> */}
-                    <BeachLocations />
+            <div className="formContainer" >
+                <h1>{t('TORTUGA WATCH FORM')}</h1>
+                <BeachLocations />
+                <br />
+                <br />
+                <ExpansionPanel >
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1c-content"
+                        id="shift">
+                        <div className="helptext">
+                            <Typography className="Shift" variant="h6" component="h6">{t('Shift')}</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <ShiftInput forms={this.state.forms} submitForm={this.submitForm} />
                     <br />
-                    <br />
-                    <ExpansionPanel >
-                        <ExpansionPanelSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1c-content"
-                            id="shift"
-                        >
-                            <div className="helptext">
-                                <Typography className="Shift" variant="h6" component="h6">{t('Shift')}</Typography>
-                            </div>
-                        </ExpansionPanelSummary>
-                        <ShiftInput forms={this.state.forms} submitForm={this.submitForm} />
-                        <br />
-                        <ObservationInput forms={this.state.forms} getPosition={this.getPosition} submitForm={this.submitForm} />
-                    </ExpansionPanel>
-                    <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
-                        <ExpansionPanelSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1c-content"
-                            id="turtles"
-                        >
-                            <div className="helptext">
-                                <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
-                            </div>
-                        </ExpansionPanelSummary>
-                        <Turtle forms={this.state.forms} />
-                    </ExpansionPanel>
-                    <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
-                        <ExpansionPanelSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1c-content"
-                            id="turtles"
-                        >
-                            <div className="helptext">
-                                <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
-                            </div>
-                        </ExpansionPanelSummary>
-                        <NestInput forms={this.state.forms} />
-                    </ExpansionPanel>
-                    <Comments />
-                    <div id="input" className="_nest">
-                        {this.state.nestFound ?
-                            <NestInput />
-                            : null}
-                    </div>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="medium"
-                        className="submit"
-                        // startIcon={<SaveIcon />}
-                        onClick={this.submitNewForm}
+                    <ObservationInput forms={this.state.forms} getPosition={this.getPosition} submitForm={this.submitForm} />
+                </ExpansionPanel>
+                <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1c-content"
+                        id="turtles"
                     >
-                        {t('Submit Form')}
-                    </Button>
-                </Paper>
-            </>
+                        <div className="helptext">
+                            <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <Turtle forms={this.state.forms} />
+                </ExpansionPanel>
+                <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1c-content"
+                        id="turtles"
+                    >
+                        <div className="helptext">
+                            <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <NestInput forms={this.state.forms} />
+                </ExpansionPanel>
+                <Comments />
+                <div id="input" className="_nest">
+                    {this.state.nestFound ?
+                        <NestInput />
+                        : null}
+                </div>
+                <div classname="buttonSubmit">
+            <Button        
+                    variant="contained"
+                    color="primary"
+                    size="medium"
+                    className="submit"
+                    // startIcon={<SaveIcon />}
+                    onClick={this.submitNewForm}
+                >
+                    {t('Submit Form')}
+                </Button>
+                </div>
+            </div>
         )
     }
 }
