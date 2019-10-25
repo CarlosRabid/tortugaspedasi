@@ -13,6 +13,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import StorageIcon from '@material-ui/icons/Storage';
 import PollIcon from '@material-ui/icons/Poll';
+import { makeStyles } from '@material-ui/core/styles';
 //adding a comment to submit
 
 const styles = {
@@ -28,9 +29,20 @@ const styles = {
   }
 };
 
+const useStyles = makeStyles(theme => ({
+  offset: {
+    ...theme.mixins.toolbar,
+    flexGrow: 1
+  }
+}))
+
+
+
 function NavBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const spclasses = useStyles();
+  
 
   const [state, setState] = React.useState({
     top: false,
@@ -115,7 +127,8 @@ function NavBar(props) {
   // let options = ["form", "test"]
 
   return (
-    <AppBar position="fixed">
+    <div>
+      <AppBar position="fixed">
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}
       </Drawer>
@@ -179,6 +192,9 @@ function NavBar(props) {
         />
       </Toolbar>
     </AppBar>
+    <div className={spclasses.offset}> {/* to accomdate for top white space */}
+    </div>
+    </div>
   );
 }
 
