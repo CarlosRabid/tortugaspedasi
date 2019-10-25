@@ -14,7 +14,6 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import StorageIcon from '@material-ui/icons/Storage';
 import PollIcon from '@material-ui/icons/Poll';
 import { makeStyles } from '@material-ui/core/styles';
-//adding a comment to submit
 
 const styles = {
   root: {
@@ -38,10 +37,13 @@ const useStyles = makeStyles(theme => ({
 
 
 function NavBar(props) {
-  // const [anchorEl, setAnchorEl] = React.useState(null);
+
+
+  // const [anchorE1] = React.useState(null);
   // const open = Boolean(anchorEl);
+
   const spclasses = useStyles();
-  
+
 
   const [state, setState] = React.useState({
     top: false,
@@ -69,7 +71,7 @@ function NavBar(props) {
     >
       <List>
 
-      <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
           <ListItem button key="home" >
             <ListItemIcon ><HomeIcon /></ListItemIcon>
             <ListItemText primary="Home" />
@@ -83,7 +85,7 @@ function NavBar(props) {
           </ListItem>
         </Link>
 
-        <Link to="/spread" style={{ textDecoration: 'none',color: 'black'}}>
+        <Link to="/spread" style={{ textDecoration: 'none', color: 'black' }}>
           <ListItem button key="spreadsheet" >
             <ListItemIcon><StorageIcon /> </ListItemIcon>
             <ListItemText primary="Spreadsheet" />
@@ -117,52 +119,73 @@ function NavBar(props) {
   return (
     <div>
       <AppBar position="fixed">
+
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}
       </Drawer>
       <Toolbar>
         <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
           <MenuIcon ></MenuIcon>
+
+
+          {/* <PopupState variant="popover" popupId="demo-popup-menu">
+            {popupState => (
+              <React.Fragment>
+                <Menu {...bindMenu(popupState)}>
+                 <MenuItem key = "home" id = "home" onClick={handleClick}>Home</MenuItem>
+                 
+                 
+                 
+                  {/* {options.map(option => (
+                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+                      {option}
+                    </MenuItem>
+                  ))} */}
+          {/* </Menu>
+              </React.Fragment>
+            )}
+          </PopupState> */}
         </IconButton>
-        <Typography variant="title" color="inherit">
+        <Typography variant="h4" color="inherit">
           Tortugas Pedasí
+
           </Typography>
 
-        <ToolbarMenu
-          render={collapsed => {
-            return collapsed
-              ? [
-                <MenuItem key="login" onClick={onLogin} autoclose={true}>
-                  Login
+          <ToolbarMenu
+            render={collapsed => {
+              return collapsed
+                ? [
+                  <MenuItem key="login" onClick={onLogin} autoclose={true}>
+                    Login
                     </MenuItem>,
-                <MenuItem key="logout" onClick={onLogout}>
-                  Logout
+                  <MenuItem key="logout" onClick={onLogout}>
+                    Logout
                     </MenuItem>
-              ]
-              : [
-                <Button
-                  key="login"
-                  color="inherit"
-                  onClick={onLogin}
-                  className={classes.menuButton}
-                >
-                  Login
+                ]
+                : [
+                  <Button
+                    key="login"
+                    color="inherit"
+                    onClick={onLogin}
+                    className={classes.menuButton}
+                  >
+                    Login
                     </Button>,
-                <Button
-                  key="signup"
-                  color="inherit"
-                  onClick={onLogout}
-                  className={classes.menuButton}
-                >
-                  Logout
+                  <Button
+                    key="signup"
+                    color="inherit"
+                    onClick={onLogout}
+                    className={classes.menuButton}
+                  >
+                    Logout
                     </Button>
-              ];
-          }}
-        />
-      </Toolbar>
-    </AppBar>
-    <div className={spclasses.offset}> {/* to accomdate for top white space */}
-    </div>
+                ];
+            }}
+          />
+        </Toolbar>
+      </AppBar>
+      <div className={spclasses.offset}> {/* to accomdate for top white space */}
+      </div>
     </div>
   );
 }
