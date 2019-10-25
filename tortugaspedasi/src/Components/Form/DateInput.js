@@ -10,8 +10,8 @@ class DateInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: "",
-            time: ""
+            daten: "",
+            timen: ""
         }
     }
     // handleNest
@@ -19,13 +19,14 @@ class DateInput extends Component {
     handleInput = (event) => {
         console.log(event)
         let state = { ...this.state }
-        let date = state.date
-        let time = state.time
-        date = moment(event).format('DD/MM/YYYY')
-        time = moment(event).format('HH:mm')
+        let daten = state.daten
+        let timen = state.timen
+        daten = moment(event).format('DD/MM/YYYY')
+        timen = moment(event).format('HH:mm')
+        console.log(daten, timen)
         // date = typeof(date)
-        this.setState({ date, time })
-        this.props.handleInput({[event.target.id]:event.target.value})
+        this.setState({ daten, timen })
+        this.props.handleDaten(daten)
 
 
     }
@@ -43,7 +44,7 @@ class DateInput extends Component {
                             id="date"
                             label={t('Date of watch')}
                             format="dd/mm/yyyy"
-                            value={moment(this.state.date, 'dd/mm/yyyy').toDate()}
+                            value={moment(this.state.daten, 'dd/mm/yyyy').toDate()}
                             // defaultValue={this.state.date}
                             onChange={this.handleInput}
                             KeyboardButtonProps={{
@@ -65,7 +66,7 @@ class DateInput extends Component {
                             label={t('Time ')}
                             format="HH:mm"
                             // defaultValue="15:02"
-                            value={moment(this.state.time, 'HH:mm').toDate()}
+                            value={moment(this.state.timen, 'HH:mm').toDate()}
                             onChange={this.handleInput}
                             KeyboardButtonProps={{
                                 'aria-label': t('Time'),

@@ -17,6 +17,8 @@ class NestInput extends Component {
             hatchEst: "",
             rehomed: "",
             salvageable: "",
+            daten: "",
+            timen: ""
 
         }
     }
@@ -25,6 +27,12 @@ class NestInput extends Component {
         console.log(this.props)
         await this.setState({ [event.target.name]: event.target.value })
         return this.props.handleNest(this.state)
+    }
+    handleDaten= async (input) => {
+        let daten = {...this.state.daten}
+        daten = input
+        await this.setState({ daten })
+        return this.props.handleNest(daten)
     }
     handleRadioButton = async (event) => {
         let salvageable = { ...this.state.salvageable };
@@ -62,7 +70,7 @@ class NestInput extends Component {
                             Date:
                             <input type="date" name="layTime" value={this.state.layTime} onChange={this.handleInput} /></label>
                     </form> */}
-                <DateInput handleInput={this.handleInput} />
+                <DateInput handleDaten={this.handleDaten} />
             </div>
             <div className="new-nest-grid">
                 <span className="new-nest-1"> Estimated Hatching Time: </span>
@@ -71,7 +79,7 @@ class NestInput extends Component {
                         Date:
                         <input type="date" name="hatchEst" value={this.state.hatchEst} onChange={this.handleInput} /></label>
                     </form> */}
-                <DateInput handleInput={this.handleInput} />
+                <DateInput  />
             </div>
             <div className="new-nest-grid" >
                 <span className="new-nest-1"> Taken to Lab: </span>
