@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import ShiftInput from './ShiftInput';
 import ObservationInput from './ObservationInput';
 import Turtle from './Turtle';
 import NestInput from './NestInput';
-import Fab from '@material-ui/core/Fab';
+//import Fab from '@material-ui/core/Fab';
 // import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import './form.css';
 import { withTranslation } from 'react-i18next';
-import { Paper, Typography, Collapse } from '@material-ui/core';
+import { Paper, Typography} from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
-import IconButton from '@material-ui/core/IconButton';
+//import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+//import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BeachLocations from './BeachLocations';
 import Comments from './ObservationComments';
@@ -91,7 +91,7 @@ class Form extends Component {
     }
 
     render() {
-        const { t, i18n } = this.props;
+        const { t } = this.props;
         return (
             <>
                 <Paper className="form" style={{ margin: '5%', border: '9px solid #ccc' }}>

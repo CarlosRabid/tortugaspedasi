@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ComposedChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line } from 'recharts';
 import moment from 'moment'
 import Axios from 'axios';
-import { cloneNode } from '@babel/types';
 
 class DynamicChart extends Component {
     constructor() {

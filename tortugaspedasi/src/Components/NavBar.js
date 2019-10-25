@@ -1,19 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ToolbarMenu from "./ToolbarMenu";
-import { Button, MenuItem, List, ListItem, ListItemIcon, ListItemText, Divider, Drawer } from "@material-ui/core";
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
-import HomeIcon from '@material-ui/icons/Home';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import StorageIcon from '@material-ui/icons/Storage';
-import PollIcon from '@material-ui/icons/Poll';
-//adding a comment to submit
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ToolbarMenu from "./ToolbarMenu";
+import { Button, MenuItem, List, ListItem, ListItemIcon, ListItemText, Divider, Drawer } from "@material-ui/core";
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import HomeIcon from '@material-ui/icons/Home';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import StorageIcon from '@material-ui/icons/Storage';
+import PollIcon from '@material-ui/icons/Poll';
+import { makeStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -28,9 +28,22 @@ const styles = {
   }
 };
 
+const useStyles = makeStyles(theme => ({
+  offset: {
+    ...theme.mixins.toolbar,
+    flexGrow: 1
+  }
+}))
+
+
 function NavBar(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+
+
+  // const [anchorE1] = React.useState(null);
+  // const open = Boolean(anchorEl);
+
+  const spclasses = useStyles();
+
 
   const [state, setState] = React.useState({
     top: false,
@@ -39,13 +52,6 @@ function NavBar(props) {
     right: false,
   });
 
-  // const handleClick = event => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
 
   const { classes } = props;
   function onLogin() {
@@ -54,10 +60,6 @@ function NavBar(props) {
   function onLogout() {
     alert("Logout TBD");
   }
-
-  // function testClick(text) {
-  //   alert("Redirecting to " + text);
-  // }
 
 
   const sideList = side => (
@@ -69,7 +71,7 @@ function NavBar(props) {
     >
       <List>
 
-      <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
           <ListItem button key="home" >
             <ListItemIcon ><HomeIcon /></ListItemIcon>
             <ListItemText primary="Home" />
@@ -83,7 +85,7 @@ function NavBar(props) {
           </ListItem>
         </Link>
 
-        <Link to="/spread" style={{ textDecoration: 'none',color: 'black'}}>
+        <Link to="/spread" style={{ textDecoration: 'none', color: 'black' }}>
           <ListItem button key="spreadsheet" >
             <ListItemIcon><StorageIcon /> </ListItemIcon>
             <ListItemText primary="Spreadsheet" />
@@ -112,10 +114,12 @@ function NavBar(props) {
     setState({ ...state, [side]: open });
   };
 
-  // let options = ["form", "test"]
+
 
   return (
-    <AppBar position="fixed">
+    <div>
+      <AppBar position="fixed">
+
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}
       </Drawer>
@@ -142,43 +146,47 @@ function NavBar(props) {
             )}
           </PopupState> */}
         </IconButton>
-        <Typography variant="title" color="inherit">
+        <Typography variant="h4" color="inherit">
           Tortugas Pedasí
+
           </Typography>
 
-        <ToolbarMenu
-          render={collapsed => {
-            return collapsed
-              ? [
-                <MenuItem key="login" onClick={onLogin} autoclose={true}>
-                  Login
+          <ToolbarMenu
+            render={collapsed => {
+              return collapsed
+                ? [
+                  <MenuItem key="login" onClick={onLogin} autoclose={true}>
+                    Login
                     </MenuItem>,
-                <MenuItem key="logout" onClick={onLogout}>
-                  Logout
+                  <MenuItem key="logout" onClick={onLogout}>
+                    Logout
                     </MenuItem>
-              ]
-              : [
-                <Button
-                  key="login"
-                  color="inherit"
-                  onClick={onLogin}
-                  className={classes.menuButton}
-                >
-                  Login
+                ]
+                : [
+                  <Button
+                    key="login"
+                    color="inherit"
+                    onClick={onLogin}
+                    className={classes.menuButton}
+                  >
+                    Login
                     </Button>,
-                <Button
-                  key="signup"
-                  color="inherit"
-                  onClick={onLogout}
-                  className={classes.menuButton}
-                >
-                  Logout
+                  <Button
+                    key="signup"
+                    color="inherit"
+                    onClick={onLogout}
+                    className={classes.menuButton}
+                  >
+                    Logout
                     </Button>
-              ];
-          }}
-        />
-      </Toolbar>
-    </AppBar>
+                ];
+            }}
+          />
+        </Toolbar>
+      </AppBar>
+      <div className={spclasses.offset}> {/* to accomdate for top white space */}
+      </div>
+    </div>
   );
 }
 

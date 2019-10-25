@@ -14,7 +14,7 @@ class Comments extends Component {
         this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
     }
     render() {
-        const { t, i18n } = this.props;
+        const { t } = this.props;
         return <div>
             <TextField
                 id="comments"

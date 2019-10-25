@@ -19,24 +19,18 @@ class Landing extends Component {
  
 
     render() {
-        const { t, i18n } = this.props;
+        const { t } = this.props;
         return (<>
             <Router>
                 <div className="container">
-                    <span className="button"><button id="form" className="link"><Link to="/form" className ="link">{t('Form')}</Link></button></span>
-                    <span className="button"><button id="spreadsheet" className="link"><Link to="/spread" className="link">{t('Spreadsheet')}</Link></button></span>
-                    <span className="button"><button id="analytics" className="link"><Link to="/analytics" className="link">{t('Analytics')}</Link></button></span>
-                </div>
-
-                <p>
-                </p>
-                    
-                    <Route exact path="/" exact render={() => <Login />} />
-                    <Route exact path="/form" exact render={() => <Form />} />
-                    <Route exact path="/spread" exact render={() => <Spreadsheet />} />
-                    <Route exact path="/analytics" exact render={() => < Analytics/>} />
-
-                     
+                    <span className="button"><button id="form" className="link"><Link to="/form" className ="links">{t('Form')}</Link></button></span>
+                    <span className="button"><button id="spreadsheet" className="link"><Link to="/spread" className="links">{t('Spreadsheet')}</Link></button></span>
+                    <span className="button"><button id="analytics" className="link"><Link to="/analytics" className="links">{t('Analytics')}</Link></button></span>
+                </div>                  
+                    <Route exact path="/" render={() => <Login />} />
+                    <Route exact path="/form" render={() => <Form />} />
+                    <Route exact path="/spread" render={() => <Spreadsheet />} />
+                    <Route exact path="/analytics" render={() => < Analytics/>} />     
             </Router></>
         )
     }
