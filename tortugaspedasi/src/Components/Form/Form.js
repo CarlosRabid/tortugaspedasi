@@ -91,7 +91,7 @@ class Form extends Component {
     }
 
     render() {
-        const { t, i18n } = this.props;
+        const { t } = this.props;
         return (
             <>
                 <Paper className="form" style={{ margin: '5%', border: '9px solid #ccc' }}>

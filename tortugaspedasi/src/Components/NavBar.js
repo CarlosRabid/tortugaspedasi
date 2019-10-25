@@ -39,8 +39,6 @@ const useStyles = makeStyles(theme => ({
 
 
 function NavBar(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
   const spclasses = useStyles();
   
 
@@ -155,7 +153,7 @@ function NavBar(props) {
             )}
           </PopupState> */}
         </IconButton>
-        <Typography variant="title" color="inherit">
+        <Typography variant="h4" color="inherit">
           Tortugas Pedasí
           </Typography>
 
