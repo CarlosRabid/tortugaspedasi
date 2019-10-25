@@ -130,12 +130,13 @@ class TurtleInput extends Component {
         result = event.currentTarget.id
         console.log(result)
         if (result.length === 2) {
-            // this.props.updateTurtle({species: result})
+            this.props.handleSpecies(result)
             console.log(event)
-            return this.setState({ species: result, anchorEl: null })
+            this.setState({ species: result, anchorEl: null })
+            return 
 
         } else { 
-            this.props.updateTurtle({conditionstage: result})
+            this.props.handleCondition({conditionstage: result})
             return this.setState({ conditionstage: result, anchorStat: null }) }
         // console.log(this.state)
     };

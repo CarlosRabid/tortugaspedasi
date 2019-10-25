@@ -76,9 +76,9 @@ class Form extends Component {
         await this.setState({species})
     }
     handleCondition = async (input) => {
-        let condition = {...this.state.condition}
-        condition = input
-        await this.setState({condition})
+        let conditionstage = {...this.state.conditionstage}
+        conditionstage = input
+        await this.setState({conditionstage})
     }
     handleName = async (first, last ) => {
         let firstName = {...this.state.firstName}
@@ -213,7 +213,7 @@ class Form extends Component {
                                 <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
                             </div>
                         </ExpansionPanelSummary>
-                        <Turtle forms={this.state.forms} handleTurtInput={this.state.handleTurtInput} />
+                        <Turtle handleCondition={this.handleCondition} handleSpecies={this.handleSpecies} forms={this.state.forms} handleTurtInput={this.state.handleTurtInput} />
                     </ExpansionPanel>
                     <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
                         <ExpansionPanelSummary
