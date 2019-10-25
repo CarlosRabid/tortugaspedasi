@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Redirect} from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import NavBar from './Components/NavBar';
 import Login from './Components/Login';
@@ -27,14 +27,15 @@ class App extends Component {
       userName: name
     })
   }
-  updateNavBar = (location) => {
-    this.setState({
-      location: location
-    })
-  }
+  // updateNavBar = (location) => {
+  //   this.setState({
+  //     location: location
+  //   })
+  // }
+  
   changeLanguage = () => {
     const { i18n } = this.props;
-    if (this.state.lng==="en") {
+    if (this.state.lng === "en") {
 
       i18n.changeLanguage("es");
       return this.setState({ lng: "es" })
@@ -43,6 +44,8 @@ class App extends Component {
       return this.setState({ lng: "en" })
     }
   };
+
+  isLoggedIn = () => localStorage.getItem('user') || this.state.userName
 
   render() {
 
@@ -62,27 +65,27 @@ class App extends Component {
             updateNavBar={this.updateNavBar}>
           </NavBar>
 
-          <Route path="/" exact render={() =>
+          <Route exact path="/" render={() =>
             (this.state.userName ?
-              (<Redirect to="/home" />) :
+              (<Redirect to="/landing" />) :
               (<Login updateUser={this.updateUser}
                 updateNavBar={this.updateNavBar} />))}>
           </Route>
 
-          <Route path="/home" exact render={() =>
-            <Landing updateNavBar={this.updateNavBar} />}>
+          <Route exact path="/landing" render={() =>
+            <Landing  />}>
           </Route>
 
-          <Route path="/form" exact render={() =>
-            <Form updateNavBar={this.updateNavBar} />}>
+          <Route exact path="/form" render={() =>
+            <Form isLoggedIn={this.isLoggedIn} updateNavBar={this.updateNavBar} />}>
           </Route>
 
-          <Route path="/spread" exact render={() =>
-            <Spreadsheet updateNavBar={this.updateNavBar} />}>
+          <Route exact path="/spread" render={() =>
+            <Spreadsheet isLoggedIn={this.isLoggedIn} updateNavBar={this.updateNavBar} />}>
           </Route>
 
-          <Route path="/analytics" exact render={() =>
-            <Analytics updateNavBar={this.updateNavBar} />}>
+          <Route exact path="/analytics" render={() =>
+            <Analytics isLoggedIn={this.isLoggedIn} updateNavBar={this.updateNavBar} />}>
           </Route>
 
         </BrowserRouter>
