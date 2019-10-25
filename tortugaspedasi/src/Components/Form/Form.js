@@ -58,59 +58,59 @@ class Form extends Component {
 
     handleBeachInput = async (input) => {
         console.log(input)
-        let locationLatitude = {...this.state.locationLatitude}
-        let locationLongitude = {...this.state.locationLongitude}
-        let selectedBeach = {...this.state.selectedBeach}
+        let locationLatitude = { ...this.state.locationLatitude }
+        let locationLongitude = { ...this.state.locationLongitude }
+        let selectedBeach = { ...this.state.selectedBeach }
         locationLatitude = input.locationLatitude
         locationLongitude = input.locationLongitude
         selectedBeach = input.selectedBeach
-        await this.setState({locationLatitude, locationLongitude, selectedBeach})
+        await this.setState({ locationLatitude, locationLongitude, selectedBeach })
     }
     handleTurtInput = async (input) => {
-        let turtle = {...this.state.turtle}
+        let turtle = { ...this.state.turtle }
         turtle = input
-        await this.setState({turtle})
+        await this.setState({ turtle })
     }
-    handleName = async (first, last ) => {
-        let firstName = {...this.state.firstName}
-        let lastName = {...this.state.lastName}
+    handleName = async (first, last) => {
+        let firstName = { ...this.state.firstName }
+        let lastName = { ...this.state.lastName }
         firstName = first
         lastName = last
-        await this.setState({firstName, lastName})
+        await this.setState({ firstName, lastName })
     }
-    handleDate = async (first, last ) => {
-        let date = {...this.state.date}
-        let time = {...this.state.time}
+    handleDate = async (first, last) => {
+        let date = { ...this.state.date }
+        let time = { ...this.state.time }
         date = first
         time = last
-        await this.setState({date, time})
+        await this.setState({ date, time })
     }
     handleShift = async (input) => {
-        let firstName= {...this.state.firstName}
-        let lastName= {...this.state.lastName}
-        let date= {...this.state.date}
-        let time= {...this.state.time}
-        firstName= input.firstName
-        lastName= input.lastName
-        date= input.date
-        time= input.time
-        await this.setState({firstName, lastName, date, time})
-        }
+        let firstName = { ...this.state.firstName }
+        let lastName = { ...this.state.lastName }
+        let date = { ...this.state.date }
+        let time = { ...this.state.time }
+        firstName = input.firstName
+        lastName = input.lastName
+        date = input.date
+        time = input.time
+        await this.setState({ firstName, lastName, date, time })
+    }
     handleNest = (input) => {
-        let eggCount= {...this.state.eggCount}
-        let layTime= {...this.state.layTime}
-        let hatchEst= {...this.state.hatchEst}
-        let rehomed= {...this.state.rehomed}
-        eggCount =  input.eggCount
-        layTime =  input.layTime
+        let eggCount = { ...this.state.eggCount }
+        let layTime = { ...this.state.layTime }
+        let hatchEst = { ...this.state.hatchEst }
+        let rehomed = { ...this.state.rehomed }
+        eggCount = input.eggCount
+        layTime = input.layTime
         hatchEst = input.hatchEst
-        rehomed =  input.rehomed
-        this.setState({eggCount, layTime, hatchEst, rehomed})
+        rehomed = input.rehomed
+        this.setState({ eggCount, layTime, hatchEst, rehomed })
     }
     handleLab = (input) => {
-        let salvageable= {...this.state.salvageable}
-        salvageable =  input.salvageable
-        this.setState({salvageable})
+        let salvageable = { ...this.state.salvageable }
+        salvageable = input.salvageable
+        this.setState({ salvageable })
     }
 
     submitForm = async (input) => {
@@ -140,7 +140,7 @@ class Form extends Component {
         // hasTurtle = formInput.turtleInput.some(exist)
 
         this.setState({
-            hasTurtle        
+            hasTurtle
         })
     }
 
@@ -155,7 +155,7 @@ class Form extends Component {
             hasNest
         })
     }
-    
+
 
 
     submitNewForm = async (shift, observation, turtle, nest) => {
@@ -173,10 +173,10 @@ class Form extends Component {
     handleNest = (input) => {
 
         let eggCount = [... this.state.eggCount]
-        let layTime =[...this.state.layTime]
-        let hatchEst =[...this.state.hatchEst]
-        let rehomed =[...this.state.rehomed]
-        let salvageable =[...this.state.salvageable]
+        let layTime = [...this.state.layTime]
+        let hatchEst = [...this.state.hatchEst]
+        let rehomed = [...this.state.rehomed]
+        let salvageable = [...this.state.salvageable]
     }
 
     render() {
@@ -186,7 +186,7 @@ class Form extends Component {
             <div id="formContainer" >
                 <h1>{t('TORTUGA WATCH FORM')}</h1>
                 <div id="beachButton" >
-                <BeachLocations/>
+                    <BeachLocations />
                 </div>
                 <br />
                 <br />
@@ -220,23 +220,24 @@ class Form extends Component {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1c-content"
                         id="turtles"
-                        >
-                            <div className="helptext">
-                                <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
-                            </div>
-                        </ExpansionPanelSummary>
-                        <NestInput forms={this.state.forms} handleNest={this.state.handleNest}/>
-                    </ExpansionPanel>
-                    <Comments />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="medium"
-                        className="submit"
-                        // startIcon={<SaveIcon />}
-                        onClick={this.submitForm}
                     >
-            <Button        
+                        <div className="helptext">
+                            <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <NestInput forms={this.state.forms} handleNest={this.state.handleNest} />
+                </ExpansionPanel>
+                <Comments />
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="medium"
+                    className="submit"
+                    // startIcon={<SaveIcon />}
+                    onClick={this.submitForm}
+                >
+                </Button>
+                <Button
                     variant="contained"
                     color="primary"
                     size="medium"
