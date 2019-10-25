@@ -1,24 +1,42 @@
-h3 {
+h1 {
     text-align: center;
     position: inherit;
     top: 50%;
     left: 50%;
-    color: black;
+    color:#b4b8ab;
   }
 
-.form{
-  background-image: url(https://images.unsplash.com/photo-1519972064555-542444e71b54?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);
-  background-position: center;
-  width: 90%; 
-  padding: 12px; 
-  border: 20px solid #ccc; 
-  border-radius: 10px; 
-  box-sizing: border-box; 
-  margin: 10px;
-  resize: vertical;
-  background-color: rgb(207, 204, 204)
-  
+#menuplayascont{
+  display: grid;
+  justify-items: end;
+ align-items: end;
 }
+
+
+ #playaselect{
+   width: 50px;
+ } 
+
+ .MuiOutlinedInput-inputSelect {
+  padding-right: 64px;
+}
+.MuiSelect-select{
+  min-width: 64px !important;
+}
+
+#formContainer{
+    background-color: #459576;
+    width: 90vw;
+    height: 100% ;
+    padding: 10px; 
+    margin: 5%;
+    border: 4px solid #2c5f4c; 
+    border-radius: 8px; 
+    box-sizing: border-box; 
+    resize: vertical
+  }
+
+
 
 .forms{
   max-width: 95vw;
