@@ -38,10 +38,6 @@ const useStyles = makeStyles(theme => ({
 
 function NavBar(props) {
 
-
-  // const [anchorE1] = React.useState(null);
-  // const open = Boolean(anchorEl);
-
   const spclasses = useStyles();
 
 
@@ -128,25 +124,9 @@ function NavBar(props) {
           <MenuIcon ></MenuIcon>
 
 
-          {/* <PopupState variant="popover" popupId="demo-popup-menu">
-            {popupState => (
-              <React.Fragment>
-                <Menu {...bindMenu(popupState)}>
-                 <MenuItem key = "home" id = "home" onClick={handleClick}>Home</MenuItem>
-                 
-                 
-                 
-                  {/* {options.map(option => (
-                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                      {option}
-                    </MenuItem>
-                  ))} */}
-          {/* </Menu>
-              </React.Fragment>
-            )}
-          </PopupState> */}
+         
         </IconButton>
-        <Typography variant="h4" color="inherit">
+        <Typography variant="h6" color="inherit">
           Tortugas Pedasí
 
           </Typography>
