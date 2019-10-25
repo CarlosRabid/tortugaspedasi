@@ -18,42 +18,51 @@ class ShiftInput extends Component {
             time: ""
         }
     }
+    
     componentDidMount() {
         // this.setState({date: Date()})
+        // this.props.submitForm(this.state)
     }
     handleInput = (event) => {
         console.log(event)
         let state = { ...this.state }
         let date = state.date
         let time = state.time
+        let props = this.props
         // let property = "";
         // let value = ""
         if (event.target) {
-
-            return this.setState({ [event.target.id]: event.target.value })
+            
+            this.setState({ [event.target.id]: event.target.value })
+            this.props.handleName(this.state.firstName, this.state.lastName)
+            return 
         } else {
             date = moment(event).format('DD/MM/YYYY')
             time = moment(event).format('HH:mm')
             // date = typeof(date)
             console.log(typeof (date))
-            return this.setState({ date, time })
+            this.setState({ date, time })
+            this.props.handleDate(this.state.date, this.state.time)
+            return 
         }
     }
     addShift = () => {
         this.props.addShift(this.state.firstName, this.state.lastName, this.state.date)
     }
-
+    submitForm = (ShiftInput) => {
+        this.props.submitForm(ShiftInput)
+    }
+    
     render() {
         const { t } = this.props;
         const height = 38;
         const marginLeft = '5%';
         const heightD = '10%';
-        // let input = [{ formName: "First Name", stateName: "firstName" }, { formName: "Last Name", stateName: "lastName" }]
         return (
             <div>
                 {/* <h4>{t('Shift')}</h4> */}
                 <MuiPickersUtilsProvider utils={DateFnsUtils} >
-                    <Grid container justify="space-between" style={{marginLeft: '7%'}}>
+                    <Grid container justify="space-between" style={{ marginLeft: '7%' }}>
                         <TextField
                             id="firstName"
                             name="firstName"
@@ -65,10 +74,6 @@ class ShiftInput extends Component {
                             autoComplete="on"
                             style={{ height, marginLeft }}
                         />
-                        {/* <span className="individualShift">  </span> */}
-                        {/* <span className="individualShift"> {i.formName}: </span> 
-                           <input className="shiftInput"
-                            name={i.stateName} onChange={this.handleInput}></input> */}
                         <TextField
                             id="lastName"
                             name="lastName"
@@ -84,63 +89,45 @@ class ShiftInput extends Component {
                         <br />
                         <br />
                         <br />
-                        
-                        {/* <label>
-                         <input type="date" name="date" value={this.state.date} onChange={this.handleInput} /> 
-                        
-                    <TextField
-                        id="date"
-                        label=
-                        type="datetime-local"
-                        defaultValue={this.state.date}
-                        className="dateinput"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        onChange={this.handleInput}
-                        style={{ height }}
-                        margin="none"
-                    /> 
-                    </label> */}
-                    <div style={{display:"inline-flex"}}>
-                        <KeyboardDatePicker
-                            margin="none"
-                            id="date"
-                            label={t('Date of watch')}
-                            format="dd/mm/yyyy"
-                            value={moment(this.state.date, 'dd/mm/yyyy').toDate()}
-                            // defaultValue={this.state.date}
-                            onChange={this.handleInput}
-                            KeyboardButtonProps={{
-                                'aria-label': t('Date'),
-                            }}
-                            InputLabelProps={{ shrink: true }}
-                            style={{ height: heightD, marginLeft ,width: '42%'}}
-                            variant="standard"
-                            size="small"
-                            helperText={false}
+                        <div style={{ display: "inline-flex" }}>
+                            <KeyboardDatePicker
+                                margin="none"
+                                id="date"
+                                label={t('Date of watch')}
+                                format="dd/mm/yyyy"
+                                value={moment(this.state.date, 'dd/mm/yyyy').toDate()}
+                                // defaultValue={this.state.date}
+                                onChange={this.handleInput}
+                                KeyboardButtonProps={{
+                                    'aria-label': t('Date'),
+                                }}
+                                InputLabelProps={{ shrink: true }}
+                                style={{ height: heightD, marginLeft, width: '42%' }}
+                                variant="standard"
+                                size="small"
+                                helperText={false}
                             // type="date"
-                            
+
                             />
-                        <KeyboardTimePicker
-                            margin="none"
-                            variant="standard"
-                            // id="date"
-                            id="time"
-                            label={t('Time ')}
-                            format="HH:mm"
-                            // defaultValue="15:02"
-                            value={moment(this.state.time, 'HH:mm').toDate()}
-                            onChange={this.handleInput}
-                            KeyboardButtonProps={{
-                                'aria-label': t('Time'),
-                            }}
-                            className="dateinput"
-                            style={{ height: heightD, marginLeft, width: '23%' }}
-                            InputLabelProps={{ shrink: true }}
-                            helperText={false}
-                            size="small"
-                        />
+                            <KeyboardTimePicker
+                                margin="none"
+                                variant="standard"
+                                // id="date"
+                                id="time"
+                                label={t('Time ')}
+                                format="HH:mm"
+                                // defaultValue="15:02"
+                                value={moment(this.state.time, 'HH:mm').toDate()}
+                                onChange={this.handleInput}
+                                KeyboardButtonProps={{
+                                    'aria-label': t('Time'),
+                                }}
+                                className="dateinput"
+                                style={{ height: heightD, marginLeft, width: '23%' }}
+                                InputLabelProps={{ shrink: true }}
+                                helperText={false}
+                                size="small"
+                            />
                         </div>
                     </Grid>
                 </MuiPickersUtilsProvider>
