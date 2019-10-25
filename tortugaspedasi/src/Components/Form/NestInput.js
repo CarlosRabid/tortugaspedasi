@@ -23,6 +23,7 @@ class NestInput extends Component {
 
     handleInput = (event) => {
         this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
+        this.props.handleNest(this.state)
     }
     handleRadioButton = event => {
         let salvageable = { ...this.state.salvageable };

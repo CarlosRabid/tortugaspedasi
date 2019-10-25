@@ -3,14 +3,15 @@ import { Button, Menu, MenuItem } from '@material-ui/core';
 import { withTranslation } from 'react-i18next';
 
 class BeachLocation extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             locationLatitude: "",  // set-up by beach selection
             locationLongitude: "", // set-up by beach selection
             showMenu: false,
             selectedBeach: null
         }
+
         this.beaches = {
             playatoro: {
                 name: "Playa El Toro",
@@ -30,21 +31,25 @@ class BeachLocation extends Component {
         }
     }
     handleClose = (event) => {
+        console.log()
         let idx = event.target.id
         let currentBeach = this.beaches[idx]
         let locationLatitude = { ...this.state.locationLatitude }
         let locationLongitude = { ...this.state.locationLongitude }
-        let showMenu = { ...this.state.showMenu }
         let selectedBeach = { ...this.state.selectedBeach }
-        console.log(currentBeach)
         locationLatitude = currentBeach.latitude
         locationLongitude = currentBeach.longitude
-        showMenu = null
         selectedBeach = currentBeach.name
-        this.setState({ locationLatitude, locationLongitude, showMenu, selectedBeach })
+        this.props.handleBeachInput({locationLatitude, locationLongitude, selectedBeach})
+        this.setState({ locationLatitude, locationLongitude, selectedBeach 
+        })
+        this.hideMenu()
     }
     showMenu = () => {
         this.setState({ showMenu: true })
+    }
+    hideMenu = () => {
+        this.setState({ showMenu: null })
     }
     render() {
         const { t } = this.props;
@@ -57,7 +62,7 @@ class BeachLocation extends Component {
                 anchorEl={this.state.showMenu}
                 keepMounted
                 open={Boolean(this.state.showMenu)}
-                onClose={this.handleClose}
+                onClose={this.hideMenu}
             >
                 <MenuItem id="playaarenal" onClick={this.handleClose}>Playa El Arenal</MenuItem>
                 <MenuItem id="playatoro" onClick={this.handleClose}>Playa El Toro</MenuItem>
