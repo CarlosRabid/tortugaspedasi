@@ -54,7 +54,9 @@ class Form extends Component {
             layTime: "",
             hatchEst: "",
             rehomed: "",
-            salvageable: ""
+            salvageable: "",
+            daten: "",
+            timen: "",
         }
 
         // const useStyles = makeStyles(theme => ({
@@ -134,12 +136,16 @@ class Form extends Component {
         let hatchEst = { ...this.state.hatchEst }
         let rehomed = { ...this.state.rehomed }
         let salvageable = { ...this.state.salvageable }
+        let daten = {...this.state.daten}
+        let timen = {...this.state.timen}
         eggCount = input.eggCount
         layTime = input.layTime
         hatchEst = input.hatchEst
         rehomed = input.rehomed
         salvageable = input.salvageable
-        await this.setState({ eggCount, layTime, hatchEst, rehomed, salvageable })
+        daten = input.daten
+        timen = input.timen
+        await this.setState({ eggCount, layTime, hatchEst, rehomed, salvageable , daten, timen})
     }
     handleLab = (input) => {
         let salvageable = { ...this.state.salvageable }
