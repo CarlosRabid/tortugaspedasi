@@ -27,11 +27,11 @@ class App extends Component {
       userName: name
     })
   }
-  // updateNavBar = (location) => {
-  //   this.setState({
-  //     location: location
-  //   })
-  // }
+  updateNavBar = (location) => {
+    this.setState({
+      location: location
+    })
+  }
 
   changeLanguage = () => {
     const { i18n } = this.props;
@@ -47,7 +47,13 @@ class App extends Component {
 
   isLoggedIn = () => localStorage.getItem('user') || this.state.userName
 
-  logOut = () => this.setState({userName: ""}) 
+  logOut = () => {
+    this.setState({
+      location: "",
+      userName: "",
+      lng: "en",
+    })
+    localStorage.clear() }
 
   render() {
 

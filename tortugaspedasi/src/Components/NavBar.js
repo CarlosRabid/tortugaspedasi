@@ -35,11 +35,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
 function NavBar(props) {
-
+const classes = styles;
   const spclasses = useStyles();
-
 
   const [state, setState] = React.useState({
     top: false,
@@ -48,14 +46,7 @@ function NavBar(props) {
     right: false,
   });
 
-
-  const { classes } = props;
-  function onLogin() {
-    alert("Login TBD");
-  }
-
   function onLogout() {
-    localStorage.clear()
     props.logOut()
   }
 
@@ -112,8 +103,6 @@ function NavBar(props) {
     setState({ ...state, [side]: open });
   };
 
-
-
   return (
     <div>
       <AppBar position="fixed">
@@ -122,51 +111,34 @@ function NavBar(props) {
           {sideList('left')}
         </Drawer>
         <Toolbar>
+
           <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
             <MenuIcon ></MenuIcon>
-
-
-
           </IconButton>
+
           <Typography variant="h6" color="inherit">
             Tortugas Pedasí
-  
           </Typography>
 
           <ToolbarMenu
             render={collapsed => {
               return collapsed
-                 ? [   
-                  // <MenuItem key="login" onClick={onLogin} autoclose={true}>
-                  //   Login
-                  //   </MenuItem>,
-                  <MenuItem key="logout" onClick={onLogout} autoclose={true}>
-                    Logout
-                    </MenuItem>
-                ]
-                : [
-                //  <Button
-                //   key="login"
-                //   color="inherit"
-                //   onClick={onLogin}
-                //   className={classes.menuButton}
-                // >
-                //   Login
-                //   </Button>,
-                < Button
-                    key = "signup"
-              color = "inherit"
-              onClick = { onLogout }
-              className = { classes.menuButton }
+                ? [<MenuItem key="logout" onClick={onLogout} autoclose={true}>
+                  Logout
+                    </MenuItem>]
+                : [< Button
+                  key="signup"
+                  color="inherit"
+                  onClick={onLogout}
+                  className={classes.menuButton}
                 >
-                Logout
-                    </Button>
-      ];
-  }}
-/>
+                  Logout
+                    </Button>];
+            }}
+          />
         </Toolbar>
       </AppBar>
-      <div className={spclasses.offset}> {/* to accomdate for top white space */}
+      <div className={spclasses.offset}> {/* to add content below navbar */}
       </div>
     </div>
   );
@@ -177,33 +149,3 @@ NavBar.propTypes = {
 };
 
 export default withStyles(styles)(NavBar);
-
-
-
-// MATERIAL UI CODE //
-            // <div>
-            //     <Router>
-            //         <div><AppBar position="static">
-
-            //             <Toolbar>
-            //                 <div className="navbarLinks">
-            //                     <Link to="/">Home</Link>
-            //                     <Link to="/form">Form</Link>
-            //                     <Link to="/spread">Spreadsheet</Link>
-            //                     <Link to="/analytics">Analytics</Link>
-
-            //                 </div>
-            //                 <div id="logoutButton">
-            //                     <Button edge="end" variant="contained" >Logout</Button>
-            //                 </div>
-            //             </Toolbar>
-
-            //         </AppBar>
-            //             <Route path="/" exact render={() => <Landing />} />
-            //             <Route path="/form" exact render={() => <Form />} />
-            //             <Route path="/spread" exact render={() => <Spreadsheet />} />
-            //             <Route path="/analytics" exact render={() => < Analytics />} />
-            //         </div>
-            //     </Router>
-
-            // </div>

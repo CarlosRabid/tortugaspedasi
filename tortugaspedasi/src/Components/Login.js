@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Landing from './Landing';
 
 let credentials = {
-    Admin1: "TSDqmaPu",    
-    Admin2: "ngEyYWTp", 
+    Admin1: "TSDqmaPu",
+    Admin2: "ngEyYWTp",
     Admin3: "3fv9fZGL",
-    Admin4: "zwvY5Tjt",    
+    Admin4: "zwvY5Tjt",
     Admin5: "wZXaHrxF",
 }
 
@@ -45,11 +45,11 @@ class Login extends Component {
         this.setState({ user, password, rememberMe });
     };
 
-    login = (event) => { 
+    login = (event) => {
 
-        if (credentials[this.state.user] ===  this.state.password ) {
-            let admin = {user: this.state.user, password: this.state.password, rememberMe: true, isLoggedIn: true}
-            this.setState({admin: admin})
+        if (credentials[this.state.user] === this.state.password) {
+            let admin = { user: this.state.user, password: this.state.password, rememberMe: true, isLoggedIn: true }
+            this.setState({ admin: admin })
             localStorage.admin = JSON.stringify(admin)
             event.preventDefault();
             let username = event.target[0].value
@@ -62,45 +62,39 @@ class Login extends Component {
     }
 
     loginFuncs = (event) => {
-       setTimeout(this.handleFormSubmit(), 5000)
-       this.login(event)
+        setTimeout(this.handleFormSubmit(), 5000)
+        this.login(event)
     }
 
-    logout = () => {
-        let admin = {
-            user: "", 
-            password: "", 
-            rememberMe: false, 
-            isLoggedIn: false
-        }
-        localStorage.admin=JSON.stringify(admin)
-        this.setState({admin: admin})
-    }
-    
-render() {
-    return (
-        <div>
-            {/* {this.state.admin.isLoggedIn ?
-                <div> <Landing logout={this.logout}/>
-                    <button onClick={this.logout}>Logout</button>
-                </div> 
-                :             */}
-            <form onSubmit={this.loginFuncs} >
-                <label>
-                    User: <input name="user" value={this.state.user} onChange={this.handleChange} />
-                </label>
-                <label>
-                    Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-                </label>
-                <label>
-                    <input name="rememberMe" checked={this.state.rememberMe} onChange={this.handleChange} type="checkbox" /> Remember me
+    // logout = () => {
+    //     let admin = {
+    //         user: "",
+    //         password: "",
+    //         rememberMe: false,
+    //         isLoggedIn: false
+    //     }
+    //     localStorage.admin = JSON.stringify(admin)
+    //     this.setState({ admin: admin })
+    // }
+
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.loginFuncs} >
+                    <label>
+                        User: <input name="user" value={this.state.user} onChange={this.handleChange} />
                     </label>
-                <button type="submit" >Sign In</button>
-            </form>
-            {/* } */}
-        </div>
-        
-    );
-}
+                    <label>
+                        Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                    </label>
+                    <label>
+                        <input name="rememberMe" checked={this.state.rememberMe} onChange={this.handleChange} type="checkbox" /> Remember me
+                    </label>
+                    <button type="submit" >Sign In</button>
+                </form>
+            </div>
+
+        );
+    }
 }
 export default Login
