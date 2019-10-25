@@ -37,8 +37,11 @@ const useStyles = makeStyles(theme => ({
 
 
 function NavBar(props) {
-  // const [anchorEl, setAnchorEl] = React.useState(null);
+
+
+  // const [anchorE1] = React.useState(null);
   // const open = Boolean(anchorEl);
+
   const spclasses = useStyles();
 
 
@@ -116,15 +119,36 @@ function NavBar(props) {
   return (
     <div>
       <AppBar position="fixed">
-        <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-          {sideList('left')}
-        </Drawer>
-        <Toolbar>
-          <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
-            <MenuIcon ></MenuIcon>
-          </IconButton>
-          <Typography variant="title" color="inherit">
-            Tortugas Pedasí
+
+      <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+        {sideList('left')}
+      </Drawer>
+      <Toolbar>
+        <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
+          <MenuIcon ></MenuIcon>
+
+
+          {/* <PopupState variant="popover" popupId="demo-popup-menu">
+            {popupState => (
+              <React.Fragment>
+                <Menu {...bindMenu(popupState)}>
+                 <MenuItem key = "home" id = "home" onClick={handleClick}>Home</MenuItem>
+                 
+                 
+                 
+                  {/* {options.map(option => (
+                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+                      {option}
+                    </MenuItem>
+                  ))} */}
+          {/* </Menu>
+              </React.Fragment>
+            )}
+          </PopupState> */}
+        </IconButton>
+        <Typography variant="h4" color="inherit">
+          Tortugas Pedasí
+
           </Typography>
 
           <ToolbarMenu
