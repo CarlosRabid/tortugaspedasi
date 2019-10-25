@@ -33,12 +33,13 @@ class App extends Component {
   }
   changeLanguage = () => {
     const { t, i18n } = this.props;
-    if (this.state.lng=="en") {
+    if (this.state.lng == "en") {
       i18n.changeLanguage("es");
-      return this.setState({lng: "es"})
-    }else{i18n.changeLanguage("en")
-    return this.setState({lng: "en"})
-  }
+      return this.setState({ lng: "es" })
+    } else {
+      i18n.changeLanguage("en")
+      return this.setState({ lng: "en" })
+    }
   };
 
   render() {
@@ -47,33 +48,40 @@ class App extends Component {
       {/* <button onClick={() => changeLanguage('en')}>en</button>
         <button onClick={() => changeLanguage('es')}>es</button> */}
       <FormControlLabel
-        control={<Switch checked={(this.state.lng==="es")?true:false} onChange={this.changeLanguage} />}
-        label={(this.state.lng==="es")? "Switch to English":"Cambiar a Español"}
+        control={<Switch checked={(this.state.lng === "es") ? true : false} onChange={this.changeLanguage} />}
+        label={(this.state.lng === "es") ? "Switch to English" : "Cambiar a Español"}
       />
       <div>
         <Router>
+
           <NavBar location={this.state.location}
             name={this.state.userName}
             updateNavBar={this.updateNavBar}>
           </NavBar>
+
           <Route path="/" exact render={() =>
             (this.state.userName ?
               (<Redirect to="/home" />) :
               (<Login updateUser={this.updateUser}
                 updateNavBar={this.updateNavBar} />))}>
           </Route>
+
           <Route path="/home" exact render={() =>
             <Landing updateNavBar={this.updateNavBar} />}>
           </Route>
+
           <Route path="/form" exact render={() =>
             <Form updateNavBar={this.updateNavBar} />}>
           </Route>
+
           <Route path="/spread" exact render={() =>
             <Spreadsheet updateNavBar={this.updateNavBar} />}>
           </Route>
+
           <Route path="/analytics" exact render={() =>
             <Analytics updateNavBar={this.updateNavBar} />}>
           </Route>
+          
         </Router>
       </div></>
     );
