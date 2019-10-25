@@ -37,10 +37,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-
 function NavBar(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+  // const open = Boolean(anchorEl);
   const spclasses = useStyles();
   
 
@@ -51,13 +50,6 @@ function NavBar(props) {
     right: false,
   });
 
-  // const handleClick = event => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
 
   const { classes } = props;
   function onLogin() {
@@ -66,10 +58,6 @@ function NavBar(props) {
   function onLogout() {
     alert("Logout TBD");
   }
-
-  // function testClick(text) {
-  //   alert("Redirecting to " + text);
-  // }
 
 
   const sideList = side => (
@@ -124,7 +112,7 @@ function NavBar(props) {
     setState({ ...state, [side]: open });
   };
 
-  // let options = ["form", "test"]
+
 
   return (
     <div>
@@ -135,25 +123,6 @@ function NavBar(props) {
       <Toolbar>
         <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
           <MenuIcon ></MenuIcon>
-
-
-          {/* <PopupState variant="popover" popupId="demo-popup-menu">
-            {popupState => (
-              <React.Fragment>
-                <Menu {...bindMenu(popupState)}>
-                 <MenuItem key = "home" id = "home" onClick={handleClick}>Home</MenuItem>
-                 
-                 
-                 
-                  {/* {options.map(option => (
-                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                      {option}
-                    </MenuItem>
-                  ))} */}
-          {/* </Menu>
-              </React.Fragment>
-            )}
-          </PopupState> */}
         </IconButton>
         <Typography variant="title" color="inherit">
           Tortugas Pedasí
