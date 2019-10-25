@@ -10,8 +10,6 @@ import Analytics from './Components/Analytics/Analytics';
 import { FormControlLabel, Switch } from '@material-ui/core';
 import './App.css';
 
-
-
 class App extends Component {
   constructor() {
     super()
@@ -31,6 +29,7 @@ class App extends Component {
     this.setState({
       location: location
     })
+    console.log(location)
   }
 
   changeLanguage = () => {
@@ -49,11 +48,17 @@ class App extends Component {
 
   logOut = () => {
     this.setState({
-      location: "",
       userName: "",
       lng: "en",
     })
-    localStorage.clear() }
+    localStorage.admin= "" 
+  //localStorage.clear()
+  // this.setState = {
+  //   location: "",
+  //   userName: "",
+  //   lng: "en",
+  // }
+  }
 
   render() {
 
