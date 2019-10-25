@@ -21,12 +21,40 @@ class App extends Component {
       location: "",
       userName: "",
       lng: "en",
+      isOnline: true
     }
   }
 
   componentDidMount (){
     this.setState({isOnline: navigator.onLine})
+    // const storage = localStorage.getItem('isOnline')
+    // console.log(storage)
   }
+
+  saveForm (shift, observation, turtle, nest) {
+    if (navigator.onLine) {
+      axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
+      console.log('online')
+    }
+    else {
+      let form = { shift: '', observation: '', turtle: '', nest: '' } 
+      localStorage.form = JSON.stringify(form)
+      console.log('offline')
+    }
+  }
+
+  // saveLocalStorage () {
+  //     console.log(checkStorage)
+  //     console.log('items in localStorage found')
+  //     // axios.post('http://localhost:7777/newForm', { checkStorage})
+  //     // localStorage.clear()
+  //   }
+  //   else {
+  //     console.log('nothing in localStorage')
+  //   }
+    
+  // }
+
 
   updateUser = (name) => {
     this.setState({
@@ -80,7 +108,7 @@ class App extends Component {
           </Route>
 
           <Route path="/form" exact render={() =>
-            <Form updateNavBar={this.updateNavBar} />}>
+            <Form saveForm={this.saveForm} />}>
           </Route>
 
           <Route path="/spread" exact render={() =>
@@ -91,10 +119,14 @@ class App extends Component {
             <Analytics updateNavBar={this.updateNavBar} />}>
           </Route>
 
+            {/* testing local storage being saved offline
+          <button onClick={this.saveForm} >SAVE FORM</button> */}
+
         </BrowserRouter>
 
       </div></>
     );
+    
   }
 }
 

@@ -8,7 +8,7 @@ import NestInput from './NestInput';
 import Button from '@material-ui/core/Button';
 import './form.css';
 import { withTranslation } from 'react-i18next';
-import { Paper, Typography} from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 //import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
@@ -53,78 +53,78 @@ class Form extends Component {
 
     handleBeachInput = async (input) => {
         console.log(input)
-        let locationLatitude = {...this.state.locationLatitude}
-        let locationLongitude = {...this.state.locationLongitude}
-        let selectedBeach = {...this.state.selectedBeach}
+        let locationLatitude = { ...this.state.locationLatitude }
+        let locationLongitude = { ...this.state.locationLongitude }
+        let selectedBeach = { ...this.state.selectedBeach }
         locationLatitude = input.locationLatitude
         locationLongitude = input.locationLongitude
         selectedBeach = input.selectedBeach
-        await this.setState({locationLatitude, locationLongitude, selectedBeach})
+        await this.setState({ locationLatitude, locationLongitude, selectedBeach })
     }
     handleTurtInput = async (input) => {
-        let turtle = {...this.state.turtle}
+        let turtle = { ...this.state.turtle }
         turtle = input
-        await this.setState({turtle})
+        await this.setState({ turtle })
     }
-    handleName = async (first, last ) => {
-        let firstName = {...this.state.firstName}
-        let lastName = {...this.state.lastName}
+    handleName = async (first, last) => {
+        let firstName = { ...this.state.firstName }
+        let lastName = { ...this.state.lastName }
         firstName = first
         lastName = last
-        await this.setState({firstName, lastName})
+        await this.setState({ firstName, lastName })
     }
-    handleDate = async (first, last ) => {
-        let date = {...this.state.date}
-        let time = {...this.state.time}
+    handleDate = async (first, last) => {
+        let date = { ...this.state.date }
+        let time = { ...this.state.time }
         date = first
         time = last
-        await this.setState({date, time})
+        await this.setState({ date, time })
     }
     handleShift = async (input) => {
-        let firstName= {...this.state.firstName}
-        let lastName= {...this.state.lastName}
-        let date= {...this.state.date}
-        let time= {...this.state.time}
-        firstName= input.firstName
-        lastName= input.lastName
-        date= input.date
-        time= input.time
-        await this.setState({firstName, lastName, date, time})
-        }
+        let firstName = { ...this.state.firstName }
+        let lastName = { ...this.state.lastName }
+        let date = { ...this.state.date }
+        let time = { ...this.state.time }
+        firstName = input.firstName
+        lastName = input.lastName
+        date = input.date
+        time = input.time
+        await this.setState({ firstName, lastName, date, time })
+    }
     handleNest = (input) => {
-        let eggCount= {...this.state.eggCount}
-        let layTime= {...this.state.layTime}
-        let hatchEst= {...this.state.hatchEst}
-        let rehomed= {...this.state.rehomed}
-        eggCount =  input.eggCount
-        layTime =  input.layTime
+        let eggCount = { ...this.state.eggCount }
+        let layTime = { ...this.state.layTime }
+        let hatchEst = { ...this.state.hatchEst }
+        let rehomed = { ...this.state.rehomed }
+        eggCount = input.eggCount
+        layTime = input.layTime
         hatchEst = input.hatchEst
-        rehomed =  input.rehomed
-        this.setState({eggCount, layTime, hatchEst, rehomed})
+        rehomed = input.rehomed
+        this.setState({ eggCount, layTime, hatchEst, rehomed })
     }
     handleLab = (input) => {
-        let salvageable= {...this.state.salvageable}
-        salvageable =  input.salvageable
-        this.setState({salvageable})
+        let salvageable = { ...this.state.salvageable }
+        salvageable = input.salvageable
+        this.setState({ salvageable })
     }
 
-    submitForm = async (input) => {
-        // let idx = Object.keys
-        // let state = {...this.state}
-        // state[] = { ...this.state.locationLatitude }
-        // let locationLongitude = { ...this.state.locationLongitude }
-        // let selectedBeach = { ...this.state.selectedBeach }
-        // let forms = {... this.state.forms}
-        // let idx = Object.keys(forms).length
-        // // await forms[0]=inputValue
-        // console.log(inputValue)
-        // this.checkTurtleData(forms)
-        // // this.checkNestData(forms)
-        // this.setState({
-        //     forms
-        // })
-        // console.log(this.state.forms)
-    }
+    // submitForm = async (input) => {
+    // let idx = Object.keys
+    // let state = {...this.state}
+    // state[] = { ...this.state.locationLatitude }
+    // let locationLongitude = { ...this.state.locationLongitude }
+    // let selectedBeach = { ...this.state.selectedBeach }
+    // let forms = {... this.state.forms}
+    // let idx = Object.keys(forms).length
+    // // await forms[0]=inputValue
+    // console.log(inputValue)
+    // this.checkTurtleData(forms)
+    // // this.checkNestData(forms)
+    // this.setState({
+    //     forms
+    // })
+    // console.log(this.state.forms)
+
 
     checkTurtleData = (formInput) => {
         console.log(formInput)
@@ -135,7 +135,7 @@ class Form extends Component {
         // hasTurtle = formInput.turtleInput.some(exist)
 
         this.setState({
-            hasTurtle        
+            hasTurtle
         })
     }
 
@@ -150,20 +150,21 @@ class Form extends Component {
             hasNest
         })
     }
-    
+
 
 
     submitNewForm = async (shift, observation, turtle, nest) => {
         console.log('working')
         await axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
     }
+
     handleExpandClick = (event) => {
         console.log(event.target)
         let showFpart = true
         // showFpart = !showFpart
         console.log(showFpart)
         this.setState({ showFpart: showFpart })
-    }
+    };
 
     render() {
         const { t } = this.props;
@@ -185,7 +186,7 @@ class Form extends Component {
                                 <Typography className="Shift" variant="h6" component="h6">{t('Shift')}</Typography>
                             </div>
                         </ExpansionPanelSummary>
-                        <ShiftInput forms={this.state.forms} handleName={this.handleName} handleDate={this.handleDate}/>
+                        <ShiftInput forms={this.state.forms} handleName={this.handleName} handleDate={this.handleDate} />
                         <br />
                     </ExpansionPanel>
                     <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
@@ -210,7 +211,7 @@ class Form extends Component {
                                 <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
                             </div>
                         </ExpansionPanelSummary>
-                        <NestInput forms={this.state.forms} handleNest={this.state.handleNest}/>
+                        <NestInput forms={this.state.forms} handleNest={this.state.handleNest} />
                     </ExpansionPanel>
                     <Comments />
                     <Button
@@ -219,7 +220,7 @@ class Form extends Component {
                         size="medium"
                         className="submit"
                         // startIcon={<SaveIcon />}
-                        onClick={this.submitForm}
+                        onClick={this.saveForm}
                     >
                         {t('Submit Form')}
                     </Button>
@@ -230,4 +231,5 @@ class Form extends Component {
 }
 
 
-export default withTranslation('translation')(Form);
+
+    export default withTranslation('translation')(Form);
