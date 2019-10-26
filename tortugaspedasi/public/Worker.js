@@ -4,7 +4,8 @@ var urlsToCache = [
   './index.html',
   './landing.css',
   './index.js',
-  './manifest.json'
+  './manifest.json',
+  './src/styles/background-turtle.jpeg'
 ];
 
 // Install a service worker

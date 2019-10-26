@@ -3,6 +3,7 @@ import { ComposedChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Legend,
 import moment from 'moment'
 import Axios from 'axios';
 import ChartFilters from './ChartFilters';
+import '../../styles/analytics.css'
 
 class DynamicChart extends Component {
     constructor() {
@@ -80,51 +81,54 @@ class DynamicChart extends Component {
         let notShowingMoonPhases
 
         return (
-            <div style={{width: '100vw', height: '50vh'}} >
-                <h3>Count: </h3>
-                <select id="countBy" name="countBy" value={this.state.countBy} onChange={this.handleChange}>
-                    {countOptions.map(o => <option value={o}>{o}</option>)}
-                </select>
-                <select id="time" name="time" value={this.state.time} onChange={this.handleChange}>
-                    {timeOptions.map(o => <option value={o}>{o}</option>)}
-                </select>
+            <div className="analytics-page">
 
+                <div className="analytics-area" style={{ width: '100vw', height: '70%' }} >
+                    <h3>Count: </h3>
+                    <select className="a-select" id="countBy" name="countBy" value={this.state.countBy} onChange={this.handleChange}>
+                        {countOptions.map(o => <option value={o}>{o}</option>)}
+                    </select>
+                    <select className="a-select" id="time" name="time" value={this.state.time} onChange={this.handleChange}>
+                        {timeOptions.map(o => <option value={o}>{o}</option>)}
+                    </select>
+
+
+                    <ResponsiveContainer width="100%">
+                        <ComposedChart width={600} height={300} data={this.state.data}
+                            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+
+                            <XAxis dataKey="date" stroke="black" />
+                            <YAxis yAxisId="left" orientation="left" stroke="rgba(239, 221, 111)" />
+                            {this.state.time === "day" ?
+                                <YAxis yAxisId="right" orientation="right" stroke="#81C14B" />
+                                : notShowingMoonPhases = true
+                            }
+                            <Tooltip />
+                            <Legend color="#FFFFFF" />
+                            <Bar yAxisId="left" dataKey={this.state.countBy} fill="rgba(239, 221, 111, 0.8)" />
+                            {this.state.time === "day" ?
+                                <Line strokeWidth={4} stroke="rgba(129, 193, 75, 0.7)" type="monotone" yAxisId="right" dataKey="moonPhase" fill="#82ca9d" />
+
+                                : notShowingMoonPhases = true
+                            }
+                        </ComposedChart>
+                    </ResponsiveContainer>
+                </div>
                 
-                <ResponsiveContainer width="100%">
-                    <ComposedChart width={600} height={300} data={this.state.data}
-                        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-
-                        <XAxis dataKey="date" />
-                        <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
-                        {this.state.time === "day" ?
-                            <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
-                            : notShowingMoonPhases = true
-                        }
-                        <Tooltip />
-                        <Legend />
-                        <Bar yAxisId="left" dataKey={this.state.countBy} fill="#8884d8" />
-                        {this.state.time === "day" ?
-                            <Line strokeWidth={4} type="monotone" yAxisId="right" dataKey="moonPhase" fill="#82ca9d" />
-
-                            : notShowingMoonPhases = true
-                        }
-                    </ComposedChart>
-                </ResponsiveContainer>
-
                 <ChartFilters getRelevantData={this.getRelevantData} />
 
-                {this.state.time === "day" ?
-                    <div>
-                        <div>Legend: </div>
-                        <ol>
-                            <li>First Quarter</li>
-                            <li>New Moon</li>
-                            <li>Third Quarter</li>
-                            <li>Full Moon</li>
-                        </ol>
-                    </div>
-                    : notShowingMoonPhases = true
-                }
+                {/* {this.state.time === "day" ?
+                        <div>
+                            <div>Legend: </div>
+                            <ol>
+                                <li>First Quarter</li>
+                                <li>New Moon</li>
+                                <li>Third Quarter</li>
+                                <li>Full Moon</li>
+                            </ol>
+                        </div>
+                        : notShowingMoonPhases = true
+                    } */}
 
             </div>
         );

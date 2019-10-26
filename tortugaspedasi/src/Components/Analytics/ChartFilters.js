@@ -55,7 +55,7 @@ class ChartFilters extends Component {
         />
     }
 
-    getCheckMarks = () => {
+    getCheckMarks = (filter) => {
         const green = "primary"
         const blue = "secondary"
         const pink = "pink"
@@ -82,10 +82,8 @@ class ChartFilters extends Component {
 
         const checkmarks = []
 
-        for (let filter of ["species", "tides", "gender"]) {
-            for (let info of filters[filter]) {
-                checkmarks.push(this.createCheckMark(info))
-            }
+        for (let info of filters[filter]) {
+            checkmarks.push(this.createCheckMark(info))
         }
 
         return checkmarks
@@ -93,9 +91,19 @@ class ChartFilters extends Component {
 
     render() {
         return (
-            <FormGroup row>
-                {this.getCheckMarks()}
-            </FormGroup>
+            <div className="chart-filters">
+                <span>Filters</span>
+                <div>
+                    {["species", "tides", "gender"].map(filter => (
+                        <FormGroup row >
+                            <div className="filter-group">
+                                <span>{filter.toUpperCase()}</span>
+                                <div className="chart-checkboxes">{this.getCheckMarks(filter)}</div>
+                            </div>
+                        </FormGroup>
+                    ))}
+                </div>
+            </div>
         );
     }
 }

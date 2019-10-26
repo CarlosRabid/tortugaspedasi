@@ -25,15 +25,15 @@ h1 {
 }
 
 #formContainer{
-    background-color: #459576;
+    background-color: #4595764d;
     width: 90vw;
     height: 100% ;
     padding: 10px; 
     margin: 5%;
-    border: 4px solid #2c5f4c; 
     border-radius: 8px; 
     box-sizing: border-box; 
-    resize: vertical
+    resize: vertical;
+    box-shadow: 1px 1px 3px black;
   }
 
 

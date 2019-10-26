@@ -149,7 +149,6 @@ const classes = styles;
 
       {/* Toolbar to add extra space after navbar */}
       <Toolbar />
-
     </div>
   );
 }
