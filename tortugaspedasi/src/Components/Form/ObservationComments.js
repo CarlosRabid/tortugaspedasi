@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import { TextField } from '@material-ui/core';
+import './form.css'
 
 class Comments extends Component {
     constructor() {
@@ -16,12 +17,12 @@ class Comments extends Component {
 
     render() {
         const { t } = this.props;
-        return <div>
+        return <div id="comments">
             <TextField
-                id="comments"
+                id="commentaries"
                 name="comments"
                 label={t('Comments')}
-                style={{ marginLeft: '5%' }}
+                style={{ marginLeft: '5%' , color: 'green'}}
                 placeholder={t('Observation notes...')}
                 // helperText="Full width!"
                 multiline
@@ -29,9 +30,13 @@ class Comments extends Component {
                 margin="normal"
                 InputLabelProps={{
                     shrink: true,
+                    // style: {
+                    //     color: "green"
+                    // }
                 }}
+                // variant="filled"
                 onChange={this.handleInput}
-                color="inherit"
+                // color='#ffffff'
             />
 
         </div>
