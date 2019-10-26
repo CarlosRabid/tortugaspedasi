@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Landing from './Landing'; // do NOT delete!
+import Landing from './Landing'; // do NOT delete! --> Ok!
 
 let credentials = {
     Admin1: "TSDqmaPu",

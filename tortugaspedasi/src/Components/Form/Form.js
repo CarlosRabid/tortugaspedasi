@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
 import ShiftInput from './ShiftInput';
 import Turtle from './Turtle';
 import NestInput from './NestInput';
-//import Fab from '@material-ui/core/Fab';
-// import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import './form.css';
 import { withTranslation } from 'react-i18next';
 import { Typography } from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-//import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
-//import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BeachLocations from './BeachLocations';
 import Comments from './ObservationComments';
 import { Redirect } from 'react-router-dom';
+// import { makeStyles } from '@material-ui/core/styles';
+//import Fab from '@material-ui/core/Fab';
+// import SaveIcon from '@material-ui/icons/Save';
+//import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+//import IconButton from '@material-ui/core/IconButton';
 
 const axios = require('axios');
-
 
 class Form extends Component {
     constructor(props) {
@@ -110,8 +109,6 @@ class Form extends Component {
         await this.setState({ [key] : value })
         // console.log(state)
     }
-
-
 
     handleDate = async (first, last) => {
         let date = { ...this.state.date }
@@ -297,4 +294,4 @@ class Form extends Component {
 
 
 
-    export default withTranslation('translation')(Form);
+export default withTranslation('translation')(Form);
