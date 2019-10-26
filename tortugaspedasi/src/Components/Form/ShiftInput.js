@@ -14,8 +14,8 @@ class ShiftInput extends Component {
         this.state = {
             firstName: "",
             lastName: "",
-            date: "",
-            time: ""
+            date: moment().format('DD/MM/YYYY'),
+            time: moment().format('HH:mm')
         }
     }
     
