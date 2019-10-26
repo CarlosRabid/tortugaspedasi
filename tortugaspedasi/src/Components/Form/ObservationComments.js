@@ -6,13 +6,14 @@ class Comments extends Component {
     constructor() {
         super();
         this.state = {
-        comments: "" //free input
+            comments: "" //free input
 
         }
     }
     handleInput = (event) => {
-        return  this.props.handleComments({ [event.target.name]: event.target.value })}
-    
+        return this.props.handleComments(event.target.value)
+    }
+
     render() {
         const { t } = this.props;
         return <div>

@@ -37,7 +37,7 @@ class BeachLocation extends Component {
     }
     handleClose = (event) => {
         let idx = event.target.value
-        console.log(this.beaches.idx)
+        console.log(idx)
         let currentBeach = this.beaches[idx]
         let locationLatitude = { ...this.state.locationLatitude }
         let locationLongitude = { ...this.state.locationLongitude }
@@ -54,7 +54,9 @@ class BeachLocation extends Component {
         this.setState({ showMenu: true })
     }
     hideMenu = () => {
-        this.setState({ showMenu: null })
+        let showMenu = {...this.state.showMenu}
+        showMenu = null
+        this.setState({ showMenu })
     }
     render() {
         const { t } = this.props;
@@ -64,8 +66,8 @@ class BeachLocation extends Component {
                     <FormControl  variant="outlined" >
                         <InputLabel   htmlFor="outlined-age-simple" placeholder={this.state.selectedBeach}>   {this.state.selectedBeach? this.state.selectedBeach : t('Beach')}  </InputLabel>
                         <Select  id="selectedBeach" labelWidth={60} 
-                        inputProps={{ name: 'playa', id: 'outlined-playa-simple', }}
-                        onChange={this.handleClose} value={this.state.selectedBeach}>
+                        inputProps={{ name: 'playa', id:this.state.selectedBeach, }}
+                        onChange={this.handleClose} >
                                 <option value="">{this.state.selectedBeach? this.state.selectedBeach : t('Beach')} </option>
                                 <option value="playaarenal" onClick={this.handleClose}>Playa El Arenal</option>
                                 <option value="playatoro"  onClick={this.handleClose}>Playa El Toro</option>

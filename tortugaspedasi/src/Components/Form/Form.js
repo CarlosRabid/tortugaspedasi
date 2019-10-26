@@ -26,37 +26,32 @@ class Form extends Component {
             locationLatitude: "",  // set-up by beach selection
             locationLongitude: "", // set-up by beach selection
             selectedBeach: "",
-            firstName: "",
-            lastName: "",
-            date: "",
+            firstName: null,
+            lastName: null,
+            date: null,
             time: "",
-            species: "",
+            species: null,
             gender: null,
-            conditionstat: "",
-            conditionstage: "",
-            dimensionsPl: "",
-            dimensionsPw: "",
-            dimensionsCl: "",
-            dimensionsCw: "",
-            markingsRs: "",
-            markingsLs: "",
-            eggCount: "",
-            layTime: "",
-            hatchEst: "",
-            rehomed: "",
-            salvageable: "",
-            comments: {},
+            conditionstat: null,
+            conditionstage: null,
+            dimensionsPl: null,
+            dimensionsPw: null,
+            dimensionsCl: null,
+            dimensionsCw: null,
+            markingsRs: null,
+            markingsLs: null,
+            comments: "",
             showNest: null,
             showFpart: false,
             hasTurtle: null,
             hasNest: null,
-            eggCount: "",
-            layTime: "",
-            hatchEst: "",
-            rehomed: "",
-            salvageable: "",
-            daten: "",
-            timen: "",
+            eggCount: null,
+            layTime: null,
+            hatchEst: null,
+            rehomed: null,
+            salvageable: null,
+            daten: null,
+            timen: null,
         }
     }
 
@@ -77,8 +72,11 @@ class Form extends Component {
     }
     handleCondition = async (input) => {
         let conditionstage = { ...this.state.conditionstage }
+        let conditionstat = { ...this.state.conditionstat }
         conditionstage = input
-        await this.setState({ conditionstage })
+        console.log(conditionstage, input)
+        conditionstat = (input.charAt(0) == "a") ? 'Alive' : 'Death'
+        await this.setState({ conditionstage, conditionstat })
     }
     handleName = async (first, last) => {
         let firstName = { ...this.state.firstName }
@@ -89,16 +87,16 @@ class Form extends Component {
     }
 
     handleDimentions = async (id, value) => {
-        console.log(id , value)
+        console.log(id, value)
         let key = id
-        
+
         // let index = Object.keys(key)[0]
         // console.log(index)
         // let propert = { ...this.state[index]}
         // let value = Object.values(key)[0]
         // console.log(state)
         // propert = value
-        await this.setState({ [key] : value })
+        await this.setState({ [key]: value })
         // console.log(state)
     }
 
@@ -129,8 +127,8 @@ class Form extends Component {
         let hatchEst = { ...this.state.hatchEst }
         let rehomed = { ...this.state.rehomed }
         let salvageable = { ...this.state.salvageable }
-        let daten = {...this.state.daten}
-        let timen = {...this.state.timen}
+        let daten = { ...this.state.daten }
+        let timen = { ...this.state.timen }
         eggCount = input.eggCount
         layTime = input.layTime
         hatchEst = input.hatchEst
@@ -138,7 +136,7 @@ class Form extends Component {
         salvageable = input.salvageable
         daten = input.daten
         timen = input.timen
-        await this.setState({ eggCount, layTime, hatchEst, rehomed, salvageable , daten, timen})
+        await this.setState({ eggCount, layTime, hatchEst, rehomed, salvageable, daten, timen })
     }
     handleLab = (input) => {
         let salvageable = { ...this.state.salvageable }
@@ -146,26 +144,47 @@ class Form extends Component {
         this.setState({ salvageable })
     }
 
-    checkTurtleData = (formInput) => {
-        console.log(formInput)
-        const exist = function (element) {
-            return element !== null
+    checkTurtleData = () => {
+        let hasTurtle = {...this.state.hasTurtle}
+        let turtle = {
+            species: this.state.species, gender: this.state.gender,
+            conditionstat: this.state.conditionstat,
+            conditionstage: this.state.conditionstage,
+            dimensionsPl: this.state.dimensionsPl,
+            dimensionsPw: this.state.dimensionsPw,
+            dimensionsCl: this.state.dimensionsCl,
+            dimensionsCw: this.state.dimensionsCw,
+            markingsRs: this.state.markingsRs,
+            markingsLs: this.state.markingsLs,
         }
-        let hasTurtle = { ...this.state.hasTurtle }
+        
+        hasTurtle = Object.keys(turtle).some(function (k) {
+            return turtle[k] !== null
+        })
+        // console.log(hasTurtle)
         // hasTurtle = formInput.turtleInput.some(exist)
-
+        
         this.setState({
             hasTurtle
         })
     }
-
-    checkNestData = (formInput) => {
-
-        const exist = function (element) {
-            return element !== null
+    checkNest = () => {
+        let hasNest = {...this.state.hasNest}
+        let nest = {
+            eggCount: this.state.eggCount,
+            layTime: this.state.layTime,
+            hatchEst: this.state.hatchEst,
+            rehomed: this.state.rehomed,
+            salvageable: this.state.salvageable,
+            layTime: this.state.daten,
         }
-        let hasNest = { ...this.state.hasNest }
-        hasNest = formInput.NestInput.some(exist)
+
+        hasNest = Object.keys(nest).some(function (k) {
+            return nest[k] !== null
+        })
+        // console.log(hasTurtle)
+        // hasTurtle = formInput.turtleInput.some(exist)
+
         this.setState({
             hasNest
         })
@@ -179,8 +198,8 @@ class Form extends Component {
         })
     }
 
-    handleComments = (input) => { 
-        let comments = {...this.state.comments}
+    handleComments = (input) => {
+        let comments = { ...this.state.comments }
         comments = input
         this.setState({
             comments
@@ -188,18 +207,38 @@ class Form extends Component {
     }
 
     submitNewForm = async (shift, observation, turtle, nest) => {
+        await this.checkTurtleData()
+        await this.checkNest()
+
         let form = {
-            firstName: this.state.firstName, 
-            lastName: this.state.lastName,
-            date: this.state.date,
-            species: this.state.species,   
+            shift: { firstName: this.state.firstName, lastName: this.state.lastName },
+            observation:
+             { date: Date(this.state.date),
+               location: this.state.selectedBeach,
+               moonPhase: 'First Quarter',
+               tide: 'low-to-high',
+               comments: this.state.comments },
+            turtle:
+             { condition: { status: this.state.conditionstat , stage: this.state.conditionstage },
+               dimensions: { plain: {length: this.state.dimensionsPl, width: this.state.dimensionsPw}, curve: {length: this.state.dimensionsCl, width: this.state.dimensionsCw} },
+               markings: { rightSide: this.state.markingsRs, leftSide: this.state.markingsLs },
+               hasData: this.state.hasTurtle,
+               species: this.state.species,
+               gender: this.state.gender },
+            nest:
+             { hasData: this.state.hasNest,
+               layTime: this.state.daten,
+               eggCount: this.state.eggCount,
+               hatchEst: this.state.daten,
+               rehomed: this.state.rehomed,
+               salvageable: this.state.salvageable },
         }
-        console.log('working')
-        await axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
+        console.log(form)
+        await axios.post('http://localhost:7777/mega-form',  form )
     }
 
     handleExpandClick = (event) => {
-        console.log(event.target)
+        // console.log(event.target)
         let showFpart = true
         // showFpart = !showFpart
         console.log(showFpart)
@@ -255,7 +294,7 @@ class Form extends Component {
                     </ExpansionPanelSummary>
                     <NestInput forms={this.state.forms} handleNest={this.handleNest} />
                 </ExpansionPanel>
-                <Comments handleComments = {this.handleComments} />
+                <Comments handleComments={this.handleComments} />
                 <Button
                     variant="contained"
                     color="primary"
@@ -273,4 +312,4 @@ class Form extends Component {
 
 
 
-    export default withTranslation('translation')(Form);
+export default withTranslation('translation')(Form);

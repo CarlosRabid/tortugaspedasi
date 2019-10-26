@@ -137,7 +137,7 @@ class TurtleInput extends Component {
             return 
 
         } else { 
-            this.props.handleCondition({conditionstage: result})
+            this.props.handleCondition({result})
             return this.setState({ conditionstage: result, anchorStat: null }) }
         // console.log(this.state)
     };
