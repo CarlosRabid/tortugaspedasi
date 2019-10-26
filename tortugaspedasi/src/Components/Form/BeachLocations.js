@@ -66,11 +66,13 @@ class BeachLocation extends Component {
         return (
             <div >
                 <div id="menuplayascont">
+
                     <FormControl variant="outlined" value={this.state.selectedBeach}  >
                         <InputLabel htmlFor='playa' >   {this.state.selectedBeach ? 
                             this.state.selectedBeach : t('Beach') }  
                         </InputLabel>
                         <Select value={this.state.selectedBeach} labelWidth={60} 
+
                             inputProps={{ name: 'playa', id: 'playa', }}
                             onChange={this.handleClose} 
 

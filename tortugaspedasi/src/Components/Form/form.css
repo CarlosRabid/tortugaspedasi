@@ -10,7 +10,9 @@ h1 {
   display: grid; 
   justify-items: end;
   align-items: end;
+
   color: white;
+
 }
 
 
