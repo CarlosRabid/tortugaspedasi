@@ -7,9 +7,9 @@ h1 {
   }
 
 #menuplayascont{
-  display: grid;
+  display: grid; 
   justify-items: end;
- align-items: end;
+  align-items: end;
 }
 
 
@@ -21,7 +21,7 @@ h1 {
   padding-right: 64px;
 }
 .MuiSelect-select{
-  min-width: 64px !important;
+  min-width: 5em !important;
 }
 
 #formContainer{
