@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SpreadsheetContainer from './SpreadsheetContainer';
-import SpreadsheetActions from './SpreadsheetActions';
 import UpdateForm from './UpdateForm';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -25,7 +24,7 @@ class SpreadsheetData extends Component {
     }
 
     async componentDidMount() {
-        let data = await axios.get('http://localhost:7777/forms')
+        let data = await axios.get('http://localhost:7777/all-data')
         // let forms = [...this.state.forms]
         // forms = data.data
         
@@ -80,7 +79,6 @@ class SpreadsheetData extends Component {
                 {this.state.showPopUp ?
                     <UpdateForm closePopUp={this.closePopUp} form={this.state.form} /> : null}
 
-                <SpreadsheetActions data={this.state} searchHandler={this.searchHandler} />
 
                 <div className="forms">
                     <Paper>
