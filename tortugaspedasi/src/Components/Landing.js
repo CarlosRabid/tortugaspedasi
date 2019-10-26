@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom' //do not delete Router Route
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom' //do not delete Router Route
 import { withTranslation } from 'react-i18next';
 import Form from './Form/Form';
 import Spreadsheet from './Spreadsheet/Spreadsheet';
@@ -16,10 +16,9 @@ class Landing extends Component {
         }
     }
 
- 
-
     render() {
         const { t } = this.props;
+        if(!this.props.isLoggedIn()){return <Redirect to="/"/>}
         return (
            
                 <div className="container">

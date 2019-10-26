@@ -7,7 +7,6 @@ import Landing from './Components/Landing';
 import Form from './Components/Form/Form';
 import Spreadsheet from './Components/Spreadsheet/Spreadsheet';
 import Analytics from './Components/Analytics/Analytics';
-import { FormControlLabel, Switch } from '@material-ui/core';
 import './App.css';
 
 
@@ -32,6 +31,7 @@ class App extends Component {
       location: location
     })
   }
+
   changeLanguage = () => {
     const { i18n } = this.props;
     if (this.state.lng === "en") {
@@ -47,20 +47,22 @@ class App extends Component {
   isLoggedIn = () => localStorage.getItem('user') || this.state.userName
 
   logOut = () => {
-    this.setState({ userName: "" })
-    localStorage.clear()
-  }
-
+    this.setState({
+      location: "",
+      userName: "",
+      lng: "en",
+    })
+    localStorage.clear() }
 
   render() {
 
     return (<>
       {/* <button onClick={() => changeLanguage('en')}>en</button>
         <button onClick={() => changeLanguage('es')}>es</button> */}
-      <FormControlLabel
+      {/* <FormControlLabel
         control={<Switch checked={(this.state.lng === "es") ? true : false} onChange={this.changeLanguage} />}
         label={(this.state.lng === "es") ? "Switch to English" : "Cambiar a Español"}
-      />
+      /> */}
       <div>
 
         <BrowserRouter>
@@ -68,8 +70,12 @@ class App extends Component {
           <NavBar location={this.state.location}
             logOut={this.logOut}
             name={this.state.userName}
-            updateNavBar={this.updateNavBar}>
+            updateNavBar={this.updateNavBar}
+            lng={this.state.lng}
+            changeLanguage={this.changeLanguage}>
+          
           </NavBar>
+
 
           <Route path="/" exact render={() =>
             (this.state.userName ?
