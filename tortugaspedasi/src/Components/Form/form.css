@@ -10,6 +10,7 @@ h1 {
   display: grid; 
   justify-items: end;
   align-items: end;
+  color: white;
 }
 
 
@@ -72,4 +73,11 @@ h1 {
 ._nest {
     border-bottom: 5px, solid, black;
     border-radius: 10px;
+  }
+  
+  #commentaries {
+  border-radius: 3px;
+  padding: 0px;
+  background: #ffff;
+  /* background-color: #ffff; */
 }

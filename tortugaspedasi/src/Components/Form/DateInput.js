@@ -10,8 +10,8 @@ class DateInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            daten: "",
-            timen: ""
+            daten: moment().format('DD/MM/YYYY'),
+            timen: moment().format('HH:mm')
         }
     }
     // handleNest
