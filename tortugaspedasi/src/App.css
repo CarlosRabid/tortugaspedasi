@@ -6,17 +6,25 @@ body {
   background-color: rgb(22, 87, 124);
   /* font-family: 'Lato', sans-serif !important */
   font-family: 'Montserrat', sans-serif;
+  background-image: url("../src/styles/background-turtle.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
 }
+
 nav {
   background-color: rgb(22, 87, 124);
   color: #FeFFFF;
   height: 60px;
   font-size: 30px;
 }
+
 button {
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
 }
+
 /* .link {
   background-color: #3AAFA9;
   border-radius: 10px;
@@ -27,13 +35,14 @@ button {
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
 } */
-nav a{
+nav a {
   color: white;
   text-decoration: none;
   align-self: flex-end;
   margin-left: 10px
 }
-.container{
+
+.container {
   padding: 2%;
 }
 
@@ -47,6 +56,7 @@ nav a{
   margin-top: 10%;
   font-family: 'Montserrat', sans-serif;
 }
+
 .navigation {
   display: flex;
   justify-content: flex-start;
@@ -54,25 +64,28 @@ nav a{
   height: 50px;
   font-family: 'Montserrat', sans-serif;
 }
+
 .currentUser {
   align-self: flex-end;
   margin-left: auto;
   margin-right: 10px
-
 }
+
 #clients a:nth-child(1) {
   color: rgb(137, 235, 230);
   border-top: 2px solid #3AAFA9;
 }
+
 .ShiftInput {
   font-family: 'Montserrat', sans-serif;
 
 }
+
 #analytics a:nth-child(3) {
   color: #3AAFA9;
   border-top: 2px solid #3AAFA9
-
 }
+
 .login {
   background-color: white;
   color: gray;
@@ -85,12 +98,14 @@ nav a{
   justify-content: center;
   border-radius: 20px;
 }
+
 .login input {
   width: 80%;
   text-align: left;
   margin-top: 30px;
   height: 30px
 }
+
 .bigButton {
   height: 60px;
   width: 280px;
@@ -111,5 +126,4 @@ nav a{
   background: white;
   font-family: 'Montserrat', sans-serif;
   opacity: 2
- }
-
+}

@@ -1,19 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ToolbarMenu from "./ToolbarMenu";
-import { Button, MenuItem, List, ListItem, ListItemIcon, ListItemText, Divider, Drawer } from "@material-ui/core";
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
-import HomeIcon from '@material-ui/icons/Home';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import StorageIcon from '@material-ui/icons/Storage';
-import PollIcon from '@material-ui/icons/Poll';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ToolbarMenu from "./ToolbarMenu";
+import { Button, MenuItem, List, ListItem, ListItemIcon, ListItemText, Divider, Drawer } from "@material-ui/core";
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom'; //do NOT delete grayed out
+import HomeIcon from '@material-ui/icons/Home';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import StorageIcon from '@material-ui/icons/Storage';
+import PollIcon from '@material-ui/icons/Poll';
+import { makeStyles } from '@material-ui/core/styles';
+import { FormControlLabel, Switch } from '@material-ui/core';
+
 
 const styles = {
   root: {
@@ -35,15 +37,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
 function NavBar(props) {
-
-
-  // const [anchorE1] = React.useState(null);
-  // const open = Boolean(anchorEl);
-
+const classes = styles;
   const spclasses = useStyles();
-
 
   const [state, setState] = React.useState({
     top: false,
@@ -52,14 +48,9 @@ function NavBar(props) {
     right: false,
   });
 
-
-  const { classes } = props;
-  function onLogin() {
-    alert("Login TBD");
-  }
   function onLogout() {
-    alert("Logout TBD");
-  }
+    props.logOut()
+  }	  
 
 
   const sideList = side => (
@@ -114,78 +105,50 @@ function NavBar(props) {
     setState({ ...state, [side]: open });
   };
 
-
-
   return (
     <div>
       <AppBar position="fixed" style= {{background:"#166088"}}>
 
-      <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-        {sideList('left')}
-      </Drawer>
-      <Toolbar>
-        <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
-          <MenuIcon ></MenuIcon>
+        <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+          {sideList('left')}
+        </Drawer>
+        <Toolbar>
 
+          <IconButton color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
+            <MenuIcon ></MenuIcon>
+          </IconButton>
 
-          {/* <PopupState variant="popover" popupId="demo-popup-menu">
-            {popupState => (
-              <React.Fragment>
-                <Menu {...bindMenu(popupState)}>
-                 <MenuItem key = "home" id = "home" onClick={handleClick}>Home</MenuItem>
-                 
-                 
-                 
-                  {/* {options.map(option => (
-                    <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                      {option}
-                    </MenuItem>
-                  ))} */}
-          {/* </Menu>
-              </React.Fragment>
-            )}
-          </PopupState> */}
-        </IconButton>
-        <Typography variant="h4" color="inherit">
-          Tortugas Pedasí
-
+          <Typography variant="h6" color="inherit">
+            Tortugas Pedasí
           </Typography>
 
           <ToolbarMenu
             render={collapsed => {
               return collapsed
-                ? [
-                  <MenuItem key="login" onClick={onLogin} autoclose={true}>
-                    Login
-                    </MenuItem>,
-                  <MenuItem key="logout" onClick={onLogout}>
-                    Logout
-                    </MenuItem>
-                ]
-                : [
-                  <Button
-                    key="login"
-                    color="inherit"
-                    onClick={onLogin}
-                    className={classes.menuButton}
-                  >
-                    Login
-                    </Button>,
-                  <Button
-                    key="signup"
-                    color="inherit"
-                    onClick={onLogout}
-                    className={classes.menuButton}
-                  >
-                    Logout
-                    </Button>
-                ];
+                ? [<MenuItem key="logout" onClick={onLogout} autoclose={true}>
+                  Logout
+                    </MenuItem>]
+                : [< Button
+                  key="logout"
+                  color="inherit"
+                  onClick={onLogout}
+                  className={classes.menuButton}
+                >
+                  Logout
+                    </Button>];
             }}
           />
+
+         <FormControlLabel className="language-toggle"
+        control={<Switch checked={(props.lng === "es") ? true : false} onChange={props.changeLanguage} />}
+        label={(props.lng === "es") ? "Switch to English" : "Cambiar a Español"}
+      />
+
         </Toolbar>
       </AppBar>
-      <div className={spclasses.offset}> {/* to accomdate for top white space */}
-      </div>
+
+      {/* Toolbar to add extra space after navbar */}
+      <Toolbar />
     </div>
   );
 }
@@ -195,33 +158,3 @@ NavBar.propTypes = {
 };
 
 export default withStyles(styles)(NavBar);
-
-
-
-// MATERIAL UI CODE //
-            // <div>
-            //     <Router>
-            //         <div><AppBar position="static">
-
-            //             <Toolbar>
-            //                 <div className="navbarLinks">
-            //                     <Link to="/">Home</Link>
-            //                     <Link to="/form">Form</Link>
-            //                     <Link to="/spread">Spreadsheet</Link>
-            //                     <Link to="/analytics">Analytics</Link>
-
-            //                 </div>
-            //                 <div id="logoutButton">
-            //                     <Button edge="end" variant="contained" >Logout</Button>
-            //                 </div>
-            //             </Toolbar>
-
-            //         </AppBar>
-            //             <Route path="/" exact render={() => <Landing />} />
-            //             <Route path="/form" exact render={() => <Form />} />
-            //             <Route path="/spread" exact render={() => <Spreadsheet />} />
-            //             <Route path="/analytics" exact render={() => < Analytics />} />
-            //         </div>
-            //     </Router>
-
-            // </div>

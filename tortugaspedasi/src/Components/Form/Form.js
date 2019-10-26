@@ -16,6 +16,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BeachLocations from './BeachLocations';
 import Comments from './ObservationComments';
+import { Redirect } from 'react-router-dom';
+
 const axios = require('axios');
 
 
@@ -247,6 +249,9 @@ class Form extends Component {
 
     render() {
         const { t } = this.props;
+
+        if(!this.props.isLoggedIn()){return <Redirect to="/"/>}
+
         return (
 
             <div id="formContainer" >

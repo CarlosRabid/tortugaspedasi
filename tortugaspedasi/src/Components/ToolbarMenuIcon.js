@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Menu } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
-import HomeIcon from "@material-ui/icons/Home";
+import ExitToApp from "@material-ui/icons/ExitToApp";
 
 const styles = theme => ({
   buttonCollapse: {
@@ -49,7 +49,7 @@ class ToolbarMenuIcon extends React.Component {
     return (
       <div className={classes.buttonCollapse}>
         <IconButton onClick={this.handleMenu}>
-          <HomeIcon />
+          <ExitToApp style={{color: 'white'}}/>
         </IconButton>
         <Menu
           id="menu-appbar"

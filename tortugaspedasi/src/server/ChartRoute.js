@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Form = require('./models/Form');
+const Form = require('./models/MegaForm');
 
 // ==============================
 // This solution comes from here: 
@@ -11,9 +11,9 @@ let byweek = {};
 let bymonth = {};
 let byyear = {};
 
-function groupday(value, index, array) {
+const groupday = function (value, index, array) {
     try {
-        d = new Date(value.observation.date);
+        let d = new Date(value.observation.date);
         d = Math.floor(d.getTime() / (1000 * 60 * 60 * 24));
         byday[d] = byday[d] || [];
         byday[d].push(value);
@@ -21,21 +21,21 @@ function groupday(value, index, array) {
         console.log(error)
     }
 }
-function groupweek(value, index, array) {
-    d = new Date(value.observation.date);
+const groupweek = function (value, index, array) {
+    let d = new Date(value.observation.date);
     d = Math.floor(d.getTime() / (1000 * 60 * 60 * 24 * 7));
     byweek[d] = byweek[d] || [];
     byweek[d].push(value);
 }
-function groupmonth(value, index, array) {
-    d = new Date(value.observation.date);
+const groupmonth = function (value, index, array) {
+    let d = new Date(value.observation.date);
     d = (d.getFullYear() - 1970) * 12 + d.getMonth();
     bymonth[d] = bymonth[d] || [];
     bymonth[d].push(value);
 }
 
-function groupyear(value, index, array) {
-    d = new Date(value.observation.date)
+const groupyear = function (value, index, array) {
+    let d = new Date(value.observation.date)
     d = (d.getFullYear() - 1970)
     byyear[d] = byyear[d] || []
     byyear[d].push(value)
@@ -53,24 +53,25 @@ const groupBy = (dataArray, group) => {
     } else if (group === "month") {
         dataArray.map(groupmonth)
         return bymonth
-    } else if (group === "year"){
+    } else if (group === "year") {
         dataArray.map(groupyear)
         return byyear
     }
 }
 
 
-getTurtleCount = (data) => {
+const getTurtleCount = (data) => {
     let turtleCount = 0
-    data.forEach(d => {
+    for (let d of data) {
         if (d.turtle.hasData === true) {
             turtleCount++
         }
-    })
+    }
+
     return turtleCount
 }
 
-getNestCounts = (data) => {
+const getNestCounts = (data) => {
     let nestCounts = {
         nestCount: 0,
         eggCount: 0
@@ -84,7 +85,7 @@ getNestCounts = (data) => {
     return nestCounts
 }
 
-getSpeciesCount = (data) => {
+const getSpeciesCount = (data) => {
     let speciesCount = {
         Cc: 0,
         Lo: 0,
@@ -100,7 +101,7 @@ getSpeciesCount = (data) => {
     return speciesCount
 }
 
-getMoonPhase = (data) => {
+const getMoonPhase = (data) => {
     let moonPhase
     if (Array.isArray(data)) {
         moonPhase = data[0].observation.moonPhase
@@ -111,9 +112,9 @@ getMoonPhase = (data) => {
     return moonPhase
 }
 
-createFilteredObject = (data) => {
+const createFilteredObject = (data) => {
     let dataKeys = Object.keys(data)
-    bigData = []
+    const bigData = []
     dataKeys.forEach(key => {
         let turtleCount = getTurtleCount(data[key])
         let nestCounts = getNestCounts(data[key])
@@ -132,15 +133,49 @@ createFilteredObject = (data) => {
     return bigData
 }
 
-router.get('/formData/:group', async function (req, res) {
-    let group = req.params.group
-    Form.find({})
-        .populate('turtle observation nest').exec((err, response) => {
-            let groupedByGroup = groupBy(response, group)
-            let Data = createFilteredObject(groupedByGroup)
-            // For each groupedByDate key, create an obejct date being key, moonphase being from first obj and turtle count (if turtle has data = true)
-            res.send(Data)
-        })
+const resetCounters = function () {
+    byday = {}
+    byweek = {}
+    bymonth = {}
+    byyear = {}
+}
+
+const createQuery = function (filters) {
+
+    //Example filters:
+    /*{
+        "turtle.gender": ["female"],
+        "observation.tide": ["high", "low-to-high"],
+        "turtle.species": ["Cc", "Lo", "Cm", "Ei", "Dc"]
+    }*/
+
+    if (Object.keys(filters).length === 0) { return {} }
+
+    const fields = Object.keys(filters)
+    const query_filters = []
+
+    // creating an array of these: { field: { $in: ['value 1', 'value 2'] } }
+    fields.forEach(field => {
+        query_filters.push({ [field]: { $in: filters[field] } })
+    })
+
+    return { "$and": query_filters }
+}
+
+
+router.post('/formData/:group', async function (req, res) {
+    resetCounters()
+
+    const group = req.params.group
+    const filters = req.body
+    const query = createQuery(filters)
+    
+    Form.find(query, (err, response) => {
+        // For each groupedByDate key, create an obejct date being key, moonphase being from first obj and turtle count (if turtle has data = true)
+        const groupedByGroup = groupBy(response, group)
+        const Data = createFilteredObject(groupedByGroup)
+        res.send(Data)
+    })
 })
 
 

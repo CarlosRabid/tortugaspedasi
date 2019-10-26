@@ -1,0 +1,59 @@
+.analytics-page{
+    display: grid;
+    grid-template-rows: 65% 35%;
+    height: 100vh;
+}
+
+.a-select{
+    font-family: inherit;    
+    border: none;
+    box-sizing: border-box;
+    background: none;
+    color: #1A2930;
+    margin: 0;
+    font-weight: bold;
+    font-size: 1em;
+}
+.a-select:focus{
+    outline: none;
+}
+
+.chart-filters{
+    overflow-y: scroll;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: grid;
+    grid-template-rows: 20px;
+    justify-items: center;
+}
+
+.chart-filters > span{
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.chart-filters>div{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    padding: 1vmin;
+    overflow-y: scroll;
+}
+
+.filter-group{
+    display: grid;
+    grid-template-rows: min-content max-content;
+    overflow-y: scroll;
+}
+
+.filter-group>div{
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    align-items: start;
+    overflow-y: scroll;
+}
+
+.filter-group>span{
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
