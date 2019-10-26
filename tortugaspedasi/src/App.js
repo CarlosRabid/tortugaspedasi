@@ -72,14 +72,14 @@ class App extends Component {
     }
   };
 
-  isLoggedIn = () => localStorage.getItem('user') || this.state.userName
+  isLoggedIn = () => localStorage.getItem('isLoggedIn') 
 
   logOut = () => {
     this.setState({
-      userName: "",
-      lng: "en",
+      isLoggedIn: "" ,
+      lng: "en"
     })
-    localStorage.clear() }
+    localStorage.removeItem('admin') }
 
   render() {
 
@@ -105,7 +105,7 @@ class App extends Component {
 
 
           <Route path="/" exact render={() =>
-            (this.state.userName ?
+            (localStorage.isLoggedIn ?
               <Redirect to="/home" /> :
               <Login updateUser={this.updateUser}
                 updateNavBar={this.updateNavBar} />)}>
