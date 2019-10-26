@@ -17,19 +17,29 @@ class NestInput extends Component {
             hatchEst: "",
             rehomed: "",
             salvageable: "",
+            daten: "",
+            timen: ""
 
         }
     }
 
-    handleInput = (event) => {
-        this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
-        this.props.handleNest(this.state)
+    handleInput = async (event) => {
+        console.log(this.props)
+        await this.setState({ [event.target.name]: event.target.value })
+        return this.props.handleNest(this.state)
     }
-    handleRadioButton = event => {
+    handleDaten= async (input) => {
+        let daten = {...this.state.daten}
+        daten = input
+        await this.setState({ daten })
+        return this.props.handleNest(daten)
+    }
+    handleRadioButton = async (event) => {
         let salvageable = { ...this.state.salvageable };
         salvageable = event.currentTarget.value
         console.log(event.currentTarget.value)
-        this.setState({ salvageable });
+        await this.setState({ salvageable });
+        return this.props.handleNest(this.state)
     };
 
     render() {
@@ -43,6 +53,7 @@ class NestInput extends Component {
             <TextField
                 value={this.state.eggCount}
                 onChange={this.handleInput}
+                name="eggCount"
                 label="Number eggs"
                 id="eggCount"
                 className="searchInput"
@@ -59,7 +70,7 @@ class NestInput extends Component {
                             Date:
                             <input type="date" name="layTime" value={this.state.layTime} onChange={this.handleInput} /></label>
                     </form> */}
-                <DateInput />
+                <DateInput handleDaten={this.handleDaten} />
             </div>
             <div className="new-nest-grid">
                 <span className="new-nest-1"> Estimated Hatching Time: </span>
@@ -68,11 +79,13 @@ class NestInput extends Component {
                         Date:
                         <input type="date" name="hatchEst" value={this.state.hatchEst} onChange={this.handleInput} /></label>
                     </form> */}
-                <DateInput />
+                <DateInput handleDaten={this.handleDaten} />
             </div>
-            <div className="new-nest-grid" onChange={this.handleInput}>
+            <div className="new-nest-grid" >
                 <span className="new-nest-1"> Taken to Lab: </span>
-                <RadioGroup row aria-label="Lab" name="nestlab" value={this.state.salvageable} onChange={this.handleRadioButton} style={{ justifyContent: 'center', marginTop: '2%' }}><FormControlLabel
+                <RadioGroup row aria-label="Lab" name="nestlab" 
+                value={this.state.salvageable} onChange={this.handleRadioButton} 
+                style={{ justifyContent: 'center', marginTop: '2%' }}><FormControlLabel
                     display="block"
                     value="yes"
                     control={<Radio color="primary" />}

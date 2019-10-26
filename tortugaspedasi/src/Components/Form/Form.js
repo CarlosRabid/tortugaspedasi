@@ -36,10 +36,10 @@ class Form extends Component {
             gender: null,
             conditionstat: "",
             conditionstage: "",
-            dimensionsPl: 0,
-            dimensionsPw: 0,
-            dimensionsCl: 0,
-            dimensionsCw: 0,
+            dimensionsPl: "",
+            dimensionsPw: "",
+            dimensionsCl: "",
+            dimensionsCw: "",
             markingsRs: "",
             markingsLs: "",
             eggCount: "",
@@ -56,7 +56,9 @@ class Form extends Component {
             layTime: "",
             hatchEst: "",
             rehomed: "",
-            salvageable: ""
+            salvageable: "",
+            daten: "",
+            timen: "",
         }
 
         // const useStyles = makeStyles(theme => ({
@@ -94,6 +96,23 @@ class Form extends Component {
         lastName = last
         await this.setState({ firstName, lastName })
     }
+
+    handleDimentions = async (id, value) => {
+        console.log(id , value)
+        let key = id
+        
+        // let index = Object.keys(key)[0]
+        // console.log(index)
+        // let propert = { ...this.state[index]}
+        // let value = Object.values(key)[0]
+        // console.log(state)
+        // propert = value
+        await this.setState({ [key] : value })
+        // console.log(state)
+    }
+
+
+
     handleDate = async (first, last) => {
         let date = { ...this.state.date }
         let time = { ...this.state.time }
@@ -112,16 +131,23 @@ class Form extends Component {
         time = input.time
         await this.setState({ firstName, lastName, date, time })
     }
-    handleNest = (input) => {
+    handleNest = async (input) => {
+        console.log(input)
         let eggCount = { ...this.state.eggCount }
         let layTime = { ...this.state.layTime }
         let hatchEst = { ...this.state.hatchEst }
         let rehomed = { ...this.state.rehomed }
+        let salvageable = { ...this.state.salvageable }
+        let daten = {...this.state.daten}
+        let timen = {...this.state.timen}
         eggCount = input.eggCount
         layTime = input.layTime
         hatchEst = input.hatchEst
         rehomed = input.rehomed
-        this.setState({ eggCount, layTime, hatchEst, rehomed })
+        salvageable = input.salvageable
+        daten = input.daten
+        timen = input.timen
+        await this.setState({ eggCount, layTime, hatchEst, rehomed, salvageable , daten, timen})
     }
     handleLab = (input) => {
         let salvageable = { ...this.state.salvageable }
@@ -129,23 +155,23 @@ class Form extends Component {
         this.setState({ salvageable })
     }
 
-    submitForm = async (input) => {
-        // let idx = Object.keys
-        // let state = {...this.state}
-        // state[] = { ...this.state.locationLatitude }
-        // let locationLongitude = { ...this.state.locationLongitude }
-        // let selectedBeach = { ...this.state.selectedBeach }
-        // let forms = {... this.state.forms}
-        // let idx = Object.keys(forms).length
-        // // await forms[0]=inputValue
-        // console.log(inputValue)
-        // this.checkTurtleData(forms)
-        // // this.checkNestData(forms)
-        // this.setState({
-        //     forms
-        // })
-        // console.log(this.state.forms)
-    }
+    // submitForm = async (input) => {
+    // let idx = Object.keys
+    // let state = {...this.state}
+    // state[] = { ...this.state.locationLatitude }
+    // let locationLongitude = { ...this.state.locationLongitude }
+    // let selectedBeach = { ...this.state.selectedBeach }
+    // let forms = {... this.state.forms}
+    // let idx = Object.keys(forms).length
+    // // await forms[0]=inputValue
+    // console.log(inputValue)
+    // this.checkTurtleData(forms)
+    // // this.checkNestData(forms)
+    // this.setState({
+    //     forms
+    // })
+    // console.log(this.state.forms)
+
 
     checkTurtleData = (formInput) => {
         console.log(formInput)
@@ -172,28 +198,34 @@ class Form extends Component {
         })
     }
 
+    handleGender = (input) => {
+        let gender = { ...this.state.gender }
+        gender = input
+        this.setState({
+            gender
+        })
+    }
 
+    handleComments = (input) => { 
+        let comments = {...this.state.comments}
+        comments = input
+        this.setState({
+            comments
+        })
+    }
 
     submitNewForm = async (shift, observation, turtle, nest) => {
         console.log('working')
         await axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
     }
+
     handleExpandClick = (event) => {
         console.log(event.target)
         let showFpart = true
         // showFpart = !showFpart
         console.log(showFpart)
         this.setState({ showFpart: showFpart })
-    }
-
-    handleNest = (input) => {
-
-        let eggCount = [... this.state.eggCount]
-        let layTime = [...this.state.layTime]
-        let hatchEst = [...this.state.hatchEst]
-        let rehomed = [...this.state.rehomed]
-        let salvageable = [...this.state.salvageable]
-    }
+    };
 
     render() {
         const { t } = this.props;
@@ -232,7 +264,8 @@ class Form extends Component {
                             <Typography className="turtles" variant="h6" component="h6">{t('Turtle Information')}</Typography>
                         </div>
                     </ExpansionPanelSummary>
-                    <Turtle handleCondition={this.handleCondition} handleSpecies={this.handleSpecies} forms={this.state.forms} handleTurtInput={this.state.handleTurtInput} />
+                    <Turtle handleGender={this.handleGender} handleCondition={this.handleCondition} handleSpecies={this.handleSpecies} forms={this.state.forms} handleTurtInput={this.state.handleTurtInput}
+                        handleDimentions={this.handleDimentions} />
                 </ExpansionPanel>
                 <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
                     <ExpansionPanelSummary
@@ -244,9 +277,9 @@ class Form extends Component {
                             <Typography className="nests" variant="h6" component="h6">{t('Nest Information')}</Typography>
                         </div>
                     </ExpansionPanelSummary>
-                    <NestInput forms={this.state.forms} handleNest={this.state.handleNest} />
+                    <NestInput forms={this.state.forms} handleNest={this.handleNest} />
                 </ExpansionPanel>
-                <Comments />
+                <Comments handleComments = {this.handleComments} />
                 <Button
                     variant="contained"
                     color="primary"
@@ -263,4 +296,5 @@ class Form extends Component {
 }
 
 
-export default withTranslation('translation')(Form);
+
+    export default withTranslation('translation')(Form);

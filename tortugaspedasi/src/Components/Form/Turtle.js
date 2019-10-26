@@ -43,9 +43,12 @@ class Turtle extends Component {
         this.setState({turtleinput: dms })
         console.log(dms)
     }
+
+
     render() { 
         return (
-            <TurtleInput handleCondition={this.props.handleCondition} handleSpecies={this.props.handleSpecies} updateTurtle={this.updateTurtle} />
+            <TurtleInput handleGender={this.props.handleGender} handleCondition={this.props.handleCondition} handleSpecies={this.props.handleSpecies} updateTurtle={this.updateTurtle} 
+            handleDimentions= {this.props.handleDimentions}/>
         );
     }
 }

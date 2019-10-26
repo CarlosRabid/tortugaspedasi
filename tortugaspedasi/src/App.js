@@ -8,6 +8,8 @@ import Form from './Components/Form/Form';
 import Spreadsheet from './Components/Spreadsheet/Spreadsheet';
 import Analytics from './Components/Analytics/Analytics';
 import './App.css';
+const axios = require('axios')
+
 
 
 
@@ -18,6 +20,32 @@ class App extends Component {
       location: "",
       userName: "",
       lng: "en",
+      isOnline: true
+    }
+  }
+
+  componentDidMount (){
+    this.setState({isOnline: navigator.onLine})
+    if(this.state.isOnline) {
+      let storage = localStorage.getItem('form')
+      axios.post('http://localhost:7777/newForm', {storage})
+      console.log('there is something in there')
+    }
+    else {
+      console.log('there isnt anything sooo...')
+
+    }
+  }
+
+  saveForm (shift, observation, turtle, nest) {
+    if (navigator.onLine) {
+      axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
+      console.log('online')
+    }
+    else {
+      let form = { shift: '', observation: '', turtle: '', nest: '' } 
+      localStorage.form = JSON.stringify(form)
+      console.log('offline')
     }
   }
 
@@ -88,7 +116,7 @@ class App extends Component {
           </Route>
 
           <Route path="/form" exact render={() =>
-            <Form updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
+            <Form updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} saveForm={this.saveForm} />}>
           </Route>
 
           <Route path="/spread" exact render={() =>
@@ -99,10 +127,14 @@ class App extends Component {
             <Analytics updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
           </Route>
 
+            {/* testing local storage being saved offline
+          <button onClick={this.saveForm} >SAVE FORM</button> */}
+
         </BrowserRouter>
 
       </div></>
     );
+    
   }
 }
 
