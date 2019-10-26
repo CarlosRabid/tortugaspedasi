@@ -28,8 +28,6 @@ class Login extends Component {
     handleChange = (event) => {
         const input = event.target;
         const value = input.type === 'checkbox' ? input.checked : input.value;
-
-
         this.setState({ [input.name]: value });
     };
 
@@ -46,8 +44,8 @@ class Login extends Component {
         const rememberMe = localStorage.getItem('rememberMe') === 'true';
         const firstName = rememberMe ? localStorage.getItem('firstName') : '';
         const lastName = rememberMe ? localStorage.getItem('lastName') : '';
-        const password = rememberMe ? localStorage.getItem('password') : '';
-        this.setState({ firstName, lastName, password, rememberMe });
+        //const password = rememberMe ? localStorage.getItem('password') : '';
+        this.setState({ firstName, lastName, rememberMe });
     };
 
     login = (event) => {
@@ -64,7 +62,7 @@ class Login extends Component {
 
             // not using but cannot delete the code below //
             event.preventDefault();
-            let username = event.target[0].value
+            let username = event.target[0].value
             this.props.updateUser(username)
         }
         else {
