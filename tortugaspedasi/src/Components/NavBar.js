@@ -129,7 +129,7 @@ const classes = styles;
                   Logout
                     </MenuItem>]
                 : [< Button
-                  key="signup"
+                  key="logout"
                   color="inherit"
                   onClick={onLogout}
                   className={classes.menuButton}
@@ -143,7 +143,7 @@ const classes = styles;
         control={<Switch checked={(props.lng === "es") ? true : false} onChange={props.changeLanguage} />}
         label={(props.lng === "es") ? "Switch to English" : "Cambiar a Español"}
       />
-      
+
         </Toolbar>
       </AppBar>
 

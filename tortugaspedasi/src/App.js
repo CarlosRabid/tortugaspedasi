@@ -48,7 +48,6 @@ class App extends Component {
 
   logOut = () => {
     this.setState({
-      location: "",
       userName: "",
       lng: "en",
     })
