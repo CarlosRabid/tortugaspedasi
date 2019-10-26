@@ -11,9 +11,7 @@ class Analytics extends Component {
 
         return (  
             <div className= "analytics">
-                {/* <Chart/> */}
                 <DynamicChart />
-                {/* <CircleChart/> */}
             </div>
         );
     }
