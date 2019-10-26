@@ -1,6 +1,6 @@
 .analytics-page{
     display: grid;
-    grid-template-rows: 70% 30%;
+    grid-template-rows: 65% 35%;
     height: 100vh;
 }
 
@@ -19,7 +19,6 @@
 }
 
 .chart-filters{
-    /* height: 250px; */
     overflow-y: scroll;
     background-color: rgba(255, 255, 255, 0.6);
     display: grid;
@@ -37,18 +36,20 @@
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     padding: 1vmin;
+    overflow-y: scroll;
 }
 
 .filter-group{
     display: grid;
     grid-template-rows: min-content max-content;
-    
+    overflow-y: scroll;
 }
 
 .filter-group>div{
     display: grid;
     grid-template-columns: repeat(2, max-content);
     align-items: start;
+    overflow-y: scroll;
 }
 
 .filter-group>span{

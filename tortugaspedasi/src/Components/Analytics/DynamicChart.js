@@ -83,7 +83,7 @@ class DynamicChart extends Component {
         return (
             <div className="analytics-page">
 
-                <div className="analytics-area" style={{ width: '100vw', height: '50vh' }} >
+                <div className="analytics-area" style={{ width: '100vw', height: '70%' }} >
                     <h3>Count: </h3>
                     <select className="a-select" id="countBy" name="countBy" value={this.state.countBy} onChange={this.handleChange}>
                         {countOptions.map(o => <option value={o}>{o}</option>)}
