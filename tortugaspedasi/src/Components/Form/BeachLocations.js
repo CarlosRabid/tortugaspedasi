@@ -35,48 +35,58 @@ class BeachLocation extends Component {
             }
         }
     }
-    handleClose = (event) => {
-        console.log()
-        let idx = event.target.id
-        let currentBeach = this.beaches[idx]
-        let locationLatitude = { ...this.state.locationLatitude }
-        let locationLongitude = { ...this.state.locationLongitude }
-        let selectedBeach = { ...this.state.selectedBeach }
-        locationLatitude = currentBeach.latitude
-        locationLongitude = currentBeach.longitude
-        selectedBeach = currentBeach.name
-        this.props.handleBeachInput({locationLatitude, locationLongitude, selectedBeach})
-        this.setState({ locationLatitude, locationLongitude, selectedBeach 
-        })
-        this.hideMenu()
+    handleClose = async (event) => {
+        let idx = event.target.value
+        console.log(idx)
+        if (idx) {
+            let currentBeach = this.beaches[idx]
+            let locationLatitude = { ...this.state.locationLatitude }
+            let locationLongitude = { ...this.state.locationLongitude }
+            let selectedBeach = { ...this.state.selectedBeach }
+            locationLatitude = currentBeach.latitude
+            locationLongitude = currentBeach.longitude
+            selectedBeach = currentBeach.name
+           await this.props.handleBeachInput({ locationLatitude, locationLongitude, selectedBeach })
+            this.setState({
+                locationLatitude, locationLongitude, selectedBeach
+            })
+            this.hideMenu()
+        } else { return this.hideMenu() }
     }
     showMenu = () => {
         this.setState({ showMenu: true })
     }
-    hideMenu = () => {
-        this.setState({ showMenu: null })
+    hideMenu = async () => {
+        let showMenu = { ...this.state.showMenu }
+        showMenu = null
+        await this.setState({ showMenu })
     }
     render() {
         const { t } = this.props;
         return (
             <div >
                 <div id="menuplayascont">
-                    <FormControl  variant="outlined" >
-                        <InputLabel   htmlFor="outlined-age-simple">   Beach  </InputLabel>
-                        <Select  id="playaselect" labelWidth={60} inputProps={{ name: 'playa', id: 'outlined-playa-simple', }}>
-                                <MenuItem value="">  <em> --- </em></MenuItem>
-                                <MenuItem id="playaarenal" onClick={this.handleClose}>Playa El Arenal</MenuItem>
-                                <MenuItem id="playatoro" onClick={this.handleClose}>Playa El Toro</MenuItem>
-                                <MenuItem id="playalagarto" onClick={this.handleClose}>PLaya Lagarto</MenuItem>
-                    </Select>
-                     </FormControl>
-            </div>
-                </div >
-                )
-            }
-        }
-        export default withTranslation('translation')(BeachLocation);
-        {/* <Button id="menuPlayas" size="medium" variant="outlined" color="inherit" className="observation" onClick={this.showMenu}>
+                    <FormControl variant="outlined" value={this.state.selectedBeach} >
+                        <InputLabel htmlFor='playa' >   {this.state.selectedBeach ? this.state.selectedBeach : t('Beach') }  
+                        </InputLabel>
+                        <Select value={this.state.selectedBeach} labelWidth={60}
+                            inputProps={{ name: 'playa', id: 'playa', }}
+                            onChange={this.handleClose} 
+
+                            >
+                            <option value={null} > - </option>
+                            <option value="playaarenal" onClick={this.handleClose}>Playa Arenal</option>
+                            <option value="playatoro" onClick={this.handleClose}>Playa El Toro</option>
+                            <option value="playalagarto" onClick={this.handleClose}>Playa Lagarto</option>
+                        </Select>
+                    </FormControl>
+                </div>
+            </div >
+        )
+    }
+}
+export default withTranslation('translation')(BeachLocation);
+{/* <Button id="menuPlayas" size="medium" variant="outlined" color="inherit" className="observation" onClick={this.showMenu}>
     {this.state.selectedBeach ? this.state.selectedBeach : t('Beach Location')}
 
 </Button></div>

@@ -3,6 +3,7 @@ const router = express.Router()
 const MegaForm = require('../models/MegaForm')
 
 router.post('/mega-form', (req, res) => {
+    console.log(req.body)
     const megaForm = new MegaForm(req.body)
     megaForm.save()
     res.end()
