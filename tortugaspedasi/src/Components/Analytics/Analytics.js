@@ -8,9 +8,7 @@ class Analytics extends Component {
     render() { 
         return (  
             <div className= "analytics">
-                {/* <Chart/> */}
                 <DynamicChart />
-                {/* <CircleChart/> */}
             </div>
         );
     }

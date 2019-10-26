@@ -184,8 +184,9 @@ function NavBar(props) {
           />
         </Toolbar>
       </AppBar>
-      <div className={spclasses.offset}> {/* to accomdate for top white space */}
-      </div>
+      <Toolbar/>
+      {/* <div className={spclasses.offset}> to accomdate for top white space
+      </div> */}
     </div>
   );
 }
