@@ -8,6 +8,7 @@ import Form from './Components/Form/Form';
 import Spreadsheet from './Components/Spreadsheet/Spreadsheet';
 import Analytics from './Components/Analytics/Analytics';
 import './App.css';
+//import Login2 from './Components/Login2';
 const axios = require('axios')
 
 
