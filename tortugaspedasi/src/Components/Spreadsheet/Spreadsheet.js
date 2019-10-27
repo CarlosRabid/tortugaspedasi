@@ -13,7 +13,7 @@ class Spreadsheet extends Component {
 
         return ( 
           <div className= "Spreadsheet">
-            <SpreadsheetData/>
+            <SpreadsheetData />
           </div>  
          )
     }

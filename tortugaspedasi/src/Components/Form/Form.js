@@ -13,8 +13,14 @@ import BeachLocations from './BeachLocations';
 import Comments from './ObservationComments';
 import { Redirect } from 'react-router-dom';
 import { green } from '@material-ui/core/colors'
+import * as constant from './constant'
 
 const axios = require('axios');
+
+const dinamicRoute = (
+    window.location.host.includes("localhost") ?
+        constant.LOCAL_GET : constant.PROD_GET
+)
 
 class Form extends Component {
     constructor(props) {
@@ -50,6 +56,8 @@ class Form extends Component {
             daten: null,
             timen: null,
         }
+        // console.log(window.location.origin)
+        console.log(constant.LOCAL_GET)
     }
 
     handleBeachInput = async (input) => {
@@ -142,7 +150,7 @@ class Form extends Component {
     }
 
     checkTurtleData = () => {
-        let hasTurtle = {...this.state.hasTurtle}
+        let hasTurtle = { ...this.state.hasTurtle }
         let turtle = {
             species: this.state.species, gender: this.state.gender,
             conditionstat: this.state.conditionstat,
@@ -154,19 +162,19 @@ class Form extends Component {
             markingsRs: this.state.markingsRs,
             markingsLs: this.state.markingsLs,
         }
-        
+
         hasTurtle = Object.keys(turtle).some(function (k) {
             return turtle[k] !== null
         })
         // console.log(hasTurtle)
         // hasTurtle = formInput.turtleInput.some(exist)
-        
+
         this.setState({
             hasTurtle
         })
     }
     checkNest = () => {
-        let hasNest = {...this.state.hasNest}
+        let hasNest = { ...this.state.hasNest }
         let nest = {
             eggCount: this.state.eggCount,
             layTime: this.state.layTime,
@@ -210,28 +218,34 @@ class Form extends Component {
         let form = {
             shift: { firstName: this.state.firstName, lastName: this.state.lastName },
             observation:
-             { date: Date(this.state.date),
-               location: this.state.selectedBeach,
-               moonPhase: 'First Quarter',
-               tide: 'low-to-high',
-               comments: this.state.comments },
+            {
+                date: Date(this.state.date),
+                location: this.state.selectedBeach,
+                moonPhase: 'First Quarter',
+                tide: 'low-to-high',
+                comments: this.state.comments
+            },
             turtle:
-             { condition: { status: this.state.conditionstat , stage: this.state.conditionstage },
-               dimensions: { plain: {length: this.state.dimensionsPl, width: this.state.dimensionsPw}, curve: {length: this.state.dimensionsCl, width: this.state.dimensionsCw} },
-               markings: { rightSide: this.state.markingsRs, leftSide: this.state.markingsLs },
-               hasData: this.state.hasTurtle,
-               species: this.state.species,
-               gender: this.state.gender },
+            {
+                condition: { status: this.state.conditionstat, stage: this.state.conditionstage },
+                dimensions: { plain: { length: this.state.dimensionsPl, width: this.state.dimensionsPw }, curve: { length: this.state.dimensionsCl, width: this.state.dimensionsCw } },
+                markings: { rightSide: this.state.markingsRs, leftSide: this.state.markingsLs },
+                hasData: this.state.hasTurtle,
+                species: this.state.species,
+                gender: this.state.gender
+            },
             nest:
-             { hasData: this.state.hasNest,
-               layTime: this.state.daten,
-               eggCount: this.state.eggCount,
-               hatchEst: this.state.daten,
-               rehomed: this.state.rehomed,
-               salvageable: this.state.salvageable },
+            {
+                hasData: this.state.hasNest,
+                layTime: this.state.daten,
+                eggCount: this.state.eggCount,
+                hatchEst: this.state.daten,
+                rehomed: this.state.rehomed,
+                salvageable: this.state.salvageable
+            },
         }
-        console.log(form)
-        await axios.post('http://localhost:7777/mega-form',  form )
+        console.log(dinamicRoute)
+        await axios.post(`${dinamicRoute}/mega-form`, form)
     }
 
     handleExpandClick = (event) => {
@@ -245,7 +259,7 @@ class Form extends Component {
     render() {
         const { t } = this.props;
 
-        if(!this.props.isLoggedIn()){return <Redirect to="/"/>}
+        if (!this.props.isLoggedIn()) { return <Redirect to="/" /> }
 
         return (
 
@@ -260,8 +274,8 @@ class Form extends Component {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1c-content"
                         id="shift"
-                        // style={{border: '10px'}}
-                        
+                    // style={{border: '10px'}}
+
                     >
                         <div className="helptext">
                             <Typography className="Shift" variant="h6" component="h6">{t('Shift')}</Typography>
@@ -295,10 +309,10 @@ class Form extends Component {
                     </ExpansionPanelSummary>
                     <NestInput forms={this.state.forms} handleNest={this.handleNest} />
                 </ExpansionPanel>
-                <Comments handleComments={this.handleComments}  />
+                <Comments handleComments={this.handleComments} />
                 <Button
                     variant="contained"
-                    style={{backgroundColor: '#09bc8a', opacity: 0.9, marginLeft: '0.2em', marginTop: '0.1em'}}
+                    style={{ backgroundColor: '#09bc8a', opacity: 0.9, marginLeft: '0.2em', marginTop: '0.1em' }}
                     size="medium"
                     className="submit"
                     // startIcon={<SaveIcon />}
