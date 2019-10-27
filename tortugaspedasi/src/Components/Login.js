@@ -6,6 +6,8 @@ import './login.css'
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
+import { FormControlLabel, Checkbox } from '@material-ui/core';
+import { spacing } from '@material-ui/system';
 
 let credentials = {
     Robert: "TSDqmaPu",
@@ -53,16 +55,20 @@ class Login extends Component {
     render() {
         return (
             <Card className='logincontainer' style={{ maxWidth: 345 }}>
-                <CardContent>
+                <CardContent className="loginInnerContainer">
                     <TextField id="outlined-name" label="Username" name="userName" margin="normal" variant="outlined" type="string" value={this.state.userName} onChange={this.handleChange} />
                     <TextField id="outlined-name" type="password" name="password" label="Password" margin="normal" variant="outlined" value={this.state.password} onChange={this.handleChange} />
                 </CardContent>
-                <CardActions>
-                    <Button size="small" variant="contained" color="default" margin = "normal" onClick={this.login}>Login </Button>
-                   <label>
-                        <input name="rememberMe" checked={this.state.rememberMe} onChange={this.handleChange} type="checkbox" /> Remember me
-                    </label>
-                </CardActions>
+            
+                    <div className="cardActionsContainer">
+                        <div><FormControlLabel
+                            control={<Checkbox checked={this.state.rememberMe} onChange={this.handleChange} type="checkbox" name="rememberMe" />}
+                            label="Remember me" />
+                        </div>
+                        <div>
+                            <Button size="medium" variant="contained" color="default" margin="normal" onClick={this.login}>Login </Button>
+                        </div>
+                    </div>
             </Card>
 
         );
