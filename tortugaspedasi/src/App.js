@@ -77,9 +77,10 @@ class App extends Component {
   logOut = () => {
     this.setState({
       isLoggedIn: false,
+      userName: '',
       lng: "en"
     })  
-    localStorage.removeItem('admin') }
+    localStorage.removeItem('isLoggedIn') }
 
   render() {
 
