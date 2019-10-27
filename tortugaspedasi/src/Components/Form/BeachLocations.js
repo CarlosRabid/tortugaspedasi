@@ -64,44 +64,28 @@ class BeachLocation extends Component {
     render() {
         const { t } = this.props;
         return (
-            <div >
-                <div id="menuplayascont">
-                    <FormControl variant="outlined" value={this.state.selectedBeach} >
-                        <InputLabel htmlFor='playa' >   {this.state.selectedBeach ? this.state.selectedBeach : t('Beach') }  
+            <>
+            <div id="menuplaya">
+                    <FormControl variant="outlined" value={this.state.selectedBeach}  >
+                        <InputLabel  style={{color:"white"}} 
+                        htmlFor='menuplayascont' >   {this.state.selectedBeach ? 
+                            this.state.selectedBeach : t('Beach') }  
                         </InputLabel>
-                        <Select value={this.state.selectedBeach} labelWidth={60}
-                            inputProps={{ name: 'playa', id: 'playa', }}
+                        <Select value={this.state.selectedBeach} labelWidth={60} 
+                            inputProps={{ name: 'playa', id: 'menuplayascont', }}
                             onChange={this.handleClose} 
+                            // color="white"
 
                             >
                             <option value={null} > - </option>
-                            <option value="playaarenal" onClick={this.handleClose}>Playa Arenal</option>
-                            <option value="playatoro" onClick={this.handleClose}>Playa El Toro</option>
-                            <option value="playalagarto" onClick={this.handleClose}>Playa Lagarto</option>
+                            <option value="playaarenal" onClick={this.handleClose}>{t('Arenal beach')}</option>
+                            <option value="playatoro" onClick={this.handleClose}>{t('El Toro beach')}</option>
+                            <option value="playalagarto" onClick={this.handleClose}>{t('Lagarto beach')}</option>
                         </Select>
                     </FormControl>
-                </div>
-            </div >
+                    </div>
+            </>
         )
     }
 }
 export default withTranslation('translation')(BeachLocation);
-{/* <Button id="menuPlayas" size="medium" variant="outlined" color="inherit" className="observation" onClick={this.showMenu}>
-    {this.state.selectedBeach ? this.state.selectedBeach : t('Beach Location')}
-
-</Button></div>
-<div>
-<Menu
-    anchorEl={this.state.showMenu}
-    keepMounted
-    open={Boolean(this.state.showMenu)}
-    onClose={this.handleClose}
-    style={{ position: 'absolute' }}
-    className="menuPlayas2"
->
-    <div>
-        <MenuItem id="playaarenal" onClick={this.handleClose}>Playa El Arenal</MenuItem>
-        <MenuItem id="playatoro" onClick={this.handleClose}>Playa El Toro</MenuItem>
-        <MenuItem id="playalagarto" onClick={this.handleClose}>PLaya Lagarto</MenuItem>
-    </div>
-</Menu> */}

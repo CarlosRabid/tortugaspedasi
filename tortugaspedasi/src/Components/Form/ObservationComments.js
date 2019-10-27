@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import { TextField } from '@material-ui/core';
+import './form.css'
+import Typography from 'material-ui/styles/typography';
 
 class Comments extends Component {
     constructor() {
@@ -16,22 +18,27 @@ class Comments extends Component {
 
     render() {
         const { t } = this.props;
-        return <div>
+        return <div id="comments">
+            {/* <Typography variant="h6" component="h6"></Typography> */}
             <TextField
-                id="comments"
+                id="commentaries"
                 name="comments"
                 label={t('Comments')}
-                style={{ marginLeft: '5%' }}
-                placeholder={t('Observation notes...')}
+                style={{ marginLeft: '1vw', color: 'white' }}
+                placeholder={t('Add notes...')}
                 // helperText="Full width!"
                 multiline
                 rowsMax="2"
                 margin="normal"
                 InputLabelProps={{
                     shrink: true,
+                    style: {
+                        color: 'white'
+                    }
                 }}
+                variant="outlined"
                 onChange={this.handleInput}
-                color="inherit"
+                color='#ffffff'
             />
 
         </div>
