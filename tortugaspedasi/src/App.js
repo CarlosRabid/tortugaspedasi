@@ -20,15 +20,15 @@ class App extends Component {
       location: "",
       userName: "",
       lng: "en",
-      isOnline: true
+      isOnline: true,
     }
   }
 
   componentDidMount (){
     this.setState({isOnline: navigator.onLine})
     if(this.state.isOnline) {
-      let storage = localStorage.getItem('form')
-      axios.post('http://localhost:7777/newForm', {storage})
+      // let storage = localStorage.getItem('form')
+      // axios.post('http://localhost:7777/newForm', {storage})
       console.log('there is something in there')
     }
     else {
@@ -39,7 +39,7 @@ class App extends Component {
 
   saveForm (shift, observation, turtle, nest) {
     if (navigator.onLine) {
-      axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
+      // axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
       console.log('online')
     }
     else {
@@ -72,14 +72,14 @@ class App extends Component {
     }
   };
 
-  isLoggedIn = () => localStorage.getItem('user') || this.state.userName
+  isLoggedIn = () => localStorage.getItem("isLoggedIn") || this.state.userName
 
   logOut = () => {
     this.setState({
-      userName: "",
-      lng: "en",
-    })
-    localStorage.clear() }
+      isLoggedIn: false,
+      lng: "en"
+    })  
+    localStorage.removeItem('admin') }
 
   render() {
 
@@ -105,10 +105,9 @@ class App extends Component {
 
 
           <Route path="/" exact render={() =>
-            (this.state.userName ?
+            (this.isLoggedIn() ?
               <Redirect to="/home" /> :
-              <Login updateUser={this.updateUser}
-                updateNavBar={this.updateNavBar} />)}>
+            <Login updateUser={this.updateUser} />)}>
           </Route>
 
           <Route path="/home" exact render={() =>
