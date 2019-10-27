@@ -173,7 +173,7 @@ class TurtleInput extends Component {
                     className="observation" onClick={this.handleClick}
                     style={{ marginLeft: '16%' }}
                 >
-                    {this.state.species ? `Species: ${this.state.species}` : t('>> Select Species ')}
+                    {this.state.species ? `Species: ${this.state.species}` : t('Select Species')}
                 </Button>
                 <Menu
                     anchorEl={this.state.anchorEl}
@@ -192,7 +192,7 @@ class TurtleInput extends Component {
                     display="block"
                     value="female"
                     control={<Radio color="primary" />}
-                    label="Female"
+                    label= {t('Female')}
                     // labelPlacement="start"
                     id="female"
                 />
@@ -200,7 +200,7 @@ class TurtleInput extends Component {
                         display="block"
                         value="male"
                         control={<Radio color="secondary" />}
-                        label="Male"
+                        label={t('Male')}
                         // labelPlacement="start"
                         id="male"
                     />
@@ -225,7 +225,7 @@ class TurtleInput extends Component {
                         </ToggleButton>
                     </ToggleButtonGroup>
                     <br />
-                    {t('Found Death')} :
+                    {t('Found death(corpse status)')} :
                  <ToggleButtonGroup
                         value={this.state.selected}
                         exclusive
@@ -344,10 +344,10 @@ class TurtleInput extends Component {
                 </div>
                 <br />
                 <div className="markings">
-                    {t('Markings')}
+                {t('Marks on the shell')}
                     <InputLabel htmlFor="component-simple">{t('Right Side')}: </InputLabel>
                     <Input id="markingsRs" value={this.state.markingsRs} onChange={this.handleInput} />
-                    <InputLabel htmlFor="component-simple">Left Side: </InputLabel>
+                    <InputLabel htmlFor="component-simple">{t('Left Side')}: </InputLabel>
                     <Input id="markingsLs" value={this.state.markingsLs} onChange={this.handleInput} />
                 </div>
                 <br />
