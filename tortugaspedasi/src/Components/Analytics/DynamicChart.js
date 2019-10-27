@@ -4,6 +4,12 @@ import moment from 'moment'
 import Axios from 'axios';
 import ChartFilters from './ChartFilters';
 import '../../styles/analytics.css'
+import * as constant from '../Form/constant'
+
+const dinamicRoute = (
+    window.location.host.includes("localhost") ?
+        constant.LOCAL_GET : constant.PROD_GET
+)
 
 class DynamicChart extends Component {
     constructor(props) {
@@ -42,7 +48,7 @@ class DynamicChart extends Component {
     getRelevantData = async (filters) => {
         if (!filters) { filters = {} }
         const group = this.state.time
-        const response = await Axios.post(`${this.dinamicRoute}/formData/${group}`, filters)
+        const response = await Axios.post(`${dinamicRoute}/formData/${group}`, filters)
         this.setState({
             data: response.data.map(d => {
                 return { ...d, moonPhase: this.getMoonphases(d.moonPhase), date: this.convertDate(d.date, group) }

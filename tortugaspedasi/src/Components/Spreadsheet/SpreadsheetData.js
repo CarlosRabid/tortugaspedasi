@@ -9,8 +9,13 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import * as constant from '../Form/constant'
 const axios = require('axios')
 
+const dinamicRoute = (
+    window.location.host.includes("localhost") ?
+        constant.LOCAL_GET : constant.PROD_GET
+)
 
 
 class SpreadsheetData extends Component {
@@ -22,11 +27,12 @@ class SpreadsheetData extends Component {
             filter: "",
             showPopUp: null
         }
+
         this.dinamicRoute = props.dinamicRoute 
     }
 
     async componentDidMount() {
-        let data = await axios.get(`${this.dinamicRoute}/forms`)
+        let data = await axios.get(`${dinamicRoute}/forms`)
         // let forms = [...this.state.forms]
         // forms = data.data
         

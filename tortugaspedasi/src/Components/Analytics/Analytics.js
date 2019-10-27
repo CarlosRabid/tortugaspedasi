@@ -11,7 +11,7 @@ class Analytics extends Component {
 
         return (  
             <div className= "analytics">
-                <DynamicChart dinamicRoute={this.props.dinamicRoute} />
+                <DynamicChart />
             </div>
         );
     }
