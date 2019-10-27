@@ -12,15 +12,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BeachLocations from './BeachLocations';
 import Comments from './ObservationComments';
 import { Redirect } from 'react-router-dom';
-<<<<<<< HEAD
-// import { makeStyles } from '@material-ui/core/styles';
-//import Fab from '@material-ui/core/Fab';
-// import SaveIcon from '@material-ui/icons/Save';
-//import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
-//import IconButton from '@material-ui/core/IconButton';
-=======
 import { green } from '@material-ui/core/colors'
->>>>>>> master
 
 const axios = require('axios');
 
