@@ -3,7 +3,7 @@ let server = express();
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
-const chartRoutes = require('./ChartRoute')
+const chartRoutes = require('./src/server/ChartRoute')
 
 server.use(express.static('node_modules'));
 server.use(bodyParser.json());
@@ -11,8 +11,8 @@ server.use(bodyParser.urlencoded({ extended: false }));
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/TortugaPedasi', { useNewUrlParser: true})
 
-const api = require('./routes')
-const new_api = require('./routes/api')
+const api = require('./src/server/routes')
+const new_api = require('./src/server/routes/api')
 
 // Set Api Routes
 server.use(function (req, res, next) {

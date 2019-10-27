@@ -13,8 +13,10 @@ import BeachLocations from './BeachLocations';
 import Comments from './ObservationComments';
 import { Redirect } from 'react-router-dom';
 import { green } from '@material-ui/core/colors'
+import * as constant from './constant'
 
 const axios = require('axios');
+
 
 class Form extends Component {
     constructor(props) {
@@ -50,6 +52,7 @@ class Form extends Component {
             daten: null,
             timen: null,
         }
+        this.dinamicRoute = props.dinamicRoute
     }
 
     handleBeachInput = async (input) => {
@@ -228,8 +231,8 @@ class Form extends Component {
                rehomed: this.state.rehomed,
                salvageable: this.state.salvageable },
         }
-        console.log(form)
-        await axios.post('http://localhost:7777/mega-form',  form )
+        console.log(this.dinamicRoute)
+        await axios.post(`${this.dinamicRoute}/mega-form`,  form )
     }
 
     handleExpandClick = (event) => {

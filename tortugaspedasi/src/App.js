@@ -8,9 +8,9 @@ import Form from './Components/Form/Form';
 import Spreadsheet from './Components/Spreadsheet/Spreadsheet';
 import Analytics from './Components/Analytics/Analytics';
 import './App.css';
+import * as constant from './constant'
 const axios = require('axios')
-
-
+const dinamicRoute = (window.origin == constant.LOCAL_GET)? constant.LOCAL_GET : constant.PROD_GET
 
 
 class App extends Component {
@@ -115,15 +115,15 @@ class App extends Component {
           </Route>
 
           <Route path="/form" exact render={() =>
-            <Form updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} saveForm={this.saveForm} />}>
+            <Form dinamicRoute={dinamicRoute} updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} saveForm={this.saveForm} />}>
           </Route>
 
           <Route path="/spread" exact render={() =>
-            <Spreadsheet updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
+            <Spreadsheet dinamicRoute={dinamicRoute} updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
           </Route>
 
           <Route path="/analytics" exact render={() =>
-            <Analytics updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
+            <Analytics dinamicRoute={dinamicRoute} updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
           </Route>
 
             {/* testing local storage being saved offline

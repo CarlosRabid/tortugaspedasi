@@ -14,18 +14,19 @@ const axios = require('axios')
 
 
 class SpreadsheetData extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             forms: [],
             form: null,
             filter: "",
             showPopUp: null
         }
+        this.dinamicRoute = props.dinamicRoute 
     }
 
     async componentDidMount() {
-        let data = await axios.get('http://localhost:7777/forms')
+        let data = await axios.get(`${this.dinamicRoute}/forms`)
         // let forms = [...this.state.forms]
         // forms = data.data
         

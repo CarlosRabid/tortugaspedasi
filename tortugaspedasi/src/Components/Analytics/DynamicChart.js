@@ -6,13 +6,14 @@ import ChartFilters from './ChartFilters';
 import '../../styles/analytics.css'
 
 class DynamicChart extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             data: [],
             countBy: "turtleCount",
             time: "day",
         }
+        this.dinamicRoute = props.dinamicRoute
     }
 
     convertDate = (date, group) => {
@@ -41,7 +42,7 @@ class DynamicChart extends Component {
     getRelevantData = async (filters) => {
         if (!filters) { filters = {} }
         const group = this.state.time
-        const response = await Axios.post(`http://localhost:7777/formData/${group}`, filters)
+        const response = await Axios.post(`${this.dinamicRoute}/formData/${group}`, filters)
         this.setState({
             data: response.data.map(d => {
                 return { ...d, moonPhase: this.getMoonphases(d.moonPhase), date: this.convertDate(d.date, group) }
