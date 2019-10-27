@@ -8,12 +8,22 @@ h1 {
 
 #menuplayascont{
   display: grid; 
+  /* margin-right: 10vw; */
   justify-items: end;
   align-items: end;
 
   color: white;
-
+  background-color: white;
 }
+#menuplaya{
+  display: grid; 
+  justify-items: end;
+  align-items: end;
+  color: white;
+  margin-right: 7vw;
+  /* background-color: white; */
+}
+
 
 
  #playaselect{
@@ -25,6 +35,15 @@ h1 {
 }
 .MuiSelect-select{
   min-width: 5em !important;
+}
+.MuiSelect-selectMenu
+{
+    height: auto;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: white;
+    background-color: white;
 }
 
 #formContainer{
@@ -62,6 +81,11 @@ h1 {
     border-radius: 10px;
 }
 
+.expansions {
+    /* border-bottom: 10px, solid, black; */
+    border-radius: 10px;
+}
+
 ._observation {
     border-bottom: 5px, solid, black;
     border-radius: 10px;
@@ -79,7 +103,17 @@ h1 {
   
   #commentaries {
   border-radius: 3px;
-  padding: 0px;
-  background: #ffff;
+  padding: 3vmax;
+  background-color: #ffff;
+  width: 36vmax;
+  margin-right: 3%;
   /* background-color: #ffff; */
+}
+/* #shift{
+
+} */
+
+.MuiInputBase-input {
+  background-color: white;
+  /* width: 5em; */
 }

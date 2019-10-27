@@ -64,17 +64,17 @@ class BeachLocation extends Component {
     render() {
         const { t } = this.props;
         return (
-            <div >
-                <div id="menuplayascont">
-
+            <>
+            <div id="menuplaya">
                     <FormControl variant="outlined" value={this.state.selectedBeach}  >
-                        <InputLabel htmlFor='playa' >   {this.state.selectedBeach ? 
+                        <InputLabel  style={{color:"white"}} 
+                        htmlFor='menuplayascont' >   {this.state.selectedBeach ? 
                             this.state.selectedBeach : t('Beach') }  
                         </InputLabel>
                         <Select value={this.state.selectedBeach} labelWidth={60} 
-
-                            inputProps={{ name: 'playa', id: 'playa', }}
+                            inputProps={{ name: 'playa', id: 'menuplayascont', }}
                             onChange={this.handleClose} 
+                            // color="white"
 
                             >
                             <option value={null} > - </option>
@@ -83,8 +83,8 @@ class BeachLocation extends Component {
                             <option value="playalagarto" onClick={this.handleClose}>Playa Lagarto</option>
                         </Select>
                     </FormControl>
-                </div>
-            </div >
+                    </div>
+            </>
         )
     }
 }
