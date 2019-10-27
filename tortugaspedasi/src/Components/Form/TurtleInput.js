@@ -124,20 +124,21 @@ class TurtleInput extends Component {
         return this.setState({ anchorStat })
         // setAnchorEl(event.currentTarget);
     };
-    handleClose = (event) => {
+    handleClose = async (event) => {
         // setAnchorEl(null);
         // let anchorEl = {...this.state.anchorEl}
         let result = { ...this.state.species }
         result = event.currentTarget.id
         console.log(result)
+
         if (result.length === 2) {
-            this.props.handleSpecies(result)
+           this.props.handleSpecies(result)
             console.log(event)
             this.setState({ species: result, anchorEl: null })
             return 
 
         } else { 
-            this.props.handleCondition({conditionstage: result})
+            this.props.handleCondition({result})
             return this.setState({ conditionstage: result, anchorStat: null }) }
         // console.log(this.state)
     };

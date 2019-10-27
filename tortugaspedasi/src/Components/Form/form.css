@@ -7,9 +7,12 @@ h1 {
   }
 
 #menuplayascont{
-  display: grid;
+  display: grid; 
   justify-items: end;
- align-items: end;
+  align-items: end;
+
+  color: white;
+
 }
 
 
@@ -21,7 +24,7 @@ h1 {
   padding-right: 64px;
 }
 .MuiSelect-select{
-  min-width: 64px !important;
+  min-width: 5em !important;
 }
 
 #formContainer{
@@ -72,4 +75,11 @@ h1 {
 ._nest {
     border-bottom: 5px, solid, black;
     border-radius: 10px;
+  }
+  
+  #commentaries {
+  border-radius: 3px;
+  padding: 0px;
+  background: #ffff;
+  /* background-color: #ffff; */
 }
