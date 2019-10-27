@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import TableCell from '@material-ui/core/TableCell';
 // import TableHead from '@material-ui/core/TableHead';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 const moment = require('moment')
-
 
 
 class SpreadsheetContainer extends Component {
@@ -15,10 +15,10 @@ class SpreadsheetContainer extends Component {
         }
     }
 
-    showPopUp = (event) => {
-        console.log(event.target.id)
-        this.props.showPop(event.target.id)
-    }
+    // showPopUp = (event) => {
+    //     console.log(event.target.id)
+    //     this.props.showPop(event.target.id)
+    // }
 
     render() {
 
@@ -27,7 +27,8 @@ class SpreadsheetContainer extends Component {
         let rehomed = form.nest.rehomed === "yes"
         let salvagable = form.nest.salvageable == "true"
 
-        let MR = form.turtle.markings.rifhtSide == null
+        let MR = form.turtle.markings.rightSide == null
+        let ML = form.turtle.markings.leftSide == null
 
         console.log(form)
         return (
@@ -48,16 +49,21 @@ class SpreadsheetContainer extends Component {
                 <TableCell align="center">{gender ? "F" : "M"}</TableCell>
                 <TableCell align="center">{form.turtle.condition.status}</TableCell>
                 <TableCell align="center">{form.turtle.condition.stage}</TableCell>
-                <TableCell align="center">{MR ? "-" : form.turtle.markings.rifhtSide}</TableCell>
-                <TableCell align="center">{form.turtle.markings.leftSide}</TableCell>
+
+                <TableCell align="center"> {MR ? "-" : form.turtle.markings.rightSide}</TableCell>
+
+                <TableCell align="center">{ML ? "-" : form.turtle.markings.leftSide}</TableCell>
                 <TableCell align="center"> {moment(form.nest.layTime).format("LTS")}</TableCell>
                 <TableCell align="center">{form.nest.eggCount}</TableCell>
                 <TableCell align="center">{moment(form.nest.hatchEst).format("LTS")}</TableCell>
                 <TableCell align="center">{rehomed ? "√" : "X"}</TableCell>
                 <TableCell align="center">{salvagable ? "√" : "X"}</TableCell>
-                <TableCell align="center">Icon</TableCell>
-                <TableCell align="center">{form.observation.tide}</TableCell>
-                <TableCell align="center"><Tooltip title={form.observation.comments}><div>{form.observation.comments.slice(0, 5) + "..."}</div></Tooltip></TableCell>
+                <TableCell align="center"><Tooltip title={form.observation.comments}>
+                    <div>
+                        {form.observation.comments.slice(0, 5) + "..."}
+                    </div>
+                </Tooltip>
+                </TableCell>
             </TableRow>
 
 

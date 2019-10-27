@@ -39,20 +39,23 @@ h1 {
 
 
 .forms{
-  max-width: 95vw;
-  overflow-x: auto;
+  /* max-width: 95vw; */
+  overflow-x: scroll;
   background-color: white;
   opacity: 0.8;
-  margin-left: 25px;
-  margin-top: 25px;
-  border-radius: 15px
-  
+  margin-left: 3vw;
+  margin-right: 3vw;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  border-radius: 8px
 }
 
-.spreadSheet{
-  justify-content: center;
-  
+.head{
+  background-color: #166088;
+  color: white;
+
 }
+
 
 .shift {
     border-bottom: 10px, solid, black;

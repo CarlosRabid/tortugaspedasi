@@ -27,7 +27,7 @@ class SpreadsheetData extends Component {
         let data = await axios.get('http://localhost:7777/all-data')
         // let forms = [...this.state.forms]
         // forms = data.data
-        
+
         // console.log(forms)
         this.setState({
             forms: data.data
@@ -82,10 +82,11 @@ class SpreadsheetData extends Component {
 
                 <div className="forms">
                     <Paper>
-                        <Table>
-                            <TableHead>
+                        <Table >
+                            <TableHead className = "head">
                                 <TableRow style={{
-                                    textAlign: "center"
+                                    textAlign: "center",
+                                    color: "white"
                                 }}>
                                     <TableCell >Date</TableCell>
                                     <TableCell align="center">Location</TableCell>
@@ -104,8 +105,6 @@ class SpreadsheetData extends Component {
                                     <TableCell align="center">Hatchest</TableCell>
                                     <TableCell align="center">Rehomed</TableCell>
                                     <TableCell align="center">Salvageable</TableCell>
-                                    <TableCell align="center">Moon Phase</TableCell>
-                                    <TableCell align="center">Tide</TableCell>
                                     <TableCell align="center">Comments</TableCell>
                                 </TableRow>
                             </TableHead>
