@@ -49,7 +49,6 @@ const classes = styles;
   });
 
   function onLogout() {
-    localStorage.clear()
     props.logOut()
   }	  
 

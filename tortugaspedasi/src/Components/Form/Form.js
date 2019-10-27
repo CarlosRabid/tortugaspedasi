@@ -89,6 +89,8 @@ class Form extends Component {
         firstName = first
         lastName = last
         await this.setState({ firstName, lastName })
+        localStorage.setItem('firstName', this.state.firstName)
+        localStorage.setItem('lastName', this.state.lastName)
     }
 
     handleDimentions = async (id, value) => {
