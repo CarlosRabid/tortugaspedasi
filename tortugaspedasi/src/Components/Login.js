@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import Landing from './Landing'; // do NOT delete!
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import './login.css'
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import TextField from '@material-ui/core/TextField';
 
 let credentials = {
     Robert: "TSDqmaPu",
@@ -34,7 +40,7 @@ class Login extends Component {
 
     login = () => {
         if (credentials[this.state.userName] === this.state.password) {
-            if(this.state.rememberMe){
+            if (this.state.rememberMe) {
                 localStorage.setItem('isLoggedIn', true);
             }
             this.props.updateUser(this.state.userName)
@@ -46,20 +52,18 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <div  >
-                    <label>
-                        User: <input name="userName" value={this.state.userName} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Password: <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
-                    </label>
-                    <label>
+            <Card className='logincontainer' style={{ maxWidth: 345 }}>
+                <CardContent>
+                    <TextField id="outlined-name" label="Username" name="userName" margin="normal" variant="outlined" type="string" value={this.state.userName} onChange={this.handleChange} />
+                    <TextField id="outlined-name" type="password" name="password" label="Password" margin="normal" variant="outlined" value={this.state.password} onChange={this.handleChange} />
+                </CardContent>
+                <CardActions>
+                    <Button size="small" variant="contained" color="default" margin = "normal" onClick={this.login}>Login </Button>
+                   <label>
                         <input name="rememberMe" checked={this.state.rememberMe} onChange={this.handleChange} type="checkbox" /> Remember me
                     </label>
-                    <button type="submit" onClick={this.login}>Sign In</button>
-                </div>
-            </div>
+                </CardActions>
+            </Card>
 
         );
     }
