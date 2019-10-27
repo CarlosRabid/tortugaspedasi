@@ -138,74 +138,74 @@ router.post('/nest', (req, res) => {
 // .populate('observation')
 // .exec((err, form) => console.log(form))
 
-router.post('/newForm', (req, res) => {
-    let newShift = new Shift({
-        firstName: req.body.shift.firstName,
-        lastName: req.body.shift.lastName,
-        date: Date().toString()
-    })
-    let newBeach = new Beach({
-        name: req.body.beach.name,
-        latitude: req.body.beach.latitude,
-        longitude: req.body.beach.longitude
-    })
-    let newObservation = new Observation({
-        date: req.body.observation.date,
+// router.post('/newForm', (req, res) => {
+//     let newShift = new Shift({
+//         firstName: req.body.shift.firstName,
+//         lastName: req.body.shift.lastName,
+//         date: Date().toString()
+//     })
+//     let newBeach = new Beach({
+//         name: req.body.beach.name,
+//         latitude: req.body.beach.latitude,
+//         longitude: req.body.beach.longitude
+//     })
+//     let newObservation = new Observation({
+//         date: req.body.observation.date,
 
-        moonPhase: req.body.observation.moonPhase,
-        tide: req.body.observation.tide,
-        comments: req.body.observation.comments,
-        location: newBeach
-    })
+//         moonPhase: req.body.observation.moonPhase,
+//         tide: req.body.observation.tide,
+//         comments: req.body.observation.comments,
+//         location: newBeach
+//     })
 
-    let newTurtle = new Turtle({
-        hasData: req.body.turtle.hasData,
-        species: req.body.turtle.species,
-        gender: req.body.turtle.gender,
-        condition: {
-            status: req.body.turtle.condition.status,
-            stage: req.body.turtle.condition.stage
-        },
-        dimensions: {
-            plain: {
-                length: req.body.turtle.dimensions.plain.length,
-                width: req.body.turtle.dimensions.plain.width
-            },
-            curve: {
-                length: req.body.turtle.dimensions.curve.length,
-                width: req.body.turtle.dimensions.curve.width
-            }
-        },
-        markings: {
-            rightSide: req.body.turtle.markings.rightSide,
-            leftSide: req.body.turtle.markings.leftSide
-        }
-    })
-    let newNest = new Nest({
-        layTime: new Date().toString(),
-        eggCount: req.body.nest.eggCount,
-        hatchEst: req.body.nest.hatchEst,
-        rehomed: req.body.nest.rehomed,
-        salvageable: req.body.nest.salvageable,
-        hasData: req.body.nest.hasData
-    })
+//     let newTurtle = new Turtle({
+//         hasData: req.body.turtle.hasData,
+//         species: req.body.turtle.species,
+//         gender: req.body.turtle.gender,
+//         condition: {
+//             status: req.body.turtle.condition.status,
+//             stage: req.body.turtle.condition.stage
+//         },
+//         dimensions: {
+//             plain: {
+//                 length: req.body.turtle.dimensions.plain.length,
+//                 width: req.body.turtle.dimensions.plain.width
+//             },
+//             curve: {
+//                 length: req.body.turtle.dimensions.curve.length,
+//                 width: req.body.turtle.dimensions.curve.width
+//             }
+//         },
+//         markings: {
+//             rightSide: req.body.turtle.markings.rightSide,
+//             leftSide: req.body.turtle.markings.leftSide
+//         }
+//     })
+//     let newNest = new Nest({
+//         layTime: new Date().toString(),
+//         eggCount: req.body.nest.eggCount,
+//         hatchEst: req.body.nest.hatchEst,
+//         rehomed: req.body.nest.rehomed,
+//         salvageable: req.body.nest.salvageable,
+//         hasData: req.body.nest.hasData
+//     })
 
-    let newForm = new Form({
-        shift: newShift,
-        observation: newObservation,
-        beach: newBeach,
-        turtle: newTurtle,
-        nest: newNest
-    })
-    newForm.save()
-    newShift.save()
-    newObservation.save()
-    newTurtle.save()
-    newNest.save()
-    newBeach.save()
-    res.send(newForm)
+//     let newForm = new Form({
+//         shift: newShift,
+//         observation: newObservation,
+//         beach: newBeach,
+//         turtle: newTurtle,
+//         nest: newNest
+//     })
+//     newForm.save()
+//     newShift.save()
+//     newObservation.save()
+//     newTurtle.save()
+//     newNest.save()
+//     newBeach.save()
+//     res.send(newForm)
 
-})
+// })
 
 router.put(('/updateShift'), (req, res) => {
     Form.findByIdAndUpdate(req.body.id, { shift: req.body.shift }, { new: true }, (err, doc) => {
