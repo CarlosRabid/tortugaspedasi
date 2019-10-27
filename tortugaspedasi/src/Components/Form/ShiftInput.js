@@ -12,8 +12,8 @@ class ShiftInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: "",
-            lastName: "",
+            firstName: localStorage.getItem('firstName'),
+            lastName: localStorage.getItem('lastName'),
             date: moment().format('DD/MM/YYYY'),
             time: moment().format('HH:mm')
         }
@@ -22,6 +22,8 @@ class ShiftInput extends Component {
     componentDidMount() {
         // this.setState({date: Date()})
         // this.props.submitForm(this.state)
+        localStorage.getItem('firstName');
+        localStorage.getItem('lastName');
     }
     handleInput = (event) => {
         // console.log(event)
@@ -35,6 +37,7 @@ class ShiftInput extends Component {
             
             this.setState({ [event.target.id]: event.target.value })
             this.props.handleName(this.state.firstName, this.state.lastName)
+            
             return 
         } else {
             date = moment(event).format('DD/MM/YYYY')
