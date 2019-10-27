@@ -225,7 +225,7 @@ class TurtleInput extends Component {
                         </ToggleButton>
                     </ToggleButtonGroup>
                     <br />
-                    {t('Found Death')} :
+                    {t('Found death(corpse status)')} :
                  <ToggleButtonGroup
                         value={this.state.selected}
                         exclusive
