@@ -28,7 +28,7 @@ class App extends Component {
       let savedForms = JSON.parse(localStorage.getItem('savedForms') || "[]")
       if (savedForms.length < 1) { return }
 
-      axios.post('http://localhost:7777/mega-forms', savedForms).then(function () {
+      axios.post(`${dinamicRoute}/mega-forms`, savedForms).then(function () {
         localStorage.removeItem('savedForms')
         console.log('Sent saved forms to DB')
       })
