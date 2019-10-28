@@ -9,18 +9,19 @@ h1 {
 #menuplayascont{
   display: grid; 
   /* margin-right: 10vw; */
-  justify-items: end;
-  align-items: end;
+  justify-items: start;
+  align-items: start;
 
   color: white;
   background-color: white;
 }
 #menuplaya{
   display: grid; 
-  justify-items: end;
-  align-items: end;
+  justify-items: start;
+  align-items: start;
   color: white;
   margin-right: 7vw;
+  margin-left: 0.5em;
   /* background-color: white; */
 }
 
@@ -57,6 +58,12 @@ h1 {
     resize: vertical;
     box-shadow: 1px 1px 3px black;
   }
+/* #formPanel{ */
+    /* border-radius: 50px;  */
+    /* box-sizing: border-box;  */
+    /* resize: vertical; */
+    /* box-shadow: 1px 1px 3px black; */
+  /* } */
 
 
 
@@ -104,3 +111,12 @@ h1 {
   background-color: white;
   /* width: 5em; */
 }
+/* #shift{
+  margin-left: 5em;
+  border-bottom: 10px, solid, black;
+  border-radius: 10px;
+} */
+
+/* .MuiExpansionPanel-rounded {
+  border-radius: 2em;
+} */

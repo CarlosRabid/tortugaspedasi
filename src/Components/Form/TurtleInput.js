@@ -214,7 +214,7 @@ class TurtleInput extends Component {
                         style={{ justifyContent: "center" }}
                     >
                         <ToggleButton id="alv1" value="alv1" aria-label="Alive - Healthy"
-                            style={{ height: '6vh', justifySelf: "center", marginLeft: '13%' }}>
+                            style={{ height: '6vh', justifySelf: "center", marginLeft: '51%' }}>
                             <FontAwesomeIcon icon={faHeartbeat} />
                         </ToggleButton>
                         <ToggleButton id="alv2" value="alv2" 
