@@ -1,7 +1,7 @@
 .turtle-wrapper{
     transform: scale(0.3);
 }
-.turtle {
+.turtle-loader-container {
   position: relative;
   top: 50%;
   left: 50%;

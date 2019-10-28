@@ -36,17 +36,17 @@ class SpreadsheetData extends Component {
     }
 
     async componentDidMount() {
-        console.log(dinamicRoute)
         let data = await axios.get(`${dinamicRoute}/all-data`)
 
         console.log(data)
         let forms = [...this.state.forms]
         forms = data.data
-
+        
         this.setState({
             forms,
             loadingData: false
         })
+        console.log(data)
     }
 
 
