@@ -63,7 +63,7 @@ class Login extends Component {
                             label="Remember me" />
                         </div>
                         <div>
-                            <button onClick={this.login} className = "signinButton"> LOGIN </button>
+                            <button onClick={this.login} className = "anyButton"> LOGIN </button>
                         </div>
                     </div>
             </Card>

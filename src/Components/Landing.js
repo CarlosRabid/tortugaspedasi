@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom' //do not delete Router Route
 import { withTranslation } from 'react-i18next';
-import Form from './Form/Form';
-import Spreadsheet from './Spreadsheet/Spreadsheet';
-import Analytics from './Analytics/Analytics';
+// import Form from './Form/Form';
+// import Spreadsheet from './Spreadsheet/Spreadsheet';
+// import Analytics from './Analytics/Analytics';
 import './landing.css'
-import Login from './Login';
+// import Login from './Login';
+import CardLanding from './CardLanding';
 
-class Landing extends Component {  
+class Landing extends Component {
     constructor() {
-        super ();
+        super();
         this.state = {
             user: {},
             users: []
@@ -18,15 +19,23 @@ class Landing extends Component {
 
     render() {
         const { t } = this.props;
-        if(!this.props.isLoggedIn()){return <Redirect to="/"/>}
+        if (!this.props.isLoggedIn()) { return <Redirect to="/" /> }
+        let dataLanding = [
+            { title: 'Form', description: "Create a new observation form.", link: "/form" , button: "Create form"},
+            { title: "All form data", description: "Review all available observation forms.", link: "/spread", button: "View data" },
+            { title: "Analytics", description: " Review data analytics and create charts.", link: "/analytics" , button: "View analytics"}
+        ]
         return (
-           
-                <div className="container">
-                    <span className="button"><button id="form" className="link"><Link to="/form" className ="links">{t('Form')}</Link></button></span>
+            <div className="landing-container">
+                {dataLanding.map(d => <CardLanding d={d} />)}
+
+
+
+                {/* <span className="button"><button id="form" className="link"><Link to="/form" className ="links">{t('Form')}</Link></button></span>
                     <span className="button"><button id="spreadsheet" className="link"><Link to="/spread" className="links">{t('Spreadsheet')}</Link></button></span>
-                    <span className="button"><button id="analytics" className="link"><Link to="/analytics" className="links">{t('Analytics')}</Link></button></span>
-                </div>                  
-                  
+                    <span className="button"><button id="analytics" className="link"><Link to="/analytics" className="links">{t('Analytics')}</Link></button></span> */}
+            </div>
+
         )
     }
 }

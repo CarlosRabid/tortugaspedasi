@@ -1,4 +1,26 @@
-.container {
+.landing-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.individualCardLanding{
+  display: flex;
+  margin-top: 3vh;
+  padding: 3vh;
+  width: 230px;
+  background-color: '#000000';
+  opacity: 0.85
+ 
+}
+
+.landingButton {
+  padding-left: 8px;
+  padding-bottom: 8px;
+}
+
+/* ----------------------- */
+/*.container {
   margin-top: 3vh;
   display: flex;
   align-content: center;
@@ -12,7 +34,6 @@
 .button {
   margin-top: 10%;
   display: inherit;
-    /* margin-bottom: 24vh; */
     padding: 2%;  
     align-items: center;
 }
@@ -21,17 +42,17 @@
   background-color: #cfcfcf;
   border: none;
   color: black;
-  /* padding: 5%; */
+  
   text-align: center;
   align-content: center;
   justify-content: space-around;
   justify-items: center;
   align-self: center;
-  /* margin: 4px 2px; */
+  
   opacity: 0.6;
   transition: 0.3s;
   display: inline;
-  /* text-decoration: none; */
+  
   cursor: pointer;
   height: 8vh;
   width: 32vw;
@@ -44,6 +65,7 @@
   background-color: #92c8d1;
   transform: translateY(4px);
 }
+*/
 
 
 
