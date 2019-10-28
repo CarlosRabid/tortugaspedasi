@@ -63,6 +63,14 @@ const resources = {
             "Analytics":"Analytics",
             "View analytics":"View analytics",
             "Date":"Date",
+            "Species":"Species",
+            "Gender":"Gender",
+            "Marks right side":"Marks right side",
+            "Marks left side":"Marks left side",
+            "Spawning time":"Spawning time",
+            "Hatching":"Hatching",
+            "Relocated":"Relocated",
+            "Salvageable":"Salvageable",
 
         }
     },
@@ -106,7 +114,7 @@ const resources = {
             "Left Side": "Lado izquierdo",
             "Nest Information": "Información del Nido",
             " Submit ": " Enviar ",
-            "Number of eggs": "Número de huevos puestos",
+            "Number of eggs": "Número de huevos",
             "Estimated laying time": "Tiempo estimado de colocación",
             "Estimated hatching time": "Tiempo estimado de eclosión",
             "Taken to lab": "Llevado al laboratorio",
@@ -127,6 +135,14 @@ const resources = {
             "Analytics":"Análisis de datos",
             "View analytics":"Ver el análisis de datos",
             "Date":"Fecha",
+            "Species":"Especie",
+            "Gender":"Género",
+            "Marks right side":"Marcas lado der",
+            "Marks left side":"Marcas lado izq",
+            "Spawning time":"Tiempo de desove",
+            "Hatching":"Eclosión",
+            "Relocated":"Reubicados",
+            "Salvageable":"Salvables",
 
         }
     }
