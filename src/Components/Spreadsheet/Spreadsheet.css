@@ -1,22 +1,22 @@
-.forms{
-    /* max-width: 95vw; */
-    overflow-x: scroll;  
-    background-color: white;
-    opacity: 0.8;
-    margin-left: 3vw;
-    margin-right: 3vw;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-    border-radius: 8px;
-    max-height: 80vh
-    /* overflow: auto */
-}
-
-.head{
+/* .head{ */
     /* background-color: black !important; */
-    background: rgba(77, 175, 124, 0.6);
-    box-shadow: 1px 1px 3px black;
+    /* background: rgba(77, 175, 124, 0.6); */
+    /* box-shadow: 1px 1px 3px black; */
     
+    /* } */
+    
+.forms{
+/* max-width: 95vw; */
+overflow-x: auto;  
+background-color: white;
+opacity: 0.8;
+margin-left: 3vw;
+margin-right: 3vw;
+margin-top: 5vh;
+margin-bottom: 5vh;
+border-radius: 8px;
+max-height: 80vh
+/* overflow: auto */
 }
 /* .MuiTableCell-stickyHeader {
     top: 0;
@@ -24,3 +24,8 @@
     z-index: 1;
     background-color: rgba(77, 175, 124, 0.6) !important;
 } */
+
+/* .headRow{ 
+margin-top: 2vh
+} */
+
