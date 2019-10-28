@@ -52,12 +52,46 @@ class SpreadsheetContainer extends Component {
         }
 
         let MR = form.turtle.markings.rightSide
-        let ML = form.turtle.markings.leftSide
-
-        if(!MR && !ML){
+        if (!MR) {
             MR = "-"
+        }
+
+        let ML = form.turtle.markings.leftSide
+        if (!ML) {
             ML = "-"
         }
+
+        let status = form.turtle.condition.status
+
+        if (!status) {
+            status = "-"
+        }
+
+        let stage = form.turtle.condition.stage
+        if (!stage) {
+            stage = "-"
+        }
+
+        let PL = form.turtle.dimensions.plain.length
+        if (!PL) {
+            PL = "-"
+        }
+
+        let PW = form.turtle.dimensions.plain.width
+        if (!PW) {
+            PW = "-"
+        }
+
+        let CL = form.turtle.dimensions.curve.length
+        if (!CL) {
+            CL = "-"
+        }
+        let CW = form.turtle.dimensions.curve.width
+        if (!CW) {
+            CW = "-"
+        }
+        
+
         
 
 
@@ -74,31 +108,33 @@ class SpreadsheetContainer extends Component {
                 <TableCell align="center">{form.shift.firstName}</TableCell>
 
                 <TableCell align="center">
-                    L:{form.turtle.dimensions.plain.length}, W:{form.turtle.dimensions.plain.width}
+                    L:{PL}, W:{PW}
                 </TableCell>
 
                 <TableCell align="center">
-                    L:{form.turtle.dimensions.curve.length}, W:{form.turtle.dimensions.curve.width}
+                    L:{CL}, W:{CW}
                 </TableCell>
 
                 <TableCell align="center">{form.turtle.species ? form.turtle.species : "-"}</TableCell>
                 <TableCell align="center">{gender}</TableCell>
-                <TableCell align="center">{form.turtle.condition.status ? form.turtle.condition.status : "-"}</TableCell>
-                <TableCell align="center">{form.turtle.condition.stage ? form.turtle.condition.stage : "-"}</TableCell>
+                <TableCell align="center">{status}</TableCell>
+                <TableCell align="center">{stage}</TableCell>
 
-                <TableCell align="center"> { MR === "-" ?
-                    MR : <Tooltip title={form.turtle.markings.rightSide}>
+                <TableCell align="center"> {MR == "-" ? "-" :
+                    <Tooltip title={MR}>
                         <div>
-                            {form.turtle.markings.rightSide.slice(0, 5) + "..."}
+                            {MR.slice(0, 5) + "..."}
                         </div>
+
                     </Tooltip>}
                 </TableCell>
 
-                <TableCell align="center"> {ML === "-" ?
-                    '-' : <Tooltip title={form.turtle.markings.leftSide}>
+                <TableCell align="center"> {ML == "-" ? "-" :
+                    <Tooltip title={ML}>
                         <div>
-                            {form.turtle.markings.leftSide.slice(0, 5) + "..."}
+                            {ML.slice(0, 5) + "..."}
                         </div>
+
                     </Tooltip>}
                 </TableCell>
 

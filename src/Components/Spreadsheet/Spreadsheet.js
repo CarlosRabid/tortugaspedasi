@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SpreadsheetData from './SpreadsheetData';
 import { Redirect } from 'react-router-dom';
+import './Spreadsheet.css'
 // import SpreadsheetActions from './SpreadsheetActions';
 
 

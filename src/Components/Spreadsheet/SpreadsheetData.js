@@ -9,12 +9,15 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import * as constant from '../Form/constant'
+import './Spreadsheet.css'
 const axios = require('axios')
 
 const dinamicRoute = (
     window.location.host.includes("localhost") ?
         constant.LOCAL_GET : constant.PROD_GET
 )
+
+
 
 
 class SpreadsheetData extends Component {
@@ -27,17 +30,18 @@ class SpreadsheetData extends Component {
             showPopUp: null
         }
 
-        this.dinamicRoute = props.dinamicRoute 
+        // this.dinamicRoute = props.dinamicRoute 
+
     }
 
     async componentDidMount() {
+        console.log(dinamicRoute)
         let data = await axios.get(`${dinamicRoute}/all-data`)
-        // let forms = [...this.state.forms]
-        // forms = data.data
+        let forms = [...this.state.forms]
+        forms = data.data
 
-        // console.log(forms)
         this.setState({
-            forms: data.data
+            forms
         })
     }
 
@@ -49,7 +53,6 @@ class SpreadsheetData extends Component {
         await this.setState({
             form: data
         })
-        console.log(data)
         return data
     }
 
@@ -80,6 +83,8 @@ class SpreadsheetData extends Component {
 
     render() {
         let forms = this.state.forms
+
+
         return (
             <div className="spreadSheet">
                 {this.state.showPopUp ?
@@ -88,12 +93,9 @@ class SpreadsheetData extends Component {
 
                 <div className="forms">
                     <Paper>
-                        <Table >
-                            <TableHead className = "head" stickyHeader aria-label="sticky table">
-                                <TableRow style={{
-                                    textAlign: "center",
-                                    color: "white"
-                                }}>
+                        <Table stickyHeader >
+                            <TableHead className="head" >
+                                <TableRow  >
                                     <TableCell >Date</TableCell>
                                     <TableCell align="center">Location</TableCell>
                                     <TableCell align="center">First Name</TableCell>

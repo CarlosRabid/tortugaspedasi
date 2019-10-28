@@ -60,25 +60,7 @@ h1 {
 
 
 
-.forms{
-  /* max-width: 95vw; */
-  overflow-x: scroll;
-  background-color: white;
-  opacity: 0.8;
-  margin-left: 3vw;
-  margin-right: 3vw;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
-  border-radius: 8px
-}
 
-.head{
-  background-color: rgba(77, 175, 124, 0.6);
-
-  color: white;
-  box-shadow: 1px 1px 3px black;
-
-}
 
 
 .shift {
