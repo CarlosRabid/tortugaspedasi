@@ -3,8 +3,9 @@ import DateInput from './DateInput';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { TextField } from '@material-ui/core';
-// import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { withTranslation } from 'react-i18next';
+// import Grid from '@material-ui/core/Grid';
 // import FormControl from '@material-ui/core/FormControl';
 // import FormLabel from '@material-ui/core/FormLabel';
 
@@ -43,6 +44,8 @@ class NestInput extends Component {
     };
 
     render() {
+        const { t } = this.props;
+
         return <>
             {/* <div className="new-nest-grid">
                     <span className="new-nest-1"> Number of eggs: </span>
@@ -54,7 +57,7 @@ class NestInput extends Component {
                 value={this.state.eggCount}
                 onChange={this.handleInput}
                 name="eggCount"
-                label="Number eggs"
+                label={t('Number of eggs')}
                 id="eggCount"
                 className="searchInput"
                 size="small"
@@ -64,7 +67,7 @@ class NestInput extends Component {
             // }}
             />
             <div className="new-nest-grid">
-                <span className="new-nest-1"> Estimated Laying Time: </span>
+                <span className="new-nest-1"> {t('Estimated laying time')}: </span>
                 {/* <form>
                         <label>
                             Date:
@@ -73,7 +76,7 @@ class NestInput extends Component {
                 <DateInput handleDaten={this.handleDaten} />
             </div>
             <div className="new-nest-grid">
-                <span className="new-nest-1"> Estimated Hatching Time: </span>
+                <span className="new-nest-1"> {t('Estimated hatching time')}: </span>
                 {/* <form>
                         <label>
                         Date:
@@ -82,14 +85,14 @@ class NestInput extends Component {
                 <DateInput handleDaten={this.handleDaten} />
             </div>
             <div className="new-nest-grid" >
-                <span className="new-nest-1"> Taken to Lab: </span>
+                <span className="new-nest-1"> {t('Taken to lab')}: </span>
                 <RadioGroup row aria-label="Lab" name="nestlab" 
                 value={this.state.salvageable} onChange={this.handleRadioButton} 
                 style={{ justifyContent: 'center', marginTop: '2%' }}><FormControlLabel
                     display="block"
                     value="yes"
                     control={<Radio color="primary" />}
-                    label="Yes"
+                    label={t('Yes')}
                     // labelPlacement="start"
                     id="yes"
                 />
@@ -109,4 +112,4 @@ class NestInput extends Component {
     }
 }
 
-export default NestInput;
+export default withTranslation('translation')(NestInput);

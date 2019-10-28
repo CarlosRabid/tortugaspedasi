@@ -9,6 +9,8 @@ import { Typography } from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSave } from '@fortawesome/free-solid-svg-icons'
 import BeachLocations from './BeachLocations';
 import Comments from './ObservationComments';
 import { Redirect } from 'react-router-dom';
@@ -244,8 +246,20 @@ class Form extends Component {
                 salvageable: this.state.salvageable
             },
         }
+        console.log(form)
+        if(navigator.onLine) {
+            await axios.post(`${dinamicRoute}/mega-form`,  form )
+            console.log('new form saved!')
+            alert('Successfully submitted')
+        }
+        else {
+            let savedForms = JSON.parse(localStorage.getItem("savedForms") || "[]")
+            savedForms.push(form)
+            localStorage.setItem('savedForms', JSON.stringify(savedForms))
+            console.log("Saved form locally for later post")
+            alert('Cannot submit, will try again later')
+        }
         console.log(dinamicRoute)
-        await axios.post(`${dinamicRoute}/mega-form`, form)
     }
 
     handleExpandClick = (event) => {
@@ -318,8 +332,10 @@ class Form extends Component {
                     // startIcon={<SaveIcon />}
                     color="#bce784"
                     onClick={this.submitNewForm}
+                    margin="normal"
                 >
-                    {t('Submit Form')}
+                    <FontAwesomeIcon icon={faSave} />  
+                    {t(' Submit Form')}
                 </Button>
             </div>
         )

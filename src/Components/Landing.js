@@ -18,7 +18,7 @@ class Landing extends Component {
         if (!this.props.isLoggedIn()) { return <Redirect to="/" /> }
         let dataLanding = [
             { title: 'Form', description: "Create a new observation form.", link: "/form" , button: "Create form"},
-            { title: "All form data", description: "Review all available observation forms.", link: "/spread", button: "View data" },
+            { title: "Archive", description: "Review all available observation forms.", link: "/spread", button: "View data" },
             { title: "Analytics", description: " Review data analytics and create charts.", link: "/analytics" , button: "View analytics"}
         ]
         return (
