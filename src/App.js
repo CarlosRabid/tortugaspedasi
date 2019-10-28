@@ -9,8 +9,9 @@ import Spreadsheet from './Components/Spreadsheet/Spreadsheet';
 import Analytics from './Components/Analytics/Analytics';
 import './App.css';
 import * as constant from './Components/Form/constant'
+import Loader from './Components/Loader';
 const axios = require('axios')
-const dinamicRoute = (window.origin == constant.LOCAL_GET)? constant.LOCAL_GET : constant.PROD_GET
+const dinamicRoute = (window.origin == constant.LOCAL_GET) ? constant.LOCAL_GET : constant.PROD_GET
 
 
 class App extends Component {
@@ -20,32 +21,28 @@ class App extends Component {
       location: "",
       userName: "",
       lng: "en",
-      isOnline: true,
+      loadingData: true,
     }
   }
 
-  componentDidMount (){
-    this.setState({isOnline: navigator.onLine})
-    if(this.state.isOnline) {
-      // let storage = localStorage.getItem('form')
-      // axios.post('http://localhost:7777/newForm', {storage})
-      console.log('there is something in there')
+  componentDidMount() {
+    if (navigator.onLine) {
+      let savedForms = JSON.parse(localStorage.getItem('savedForms') || "[]")
+      
+      if (savedForms.length < 1) {
+        this.setState({ loadingData: false })
+        return
+      }
+
+      axios.post(`${dinamicRoute}/mega-forms`, savedForms).then(function () {
+        localStorage.removeItem('savedForms')
+        console.log('Sent saved forms to DB')
+        this.setState({ loadingData: false })
+      })
     }
     else {
       console.log('there isnt anything sooo...')
-
-    }
-  }
-
-  saveForm (shift, observation, turtle, nest) {
-    if (navigator.onLine) {
-      // axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
-      console.log('online')
-    }
-    else {
-      let form = { shift: '', observation: '', turtle: '', nest: '' } 
-      localStorage.form = JSON.stringify(form)
-      console.log('offline')
+      this.setState({ loadingData: false })
     }
   }
 
@@ -79,18 +76,13 @@ class App extends Component {
       isLoggedIn: false,
       userName: '',
       lng: "en"
-    })  
-    localStorage.removeItem('isLoggedIn') }
+    })
+    localStorage.removeItem('isLoggedIn')
+  }
 
   render() {
 
     return (<>
-      {/* <button onClick={() => changeLanguage('en')}>en</button>
-        <button onClick={() => changeLanguage('es')}>es</button> */}
-      {/* <FormControlLabel
-        control={<Switch checked={(this.state.lng === "es") ? true : false} onChange={this.changeLanguage} />}
-        label={(this.state.lng === "es") ? "Switch to English" : "Cambiar a Español"}
-      /> */}
       <div>
 
         <BrowserRouter>
@@ -101,14 +93,16 @@ class App extends Component {
             updateNavBar={this.updateNavBar}
             lng={this.state.lng}
             changeLanguage={this.changeLanguage}>
-          
+
           </NavBar>
+
+          {this.state.loadingData ? <Loader /> : null}
 
 
           <Route path="/" exact render={() =>
             (this.isLoggedIn() ?
               <Redirect to="/home" /> :
-            <Login updateUser={this.updateUser} />)}>
+              <Login updateUser={this.updateUser} />)}>
           </Route>
 
           <Route path="/home" exact render={() =>
@@ -116,7 +110,7 @@ class App extends Component {
           </Route>
 
           <Route path="/form" exact render={() =>
-            <Form  updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} saveForm={this.saveForm} />}>
+            <Form updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} saveForm={this.saveForm} />}>
           </Route>
 
           <Route path="/spread" exact render={() =>
@@ -127,14 +121,11 @@ class App extends Component {
             <Analytics updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
           </Route>
 
-            {/* testing local storage being saved offline
-          <button onClick={this.saveForm} >SAVE FORM</button> */}
-
         </BrowserRouter>
 
       </div></>
     );
-    
+
   }
 }
 

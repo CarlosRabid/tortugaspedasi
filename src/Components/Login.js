@@ -1,22 +1,10 @@
 import React, { Component } from 'react';
 import Landing from './Landing'; // do NOT delete!
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import './login.css'
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import { FormControlLabel, Checkbox } from '@material-ui/core';
-import { spacing } from '@material-ui/system';
-import { createMuiTheme } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-        main: 'rgb(69,149,118)'  
-  }}
-});
 
 let credentials = {
     Robert: "TSDqmaPu",
@@ -31,12 +19,9 @@ class Login extends Component {
     constructor() {
         super()
         this.state = {
-            admin: {
-                userName: '',
-                password: '',
-                rememberMe: false,
-                isLoggedIn: false
-            }
+            userName: '',
+            password: '',
+            rememberMe: false,
         };
     }
 
@@ -50,7 +35,7 @@ class Login extends Component {
     };
 
     login = () => {
-        if (credentials[this.state.userName] === this.state.password) {
+        if (this.state.userName && credentials[this.state.userName] === this.state.password) {
             if (this.state.rememberMe) {
                 localStorage.setItem('isLoggedIn', true);
             }
@@ -60,7 +45,6 @@ class Login extends Component {
             alert('One of the following was not correct')
         }
     }
-
     render() {
         return (
             <Card className='logincontainer' style={{ maxWidth: 345 }}>
@@ -71,13 +55,11 @@ class Login extends Component {
             
                     <div className="cardActionsContainer">
                         <div><FormControlLabel
-                            control={<Checkbox checked={this.state.rememberMe} onChange={this.handleChange} color="default" type="checkbox" name="rememberMe" />}
+                            control={<Checkbox value={this.state.rememberMe} checked={this.state.rememberMe} onChange={this.handleChange} color="default" type="checkbox" name="rememberMe" />}
                             label="Remember me" />
                         </div>
                         <div>
                             <button onClick={this.login} className = "signinButton"> LOGIN </button>
-                            {/* size="large" variant="contained" color= "primary"
-                            className="signinButton" margin="normal" */}
                         </div>
                     </div>
             </Card>

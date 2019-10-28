@@ -13,7 +13,6 @@ const Beach = require('./models/Beach');
 
 router.get('/solunar', (req, res) => {
     let apiAdd = `https://api.solunar.org/solunar/${lat},${long},${date},-5`
-    console.log(apiAdd)
 
     request(apiAdd, function (error, response, body) {
         let fulldataMoon = JSON.parse(body)
@@ -28,7 +27,6 @@ router.get('/solunar', (req, res) => {
             moonphase: fulldataMoon.moonPhase,
             moonillumination: fulldataMoon.moonIllumination
         }
-        console.log(moonData)
     })
     res.send(moonData)
 })
@@ -42,7 +40,6 @@ router.get('/solunar', (req, res) => {
 
 router.get('/forms', (req, res) => {
     Form.find({}, (err, forms) => console.log(err))
-        // .populate({path: 'turtle nest shift observation'})
         .populate({
             path: 'turtle nest shift observation',
             populate: {
@@ -50,28 +47,9 @@ router.get('/forms', (req, res) => {
             }
         })
         .exec((err, forms) => {
-            console.log(forms)
             res.send(forms)
         })
-    // .populate({
-    //     path : 'observation',
-
-    //        location: 'beach'
-
-    // })
-
 })
-
-
-// router.get('/forms/:id', (req, res) => {
-//     let id = req.params.id
-
-//     Form.findById(id , (err, form) => {
-//         if (err) throw err;
-//         else res.send(form)
-//     })
-//     .populate('observation turtle nest shift')
-// })
 
 router.post('/shift', (req, res) => {
     let newShift = new Shift({
@@ -134,78 +112,6 @@ router.post('/nest', (req, res) => {
     res.send(newNest)
 })
 
-// Form.findOne({})
-// .populate('observation')
-// .exec((err, form) => console.log(form))
-
-// router.post('/newForm', (req, res) => {
-//     let newShift = new Shift({
-//         firstName: req.body.shift.firstName,
-//         lastName: req.body.shift.lastName,
-//         date: Date().toString()
-//     })
-//     let newBeach = new Beach({
-//         name: req.body.beach.name,
-//         latitude: req.body.beach.latitude,
-//         longitude: req.body.beach.longitude
-//     })
-//     let newObservation = new Observation({
-//         date: req.body.observation.date,
-
-//         moonPhase: req.body.observation.moonPhase,
-//         tide: req.body.observation.tide,
-//         comments: req.body.observation.comments,
-//         location: newBeach
-//     })
-
-//     let newTurtle = new Turtle({
-//         hasData: req.body.turtle.hasData,
-//         species: req.body.turtle.species,
-//         gender: req.body.turtle.gender,
-//         condition: {
-//             status: req.body.turtle.condition.status,
-//             stage: req.body.turtle.condition.stage
-//         },
-//         dimensions: {
-//             plain: {
-//                 length: req.body.turtle.dimensions.plain.length,
-//                 width: req.body.turtle.dimensions.plain.width
-//             },
-//             curve: {
-//                 length: req.body.turtle.dimensions.curve.length,
-//                 width: req.body.turtle.dimensions.curve.width
-//             }
-//         },
-//         markings: {
-//             rightSide: req.body.turtle.markings.rightSide,
-//             leftSide: req.body.turtle.markings.leftSide
-//         }
-//     })
-//     let newNest = new Nest({
-//         layTime: new Date().toString(),
-//         eggCount: req.body.nest.eggCount,
-//         hatchEst: req.body.nest.hatchEst,
-//         rehomed: req.body.nest.rehomed,
-//         salvageable: req.body.nest.salvageable,
-//         hasData: req.body.nest.hasData
-//     })
-
-//     let newForm = new Form({
-//         shift: newShift,
-//         observation: newObservation,
-//         beach: newBeach,
-//         turtle: newTurtle,
-//         nest: newNest
-//     })
-//     newForm.save()
-//     newShift.save()
-//     newObservation.save()
-//     newTurtle.save()
-//     newNest.save()
-//     newBeach.save()
-//     res.send(newForm)
-
-// })
 
 router.put(('/updateShift'), (req, res) => {
     Form.findByIdAndUpdate(req.body.id, { shift: req.body.shift }, { new: true }, (err, doc) => {
@@ -250,7 +156,6 @@ router.get('/moonData', (req, res) => {
     let lat = 7.5303400;
     let long = -80.0269900;
     let apiAdd = `https://api.solunar.org/solunar/${lat},${long},20191018,-5`
-    console.log(apiAdd)
 
     request(apiAdd, function (error, response, body) {
         let fulldataMoon = JSON.parse(body)
