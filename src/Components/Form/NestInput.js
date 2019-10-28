@@ -57,7 +57,7 @@ class NestInput extends Component {
                 value={this.state.eggCount}
                 onChange={this.handleInput}
                 name="eggCount"
-                label={t("Number of eggs")}
+                label={t('Number of eggs')}
                 id="eggCount"
                 className="searchInput"
                 size="small"
