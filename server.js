@@ -14,7 +14,7 @@ server.use(bodyParser.urlencoded({ extended: false }));
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/TortugaPedasi', { useNewUrlParser: true })
 
-const api = require('./server/routes')
+// const api = require('./server/routes')
 const new_api = require('./server/routes/api')
 
 // Set Api Routes
@@ -26,7 +26,7 @@ server.use(function (req, res, next) {
   next()
 })
 
-server.use('/', api)
+// server.use('/', api)
 server.use('/', new_api)
 server.use('/', chartRoutes)
 
