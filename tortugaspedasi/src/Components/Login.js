@@ -8,6 +8,15 @@ import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import { FormControlLabel, Checkbox } from '@material-ui/core';
 import { spacing } from '@material-ui/system';
+import { createMuiTheme } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+        main: 'rgb(69,149,118)'  
+  }}
+});
 
 let credentials = {
     Robert: "TSDqmaPu",
@@ -62,11 +71,13 @@ class Login extends Component {
             
                     <div className="cardActionsContainer">
                         <div><FormControlLabel
-                            control={<Checkbox checked={this.state.rememberMe} onChange={this.handleChange} type="checkbox" name="rememberMe" />}
+                            control={<Checkbox checked={this.state.rememberMe} onChange={this.handleChange} color="default" type="checkbox" name="rememberMe" />}
                             label="Remember me" />
                         </div>
                         <div>
-                            <Button size="medium" variant="contained" color="default" margin="normal" onClick={this.login}>Login </Button>
+                            <button onClick={this.login} className = "signinButton"> LOGIN </button>
+                            {/* size="large" variant="contained" color= "primary"
+                            className="signinButton" margin="normal" */}
                         </div>
                     </div>
             </Card>
