@@ -36,7 +36,6 @@ class Login extends Component {
 
     login = () => {
         if (this.state.userName && credentials[this.state.userName] === this.state.password) {
-            debugger
             if (this.state.rememberMe) {
                 localStorage.setItem('isLoggedIn', true);
             }
@@ -47,7 +46,6 @@ class Login extends Component {
         }
     }
     render() {
-        console.log(this.state.rememberMe)  
         return (
             <Card className='logincontainer' style={{ maxWidth: 345 }}>
                 <CardContent className="loginInnerContainer">

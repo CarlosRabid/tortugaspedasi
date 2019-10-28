@@ -106,7 +106,6 @@ const getMoonPhase = (data) => {
     if (Array.isArray(data)) {
         moonPhase = data[0].observation.moonPhase
     } else {
-        console.log(data)
         moonPhase = data.observation.moonPhase
     }
     return moonPhase
