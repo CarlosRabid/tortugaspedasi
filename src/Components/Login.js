@@ -6,8 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import { FormControlLabel, Checkbox } from '@material-ui/core';
 
-import { createMuiTheme } from '@material-ui/core/styles';
-
 let credentials = {
     Robert: "TSDqmaPu",
     Isabelle: "ngEyYWTp",
@@ -66,8 +64,6 @@ class Login extends Component {
                         </div>
                         <div>
                             <button onClick={this.login} className = "signinButton"> LOGIN </button>
-                            {/* size="large" variant="contained" color= "primary"
-                            className="signinButton" margin="normal" */}
                         </div>
                     </div>
             </Card>
