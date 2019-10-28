@@ -244,8 +244,20 @@ class Form extends Component {
                 salvageable: this.state.salvageable
             },
         }
+        console.log(form)
+        if(navigator.onLine) {
+            await axios.post(`${dinamicRoute}/mega-form`,  form )
+            console.log('new form saved!')
+            alert('Successfully submitted')
+        }
+        else {
+            let savedForms = JSON.parse(localStorage.getItem("savedForms") || "[]")
+            savedForms.push(form)
+            localStorage.setItem('savedForms', JSON.stringify(savedForms))
+            console.log("Saved form locally for later post")
+            alert('Cannot submit, will try again later')
+        }
         console.log(dinamicRoute)
-        await axios.post(`${dinamicRoute}/mega-form`, form)
     }
 
     handleExpandClick = (event) => {
