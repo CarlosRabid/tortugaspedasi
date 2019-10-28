@@ -7,7 +7,7 @@ class Loader extends Component {
         return (
             <div className="turtle-wrapper">
                 <section class="turtle-loader-container">
-                    <div class="head"></div>
+                    <div class="turtle-loaderhead"></div>
                     <div class="legs-01"></div>
                     <div class="legs-02"></div>
                     <div class="tail"></div>
