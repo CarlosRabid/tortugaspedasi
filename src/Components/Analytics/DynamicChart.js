@@ -26,7 +26,6 @@ class DynamicChart extends Component {
         let fd
         let newDate
         if (group === "day") {
-            console.log(date)
             fd = date * (1000 * 60 * 60 * 24)
             newDate = moment(fd).format("MMMM Do YYYY")
         } else if (group === "month") {

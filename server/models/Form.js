@@ -2,13 +2,6 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 
-// const Shift = require('./models/Shift');
-// const Observation = require('./models/Observation');
-// const Turtle = require('./models/Turtle');
-// const Nest = require('./models/Nest');
-// const Beach = require('./models/Beach');
-
-
 const formSchema = new Schema({
     shift: { type: Schema.Types.ObjectId, ref: 'Shift' },
     observation: 

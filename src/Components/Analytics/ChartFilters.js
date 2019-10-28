@@ -58,7 +58,7 @@ class ChartFilters extends Component {
     getCheckMarks = (filter) => {
         const green = "primary"
         const blue = "secondary"
-        const pink = "pink"
+        const pink = "default"
 
         const filters = {
             species: [

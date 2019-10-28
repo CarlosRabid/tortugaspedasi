@@ -19,12 +19,9 @@ class Login extends Component {
     constructor() {
         super()
         this.state = {
-            admin: {
-                userName: '',
-                password: '',
-                rememberMe: false,
-                isLoggedIn: false
-            }
+            userName: '',
+            password: '',
+            rememberMe: false,
         };
     }
 
@@ -39,6 +36,7 @@ class Login extends Component {
 
     login = () => {
         if (this.state.userName && credentials[this.state.userName] === this.state.password) {
+            debugger
             if (this.state.rememberMe) {
                 localStorage.setItem('isLoggedIn', true);
             }
@@ -48,8 +46,8 @@ class Login extends Component {
             alert('One of the following was not correct')
         }
     }
-
     render() {
+        console.log(this.state.rememberMe)  
         return (
             <Card className='logincontainer' style={{ maxWidth: 345 }}>
                 <CardContent className="loginInnerContainer">
@@ -59,7 +57,7 @@ class Login extends Component {
             
                     <div className="cardActionsContainer">
                         <div><FormControlLabel
-                            control={<Checkbox checked={this.state.rememberMe} onChange={this.handleChange} color="default" type="checkbox" name="rememberMe" />}
+                            control={<Checkbox value={this.state.rememberMe} checked={this.state.rememberMe} onChange={this.handleChange} color="default" type="checkbox" name="rememberMe" />}
                             label="Remember me" />
                         </div>
                         <div>
