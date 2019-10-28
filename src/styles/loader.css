@@ -1,5 +1,9 @@
 .turtle-wrapper{
     transform: scale(0.3);
+    z-index: 999;
+    position: absolute;
+    height: 70vh;
+    width: 100vw;
 }
 .turtle-loader-container {
   position: relative;

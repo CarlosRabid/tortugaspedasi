@@ -17,14 +17,11 @@ class DateInput extends Component {
     // handleNest
 
     handleInput = (event) => {
-        console.log(event)
         let state = { ...this.state }
         let daten = state.daten
         let timen = state.timen
         daten = moment(event).format('DD/MM/YYYY')
         timen = moment(event).format('HH:mm')
-        console.log(daten, timen)
-        // date = typeof(date)
         this.setState({ daten, timen })
         this.props.handleDaten(daten)
 

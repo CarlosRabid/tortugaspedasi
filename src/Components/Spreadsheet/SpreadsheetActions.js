@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class SpreadsheetActions extends Component {
     
     render() {
-        console.log(this.props)
 
         let searchHandler = this.props.searchHandler
         return ( 

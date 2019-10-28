@@ -51,11 +51,13 @@ class DynamicChart extends Component {
         const group = this.state.time
         this.setState({ loadingData: true })
         const response = await Axios.post(`${dinamicRoute}/formData/${group}`, filters)
-        this.setState({
-            data: response.data.map(d => {
-                return { ...d, moonPhase: this.getMoonphases(d.moonPhase), date: this.convertDate(d.date, group) }
-            }), loadingData: false
-        })
+        setTimeout(() => { //for presentation only
+            this.setState({
+                data: response.data.map(d => {
+                    return { ...d, moonPhase: this.getMoonphases(d.moonPhase), date: this.convertDate(d.date, group) }
+                }), loadingData: false
+            })
+        }, 1500)
     }
     handleChange = async (e) => {
         let data = [...this.state.data]

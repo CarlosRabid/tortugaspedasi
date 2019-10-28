@@ -16,10 +16,6 @@ class SpreadsheetContainer extends Component {
         }
     }
 
-    // showPopUp = (event) => {
-    //     console.log(event.target.id)
-    //     this.props.showPop(event.target.id)
-    // }
 
     render() {
 

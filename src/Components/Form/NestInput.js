@@ -25,7 +25,6 @@ class NestInput extends Component {
     }
 
     handleInput = async (event) => {
-        console.log(this.props)
         await this.setState({ [event.target.name]: event.target.value })
         return this.props.handleNest(this.state)
     }
@@ -38,7 +37,7 @@ class NestInput extends Component {
     handleRadioButton = async (event) => {
         let salvageable = { ...this.state.salvageable };
         salvageable = event.currentTarget.value
-        console.log(event.currentTarget.value)
+        
         await this.setState({ salvageable });
         return this.props.handleNest(this.state)
     };

@@ -13,18 +13,10 @@ class ObservationInput extends Component {
             comments: "" //free input
         }
     }
-    // handleLocation = async (event) => {
-    //     console.log(event.target.value)
-    //     let currentBeach = event.target.value ? beaches[event.target.value] : { latitude: "", longitude: "" }
-    //     let locationLatitude = { ...this.state.locationLatitude }
-    //     let locationLongitude = { ...this.state.locationLongitude }
-    //     locationLatitude = currentBeach.latitude
-    //     locationLongitude = currentBeach.longitude
-    //     await this.setState({ locationLatitude, locationLongitude })
-    // }
+    
 
     handleInput = (event) => {
-        this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state))
+        this.setState({ [event.target.name]: event.target.value })
     }
     addShift = () => {
         this.props.addShift(this.state.time, this.state.location, this.state.comments)
@@ -36,40 +28,9 @@ class ObservationInput extends Component {
     showMenu = () => {
         this.setState({ showMenu: true })
     }
-    // handleClose = (event) => {
-    //     let idx = event.target.id
-    //     let currentBeach = beaches[idx]
-    //     let locationLatitude = { ...this.state.locationLatitude }
-    //     let locationLongitude = { ...this.state.locationLongitude }
-    //     let showMenu = { ...this.state.showMenu }
-    //     let selectedBeach = { ...this.state.selectedBeach }
-    //     console.log(currentBeach)
-    //     locationLatitude = currentBeach.latitude
-    //     locationLongitude = currentBeach.longitude
-    //     showMenu = null
-    //     selectedBeach = currentBeach.name
-    //     this.setState({ locationLatitude, locationLongitude, showMenu, selectedBeach })
-    // }
 
 
     
-    // getDate2 = () => {
-    //     let currentDate = new Date();
-    //     let date = currentDate.getDate();
-    //     let month = currentDate.getMonth();
-    //     let year = currentDate.getFullYear();
-    //     let monthDateYear = (month + 1) + "/" + date + "/" + year;
-    //     return monthDateYear
-    // }
-
-    // getDate = () => {
-    //     let today = new Date().toLocaleDateString(undefined, {
-    //         day: '2-digit',
-    //         month: '2-digit',
-    //         year: 'numeric'
-    //     })
-    //     return today
-    // }
 
     render() {
         // const { t, i18n } = this.props;

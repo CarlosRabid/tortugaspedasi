@@ -37,7 +37,6 @@ class BeachLocation extends Component {
     }
     handleClose = async (event) => {
         let idx = event.target.value
-        console.log(idx)
         if (idx) {
             let currentBeach = this.beaches[idx]
             let locationLatitude = { ...this.state.locationLatitude }

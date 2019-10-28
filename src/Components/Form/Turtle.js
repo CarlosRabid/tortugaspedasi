@@ -41,7 +41,6 @@ class Turtle extends Component {
     updateTurtle = (dms) => {
         // let state = {...this.state.turtleinput}
         this.setState({turtleinput: dms })
-        console.log(dms)
     }
 
 

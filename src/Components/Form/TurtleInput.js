@@ -93,12 +93,9 @@ class TurtleInput extends Component {
 
 
     handleInput = (event) => {
-        console.log(event.target.id)
         this.setState({ [event.target.id]: event.target.value })
         this.props.handleDimentions(event.target.id, event.target.value )
         let turtlestate = { ...this.state }
-        // console.log(this.state)
-        // this.props.updateTurtle(turtlestate)
     }
     addTurtleInput = () => {
         this.props.addTurtleInput(this.state.species, this.state.gender,
@@ -108,45 +105,33 @@ class TurtleInput extends Component {
     }
 
     handleClick = (event) => {
-        // let state = { ...this.state }
         let anchorEl = { ...this.state.anchorEl }
-        // console.log(event.currentTarget.id)
-        // let anchorStat = state.anchorStat
         anchorEl = event.currentTarget.id
-        // this.props.updateTurtle()
         return this.setState({ anchorEl })
-        // setAnchorEl(event.currentTarget);
     };
     handleMenu = (event) => {
         let anchorStat = { ...this.state.anchorStat }
         anchorStat = event.currentTarget.id
         return this.setState({ anchorStat })
-        // setAnchorEl(event.currentTarget);
     };
     handleClose = async (event) => {
         // setAnchorEl(null);
         // let anchorEl = {...this.state.anchorEl}
         let result = { ...this.state.species }
         result = event.currentTarget.id
-        console.log(result)
 
         if (result.length === 2) {
            this.props.handleSpecies(result)
-            console.log(event)
             this.setState({ species: result, anchorEl: null })
             return 
 
         } else { 
             this.props.handleCondition({result})
             return this.setState({ conditionstage: result, anchorStat: null }) }
-        // console.log(this.state)
     };
     handleButton = (event) => {
-        // setAnchorEl(null);
-        // let anchorEl = {...this.state.anchorEl}
         let selected = { ...this.state.selected }
         selected = event.currentTarget.id
-        console.log(selected)
         this.props.handleCondition(selected)
         this.setState({ selected })
     };
@@ -154,7 +139,6 @@ class TurtleInput extends Component {
     handleRadioButton = event => {
         let gender = { ...this.state.gender };
         gender = event.currentTarget.value
-        console.log(event.currentTarget.value)
         this.props.handleGender(gender)
         this.setState({ gender });
     };

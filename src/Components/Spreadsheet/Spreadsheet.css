@@ -4,7 +4,13 @@
     /* box-shadow: 1px 1px 3px black; */
     
     /* } */
-    
+    .head{
+        color: red !important;
+        box-shadow: 1px 1px 3px black;
+    }
+    .MuiTableHead-root{
+        background-color: red !important;
+    }
 .forms{
 /* max-width: 95vw; */
 overflow-x: auto;  

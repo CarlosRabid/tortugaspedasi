@@ -57,12 +57,9 @@ class Form extends Component {
             daten: null,
             timen: null,
         }
-        // console.log(window.location.origin)
-        console.log(constant.LOCAL_GET)
     }
 
     handleBeachInput = async (input) => {
-        console.log(input)
         let locationLatitude = { ...this.state.locationLatitude }
         let locationLongitude = { ...this.state.locationLongitude }
         let selectedBeach = { ...this.state.selectedBeach }
@@ -80,7 +77,6 @@ class Form extends Component {
         let conditionstage = { ...this.state.conditionstage }
         let conditionstat = { ...this.state.conditionstat }
         conditionstage = input
-        console.log(conditionstage, input)
         conditionstat = (input.charAt(0) == "a") ? 'Alive' : 'Death'
         await this.setState({ conditionstage, conditionstat })
     }
@@ -95,17 +91,9 @@ class Form extends Component {
     }
 
     handleDimentions = async (id, value) => {
-        console.log(id, value)
         let key = id
 
-        // let index = Object.keys(key)[0]
-        // console.log(index)
-        // let propert = { ...this.state[index]}
-        // let value = Object.values(key)[0]
-        // console.log(state)
-        // propert = value
         await this.setState({ [key]: value })
-        // console.log(state)
     }
 
     handleDate = async (first, last) => {
@@ -127,7 +115,6 @@ class Form extends Component {
         await this.setState({ firstName, lastName, date, time })
     }
     handleNest = async (input) => {
-        console.log(input)
         let eggCount = { ...this.state.eggCount }
         let layTime = { ...this.state.layTime }
         let hatchEst = { ...this.state.hatchEst }
@@ -167,8 +154,6 @@ class Form extends Component {
         hasTurtle = Object.keys(turtle).some(function (k) {
             return turtle[k] !== null
         })
-        // console.log(hasTurtle)
-        // hasTurtle = formInput.turtleInput.some(exist)
 
         this.setState({
             hasTurtle
@@ -188,8 +173,6 @@ class Form extends Component {
         hasNest = Object.keys(nest).some(function (k) {
             return nest[k] !== null
         })
-        // console.log(hasTurtle)
-        // hasTurtle = formInput.turtleInput.some(exist)
 
         this.setState({
             hasNest
@@ -216,8 +199,19 @@ class Form extends Component {
         await this.checkTurtleData()
         await this.checkNest()
 
+        const firstName = this.state.firstName || localStorage.getItem("firstName")
+        const lastName = this.state.lastName || localStorage.getItem("lastName")
+
+        if(!(firstName && lastName)){
+            return alert ("Please enter your first and last name")
+        }
+
+        if(!this.state.selectedBeach){
+            return alert("Please select a beach")
+        }
+
         let form = {
-            shift: { firstName: this.state.firstName, lastName: this.state.lastName },
+            shift: { firstName, lastName },
             observation:
             {
                 date: Date(this.state.date),
@@ -245,9 +239,9 @@ class Form extends Component {
                 salvageable: this.state.salvageable
             },
         }
-        console.log(form)
         if(navigator.onLine) {
-            await axios.post(`${dinamicRoute}/mega-form`,  form )
+            const response = await axios.post(`${dinamicRoute}/mega-form`,  form )
+            console.log(response)
             console.log('new form saved!')
             alert('Successfully submitted')
         }
@@ -258,14 +252,10 @@ class Form extends Component {
             console.log("Saved form locally for later post")
             alert('Cannot submit, will try again later')
         }
-        console.log(dinamicRoute)
     }
 
     handleExpandClick = (event) => {
-        // console.log(event.target)
         let showFpart = true
-        // showFpart = !showFpart
-        console.log(showFpart)
         this.setState({ showFpart: showFpart })
     };
 

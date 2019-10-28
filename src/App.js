@@ -11,7 +11,7 @@ import './App.css';
 import * as constant from './Components/Form/constant'
 import Loader from './Components/Loader';
 const axios = require('axios')
-const dinamicRoute = (window.origin == constant.LOCAL_GET) ? constant.LOCAL_GET : constant.PROD_GET
+const dinamicRoute = window.location.host.includes("localhost") ? constant.LOCAL_GET : constant.PROD_GET
 
 
 class App extends Component {
@@ -28,13 +28,13 @@ class App extends Component {
   componentDidMount() {
     if (navigator.onLine) {
       let savedForms = JSON.parse(localStorage.getItem('savedForms') || "[]")
-      
+
       if (savedForms.length < 1) {
         this.setState({ loadingData: false })
         return
       }
 
-      axios.post(`${dinamicRoute}/mega-forms`, savedForms).then(function () {
+      axios.post(`${dinamicRoute}/mega-forms`, savedForms).then((response) => {
         localStorage.removeItem('savedForms')
         console.log('Sent saved forms to DB')
         this.setState({ loadingData: false })

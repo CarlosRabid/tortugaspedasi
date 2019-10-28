@@ -24,7 +24,6 @@ class UpdateForm extends Component {
 
     render() {
 
-        console.log(this.props.form)
         let shift = this.props.form.shift
         let turtle = this.props.form.turtle
         // let observation = this.props.form.observation

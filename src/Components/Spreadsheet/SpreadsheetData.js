@@ -41,15 +41,15 @@ class SpreadsheetData extends Component {
     async componentDidMount() {
         let data = await axios.get(`${dinamicRoute}/all-data`)
 
-        console.log(data)
         let forms = [...this.state.forms]
         forms = data.data
         
-        this.setState({
-            forms,
-            loadingData: false
-        })
-        console.log(data)
+        setTimeout(()=>{
+            this.setState({
+                forms,
+                loadingData: false
+            })
+        }, 1500)
     }
 
 
@@ -104,7 +104,7 @@ class SpreadsheetData extends Component {
                 <div className="forms">
                     <Paper>
                         <Table stickyHeader >
-                            <TableHead className="head" >
+                            <TableHead style={{color:"blue"}} stroke="blue" fill="red" className="head" >
 
                                 <TableRow  >
                                     <TableCell >{t('Date')}</TableCell>

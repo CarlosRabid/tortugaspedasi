@@ -9,8 +9,8 @@ import './turtle.css'
 
 class ShiftInput extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             firstName: localStorage.getItem('firstName') || "",
             lastName: localStorage.getItem('lastName') || "",
@@ -18,21 +18,12 @@ class ShiftInput extends Component {
             time: moment().format('HH:mm')
         }
     }
-    
-    componentDidMount() {
-        // this.setState({date: Date()})
-        // this.props.submitForm(this.state)
-        localStorage.getItem('firstName');
-        localStorage.getItem('lastName');
-    }
+
     handleInput = (event) => {
-        // console.log(event)
         let state = { ...this.state }
         let date = state.date
         let time = state.time
         let props = this.props
-        // let property = "";
-        // let value = ""
         if (event.target) {
             
             this.setState({ [event.target.id]: event.target.value })
@@ -42,9 +33,7 @@ class ShiftInput extends Component {
         } else {
             date = moment(event).format('DD/MM/YYYY')
             time = moment(event).format('HH:mm')
-            // date = typeof(date)
             this.setState({ date, time })
-            // console.log(this.state)
             this.props.handleDate(date, time)
             return 
         }
