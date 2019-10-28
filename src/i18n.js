@@ -109,12 +109,8 @@ const resources = {
             "El Toro beach":"Playa El Toro",
             "Lagarto beach":"Playa Lagarto",
             "Observer First Name":"Nombre del observador",
-<<<<<<< HEAD
             "null" : "-"
 
-
-=======
->>>>>>> master
         }
     }
 };
