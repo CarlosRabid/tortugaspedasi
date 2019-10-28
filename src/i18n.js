@@ -62,6 +62,7 @@ const resources = {
             "Review data analytics and create charts.":"Review data analytics and create charts.",
             "Analytics":"Analytics",
             "View analytics":"View analytics",
+            "Date":"Date",
         }
     },
     es: {
@@ -83,7 +84,7 @@ const resources = {
             "Date of watch": "Fecha del avistamiento",
             "Observation": "Observación",
             "Time": "Hora",
-            "Location": "Locación",
+            "Location": "Ubicación",
             "Comments": "Comentarios",
             "Observation notes...":"Notas del avistamiento...",
             "Turtle Information": "Información de la Tortuga",
@@ -124,6 +125,7 @@ const resources = {
             "Review data analytics and create charts.":"Revisar el análisis de datos y crear gráficas.",
             "Analytics":"Análisis de datos",
             "View analytics":"Ver el análisis de datos",
+            "Date":"Fecha",
         }
     }
 };
