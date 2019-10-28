@@ -8,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './landing.css'
+import { BrowserRouter as Link } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 
 const useStyles = makeStyles({
     card: {
@@ -23,7 +25,7 @@ const useStyles = makeStyles({
 
 export default function CardLanding(props) {
     const classes = useStyles();
-
+    // const { t } = props;
 
     return (
         <div className="individualCardLanding">
@@ -44,10 +46,12 @@ export default function CardLanding(props) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <div className = "landingButton"><Button size="small" color="default" variant="outlined" href={props.d.link} >
+                    <div className = "landingButton">
+                        <Button size="small" color="default" variant="outlined" href={props.d.link} >
                         {props.d.button}
                     </Button>
                     </div>
+                   
                 </CardActions>
             </Card>
         </div>

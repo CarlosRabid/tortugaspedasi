@@ -24,6 +24,12 @@ class Landing extends Component {
         return (
             <div className="landing-container">
                 {dataLanding.map(d => <CardLanding d={d} />)}
+
+
+
+                {/* <span className="button">w</span>
+                    <span className="button"><button id="spreadsheet" className="link"><Link to="/spread" className="links">{t('Spreadsheet')}</Link></button></span>
+                    <span className="button"><button id="analytics" className="link"><Link to="/analytics" className="links">{t('Analytics')}</Link></button></span> */}
             </div>
 
         )
