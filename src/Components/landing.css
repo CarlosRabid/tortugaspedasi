@@ -2,6 +2,9 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  padding-top: 20px
+  
+  
 }
 
 .individualCardLanding{
@@ -10,13 +13,15 @@
   padding: 3vh;
   width: 230px;
   background-color: '#000000';
-  opacity: 0.85
+  opacity: 0.85;
+  text-decoration:none;
  
 }
 
 .landingButton {
   padding-left: 8px;
   padding-bottom: 8px;
+  text-decoration:none;
 }
 
 /* ----------------------- */
