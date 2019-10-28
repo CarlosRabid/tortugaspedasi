@@ -283,7 +283,6 @@ class Form extends Component {
                     <BeachLocations handleBeachInput={this.handleBeachInput} />
                 </div>
                 <br />
-                <div id="formPanel">
                 <ExpansionPanel  className="shift" >
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -299,7 +298,6 @@ class Form extends Component {
                     <ShiftInput forms={this.state.forms} handleName={this.handleName} handleDate={this.handleDate} />
                     <br />
                 </ExpansionPanel>
-                </div>
                 <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
