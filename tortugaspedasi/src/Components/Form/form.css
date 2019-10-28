@@ -73,8 +73,10 @@ h1 {
 }
 
 .head{
-  background-color: #166088;
+  background-color: rgba(77, 175, 124, 0.6);
+
   color: white;
+  box-shadow: 1px 1px 3px black;
 
 }
 

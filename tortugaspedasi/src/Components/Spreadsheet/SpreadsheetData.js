@@ -73,7 +73,6 @@ class SpreadsheetData extends Component {
 
     render() {
         let forms = this.state.forms
-        console.log(forms)
         return (
             <div className="spreadSheet">
                 {this.state.showPopUp ?
@@ -83,7 +82,7 @@ class SpreadsheetData extends Component {
                 <div className="forms">
                     <Paper>
                         <Table >
-                            <TableHead className = "head">
+                            <TableHead className = "head" stickyHeader aria-label="sticky table">
                                 <TableRow style={{
                                     textAlign: "center",
                                     color: "white"
@@ -106,9 +105,9 @@ class SpreadsheetData extends Component {
                                     <TableCell align="center">Rehomed</TableCell>
                                     <TableCell align="center">Salvageable</TableCell>
                                     <TableCell align="center">Comments</TableCell>
-                                </TableRow>
+                                </TableRow >
                             </TableHead>
-                            <TableBody>
+                            <TableBody >
                                 {forms.map(f => <SpreadsheetContainer form={f} key={f._id} showPop={this.showPop} closePopUp={this.closePopUp} />)}
                             </TableBody>
                         </Table>
