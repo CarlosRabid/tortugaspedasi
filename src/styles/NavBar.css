@@ -1,0 +1,13 @@
+
+.navbarLinks > a{
+    margin: 15px;
+    color: white;
+      }
+
+.language-toggle{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   margin-left: auto;
+    
+}
+

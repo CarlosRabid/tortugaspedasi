@@ -8,9 +8,9 @@ import Form from './Components/Form/Form';
 import Spreadsheet from './Components/Spreadsheet/Spreadsheet';
 import Analytics from './Components/Analytics/Analytics';
 import './App.css';
+import * as constant from './Components/Form/constant'
 const axios = require('axios')
-
-
+const dinamicRoute = (window.origin == constant.LOCAL_GET)? constant.LOCAL_GET : constant.PROD_GET
 
 
 class App extends Component {
@@ -77,9 +77,10 @@ class App extends Component {
   logOut = () => {
     this.setState({
       isLoggedIn: false,
+      userName: '',
       lng: "en"
     })  
-    localStorage.removeItem('admin') }
+    localStorage.removeItem('isLoggedIn') }
 
   render() {
 
@@ -115,7 +116,7 @@ class App extends Component {
           </Route>
 
           <Route path="/form" exact render={() =>
-            <Form updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} saveForm={this.saveForm} />}>
+            <Form  updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} saveForm={this.saveForm} />}>
           </Route>
 
           <Route path="/spread" exact render={() =>
