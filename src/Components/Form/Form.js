@@ -283,7 +283,8 @@ class Form extends Component {
                     <BeachLocations handleBeachInput={this.handleBeachInput} />
                 </div>
                 <br />
-                <ExpansionPanel  >
+                <div id="formPanel">
+                <ExpansionPanel  className="shift" >
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1c-content"
@@ -298,6 +299,7 @@ class Form extends Component {
                     <ShiftInput forms={this.state.forms} handleName={this.handleName} handleDate={this.handleDate} />
                     <br />
                 </ExpansionPanel>
+                </div>
                 <ExpansionPanel TransitionProps={{ unmountOnExit: true }}>
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -334,8 +336,7 @@ class Form extends Component {
                     onClick={this.submitNewForm}
                     margin="normal"
                 >
-                    <FontAwesomeIcon icon={faSave} />  
-                    {t(' Submit Form')}
+                    {t(' Submit ')}
                 </Button>
             </div>
         )
