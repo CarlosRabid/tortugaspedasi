@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom' //do not delete Router Route
 import { withTranslation } from 'react-i18next';
-// import Form from './Form/Form';
-// import Spreadsheet from './Spreadsheet/Spreadsheet';
-// import Analytics from './Analytics/Analytics';
 import './landing.css'
-// import Login from './Login';
 import CardLanding from './CardLanding';
 
 class Landing extends Component {
@@ -28,12 +24,6 @@ class Landing extends Component {
         return (
             <div className="landing-container">
                 {dataLanding.map(d => <CardLanding d={d} />)}
-
-
-
-                {/* <span className="button"><button id="form" className="link"><Link to="/form" className ="links">{t('Form')}</Link></button></span>
-                    <span className="button"><button id="spreadsheet" className="link"><Link to="/spread" className="links">{t('Spreadsheet')}</Link></button></span>
-                    <span className="button"><button id="analytics" className="link"><Link to="/analytics" className="links">{t('Analytics')}</Link></button></span> */}
             </div>
 
         )
