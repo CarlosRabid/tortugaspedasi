@@ -14,12 +14,12 @@ class Landing extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t } = this.props
         if (!this.props.isLoggedIn()) { return <Redirect to="/" /> }
         let dataLanding = [
-            { title: 'Form', description: "Create a new observation form.", link: "/form" , button: "Create form"},
-            { title: "Archive", description: "Review all available observation forms.", link: "/spread", button: "View data" },
-            { title: "Analytics", description: " Review data analytics and create charts.", link: "/analytics" , button: "View analytics"}
+            { title: t("Form"), description: t("Create a new observation form."), link: "/form" , button: t("Create form")},
+            { title: t("Archive"), description: t("Review all available observation forms."), link: "/spread", button: t("View data") },
+            { title: t("Analytics"), description: t("Review data analytics and create charts."), link: "/analytics" , button: t("View analytics")}
         ]
         return (
             <div className="landing-container">

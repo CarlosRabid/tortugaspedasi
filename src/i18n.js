@@ -54,7 +54,14 @@ const resources = {
             "Arenal beach":"Arenal beach",
             "El Toro beach":"El Toro beach",
             "Lagarto beach":"Lagarto beach",
-            "null" : "-"
+            "Create a new observation form.":"Create a new observation form.",
+            "Create form":"Create form",
+            "Archive":"Archive",
+            "Review all available observation forms.":"Review all available observation forms.",
+            "View data":"View data",
+            "Review data analytics and create charts.":"Review data analytics and create charts.",
+            "Analytics":"Analytics",
+            "View analytics":"View analytics",
         }
     },
     es: {
@@ -109,12 +116,14 @@ const resources = {
             "El Toro beach":"Playa El Toro",
             "Lagarto beach":"Playa Lagarto",
             "Observer First Name":"Nombre del observador",
-<<<<<<< HEAD
-            "null" : "-"
-
-
-=======
->>>>>>> master
+            "Create a new observation form.":"Crear un nuevo formulario.",
+            "Create form":"Nuevo formulario",
+            "Archive":"Archivo",
+            "Review all available observation forms.":"Revisar todos los formularios existentes.",
+            "View data":"Ver datos",
+            "Review data analytics and create charts.":"Revisar el análisis de datos y crear gráficas.",
+            "Analytics":"Análisis de datos",
+            "View analytics":"Ver el análisis de datos",
         }
     }
 };
