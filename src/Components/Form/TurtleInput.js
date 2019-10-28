@@ -13,7 +13,6 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartbeat, faMedkit, faStar, faStarHalfAlt, faStarHalf, faGrinStars, faStarOfLife, faBan } from '@fortawesome/free-solid-svg-icons'
-import { faMedkit } from '@fortawesome/free-solid-svg-icons'
 // import { green } from '@material-ui/core/colors';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 // import FormControl from '@material-ui/core/FormControl';
