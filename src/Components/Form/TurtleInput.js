@@ -21,8 +21,7 @@ import Grid from '@material-ui/core/Grid';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
-import { faMedkit } from '@fortawesome/free-solid-svg-icons'
+import { faHeartbeat, faMedkit, faStar, faStarHalfAlt, faStarHalf, faGrinStars, faStarOfLife, faBan } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -182,10 +181,10 @@ class TurtleInput extends Component {
                     onClose={this.handleClose}
                 >
                     <MenuItem onClick={this.handleClose} name="species" id="Cc" >Caretta caretta</MenuItem>
-                    <MenuItem onClick={this.handleClose} id="species" value="Lo">Lepidochelys olivacea</MenuItem>
-                    <MenuItem onClick={this.handleClose} id="species" value="Cm">Chelonia mydas</MenuItem>
-                    <MenuItem onClick={this.handleClose} id="species" value="Ei">Eretmochelys imbricata</MenuItem>
-                    <MenuItem onClick={this.handleClose} id="species" value="Dc">Dermochelys coriacea</MenuItem>
+                    <MenuItem onClick={this.handleClose} name="species" id="Lo">Lepidochelys olivacea</MenuItem>
+                    <MenuItem onClick={this.handleClose} name="species" id="Cm">Chelonia mydas</MenuItem>
+                    <MenuItem onClick={this.handleClose} name="species" id="Ei">Eretmochelys imbricata</MenuItem>
+                    <MenuItem onClick={this.handleClose} name="species" id="Dc">Dermochelys coriacea</MenuItem>
                 </Menu>
                 <br />
                 <RadioGroup row aria-label="Gender" name="gender2" value={this.state.gender} onChange={this.handleRadioButton} style={{ justifyContent: 'center', marginTop: '2%' }}><FormControlLabel
@@ -225,7 +224,7 @@ class TurtleInput extends Component {
                         </ToggleButton>
                     </ToggleButtonGroup>
                     <br />
-                    {t('Found death(corpse status)')} :
+                    {t('Found dead')} :
                  <ToggleButtonGroup
                         value={this.state.selected}
                         exclusive
@@ -236,35 +235,30 @@ class TurtleInput extends Component {
                         <ToggleButton id="dea1" value="dea1" aria-label="death1"
                             style={{ height: '6vh', justifySelf: "center", marginLeft: '16%' }}
                         >
-                            <FontAwesomeIcon icon={faHeartbeat} />
+                            <FontAwesomeIcon icon={faStar} />
                         </ToggleButton>
                         <ToggleButton id="dea2" value={'dea2'}
                             style={{ height: '6vh', justifySelf: "center" }}
                             color="secondary" aria-label="death2">
-                            <FontAwesomeIcon icon={faMedkit} />
+                            <FontAwesomeIcon icon={faStarHalfAlt} />
                         </ToggleButton>
                         <ToggleButton id="dea3" value='dea3' aria-label="death3"
                             style={{ height: '6vh', justifySelf: "center" }}
                             color="secondary"
                         >
-                            <FontAwesomeIcon icon={faHeartbeat} />
+                            <FontAwesomeIcon icon={faStarHalf} />
                         </ToggleButton>
                         <ToggleButton id="dea4" value='dea4' aria-label="death4"
                             style={{ height: '6vh', justifySelf: "center" }}
                             color="secondary"
                         >
-                            <FontAwesomeIcon icon={faMedkit} />
+                            <FontAwesomeIcon icon={faStarOfLife} />
                         </ToggleButton>
                         <ToggleButton id="dea5" value='dea5' aria-label="death5"
                             style={{ height: '6vh', justifySelf: "center" }}
                             color="secondary"
                         >
-                            <FontAwesomeIcon icon={faHeartbeat} />
-                        </ToggleButton>
-                        <ToggleButton id="dea6" value='dea6' aria-label="death6"
-                            style={{ height: '6vh', justifySelf: "center" }}
-                            color="secondary" >
-                            <FontAwesomeIcon icon={faMedkit} />
+                            <FontAwesomeIcon icon={faBan} />
                         </ToggleButton>
                     </ToggleButtonGroup>
                 </Grid>
