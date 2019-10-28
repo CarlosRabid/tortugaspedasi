@@ -3,26 +3,26 @@ import Button from '@material-ui/core/Button';
 import { withTranslation } from 'react-i18next';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-// import { green } from '@material-ui/core/colors';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FormControl from '@material-ui/core/FormControl';
-// import FormLabel from '@material-ui/core/FormLabel';
-// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-// import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import '../Form/turtle.css';
 import { Input, InputLabel, TextField } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import HealingIcon from '@material-ui/icons/Healing';
-// import Icon from '@material-ui/core/Icon';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 import { faMedkit } from '@fortawesome/free-solid-svg-icons'
+// import { green } from '@material-ui/core/colors';
+// import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormControl from '@material-ui/core/FormControl';
+// import FormLabel from '@material-ui/core/FormLabel';
+// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+// import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+// import HealingIcon from '@material-ui/icons/Healing';
+// import Icon from '@material-ui/core/Icon';
 
 
 
@@ -206,7 +206,7 @@ class TurtleInput extends Component {
                     />
                 </RadioGroup>
                 <Grid item sm={12} md={6}>
-                    {t('Found Alive')} :
+                    {t('Found alive')} :
                     <ToggleButtonGroup
                         value={this.state.selected}
                         exclusive
@@ -268,6 +268,7 @@ class TurtleInput extends Component {
                         </ToggleButton>
                     </ToggleButtonGroup>
                 </Grid>
+                
                 {/* <div className="child-turtle">
                                  <span className="new-turtle-1"> Length: </span>
                                  <Input
@@ -282,16 +283,17 @@ class TurtleInput extends Component {
                                  />
                              </div>  */}
                 <br />
-                {t('Dimensions in cms')}
+                {t('Measurements in cm')}
+                <br />
                 <br />
                 <div className="dimensions">
                     <div className="turtle-dimensions" >
-                        {t('Plain      ')}
+                        {t('Straight measurement')}
                         <br />
                         <TextField
                             value={this.state.dimensionsPl}
                             onChange={this.handleInput}
-                            label="LENGTH"
+                            label= {t('Length')}
                             id="dimensionsPl"
                             className="turtle"
                             size="small"
@@ -303,7 +305,7 @@ class TurtleInput extends Component {
                         <TextField
                             value={this.state.dimensionsPw}
                             onChange={this.handleInput}
-                            label="WIDTH"
+                            label={t('Width')}
                             id="dimensionsPw"
                             className="turtle"
                             size="small"
@@ -314,12 +316,12 @@ class TurtleInput extends Component {
                         />
                     </div>
                     <div className="turtle-dimensions" >
-                        {t(' Curve ')}
+                    {t('Curve measurement')}
                         <br />
                         <TextField
                             value={this.state.dimensionsCl}
                             onChange={this.handleInput}
-                            label="LENGTH"
+                            label={t('Length')}
                             id="dimensionsCl"
                             className="turtle"
                             size="small"
@@ -331,7 +333,7 @@ class TurtleInput extends Component {
                         <TextField
                             value={this.state.dimensionsCw}
                             onChange={this.handleInput}
-                            label="WIDTH"
+                            label={t('Width')}
                             id="dimensionsCw"
                             className="turtle"
                             size="small"
