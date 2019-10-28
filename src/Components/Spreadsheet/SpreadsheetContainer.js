@@ -50,9 +50,14 @@ class SpreadsheetContainer extends Component {
         else {
             salvageable = "-"
         }
-        let MR = form.turtle.markings.rightSide == null
-        let ML = form.turtle.markings.leftSide == null
 
+        let MR = form.turtle.markings.rightSide
+        let ML = form.turtle.markings.leftSide
+
+        if(!MR && !ML){
+            MR = "-"
+            ML = "-"
+        }
         
 
 
@@ -81,15 +86,15 @@ class SpreadsheetContainer extends Component {
                 <TableCell align="center">{form.turtle.condition.status ? form.turtle.condition.status : "-"}</TableCell>
                 <TableCell align="center">{form.turtle.condition.stage ? form.turtle.condition.stage : "-"}</TableCell>
 
-                <TableCell align="center"> {MR ?
-                    '-' : <Tooltip title={form.turtle.markings.rightSide}>
+                <TableCell align="center"> { MR === "-" ?
+                    MR : <Tooltip title={form.turtle.markings.rightSide}>
                         <div>
                             {form.turtle.markings.rightSide.slice(0, 5) + "..."}
                         </div>
                     </Tooltip>}
                 </TableCell>
 
-                <TableCell align="center"> {ML ?
+                <TableCell align="center"> {ML === "-" ?
                     '-' : <Tooltip title={form.turtle.markings.leftSide}>
                         <div>
                             {form.turtle.markings.leftSide.slice(0, 5) + "..."}
