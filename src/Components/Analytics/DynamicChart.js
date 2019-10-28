@@ -5,6 +5,7 @@ import Axios from 'axios';
 import ChartFilters from './ChartFilters';
 import '../../styles/analytics.css'
 import * as constant from '../Form/constant'
+import Loader from '../Loader';
 
 const dinamicRoute = (
     window.location.host.includes("localhost") ?
@@ -19,6 +20,7 @@ class DynamicChart extends Component {
             countBy: "turtleCount",
             time: "day",
         }
+        this.loadingData = true
         this.dinamicRoute = props.dinamicRoute
     }
 
@@ -47,11 +49,12 @@ class DynamicChart extends Component {
     getRelevantData = async (filters) => {
         if (!filters) { filters = {} }
         const group = this.state.time
+        this.setState({ loadingData: true })
         const response = await Axios.post(`${dinamicRoute}/formData/${group}`, filters)
         this.setState({
             data: response.data.map(d => {
                 return { ...d, moonPhase: this.getMoonphases(d.moonPhase), date: this.convertDate(d.date, group) }
-            })
+            }), loadingData: false
         })
     }
     handleChange = async (e) => {
@@ -98,6 +101,7 @@ class DynamicChart extends Component {
                         {timeOptions.map(o => <option value={o}>{o}</option>)}
                     </select>
 
+                    {this.state.loadingData ? <Loader /> : null}
 
                     <ResponsiveContainer width="100%">
                         <ComposedChart width={600} height={300} data={this.state.data}
@@ -120,21 +124,10 @@ class DynamicChart extends Component {
                         </ComposedChart>
                     </ResponsiveContainer>
                 </div>
-                
+
                 <ChartFilters getRelevantData={this.getRelevantData} />
 
-                {/* {this.state.time === "day" ?
-                        <div>
-                            <div>Legend: </div>
-                            <ol>
-                                <li>First Quarter</li>
-                                <li>New Moon</li>
-                                <li>Third Quarter</li>
-                                <li>Full Moon</li>
-                            </ol>
-                        </div>
-                        : notShowingMoonPhases = true
-                    } */}
+
 
             </div>
         );
