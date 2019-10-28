@@ -9,7 +9,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import * as constant from '../Form/constant'
 import './Spreadsheet.css'
+import { makeStyles } from '@material-ui/core/styles';
+import { withTranslation } from 'react-i18next';
 import Loader from '../Loader';
+
 const axios = require('axios')
 
 const dinamicRoute = (
@@ -86,6 +89,7 @@ class SpreadsheetData extends Component {
 
 
     render() {
+        const { t } = this.props;
         let forms = this.state.forms
 
 
@@ -101,28 +105,27 @@ class SpreadsheetData extends Component {
                     <Paper>
                         <Table stickyHeader >
                             <TableHead className="head" >
-                                <TableRow className="headRow">
 
-                                    <TableCell align="center" >Date</TableCell>
-                                    <TableCell align="center">Location</TableCell>
-                                    <TableCell align="center">First Name</TableCell>
-                                    <TableCell align="center">Last Name</TableCell>
-                                    <TableCell align="center">Plain Dimensions</TableCell>
-                                    <TableCell align="center">Curve Dimensions</TableCell>
-                                    <TableCell align="center">Species</TableCell>
-                                    <TableCell align="center">Gender</TableCell>
-                                    <TableCell align="center">Status</TableCell>
-                                    <TableCell align="center">Stage</TableCell>
-                                    <TableCell align="center">Right Markings</TableCell>
-                                    <TableCell align="center">Left Markings</TableCell>
-                                    <TableCell align="center">Lay Time</TableCell>
-                                    <TableCell align="center">Egg Count</TableCell>
-                                    <TableCell align="center">Hatchest</TableCell>
-                                    <TableCell align="center">Rehomed</TableCell>
-                                    <TableCell align="center">Salvageable</TableCell>
-                                    <TableCell align="center">Comments</TableCell>
-                                </TableRow>
-
+                                <TableRow  >
+                                    <TableCell >{t('Date')}</TableCell>
+                                    <TableCell align="center">{t('Location')}</TableCell>
+                                    <TableCell align="center">{t('First Name')}</TableCell>
+                                    <TableCell align="center">{t('Last Name')}</TableCell>
+                                    <TableCell align="center">{t('Straight measurement')}</TableCell>
+                                    <TableCell align="center">{t('Curve measurement')}</TableCell>
+                                    <TableCell align="center">{t('Species')}</TableCell>
+                                    <TableCell align="center">{t('Gender')}</TableCell>
+                                    <TableCell align="center">{t('Status')}</TableCell>
+                                    <TableCell align="center">{t('Stage')}</TableCell>
+                                    <TableCell align="center">{t('Right Markings')}</TableCell>
+                                    <TableCell align="center">{t('Left Markings')}</TableCell>
+                                    <TableCell align="center">{t('Lay Time')}</TableCell>
+                                    <TableCell align="center">{t('Egg Count')}</TableCell>
+                                    <TableCell align="center">{t('Hatchest')}</TableCell>
+                                    <TableCell align="center">{t('Rehomed')}</TableCell>
+                                    <TableCell align="center">{t('Salvageable')}</TableCell>
+                                    <TableCell align="center">{t('Comments')}</TableCell>
+                                </TableRow >
 
                             </TableHead>
                             <TableBody >
@@ -138,4 +141,4 @@ class SpreadsheetData extends Component {
     }
 }
 
-export default SpreadsheetData;
+export default withTranslation('translation')(SpreadsheetData);
