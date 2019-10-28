@@ -53,7 +53,7 @@ class SpreadsheetContainer extends Component {
         let MR = form.turtle.markings.rightSide == null
         let ML = form.turtle.markings.leftSide == null
 
-
+        
 
 
 
