@@ -6,8 +6,8 @@ class Loader extends Component {
     render() {
         return (
             <div className="turtle-wrapper">
-                <section class="turtle">
-                    <div class="head"></div>
+                <section class="turtle-loader-container">
+                    <div class="turtle-loaderhead"></div>
                     <div class="legs-01"></div>
                     <div class="legs-02"></div>
                     <div class="tail"></div>

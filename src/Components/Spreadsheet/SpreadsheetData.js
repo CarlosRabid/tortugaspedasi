@@ -11,6 +11,8 @@ import * as constant from '../Form/constant'
 import './Spreadsheet.css'
 import { makeStyles } from '@material-ui/core/styles';
 import { withTranslation } from 'react-i18next';
+import Loader from '../Loader';
+
 const axios = require('axios')
 
 const dinamicRoute = (
@@ -28,7 +30,8 @@ class SpreadsheetData extends Component {
             forms: [],
             form: null,
             filter: "",
-            showPopUp: null
+            showPopUp: null,
+            loadingData: true
         }
 
         // this.dinamicRoute = props.dinamicRoute 
@@ -36,14 +39,17 @@ class SpreadsheetData extends Component {
     }
 
     async componentDidMount() {
-        console.log(dinamicRoute)
         let data = await axios.get(`${dinamicRoute}/all-data`)
+
+        console.log(data)
         let forms = [...this.state.forms]
         forms = data.data
-
+        
         this.setState({
-            forms
+            forms,
+            loadingData: false
         })
+        console.log(data)
     }
 
 
@@ -92,11 +98,14 @@ class SpreadsheetData extends Component {
                 {this.state.showPopUp ?
                     <UpdateForm closePopUp={this.closePopUp} form={this.state.form} /> : null}
 
+                {this.state.loadingData ? <Loader /> : null}
+
 
                 <div className="forms">
                     <Paper>
                         <Table stickyHeader >
                             <TableHead className="head" >
+
                                 <TableRow  >
                                     <TableCell >{t('Date')}</TableCell>
                                     <TableCell align="center">{t('Location')}</TableCell>
@@ -117,6 +126,7 @@ class SpreadsheetData extends Component {
                                     <TableCell align="center">{t('Salvageable')}</TableCell>
                                     <TableCell align="center">{t('Comments')}</TableCell>
                                 </TableRow >
+
                             </TableHead>
                             <TableBody >
                                 {forms.map(f => <SpreadsheetContainer form={f} key={f._id} showPop={this.showPop} closePopUp={this.closePopUp} />)}
