@@ -15,31 +15,22 @@ import StorageIcon from '@material-ui/icons/Storage';
 import PollIcon from '@material-ui/icons/Poll';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormControlLabel, Switch } from '@material-ui/core';
+import '../styles/NavBar.css';
 
 
 const styles = {
-  root: {
-    flexGrow: 1
-  },
-  grow: {
-    flexGrow: 1
-  },
+ 
   menuButton: {
     marginLeft: -12,
     marginRight: 20
   }
 };
 
-const useStyles = makeStyles(theme => ({
-  offset: {
-    ...theme.mixins.toolbar,
-    flexGrow: 1
-  }
-}))
+
 
 function NavBar(props) {
-const classes = styles;
-  const spclasses = useStyles();
+  const classes = styles;
+  
 
   const [state, setState] = React.useState({
     top: false,
@@ -49,9 +40,8 @@ const classes = styles;
   });
 
   function onLogout() {
-    localStorage.clear()
     props.logOut()
-  }	  
+  }
 
 
   const sideList = side => (
@@ -108,7 +98,7 @@ const classes = styles;
 
   return (
     <div>
-      <AppBar position="fixed" style= {{background:"#166088"}}>
+      <AppBar position="fixed" style={{ background: "#166088" }}>
 
         <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
           {sideList('left')}
@@ -123,28 +113,32 @@ const classes = styles;
             Tortugas Pedasí
           </Typography>
 
-          <ToolbarMenu
-            render={collapsed => {
-              return collapsed
-                ? [<MenuItem key="logout" onClick={onLogout} autoclose={true}>
-                  Logout
+         
+            <ToolbarMenu
+              render={collapsed => {
+                return collapsed
+                  ? [<MenuItem key="logout" onClick={onLogout} autoclose={true}>
+                    Logout
                     </MenuItem>]
-                : [< Button
-                  key="logout"
-                  color="inherit"
-                  onClick={onLogout}
-                  className={classes.menuButton}
-                >
-                  Logout
+                  : [< Button
+                    key="logout"
+                    color="inherit"
+                    onClick={onLogout}
+                    className="menuButton"
+                  >
+                    Logout
                     </Button>];
-            }}
-          />
+              }}
 
-         <FormControlLabel className="language-toggle"
-        control={<Switch checked={(props.lng === "es") ? true : false} onChange={props.changeLanguage} />}
-        label={(props.lng === "es") ? "Switch to English" : "Cambiar a Español"}
-      />
+            />
+            <div className="language-toggle">
+            <FormControlLabel
+              control={<Switch checked={(props.lng === "es") ? true : false} onChange={props.changeLanguage} />}
+              label={(props.lng === "es") ? "English" : "Español"}
+            />
+            </div>
 
+        
         </Toolbar>
       </AppBar>
 

@@ -1,0 +1,50 @@
+.logincontainer{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    background-color: '#000000';
+    opacity: 0.8
+ }
+
+ .loginInnerContainer {
+    display: grid;
+    
+ }
+ .cardActionsContainer{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    
+    padding-left: 16px;
+    padding-bottom: 16px;
+    font: inherit
+ }
+
+ .signinButton{
+    background-color: #4595768c;
+    border-radius: 4px;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    box-shadow: 1px 1px 3px black;
+    letter-spacing: 0.00938em; 
+ }
+
+ .signinButton:active{
+
+     transform: scale(0.95);
+ }
+
+ .signinButton:active, .signinButton:focus {
+    outline: 0;
+    border: none;
+  }
