@@ -23,7 +23,7 @@ class Landing extends Component {
         ]
         return (
             <div className="landing-container">
-                {dataLanding.map(d => <CardLanding d={d} />)}
+                {dataLanding.map(d => <CardLanding d={d} key={d.link} />)}
 
 
 

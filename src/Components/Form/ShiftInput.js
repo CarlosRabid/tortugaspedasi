@@ -12,8 +12,8 @@ class ShiftInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: localStorage.getItem('firstName'),
-            lastName: localStorage.getItem('lastName'),
+            firstName: localStorage.getItem('firstName') || "",
+            lastName: localStorage.getItem('lastName') || "",
             date: moment().format('DD/MM/YYYY'),
             time: moment().format('HH:mm')
         }
