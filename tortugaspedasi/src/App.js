@@ -19,17 +19,19 @@ class App extends Component {
     this.state = {
       location: "",
       userName: "",
-      lng: "en",
-      isOnline: true,
+      lng: "en"
     }
   }
 
-  componentDidMount (){
-    this.setState({isOnline: navigator.onLine})
-    if(this.state.isOnline) {
-      // let storage = localStorage.getItem('form')
-      // axios.post('http://localhost:7777/newForm', {storage})
-      console.log('there is something in there')
+  componentDidMount() {
+    if (navigator.onLine) {
+      let savedForms = JSON.parse(localStorage.getItem('savedForms') || "[]")
+      if (savedForms.length < 1) { return }
+
+      axios.post('http://localhost:7777/mega-forms', savedForms).then(function () {
+        localStorage.removeItem('savedForms')
+        console.log('Sent saved forms to DB')
+      })
     }
     else {
       console.log('there isnt anything sooo...')
@@ -37,17 +39,17 @@ class App extends Component {
     }
   }
 
-  saveForm (shift, observation, turtle, nest) {
-    if (navigator.onLine) {
-      // axios.post('http://localhost:7777/newForm', { shift, observation, turtle, nest })
-      console.log('online')
-    }
-    else {
-      let form = { shift: '', observation: '', turtle: '', nest: '' } 
-      localStorage.form = JSON.stringify(form)
-      console.log('offline')
-    }
-  }
+  // saveForm (shift, observation, turtle, nest) {
+  // if (navigator.onLine) {
+  //   axios.post('http://localhost:7777/mega-form', { shift, observation, turtle, nest })
+  //   console.log('online')
+  //   }
+  //   else {
+  //     let form = { shift: '', observation: '', turtle: '', nest: '' } 
+  //     localStorage.form = JSON.stringify(form)
+  //     console.log('offline')
+  //   }
+  // }
 
   updateUser = (name) => {
     this.setState({
@@ -79,8 +81,9 @@ class App extends Component {
       isLoggedIn: false,
       userName: '',
       lng: "en"
-    })  
-    localStorage.removeItem('isLoggedIn') }
+    })
+    localStorage.removeItem('isLoggedIn')
+  }
 
   render() {
 
@@ -101,14 +104,14 @@ class App extends Component {
             updateNavBar={this.updateNavBar}
             lng={this.state.lng}
             changeLanguage={this.changeLanguage}>
-          
+
           </NavBar>
 
 
           <Route path="/" exact render={() =>
             (this.isLoggedIn() ?
               <Redirect to="/home" /> :
-            <Login updateUser={this.updateUser} />)}>
+              <Login updateUser={this.updateUser} />)}>
           </Route>
 
           <Route path="/home" exact render={() =>
@@ -127,14 +130,14 @@ class App extends Component {
             <Analytics updateNavBar={this.updateNavBar} isLoggedIn={this.isLoggedIn} />}>
           </Route>
 
-            {/* testing local storage being saved offline
+          {/* testing local storage being saved offline
           <button onClick={this.saveForm} >SAVE FORM</button> */}
 
         </BrowserRouter>
 
       </div></>
     );
-    
+
   }
 }
 
