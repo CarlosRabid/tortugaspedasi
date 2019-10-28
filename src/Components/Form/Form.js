@@ -14,7 +14,6 @@ import { faSave } from '@fortawesome/free-solid-svg-icons'
 import BeachLocations from './BeachLocations';
 import Comments from './ObservationComments';
 import { Redirect } from 'react-router-dom';
-import { green } from '@material-ui/core/colors'
 import * as constant from './constant'
 
 const axios = require('axios');
@@ -329,8 +328,6 @@ class Form extends Component {
                     style={{ backgroundColor: '#09bc8a', opacity: 0.9, marginLeft: '0.2em', marginTop: '0.1em' }}
                     size="medium"
                     className="submit"
-                    // startIcon={<SaveIcon />}
-                    color="#bce784"
                     onClick={this.submitNewForm}
                     margin="normal"
                 >

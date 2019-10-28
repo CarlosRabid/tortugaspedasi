@@ -19,12 +19,9 @@ class Login extends Component {
     constructor() {
         super()
         this.state = {
-            admin: {
-                userName: '',
-                password: '',
-                rememberMe: false,
-                isLoggedIn: false
-            }
+            userName: '',
+            password: '',
+            rememberMe: false,
         };
     }
 
@@ -48,7 +45,6 @@ class Login extends Component {
             alert('One of the following was not correct')
         }
     }
-
     render() {
         return (
             <Card className='logincontainer' style={{ maxWidth: 345 }}>
@@ -59,7 +55,7 @@ class Login extends Component {
             
                     <div className="cardActionsContainer">
                         <div><FormControlLabel
-                            control={<Checkbox checked={this.state.rememberMe} onChange={this.handleChange} color="default" type="checkbox" name="rememberMe" />}
+                            control={<Checkbox value={this.state.rememberMe} checked={this.state.rememberMe} onChange={this.handleChange} color="default" type="checkbox" name="rememberMe" />}
                             label="Remember me" />
                         </div>
                         <div>

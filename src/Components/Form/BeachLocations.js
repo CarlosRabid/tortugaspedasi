@@ -14,7 +14,7 @@ class BeachLocation extends Component {
             locationLatitude: "",  // set-up by beach selection
             locationLongitude: "", // set-up by beach selection
             showMenu: false,
-            selectedBeach: null
+            selectedBeach: ""
         }
 
         this.beaches = {

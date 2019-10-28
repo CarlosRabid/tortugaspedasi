@@ -67,21 +67,8 @@ h1 {
 
 
 
-.forms{
-  max-width: 95vw;
-  overflow-x: auto;
-  background-color: white;
-  opacity: 0.8;
-  margin-left: 25px;
-  margin-top: 25px;
-  border-radius: 15px
-  
-}
 
-.spreadSheet{
-  justify-content: center;
-  
-}
+
 
 .shift {
     border-bottom: 10px, solid, black;
