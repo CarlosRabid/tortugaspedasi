@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
 import TableCell from '@material-ui/core/TableCell';
+// import TableHead from '@material-ui/core/TableHead';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
-const moment = require('moment')
-// import Card from '@material-ui/core/Card';
-// import CardMedia from '@material-ui/core/CardMedia';
-// import CardHeader from '@material-ui/core/CardHeader';
-// import UpdateForm from './UpdateForm';
-// import CardContent from '@material-ui/core/CardContent';
-// import IconButton from '@material-ui/core/IconButton';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import Paper from '@material-ui/core/Paper';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableHead from '@material-ui/core/TableHead';
-
+import { withTranslation } from 'react-i18next'
+const moment = require('moment');
 
 
 class SpreadsheetContainer extends Component {
@@ -25,45 +16,141 @@ class SpreadsheetContainer extends Component {
         }
     }
 
-    showPopUp = (event) => {
-        console.log(event.target.id)
-        this.props.showPop(event.target.id)
-    }
+    // showPopUp = (event) => {
+    //     console.log(event.target.id)
+    //     this.props.showPop(event.target.id)
+    // }
 
     render() {
 
+
         let form = this.props.form
-        let gender = form.turtle.gender === "female"
-        let rehomed = form.nest.rehomed === "yes"
-        console.log(form)
-        return ( 
+
+
+        let gender = form.turtle.gender
+        if (gender) {
+            gender = gender === "male" ? "M" : "F"
+        }
+        else {
+            gender = "-"
+        }
+
+        let rehomed = form.nest.rehomed
+        if (rehomed) {
+            rehomed = rehomed === "yes" ? "√" : "X"
+        }
+        else {
+            rehomed = "-"
+        }
+
+        let salvageable = form.nest.salvageable
+        if (salvageable) {
+            salvageable = salvageable === "yes" ? "√" : "X"
+        }
+        else {
+            salvageable = "-"
+        }
+
+        let MR = form.turtle.markings.rightSide
+        if (!MR) {
+            MR = "-"
+        }
+
+        let ML = form.turtle.markings.leftSide
+        if (!ML) {
+            ML = "-"
+        }
+
+        let status = form.turtle.condition.status
+
+        if (!status) {
+            status = "-"
+        }
+
+        let stage = form.turtle.condition.stage
+        if (!stage) {
+            stage = "-"
+        }
+
+        let PL = form.turtle.dimensions.plain.length
+        if (!PL) {
+            PL = "-"
+        }
+
+        let PW = form.turtle.dimensions.plain.width
+        if (!PW) {
+            PW = "-"
+        }
+
+        let CL = form.turtle.dimensions.curve.length
+        if (!CL) {
+            CL = "-"
+        }
+        let CW = form.turtle.dimensions.curve.width
+        if (!CW) {
+            CW = "-"
+        }
+        
+
+        
+
+
+
+
+
+        return (
 
 
             <TableRow>
                 <TableCell align="center">{moment(form.shift.date).format("L")}</TableCell>
-                <TableCell align="center">{form.observation.location.name}</TableCell>
+                <TableCell align="center">{form.observation.location}</TableCell>
                 <TableCell align="center">{form.shift.lastName}</TableCell>
                 <TableCell align="center">{form.shift.firstName}</TableCell>
+
                 <TableCell align="center">
-                    L:{form.turtle.dimensions.plain.length}, W:{form.turtle.dimensions.plain.width}
+                    L:{PL}, W:{PW}
                 </TableCell>
+
                 <TableCell align="center">
-                    L:{form.turtle.dimensions.curve.length}, W:{form.turtle.dimensions.curve.width}
+                    L:{CL}, W:{CW}
                 </TableCell>
-                <TableCell align="center">{form.turtle.species}</TableCell>
-                <TableCell align="center">{gender ? "F" : "M"}</TableCell>
-                <TableCell align="center">{form.turtle.condition.status}</TableCell>
-                <TableCell align="center">{form.turtle.condition.stage}</TableCell>
-                <TableCell align="center">{form.turtle.markings.rightSide}</TableCell>
-                <TableCell align="center">{form.turtle.markings.leftSide}</TableCell>
-                <TableCell align="center"> {moment(form.nest.layTime).format("LTS")}</TableCell>
-                <TableCell align="center">{form.nest.eggCount}</TableCell>
-                <TableCell align="center">{moment(form.nest.hatchEst).format("LTS")}</TableCell>
-                <TableCell align="center">{rehomed ? "√" : "X"}</TableCell>
-                <TableCell align="center">{form.nest.salvageable}</TableCell>
-                <TableCell align="center">Icon</TableCell>
-                <TableCell align="center">{form.observation.tide}</TableCell>
-                <TableCell align="center"><Tooltip title={form.observation.comments}><div>{form.observation.comments.slice(0, 5) + "..."}</div></Tooltip></TableCell>
+
+                <TableCell align="center">{form.turtle.species ? form.turtle.species : "-"}</TableCell>
+                <TableCell align="center">{gender}</TableCell>
+                <TableCell align="center">{status}</TableCell>
+                <TableCell align="center">{stage}</TableCell>
+
+                <TableCell align="center"> {MR == "-" ? "-" :
+                    <Tooltip title={MR}>
+                        <div>
+                            {MR.slice(0, 5) + "..."}
+                        </div>
+
+                    </Tooltip>}
+                </TableCell>
+
+                <TableCell align="center"> {ML == "-" ? "-" :
+                    <Tooltip title={ML}>
+                        <div>
+                            {ML.slice(0, 5) + "..."}
+                        </div>
+
+                    </Tooltip>}
+                </TableCell>
+
+                <TableCell align="center"> {form.nest.layTime ? moment(form.nest.layTime).format("LT") : "-"}</TableCell>
+                <TableCell align="center">{form.nest.eggCount ? form.nest.eggCount : "-"}</TableCell>
+                <TableCell align="center">{form.nest.hatchEst ? moment(form.nest.hatchEst).format("LT") : "-"}</TableCell>
+                <TableCell align="center">{rehomed}</TableCell>
+                <TableCell align="center">{salvageable}</TableCell>
+
+                <TableCell align="center">
+                    {form.observation.comments ? <Tooltip title={form.observation.comments}>
+                        <div>
+                            {form.observation.comments.slice(0, 5) + "..."}
+                        </div>
+                    </Tooltip> : "-"}
+                </TableCell>
             </TableRow>
 
 
@@ -73,4 +160,4 @@ class SpreadsheetContainer extends Component {
 
 
 
-export default SpreadsheetContainer;
+export default withTranslation('translation')(SpreadsheetContainer);

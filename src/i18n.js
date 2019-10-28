@@ -53,7 +53,8 @@ const resources = {
             "Beach":"Beach",
             "Arenal beach":"Arenal beach",
             "El Toro beach":"El Toro beach",
-            "Lagarto beach":"Lagarto beach"
+            "Lagarto beach":"Lagarto beach",
+            "null" : "-"
         }
     },
     es: {
@@ -108,6 +109,12 @@ const resources = {
             "El Toro beach":"Playa El Toro",
             "Lagarto beach":"Playa Lagarto",
             "Observer First Name":"Nombre del observador",
+<<<<<<< HEAD
+            "null" : "-"
+
+
+=======
+>>>>>>> master
         }
     }
 };
@@ -122,7 +129,8 @@ i18n
 
         interpolation: {
             escapeValue: false // react already safes from xss
-        }
+        },
+        fallbackOnEmpty: true
     });
 
 export default i18n;

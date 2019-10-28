@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SpreadsheetContainer from './SpreadsheetContainer';
-import SpreadsheetActions from './SpreadsheetActions';
 import UpdateForm from './UpdateForm';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -9,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import * as constant from '../Form/constant'
+import './Spreadsheet.css'
 import { makeStyles } from '@material-ui/core/styles';
 const axios = require('axios')
 
@@ -16,6 +16,8 @@ const dinamicRoute = (
     window.location.host.includes("localhost") ?
         constant.LOCAL_GET : constant.PROD_GET
 )
+
+
 
 
 class SpreadsheetData extends Component {
@@ -28,17 +30,18 @@ class SpreadsheetData extends Component {
             showPopUp: null
         }
 
-        this.dinamicRoute = props.dinamicRoute 
+        // this.dinamicRoute = props.dinamicRoute 
+
     }
 
     async componentDidMount() {
-        let data = await axios.get(`${dinamicRoute}/forms`)
-        // let forms = [...this.state.forms]
-        // forms = data.data
-        
-        // console.log(forms)
+        console.log(dinamicRoute)
+        let data = await axios.get(`${dinamicRoute}/all-data`)
+        let forms = [...this.state.forms]
+        forms = data.data
+
         this.setState({
-            forms: data.data
+            forms
         })
     }
 
@@ -50,7 +53,6 @@ class SpreadsheetData extends Component {
         await this.setState({
             form: data
         })
-        console.log(data)
         return data
     }
 
@@ -81,21 +83,19 @@ class SpreadsheetData extends Component {
 
     render() {
         let forms = this.state.forms
-        console.log(forms)
+
+
         return (
             <div className="spreadSheet">
                 {this.state.showPopUp ?
                     <UpdateForm closePopUp={this.closePopUp} form={this.state.form} /> : null}
 
-                <SpreadsheetActions data={this.state} searchHandler={this.searchHandler} />
 
                 <div className="forms">
                     <Paper>
-                        <Table>
-                            <TableHead>
-                                <TableRow style={{
-                                    textAlign: "center"
-                                }}>
+                        <Table stickyHeader >
+                            <TableHead className="head" >
+                                <TableRow  >
                                     <TableCell >Date</TableCell>
                                     <TableCell align="center">Location</TableCell>
                                     <TableCell align="center">First Name</TableCell>
@@ -113,12 +113,10 @@ class SpreadsheetData extends Component {
                                     <TableCell align="center">Hatchest</TableCell>
                                     <TableCell align="center">Rehomed</TableCell>
                                     <TableCell align="center">Salvageable</TableCell>
-                                    <TableCell align="center">Moon Phase</TableCell>
-                                    <TableCell align="center">Tide</TableCell>
                                     <TableCell align="center">Comments</TableCell>
-                                </TableRow>
+                                </TableRow >
                             </TableHead>
-                            <TableBody>
+                            <TableBody >
                                 {forms.map(f => <SpreadsheetContainer form={f} key={f._id} showPop={this.showPop} closePopUp={this.closePopUp} />)}
                             </TableBody>
                         </Table>
