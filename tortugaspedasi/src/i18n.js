@@ -47,6 +47,7 @@ const resources = {
             "Estimated laying time":"Estimated laying time",
             "Taken to lab":"Taken to lab",
             "Yes":"Yes",
+            "Add notes...":"Add notes...",
             "Submit Form": "Submit Form",
             "Search": "Search", 
             "Beach":"Beach",
@@ -99,6 +100,7 @@ const resources = {
             "Estimated hatching time":"Tiempo estimado de eclosión",
             "Taken to lab":"Llevado al laboratorio",
             "Yes":"Si",
+            "Add notes...":"Agregar notas...",
             "Submit Form": "Enviar Formulario",
             "Search": "Búsqueda",
             "Beach":"Playa",
@@ -106,7 +108,6 @@ const resources = {
             "El Toro beach":"Playa El Toro",
             "Lagarto beach":"Playa Lagarto",
             "Observer First Name":"Nombre del observador",
-
         }
     }
 };

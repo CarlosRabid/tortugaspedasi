@@ -100,7 +100,7 @@ class NestInput extends Component {
                         display="block"
                         value="no"
                         control={<Radio color="secondary" />}
-                        label={t('No')}
+                        label="No"
                         // labelPlacement="start"
                         id="no"
                     />
