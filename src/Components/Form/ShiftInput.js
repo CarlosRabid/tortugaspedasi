@@ -76,7 +76,7 @@ class ShiftInput extends Component {
                             margin="none"
                             autoComplete="on"
                             hiddenLabel={true}
-                            style={{ height, marginLeft }}
+                            style={{ height, marginLeft, marginTop:'3vmin' }}
                         />
                         <br />
                         <br />
