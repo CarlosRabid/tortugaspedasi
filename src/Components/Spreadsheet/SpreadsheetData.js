@@ -115,14 +115,14 @@ class SpreadsheetData extends Component {
                                     <TableCell align="center">{t('Curve measurement')}</TableCell>
                                     <TableCell align="center">{t('Species')}</TableCell>
                                     <TableCell align="center">{t('Gender')}</TableCell>
-                                    <TableCell align="center">{t('Status')}</TableCell>
-                                    <TableCell align="center">{t('Stage')}</TableCell>
-                                    <TableCell align="center">{t('Right Markings')}</TableCell>
-                                    <TableCell align="center">{t('Left Markings')}</TableCell>
-                                    <TableCell align="center">{t('Lay Time')}</TableCell>
-                                    <TableCell align="center">{t('Egg Count')}</TableCell>
-                                    <TableCell align="center">{t('Hatchest')}</TableCell>
-                                    <TableCell align="center">{t('Rehomed')}</TableCell>
+                                    <TableCell align="center">{t('Found alive')}</TableCell>
+                                    <TableCell align="center">{t('Condition & Stage')}</TableCell>
+                                    <TableCell align="center">{t('Marks right side')}</TableCell>
+                                    <TableCell align="center">{t('Marks left side')}</TableCell>
+                                    <TableCell align="center">{t('Spawning time')}</TableCell>
+                                    <TableCell align="center">{t('Number of eggs')}</TableCell>
+                                    <TableCell align="center">{t('Hatching')}</TableCell>
+                                    <TableCell align="center">{t('Relocated')}</TableCell>
                                     <TableCell align="center">{t('Salvageable')}</TableCell>
                                     <TableCell align="center">{t('Comments')}</TableCell>
                                 </TableRow >
